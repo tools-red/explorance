@@ -1,5 +1,6 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { type AppType } from "next/app";
 import { Inter } from "next/font/google";
 
@@ -17,9 +18,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <main className={inter.className}>
-        <Component {...pageProps} />
-      </main>
+      <ChakraProvider>
+        <main className={inter.className}>
+          <Component {...pageProps} />
+        </main>
+      </ChakraProvider>
     </SessionProvider>
   );
 };
