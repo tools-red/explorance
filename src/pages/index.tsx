@@ -1,12 +1,10 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { api } from "~/utils/api";
-import useServerActions from "./_hooks/useServerActions";
 import { useState } from "react";
 
 export default function Home() {
-  const [showLoader, setShowLoader] = useState<boolean>(false);
-
   const hello = api.user.hello.useQuery({ text: "from server" });
+  const bucketItems = api.r2.fetchBucketContent.useQuery();
 
   return (
     <Flex flexDir="column">
@@ -19,9 +17,7 @@ export default function Home() {
           Campus Events
         </Button>
         <Button
-          onClick={async () => {
-            setShowLoader(true);
-            const bucketItems = api.r2.fetchBucketContent.useQuery();
+          onClick={() => {
             console.log(bucketItems);
           }}
         >
