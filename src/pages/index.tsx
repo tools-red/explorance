@@ -13,6 +13,7 @@ export default function Home() {
         <Button as="a" href="/events">
           Campus Events
         </Button>
+        <Button>Fetch Bucket Items</Button>
       </Flex>
       <Text>{JSON.stringify(hello.data?.greeting)}</Text>
     </Flex>
