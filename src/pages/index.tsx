@@ -1,6 +1,5 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { api } from "~/utils/api";
-import { useState } from "react";
 
 export default function Home() {
   const hello = api.user.hello.useQuery({ text: "from server" });
