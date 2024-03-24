@@ -1,8 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
-import VideoPlayer from "~/components/tour_page/VideoPlayer";
-import { graphQL } from "~/lib/graphql";
+import EvitarContainer from "~/components/pages/tour/EvitarContainer";
+import VideoPlayer from "~/components/pages/tour/VideoPlayer";
+import VoiceChatContainer from "~/components/pages/tour/VoiceChatContainer";
+import { graphQL } from "~/lib/graphQL";
 
 export const getServerSideProps: GetServerSideProps<{
   walkthroughData: {
@@ -32,8 +34,11 @@ const CampusWalkthrough: React.FC<
 > = ({ walkthroughData }) => {
   console.log(walkthroughData);
   return (
-    <Flex flexDir="column">
-      <Text>Walkthrough here page</Text>
+    <Flex bg="red" w="full">
+      <Flex flexDir="column">
+        <EvitarContainer />
+        <VoiceChatContainer />
+      </Flex>
       <VideoPlayer />
     </Flex>
   );
