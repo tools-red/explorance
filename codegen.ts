@@ -1,5 +1,5 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
-import { env } from "~/env.mjs";
+import { env } from "./src/env.mjs";
 
 const productionEndpoint = "https://graphql.contentful.com/content/v1/spaces";
 // const contentfulSpaceId = "f0p9zov000x1";
