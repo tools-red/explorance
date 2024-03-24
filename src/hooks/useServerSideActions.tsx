@@ -10,6 +10,8 @@ const useServerSideActions = () => {
     errorShape: any;
   }> | null>(null);
 
+  const loadExperience = () => {};
+
   const {
     data,
     isLoading,
