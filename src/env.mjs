@@ -35,7 +35,8 @@ export const env = createEnv({
     CLOUDFLARE_ACCOUNT_ID: z.string(),
     CONTENTFUL_SPACE_ID: z.string(),
     CONTENTFUL_ENVIRONMENT: z.string(),
-    CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN: z.string()
+    CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN: z.string(),
+    CLOUDFLARE_PUBLIC_URL: z.string(),
   },
 
   /**
@@ -64,7 +65,9 @@ export const env = createEnv({
     CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
     CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
     CONTENTFUL_ENVIRONMENT: process.env.CONTENTFUL_ENVIRONMENT,
-    CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN: process.env.CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN
+    CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN:
+      process.env.CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN,
+    CLOUDFLARE_PUBLIC_URL: process.env.CLOUDFLARE_PUBLIC_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
