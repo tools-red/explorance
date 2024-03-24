@@ -1,0 +1,11 @@
+query campusEventCollection {
+	campusEventCollection {
+		items {
+			name
+			date
+			description {
+				json
+			}
+		}
+	}
+}

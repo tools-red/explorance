@@ -1,5 +1,4 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
-import useServerSideActions from "~/hooks/useServerSideActions";
 
 export default function Home() {
   return (
