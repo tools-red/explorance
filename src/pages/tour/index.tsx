@@ -34,12 +34,12 @@ const CampusWalkthrough: React.FC<
 > = ({ walkthroughData }) => {
   console.log(walkthroughData);
   return (
-    <Flex gap={3} h="100vh" p={5} w="full">
+    <Flex bg="#121212" gap={3} h="100vh" p={5} w="full">
       <Flex gap={3} flexDir="column">
         <EvitarContainer />
         <VoiceChatContainer />
       </Flex>
-      <VideoPlayer />
+      <VideoPlayer walkthroughData={walkthroughData} />
     </Flex>
   );
 };

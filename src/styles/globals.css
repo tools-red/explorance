@@ -19,10 +19,6 @@ a {
   text-decoration: none;
 }
 
-main {
-  background: #121212;
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
