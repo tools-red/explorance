@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 import EvitarContainer from "~/components/pages/tour/EvitarContainer";
@@ -34,8 +34,8 @@ const CampusWalkthrough: React.FC<
 > = ({ walkthroughData }) => {
   console.log(walkthroughData);
   return (
-    <Flex bg="red" w="full">
-      <Flex flexDir="column">
+    <Flex gap={3} h="100vh" p={5} w="full">
+      <Flex gap={3} flexDir="column">
         <EvitarContainer />
         <VoiceChatContainer />
       </Flex>
