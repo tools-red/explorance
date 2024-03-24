@@ -1,11 +1,8 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
-import { api } from "~/utils/api";
-import { useState } from "react";
+import useServerSideActions from "~/hooks/useServerSideActions";
 
 export default function Home() {
-  const hello = api.user.hello.useQuery({ text: "from server" });
-  const bucketItems = api.r2.fetchBucketContent.useQuery();
-
+  const { data, isLoading, fetchBucketContent } = useServerSideActions();
   return (
     <Flex flexDir="column">
       <Text>Index Page</Text>
@@ -18,13 +15,12 @@ export default function Home() {
         </Button>
         <Button
           onClick={() => {
-            console.log(bucketItems);
+            fetchBucketContent();
           }}
         >
           Fetch Bucket Items
         </Button>
       </Flex>
-      <Text>{JSON.stringify(hello.data?.greeting)}</Text>
     </Flex>
   );
 }
