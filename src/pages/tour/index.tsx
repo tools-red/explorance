@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 import EvitarContainer from "~/components/pages/tour/EvitarContainer";
-import VideoPlayer from "~/components/pages/tour/VideoPlayer";
+import VideoPlayerContainer from "~/components/pages/tour/VideoPlayerContainer";
 import VoiceChatContainer from "~/components/pages/tour/VoiceChatContainer";
 import { graphQL } from "~/lib/graphQL";
 
@@ -38,7 +38,7 @@ const CampusWalkthrough: React.FC<
         <EvitarContainer />
         <VoiceChatContainer />
       </Flex>
-      <VideoPlayer walkthroughData={walkthroughData} />
+      <VideoPlayerContainer walkthroughData={walkthroughData} />
     </Flex>
   );
 };

@@ -11,7 +11,7 @@ export const EvitarContainer = () => {
       height={400}
       width={250}
     >
-      <Text>Evitar Container</Text>
+      <Text color="white">Evitar Container</Text>
     </Flex>
   );
 };

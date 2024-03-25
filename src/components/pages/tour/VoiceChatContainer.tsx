@@ -10,7 +10,7 @@ const VoiceChatContainer = () => {
       borderRadius={22}
       flexDir="column"
     >
-      <Text>Voice Chat Container</Text>
+      <Text color="white">Voice Chat Container</Text>
     </Flex>
   );
 };
