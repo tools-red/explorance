@@ -37,36 +37,20 @@ const useServerSideActions = () => {
           Key: item.Key,
         })) || [];
 
-      // Check if scriptData exists and is not empty
-      if (walkthroughData && walkthroughData.length > 0) {
-        // Loop through scriptData
-        walkthroughData.forEach((script) => {
-          // Check if the script is already present in r2Data
-          const isScriptPresent = updatedR2Data.some(
-            (r2Item) => r2Item.Key === script.videoFile
-          );
+      console.log(updatedR2Data);
 
-          if (!isScriptPresent) throw trpcClientError;
-        });
-      }
+      // Ensures Script verification from R2 Bucket
+      const filteredScriptData = walkthroughData.filter((script) => {
+        return updatedR2Data.some((r2Item) => r2Item.Key === script.videoFile);
+      });
 
-      const confirmedScriptData = walkthroughData.map((item) => ({
-        sequenceNumber: item.sequenceNumber,
-        scriptContent: item.scriptContent,
-        videoFile: item.videoFile,
-      }));
-
-      setScriptData(confirmedScriptData);
+      setScriptData([...filteredScriptData]);
     } catch (error: any) {
       setTrpcClientError(error);
-      console.log(trpcClientError);
+    } finally {
+      setIsLoading(false); // Ensure to set loading state to false regardless of success or failure
     }
   };
-
-  useEffect(() => {
-    console.log(scriptData);
-    if (scriptData.length != 0) setIsLoading(false);
-  }, [scriptData]);
 
   return { loadExperience, isLoading, scriptData };
 };
