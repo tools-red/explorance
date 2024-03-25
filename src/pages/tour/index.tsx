@@ -32,7 +32,6 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
-  console.log(walkthroughData);
   return (
     <Flex bg="#121212" gap={3} h="100vh" p={5} w="full">
       <Flex gap={3} flexDir="column">

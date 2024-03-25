@@ -12,9 +12,7 @@ interface VideoPlayerProps {
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ walkthroughData }) => {
   const { loadExperience, isLoading, scriptData } = useServerSideActions();
-  useEffect(() => {
-    console.log({ scriptData });
-  }, [scriptData]);
+  useEffect(() => {}, [scriptData]);
   return (
     <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
       <Flex h="full" align="center" justify="center" w="full">
