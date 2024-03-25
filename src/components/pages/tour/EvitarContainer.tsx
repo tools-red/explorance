@@ -4,8 +4,7 @@ export const EvitarContainer = () => {
   return (
     <Flex
       borderRadius={22}
-      border="2px solid"
-      backgroundColor="blue"
+      backgroundColor="#1E1E1E"
       flexDir="column"
       justify="center"
       align="center"
