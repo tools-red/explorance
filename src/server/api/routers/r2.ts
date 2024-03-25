@@ -9,7 +9,7 @@ export const r2Router = createTRPCRouter({
     });
     const response = await R2.send(fetchBucketItems);
     return {
-      CDN_Response: response,
+      CDN_Response: response.Contents,
     };
   }),
 });

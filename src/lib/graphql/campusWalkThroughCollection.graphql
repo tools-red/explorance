@@ -1,0 +1,9 @@
+query walkthroughScriptsCollection {
+  walkthroughScriptsCollection {
+    items {
+      sequenceNumber
+      videoFile
+      scriptContent
+    }
+  }
+}
