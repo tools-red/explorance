@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import useServerSideActions from "~/hooks/useServerSideActions";
 import VideoPlayer from "./VideoPlayer";
+import VideoControler from "../VideoController/VideoController";
 
 interface VideoPlayerProps {
   walkthroughData: {
@@ -21,8 +22,14 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
     if (scriptData.length != 0) setDisplayPlayer(true);
   }, [scriptData]);
   return (
-    <Flex h="full" borderRadius={22} w="full" flexDir="column">
-      <Flex h="full" align="center" justify="center" w="full">
+    <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
+      <Flex
+        h="full"
+        align="center"
+        justify="center"
+        w="full"
+        position="relative"
+      >
         {displayPlayer ? (
           <VideoPlayer videoFile={scriptData[1]?.videoFile} />
         ) : (
@@ -33,6 +40,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
             </Button>
           </Flex>
         )}
+        <VideoControler />
       </Flex>
     </Flex>
   );
