@@ -5,10 +5,24 @@ type WalkthroughData = {
   scriptContent: string;
 }[];
 
-// atom types
+// atom body types
+type videoSelectedAtomBody = {
+  sequenceNumber: string;
+  videoFile: string;
+  scriptContent: string;
+};
 
+// atom state types
 type videoSequenceAtomState = {
   sequence: number;
 };
 
-export { type WalkthroughData, type videoSequenceAtomState };
+type videoSelectedAtomState = {
+  video: videoSelectedAtomBody | null;
+};
+
+export {
+  type WalkthroughData,
+  type videoSequenceAtomState,
+  type videoSelectedAtomState,
+};

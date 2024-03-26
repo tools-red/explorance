@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useVideoSequenceAtom } from "~/lib/atom";
 
 const useVideoControllerActions = () => {
@@ -19,10 +18,8 @@ const useVideoControllerActions = () => {
 
     if (direction === false) {
       nextSequence();
-      console.log(videoSequence.sequence);
     } else if (direction === true) {
       prevSequence();
-      console.log(videoSequence.sequence);
     }
   };
 
