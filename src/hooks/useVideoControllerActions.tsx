@@ -1,23 +1,29 @@
-const useVideoControllerActions = () => {
-  // All Actions pertain to handle videoController CTAs
+import { useState } from "react";
+import { useVideoSequenceAtom } from "~/lib/atom";
 
-  // To handle Navigation between videos
+const useVideoControllerActions = () => {
+  const [videoSequence, setVideoSequence] = useVideoSequenceAtom();
+
   const handleNavigation = (direction: boolean, videoCount: number) => {
-    let count: number = 0;
+    const nextSequence = () => {
+      if (videoSequence.sequence < videoCount) {
+        setVideoSequence({ sequence: videoSequence.sequence + 1 });
+      }
+    };
+
+    const prevSequence = () => {
+      if (videoSequence.sequence > 1) {
+        setVideoSequence({ sequence: videoSequence.sequence - 1 });
+      }
+    };
+
     if (direction === false) {
-      if (count != videoCount) {
-        count = count + 1;
-      } else {
-        count = 0;
-      }
-    } else {
-      if (count != 0) {
-        count--;
-      } else {
-        count = count - 1;
-      }
+      nextSequence();
+      console.log(videoSequence.sequence);
+    } else if (direction === true) {
+      prevSequence();
+      console.log(videoSequence.sequence);
     }
-    console.log(count);
   };
 
   return { handleNavigation };

@@ -1,4 +1,4 @@
-import { Button, Circle, Icon } from "@chakra-ui/react";
+import { Button, Circle, Icon, Text } from "@chakra-ui/react";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import useVideoControllerActions from "~/hooks/useVideoControllerActions";
 
