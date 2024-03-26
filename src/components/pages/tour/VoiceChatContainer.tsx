@@ -6,7 +6,7 @@ const VoiceChatContainer = () => {
       justify="center"
       align="center"
       backgroundColor="#1E1E1E"
-      h={250}
+      // h={250}
       borderRadius={22}
       flexDir="column"
     >

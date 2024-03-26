@@ -8,8 +8,8 @@ export const EvitarContainer = () => {
       flexDir="column"
       justify="center"
       align="center"
-      height={400}
-      width={250}
+      // height={400}
+      // width={250}
     >
       <Text color="white">Evitar Container</Text>
     </Flex>

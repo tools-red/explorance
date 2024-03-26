@@ -1,5 +1,5 @@
-import { Flex } from "@chakra-ui/react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 import EvitarContainer from "~/components/pages/tour/EvitarContainer";
 import VideoPlayerContainer from "~/components/pages/tour/VideoPlayer/VideoPlayerContainer";
@@ -33,13 +33,15 @@ const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
   return (
-    <Flex bg="#121212" gap={3} h="100vh" p={5} w="full">
-      <Flex gap={3} flexDir="column">
+    <Grid bg="#121212" gap={3} p={3} h="100vh" templateColumns="1fr 5fr">
+      <Grid gap={3} templateRows="2fr 1fr">
         <EvitarContainer />
         <VoiceChatContainer />
-      </Flex>
-      <VideoPlayerContainer walkthroughData={walkthroughData} />
-    </Flex>
+      </Grid>
+      <GridItem>
+        <VideoPlayerContainer walkthroughData={walkthroughData} />
+      </GridItem>
+    </Grid>
   );
 };
 
