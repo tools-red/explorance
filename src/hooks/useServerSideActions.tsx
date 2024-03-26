@@ -1,5 +1,6 @@
 import { TRPCClientErrorLike } from "@trpc/client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { WalkthroughData } from "~/types";
 import { api } from "~/utils/api";
 
 const useServerSideActions = () => {
@@ -21,13 +22,7 @@ const useServerSideActions = () => {
     }
   );
 
-  const loadExperience = async (
-    walkthroughData: {
-      sequenceNumber: string;
-      videoFile: string;
-      scriptContent: string;
-    }[]
-  ) => {
+  const loadExperience = async (walkthroughData: WalkthroughData) => {
     try {
       setIsLoading(true);
       const data = await fetchBucketContent();

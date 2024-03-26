@@ -5,13 +5,10 @@ import EvitarContainer from "~/components/pages/tour/EvitarContainer";
 import VideoPlayerContainer from "~/components/pages/tour/VideoPlayer/VideoPlayerContainer";
 import VoiceChatContainer from "~/components/pages/tour/VoiceChatContainer";
 import { graphQL } from "~/lib/graphQL";
+import { WalkthroughData } from "~/types";
 
 export const getServerSideProps: GetServerSideProps<{
-  walkthroughData: {
-    sequenceNumber: string;
-    videoFile: string;
-    scriptContent: string;
-  }[];
+  walkthroughData: WalkthroughData;
 }> = async () => {
   const contentfulWalkthroughData =
     await graphQL.walkthroughScriptsCollection();
