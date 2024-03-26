@@ -7,9 +7,9 @@ type WalkthroughData = {
 
 // atom body types
 type videoSelectedAtomBody = {
-  sequenceNumber: string;
-  videoFile: string;
-  scriptContent: string;
+  sequenceNumber: string | undefined;
+  videoFile: string | undefined;
+  scriptContent: string | undefined;
 };
 
 // atom state types

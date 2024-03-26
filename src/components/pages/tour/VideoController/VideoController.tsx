@@ -6,15 +6,18 @@ import { IoVolumeHigh } from "react-icons/io5";
 import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
 import React from "react";
+import { WalkthroughData } from "~/types";
 
 interface VideoControllerProps {
   displayState: boolean;
   videoCount: number;
+  walkthroughData: WalkthroughData;
 }
 
 const VideoControler: React.FC<VideoControllerProps> = ({
   displayState,
   videoCount,
+  walkthroughData,
 }) => {
   return (
     <Flex
@@ -29,11 +32,19 @@ const VideoControler: React.FC<VideoControllerProps> = ({
       align="center"
       gap={3}
     >
-      <VideoControllerNavigator videoCount={videoCount} direction={true} />
+      <VideoControllerNavigator
+        walkthroughData={walkthroughData}
+        videoCount={videoCount}
+        direction={true}
+      />
       <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
       <VideoControllerCTA iconSize={5} icon={BsCompass} label="Navigate" />
       <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} label="Volume" />
-      <VideoControllerNavigator videoCount={videoCount} direction={false} />
+      <VideoControllerNavigator
+        walkthroughData={walkthroughData}
+        videoCount={videoCount}
+        direction={false}
+      />
     </Flex>
   );
 };

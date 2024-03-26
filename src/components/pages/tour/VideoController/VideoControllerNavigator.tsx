@@ -1,20 +1,23 @@
 import { Button, Circle, Icon, Text } from "@chakra-ui/react";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import useVideoControllerActions from "~/hooks/useVideoControllerActions";
+import { WalkthroughData } from "~/types";
 
 interface VideoControllerNavigatorProps {
   direction: boolean; // true for left and false for right
   videoCount: number;
+  walkthroughData: WalkthroughData;
 }
 
 const VideoControllerNavigator: React.FC<VideoControllerNavigatorProps> = ({
   direction,
   videoCount,
+  walkthroughData,
 }) => {
   const { handleNavigation } = useVideoControllerActions();
   return (
     <Circle
-      onClick={() => handleNavigation(direction, videoCount)}
+      onClick={() => handleNavigation(direction, videoCount, walkthroughData)}
       _hover={{
         bg: "white",
         color: "black",
