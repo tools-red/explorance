@@ -29,7 +29,6 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
-  console.log(parseInt(walkthroughData[0]?.sequenceNumber ?? ""));
   return (
     <Grid bg="#121212" gap={3} p={3} h="100vh" templateColumns="1fr 5fr">
       <Grid gap={3} templateRows="2fr 1fr">

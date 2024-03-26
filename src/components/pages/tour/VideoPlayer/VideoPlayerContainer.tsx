@@ -40,7 +40,10 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
             </Button>
           </Flex>
         )}
-        <VideoControler displayState={displayPlayer} />
+        <VideoControler
+          videoCount={walkthroughData.length}
+          displayState={displayPlayer}
+        />
       </Flex>
     </Flex>
   );

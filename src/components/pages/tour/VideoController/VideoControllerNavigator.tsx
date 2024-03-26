@@ -3,11 +3,14 @@ import { MdOutlineArrowBackIos } from "react-icons/md";
 
 interface VideoControllerNavigatorProps {
   direction: boolean; // true for left and false for right
+  videoCount: number;
 }
 
 const VideoControllerNavigator: React.FC<VideoControllerNavigatorProps> = ({
   direction,
+  videoCount,
 }) => {
+  console.log({ videoCount });
   return (
     <Circle
       _hover={{

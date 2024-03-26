@@ -9,9 +9,13 @@ import React from "react";
 
 interface VideoControllerProps {
   displayState: boolean;
+  videoCount: number;
 }
 
-const VideoControler: React.FC<VideoControllerProps> = ({ displayState }) => {
+const VideoControler: React.FC<VideoControllerProps> = ({
+  displayState,
+  videoCount,
+}) => {
   return (
     <Flex
       display={displayState ? "flex" : "none"}
@@ -25,11 +29,11 @@ const VideoControler: React.FC<VideoControllerProps> = ({ displayState }) => {
       align="center"
       gap={3}
     >
-      <VideoControllerNavigator direction={true} />
+      <VideoControllerNavigator videoCount={videoCount} direction={true} />
       <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
       <VideoControllerCTA iconSize={5} icon={BsCompass} label="Navigate" />
       <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} label="Volume" />
-      <VideoControllerNavigator direction={false} />
+      <VideoControllerNavigator videoCount={videoCount} direction={false} />
     </Flex>
   );
 };
