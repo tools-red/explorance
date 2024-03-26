@@ -18,10 +18,15 @@ const VideoControllerCTA: React.FC<VideoControlerProps> = ({
       h={8}
       bg="rgba(255, 255, 255, 0.1)"
       variant="none"
+      color="white"
+      _hover={{
+        color: "#1E1E1E",
+        bg: "white",
+      }}
     >
       <Flex align="center" gap={2}>
-        <Icon color="white" boxSize={iconSize} as={icon} />
-        <Text fontWeight={400} color="white" fontSize="small">
+        <Icon boxSize={iconSize} as={icon} />
+        <Text fontWeight={400} fontSize="small">
           {label}
         </Text>
       </Flex>
