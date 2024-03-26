@@ -5,10 +5,16 @@ import { IoVolumeHigh } from "react-icons/io5";
 
 import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
+import React from "react";
 
-const VideoControler = () => {
+interface VideoControllerProps {
+  displayState: boolean;
+}
+
+const VideoControler: React.FC<VideoControllerProps> = ({ displayState }) => {
   return (
     <Flex
+      display={displayState ? "flex" : "none"}
       justify="space-between"
       bg="rgba(0, 0, 0, 0.6)"
       bottom={10}

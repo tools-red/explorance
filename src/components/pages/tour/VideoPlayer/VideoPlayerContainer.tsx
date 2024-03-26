@@ -40,7 +40,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
             </Button>
           </Flex>
         )}
-        <VideoControler />
+        <VideoControler displayState={displayPlayer} />
       </Flex>
     </Flex>
   );
