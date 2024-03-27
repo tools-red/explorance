@@ -10,7 +10,12 @@ const VoiceChatContainer = () => {
       borderRadius={22}
       flexDir="column"
     >
-      <Text color="white">Voice Chat Container</Text>
+      <iframe
+        src="https://app.zenfluence.ai/talkToEVI"
+        allow="camera; microphone"
+        width="205px"
+        height="250px"
+      ></iframe>
     </Flex>
   );
 };
