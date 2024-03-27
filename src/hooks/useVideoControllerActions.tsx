@@ -1,9 +1,8 @@
-import { useVideoSelectedAtom, useVideoSequenceAtom } from "~/lib/atom";
+import { useVideoSequenceAtom } from "~/lib/atom";
 import { WalkthroughData } from "~/types";
 
 const useVideoControllerActions = () => {
   const [videoSequence, setVideoSequence] = useVideoSequenceAtom();
-  const [sequence, setSequence] = useVideoSelectedAtom();
 
   const handleNavigation = (
     direction: boolean,
@@ -30,20 +29,6 @@ const useVideoControllerActions = () => {
     const VideoInSequence = walkthroughData.filter(
       (script) => parseInt(script.sequenceNumber) === videoSequence.sequence
     );
-
-    if (VideoInSequence) {
-      setSequence({
-        video:
-          {
-            scriptContent: VideoInSequence[0]?.scriptContent,
-            sequenceNumber: VideoInSequence[0]?.sequenceNumber,
-            videoFile: VideoInSequence[0]?.videoFile,
-          } ?? null,
-      });
-    } else {
-      // If no video found for the current sequence, set null
-      setSequence({ video: null });
-    }
   };
 
   return { handleNavigation };

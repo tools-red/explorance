@@ -1,10 +1,11 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text, filter } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 import useServerSideActions from "~/hooks/useServerSideActions";
 import VideoPlayer from "./VideoPlayer";
 import VideoControler from "../VideoController/VideoController";
-import { useVideoSelectedAtom } from "~/lib/atom";
+import { useVideoSequenceAtom } from "~/lib/atom";
+import { WalkthroughData } from "~/types";
 
 interface VideoPlayerProps {
   walkthroughData: {
@@ -18,26 +19,26 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   walkthroughData,
 }) => {
   const { loadExperience, isLoading, scriptData } = useServerSideActions();
+  const [{ sequence }] = useVideoSequenceAtom();
 
-  const [sequence, setSequence] = useVideoSelectedAtom();
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
+  const [selectedVideo, setSelectedVideo] = useState<WalkthroughData>([]);
 
   useEffect(() => {
-    if (scriptData.length != 0) {
-      setDisplayPlayer(true);
-      const VideoInSequence = walkthroughData.filter(
-        (script) => parseInt(script.sequenceNumber) === 1
-      );
-      setSequence({
-        video:
-          {
-            scriptContent: VideoInSequence[0]?.scriptContent,
-            sequenceNumber: VideoInSequence[0]?.sequenceNumber,
-            videoFile: VideoInSequence[0]?.videoFile,
-          } ?? null,
-      });
-    }
+    if (scriptData.length != 0) setDisplayPlayer(true);
+    const filterVideo = scriptData.filter(
+      (script) => parseInt(script.sequenceNumber) === 1
+    );
+    setSelectedVideo(filterVideo ?? null);
   }, [scriptData]);
+
+  useEffect(() => {
+    const filterVideo = scriptData.filter(
+      (script) => parseInt(script.sequenceNumber) === sequence
+    );
+    setSelectedVideo(filterVideo ?? null);
+  }, [sequence]);
+
   return (
     <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
       <Flex
@@ -48,7 +49,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         position="relative"
       >
         {displayPlayer ? (
-          <VideoPlayer videoFile={sequence.video?.videoFile} />
+          <VideoPlayer videoFile={selectedVideo[0]?.videoFile} />
         ) : (
           <Flex gap={2} flexDir="column">
             <Text>{isLoading ? `Fetching Videos...` : `Video Data`}</Text>
