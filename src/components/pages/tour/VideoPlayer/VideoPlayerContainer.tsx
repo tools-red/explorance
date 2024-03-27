@@ -1,9 +1,11 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text, filter } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 import useServerSideActions from "~/hooks/useServerSideActions";
 import VideoPlayer from "./VideoPlayer";
 import VideoControler from "../VideoController/VideoController";
+import { useVideoSequenceAtom } from "~/lib/atom";
+import { WalkthroughData } from "~/types";
 
 interface VideoPlayerProps {
   walkthroughData: {
@@ -17,12 +19,28 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   walkthroughData,
 }) => {
   const { loadExperience, isLoading, scriptData } = useServerSideActions();
+  const [{ sequence }] = useVideoSequenceAtom();
+
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
+  const [selectedVideo, setSelectedVideo] = useState<WalkthroughData>([]);
+
   useEffect(() => {
     if (scriptData.length != 0) setDisplayPlayer(true);
+    const filterVideo = scriptData.filter(
+      (script) => parseInt(script.sequenceNumber) === 1
+    );
+    setSelectedVideo(filterVideo ?? null);
   }, [scriptData]);
+
+  useEffect(() => {
+    const filterVideo = scriptData.filter(
+      (script) => parseInt(script.sequenceNumber) === sequence
+    );
+    setSelectedVideo(filterVideo ?? null);
+  }, [sequence]);
+
   return (
-    <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
+    <Flex h="full" borderRadius={22} w="full" flexDir="column">
       <Flex
         h="full"
         align="center"
@@ -31,7 +49,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         position="relative"
       >
         {displayPlayer ? (
-          <VideoPlayer videoFile={scriptData[1]?.videoFile} />
+          <VideoPlayer videoFile={selectedVideo[0]?.videoFile} />
         ) : (
           <Flex gap={2} flexDir="column">
             <Text>{isLoading ? `Fetching Videos...` : `Video Data`}</Text>
@@ -40,7 +58,11 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
             </Button>
           </Flex>
         )}
-        <VideoControler />
+        <VideoControler
+          walkthroughData={walkthroughData}
+          videoCount={walkthroughData.length}
+          displayState={displayPlayer}
+        />
       </Flex>
     </Flex>
   );
