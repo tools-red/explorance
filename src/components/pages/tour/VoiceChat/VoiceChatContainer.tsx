@@ -1,4 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
+import VoiceChat from "./VoiceChat";
 
 const VoiceChatContainer = () => {
   return (
@@ -9,7 +10,7 @@ const VoiceChatContainer = () => {
       borderRadius={22}
       flexDir="column"
     >
-      <Text color="white">Voice Container</Text>
+      <VoiceChat />
     </Flex>
   );
 };
