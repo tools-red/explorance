@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
-import { openAI } from "~/lib/openAI";
+import { api } from "~/utils/api";
+import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 
 const useAudioActions = () => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [audioFileBase64, setAudioFileBase64] = useState<string>();
 
   const initiateRecording = async () => {
     try {
@@ -34,36 +36,44 @@ const useAudioActions = () => {
     }
   };
 
-  // const exportAudio = () => {
-  //   if (audioChunks.length > 0) {
-  //     const blob = new Blob(audioChunks, { type: "audio/mpeg" });
-  //     const url = URL.createObjectURL(blob);
-  //     const a = document.createElement("a");
-  //     a.href = url;
-  //     a.download = "recorded_audio.mp3";
-  //     document.body.appendChild(a);
-  //     a.click();
-  //     document.body.removeChild(a);
-  //     URL.revokeObjectURL(url);
-  //     setAudioChunks([]);
-  //   }
-  // };
+  const exportAudio = () => {
+    if (audioChunks.length > 0) {
+      const blob = new Blob(audioChunks, { type: "audio/mpeg" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "recorded_audio.mp3";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setAudioChunks([]);
+    }
+  };
+  const transcribeAudioMut = api.openAI.transcribeAudio.useMutation();
 
-  // const transcribeAudio = async () => {
-  //   if (audioChunks.length > 0) {
-  //     const blob = new Blob(audioChunks, { type: "audio/mpeg" });
-  //     const audioFile = new File([blob], "user_input.mp3", {
-  //       type: "audio/mpeg",
-  //     });
-  //     const transcription = await openAI.audio.transcriptions.create({
-  //       model: "whisper-1",
-  //       file: audioFile,
-  //     });
-  //     console.log(transcription);
-  //   }
-  // };
-
-  return { initiateRecording, endRecording, isRecording };
+  const transcribeAudio = async () => {
+    if (audioChunks.length > 0) {
+      const blob = new Blob(audioChunks, { type: "audio/mpeg" });
+      const audioFile = new File([blob], "user_input.mp3", {
+        type: "audio/mpeg",
+      });
+      const audioBase64 = await convertAudioFileToBase64(audioFile);
+      setAudioFileBase64(audioBase64);
+      console.log(audioBase64);
+      const transcribedData = await transcribeAudioMut.mutateAsync({
+        audioFileBase64: audioFileBase64 ?? "",
+      });
+      console.log(transcribedData.transcribed_response.text);
+    }
+  };
+  return {
+    initiateRecording,
+    endRecording,
+    isRecording,
+    transcribeAudio,
+    exportAudio,
+  };
 };
 
 export default useAudioActions;

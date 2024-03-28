@@ -1,36 +1,34 @@
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import z from "zod";
 import { openAI } from "~/lib/openAI";
-
-// Defined custom Zod schema for the audioChunks input
-const AudioChunksSchema = z.array(z.instanceof(Blob));
+import OpenAI, { toFile } from "openai";
 
 export const openAIRouter = createTRPCRouter({
   transcribeAudio: publicProcedure
     .input(
       z.object({
-        audioChunks: AudioChunksSchema, // Custom AudioChunksSchema
+        audioFileBase64: z.string(), // Accept the audio file data as a base64 string
       })
     )
-    .query(async ({ input }) => {
-      const { audioChunks } = input;
-      if (audioChunks.length > 0) {
-        const blob = new Blob(audioChunks, { type: "audio/mpeg" });
-        const audioFile = new File([blob], "user_input.mp3", {
-          type: "audio/mpeg",
-        });
-        const transcription = await openAI.audio.transcriptions.create({
-          model: "whisper-1",
-          file: audioFile,
-        });
+    .mutation(async ({ input }) => {
+      const { audioFileBase64 } = input;
+      const buffer = Buffer.from(audioFileBase64, "base64"); // Convert the base64 string to a Buffer
 
-        return {
-          transcribed_response: transcription,
-        };
-      }
+      const uploadableFile = await toFile(buffer, "some.mp3");
 
-      return {
-        transcribed_response: null,
-      };
+      // const fileLike: FileLike = {
+      //   data: buffer, // Pass the Buffer data
+      //   name: "", // Set the file name
+      //   type: "audio/mpeg", // Set the file type
+      //   lastModified: new Date().toISOString(), // Set a lastModified date
+      //   size: buffer.byteLength, // Set the file size
+      // };
+
+      const transcription = await openAI.audio.transcriptions.create({
+        model: "whisper-1",
+        file: uploadableFile, // Pass the Buffer directly to OpenAI
+      });
+
+      return { transcribed_response: transcription };
     }),
 });
