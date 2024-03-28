@@ -40,7 +40,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   }, [sequence]);
 
   return (
-    <Flex h="full" borderRadius={22} w="full" flexDir="column">
+    <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
       <Flex
         h="full"
         align="center"
