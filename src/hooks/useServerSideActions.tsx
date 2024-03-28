@@ -26,6 +26,7 @@ const useServerSideActions = () => {
     try {
       setIsLoading(true);
       const data = await fetchBucketContent();
+
       const updatedR2Data =
         data.data?.CDN_Response?.map((item) => ({
           ETag: item.ETag,

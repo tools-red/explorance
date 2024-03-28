@@ -49,21 +49,21 @@ const useAudioActions = () => {
   //   }
   // };
 
-  const transcribeAudio = async () => {
-    if (audioChunks.length > 0) {
-      const blob = new Blob(audioChunks, { type: "audio/mpeg" });
-      const audioFile = new File([blob], "user_input.mp3", {
-        type: "audio/mpeg",
-      });
-      const transcription = await openAI.audio.transcriptions.create({
-        model: "whisper-1",
-        file: audioFile,
-      });
-      console.log(transcription);
-    }
-  };
+  // const transcribeAudio = async () => {
+  //   if (audioChunks.length > 0) {
+  //     const blob = new Blob(audioChunks, { type: "audio/mpeg" });
+  //     const audioFile = new File([blob], "user_input.mp3", {
+  //       type: "audio/mpeg",
+  //     });
+  //     const transcription = await openAI.audio.transcriptions.create({
+  //       model: "whisper-1",
+  //       file: audioFile,
+  //     });
+  //     console.log(transcription);
+  //   }
+  // };
 
-  return { initiateRecording, endRecording, isRecording, transcribeAudio };
+  return { initiateRecording, endRecording, isRecording };
 };
 
 export default useAudioActions;
