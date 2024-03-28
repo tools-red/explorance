@@ -32,6 +32,8 @@ const useServerSideActions = () => {
           Key: item.Key,
         })) || [];
 
+      console.log(walkthroughData);
+
       // Ensures Script verification from R2 Bucket
       const filteredScriptData = walkthroughData.filter((script) => {
         return updatedR2Data.some((r2Item) => r2Item.Key === script.videoFile);

@@ -3,7 +3,7 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 import EvitarContainer from "~/components/pages/tour/EvitarContainer";
 import VideoPlayerContainer from "~/components/pages/tour/VideoPlayer/VideoPlayerContainer";
-import VoiceChatContainer from "~/components/pages/tour/VoiceChatContainer";
+import VoiceChatContainer from "~/components/pages/tour/VoiceChat/VoiceChatContainer";
 import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 
