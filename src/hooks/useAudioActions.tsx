@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { openAI } from "~/lib/openAI";
 
 const useAudioActions = () => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -14,7 +15,6 @@ const useAudioActions = () => {
       mediaRecorderRef.current = mediaRecorder;
       mediaRecorder.start();
       setIsRecording(true);
-      console.log("media recordig initiated");
 
       mediaRecorder.ondataavailable = (event) => {
         if (event.data && event.data.size > 0) {
@@ -34,22 +34,36 @@ const useAudioActions = () => {
     }
   };
 
-  const exportAudio = () => {
+  // const exportAudio = () => {
+  //   if (audioChunks.length > 0) {
+  //     const blob = new Blob(audioChunks, { type: "audio/mpeg" });
+  //     const url = URL.createObjectURL(blob);
+  //     const a = document.createElement("a");
+  //     a.href = url;
+  //     a.download = "recorded_audio.mp3";
+  //     document.body.appendChild(a);
+  //     a.click();
+  //     document.body.removeChild(a);
+  //     URL.revokeObjectURL(url);
+  //     setAudioChunks([]);
+  //   }
+  // };
+
+  const transcribeAudio = async () => {
     if (audioChunks.length > 0) {
       const blob = new Blob(audioChunks, { type: "audio/mpeg" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "recorded_audio.mp3";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      setAudioChunks([]);
+      const audioFile = new File([blob], "user_input.mp3", {
+        type: "audio/mpeg",
+      });
+      const transcription = await openAI.audio.transcriptions.create({
+        model: "whisper-1",
+        file: audioFile,
+      });
+      console.log(transcription);
     }
   };
 
-  return { initiateRecording, endRecording, isRecording, exportAudio };
+  return { initiateRecording, endRecording, isRecording, transcribeAudio };
 };
 
 export default useAudioActions;
