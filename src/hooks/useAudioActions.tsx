@@ -14,6 +14,7 @@ const useAudioActions = () => {
       mediaRecorderRef.current = mediaRecorder;
       mediaRecorder.start();
       setIsRecording(true);
+      console.log("media recordig initiated");
 
       mediaRecorder.ondataavailable = (event) => {
         if (event.data && event.data.size > 0) {
@@ -25,7 +26,30 @@ const useAudioActions = () => {
     }
   };
 
-  return { initiateRecording };
+  const endRecording = () => {
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      console.log("Recording terminated");
+    }
+  };
+
+  const exportAudio = () => {
+    if (audioChunks.length > 0) {
+      const blob = new Blob(audioChunks, { type: "audio/mpeg" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "recorded_audio.mp3";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setAudioChunks([]);
+    }
+  };
+
+  return { initiateRecording, endRecording, isRecording, exportAudio };
 };
 
 export default useAudioActions;
