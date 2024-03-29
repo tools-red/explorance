@@ -6,7 +6,6 @@ const useAudioActions = () => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
-  const [audioFileBase64, setAudioFileBase64] = useState<string>();
 
   const initiateRecording = async () => {
     try {
@@ -59,10 +58,8 @@ const useAudioActions = () => {
         type: "audio/mpeg",
       });
       const audioBase64 = await convertAudioFileToBase64(audioFile);
-      setAudioFileBase64(audioBase64);
-      console.log(audioBase64);
       const transcribedData = await transcribeAudioMut.mutateAsync({
-        audioFileBase64: audioFileBase64 ?? "",
+        audioFileBase64: audioBase64 ?? "",
       });
       console.log(transcribedData.transcribed_response.text);
     }

@@ -31,4 +31,13 @@ export const openAIRouter = createTRPCRouter({
 
       return { transcribed_response: transcription };
     }),
+  generateSpeechResponse: publicProcedure
+    .input(
+      z.object({
+        audio_transcript: z.string(),
+      })
+    )
+    .mutation(({ input }) => {
+      const { audio_transcript } = input;
+    }),
 });
