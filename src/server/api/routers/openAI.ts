@@ -16,14 +16,6 @@ export const openAIRouter = createTRPCRouter({
 
       const uploadableFile = await toFile(buffer, "some.mp3");
 
-      // const fileLike: FileLike = {
-      //   data: buffer, // Pass the Buffer data
-      //   name: "", // Set the file name
-      //   type: "audio/mpeg", // Set the file type
-      //   lastModified: new Date().toISOString(), // Set a lastModified date
-      //   size: buffer.byteLength, // Set the file size
-      // };
-
       const transcription = await openAI.audio.transcriptions.create({
         model: "whisper-1",
         file: uploadableFile, // Pass the Buffer directly to OpenAI
@@ -40,13 +32,14 @@ export const openAIRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       const { audio_transcript } = input;
       const speech_response = await openAI.audio.speech.create({
-        model: "tts-1-hd",
+        model: "tts-1",
         voice: "fable",
         input: audio_transcript,
+        response_format: "mp3",
       });
 
       return {
-        openAI_speech_response: speech_response,
+        openAI_speech_response: speech_response.body,
       };
     }),
 });

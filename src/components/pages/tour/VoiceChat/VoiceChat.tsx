@@ -6,7 +6,7 @@ const VoiceChat = () => {
     initiateRecording,
     endRecording,
     isRecording,
-    transcribeAudio,
+    GenerateSpeech,
     exportAudio,
   } = useAudioActions();
   return (
@@ -17,10 +17,10 @@ const VoiceChat = () => {
       {!isRecording && (
         <Button
           onClick={() => {
-            transcribeAudio();
+            GenerateSpeech();
           }}
         >
-          Transcribe Audio
+          Audio
         </Button>
       )}
     </Flex>

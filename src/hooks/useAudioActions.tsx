@@ -50,8 +50,9 @@ const useAudioActions = () => {
     }
   };
   const transcribeAudioMut = api.openAI.transcribeAudio.useMutation();
+  const speechAudioMut = api.openAI.generateSpeechResponse.useMutation();
 
-  const transcribeAudio = async () => {
+  const GenerateSpeech = async () => {
     if (audioChunks.length > 0) {
       const blob = new Blob(audioChunks, { type: "audio/mpeg" });
       const audioFile = new File([blob], "user_input.mp3", {
@@ -61,14 +62,18 @@ const useAudioActions = () => {
       const transcribedData = await transcribeAudioMut.mutateAsync({
         audioFileBase64: audioBase64 ?? "",
       });
-      console.log(transcribedData.transcribed_response.text);
+      const speechResponse = await speechAudioMut.mutateAsync({
+        audio_transcript: transcribedData.transcribed_response.text,
+      });
+
+      console.log({ speechResponse, transcribedData });
     }
   };
   return {
     initiateRecording,
     endRecording,
     isRecording,
-    transcribeAudio,
+    GenerateSpeech,
     exportAudio,
   };
 };
