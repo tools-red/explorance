@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
+import player from "play-sound";
 
 const useAudioActions = () => {
+  const audioPlayer = player();
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
