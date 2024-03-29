@@ -30,6 +30,7 @@
     "@trpc/next": "next",
     "@trpc/react-query": "next",
     "@trpc/server": "next",
+    "@types/play-sound": "^1.1.2",
     "contentful-typescript-codegen": "^3.4.0",
     "framer-motion": "^11.0.20",
     "graphql-request": "^6.1.0",
