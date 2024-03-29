@@ -37,7 +37,16 @@ export const openAIRouter = createTRPCRouter({
         audio_transcript: z.string(),
       })
     )
-    .mutation(({ input }) => {
+    .mutation(async ({ input }) => {
       const { audio_transcript } = input;
+      const speech_response = await openAI.audio.speech.create({
+        model: "tts-1-hd",
+        voice: "fable",
+        input: audio_transcript,
+      });
+
+      return {
+        openAI_speech_response: speech_response,
+      };
     }),
 });
