@@ -23,23 +23,42 @@ export const openAIRouter = createTRPCRouter({
 
       return { transcribed_response: transcription };
     }),
-  generateSpeechResponse: publicProcedure
-    .input(
-      z.object({
-        audio_transcript: z.string(),
-      })
-    )
-    .mutation(async ({ input }) => {
-      const { audio_transcript } = input;
-      const speech_response = await openAI.audio.speech.create({
-        model: "tts-1",
-        voice: "alloy",
-        input: audio_transcript,
-        response_format: "mp3",
-      });
+  // generateSpeechResponse: publicProcedure
+  //   .input(
+  //     z.object({
+  //       audio_transcript: z.string(),
+  //     })
+  //   )
+  //   .mutation(async ({ input }) => {
+  //     const { audio_transcript } = input;
+  //     const speech_response = await openAI.audio.speech.create({
+  //       model: "tts-1",
+  //       voice: "alloy",
+  //       input: audio_transcript,
+  //       response_format: "mp3",
+  //     });
 
-      return {
-        openAI_speech_response: speech_response.body,
-      };
-    }),
+  //     console.log({ speech_response_body: speech_response.body });
+
+  //     const openAI_response_buffers = speech_response.body as unknown as {
+  //         _readableState: {
+  //           buffer: {
+  //             head: {
+  //               data: {
+  //                 data: Buffer;
+  //               };
+  //             };
+  //             tail: {
+  //               data: {
+  //                 data: Buffer;
+  //               };
+  //             };
+  //           };
+  //         };
+  //       }
+
+  //     return {
+  //       speechResponseBase64: openAI_response_buffers._readableState.buffer.head.data.data
+  //     }
+  //   }),
 });

@@ -2,14 +2,21 @@ import { useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 import player from "play-sound";
-import path from "path";
 
 const useAudioActions = () => {
   const audioPlayer = player();
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
-  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [userAudioChunks, setUserAudioChunks] = useState<Blob[]>([]);
+  const [aiAudioChunks, setAiAudioChunks] = useState<Blob[]>([]);
+
+  // const [audioUrl, setAudioUrl] = useState("");
+
+  // const [audioBuffer, setAudioBuffer] = useState(null);
+  // const [audioSource, setAudioSource] = useState(null);
+
+  const transcribeAudioMut = api.openAI.transcribeAudio.useMutation();
 
   const initiateRecording = async () => {
     try {
@@ -23,7 +30,7 @@ const useAudioActions = () => {
 
       mediaRecorder.ondataavailable = (event) => {
         if (event.data && event.data.size > 0) {
-          setAudioChunks((prevChunks) => [...prevChunks, event.data]);
+          setUserAudioChunks((prevChunks) => [...prevChunks, event.data]);
         }
       };
     } catch (err) {
@@ -40,8 +47,8 @@ const useAudioActions = () => {
   };
 
   const exportAudio = () => {
-    if (audioChunks.length > 0) {
-      const blob = new Blob(audioChunks, { type: "audio/mpeg" });
+    if (userAudioChunks.length > 0) {
+      const blob = new Blob(userAudioChunks, { type: "audio/mpeg" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -50,32 +57,47 @@ const useAudioActions = () => {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      setAudioChunks([]);
+      setUserAudioChunks([]);
     }
   };
-  const transcribeAudioMut = api.openAI.transcribeAudio.useMutation();
-  const speechAudioMut = api.openAI.generateSpeechResponse.useMutation();
+
+  // const playAudio = (aiAudioBuffer: Buffer) => {
+  //   const blob = new Blob([aiAudioBuffer], { type: "audio/mp3" });
+
+  //   const objectURL = URL.createObjectURL(blob);
+
+  //   const audioElem = new Audio();
+
+  //   audioElem.src = objectURL;
+  //   audioElem.play();
+  // };
+
+  const playAudio = (audioData: string) => {
+    // Assuming audioData is a Base64 encoded string of the audio
+    const audioBlob = new Blob([Buffer.from(audioData, "base64")], {
+      type: "audio/mpeg",
+    });
+    const audioUrl = URL.createObjectURL(audioBlob);
+    const audioElem = new Audio(audioUrl);
+    audioElem
+      .play()
+      .catch((error) => console.error("Failed to play audio:", error));
+  };
 
   const GenerateSpeech = async () => {
-    if (audioChunks.length > 0) {
-      const blob = new Blob(audioChunks, { type: "audio/mpeg" });
+    if (userAudioChunks.length > 0) {
+      const blob = new Blob(userAudioChunks, { type: "audio/mpeg" });
       const audioFile = new File([blob], "user_input.mp3", {
         type: "audio/mpeg",
       });
       const audioBase64 = await convertAudioFileToBase64(audioFile);
+
       const transcribedData = await transcribeAudioMut.mutateAsync({
         audioFileBase64: audioBase64 ?? "",
       });
-      const speechResponse = await speechAudioMut.mutateAsync({
-        audio_transcript: transcribedData.transcribed_response.text,
-      });
-
-      console.log({
-        speechResponse: speechResponse.openAI_speech_response,
-        transcribedData,
-      });
     }
   };
+
   return {
     initiateRecording,
     endRecording,
