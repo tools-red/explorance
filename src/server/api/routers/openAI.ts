@@ -26,12 +26,13 @@ export const openAIRouter = createTRPCRouter({
 
   chatCompletions: publicProcedure
     .input(z.object({ prompt: z.string() }))
-    .query(async ({ input }) => {
+    .mutation(async ({ input }) => {
       const { prompt } = input;
 
-      const openAITextResponse = openAI.completions.create({
+      const openAITextResponse = await openAI.completions.create({
         model: "gpt-3.5-turbo-instruct",
         prompt: prompt,
+        max_tokens: 4000,
       });
 
       return {

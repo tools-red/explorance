@@ -3,6 +3,8 @@ import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 import player from "play-sound";
 
+import { recorded_audio_base64 } from "./b64test";
+
 const useAudioActions = () => {
   const audioPlayer = player();
 
@@ -17,6 +19,7 @@ const useAudioActions = () => {
   // const [audioSource, setAudioSource] = useState(null);
 
   const transcribeAudioMut = api.openAI.transcribeAudio.useMutation();
+  const chatCompletionsMut = api.openAI.chatCompletions.useMutation();
 
   const initiateRecording = async () => {
     try {
@@ -95,6 +98,14 @@ const useAudioActions = () => {
       const transcribedData = await transcribeAudioMut.mutateAsync({
         audioFileBase64: audioBase64 ?? "",
       });
+
+      const completionsData = await chatCompletionsMut.mutateAsync({
+        prompt: transcribedData.transcribed_response.text,
+      });
+
+      playAudio(recorded_audio_base64);
+
+      console.log({ completionsData, transcribedData });
     }
   };
 
