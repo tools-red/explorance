@@ -33,7 +33,7 @@ export const openAIRouter = createTRPCRouter({
       const { audio_transcript } = input;
       const speech_response = await openAI.audio.speech.create({
         model: "tts-1",
-        voice: "fable",
+        voice: "alloy",
         input: audio_transcript,
         response_format: "mp3",
       });

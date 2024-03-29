@@ -2,9 +2,11 @@ import { useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 import player from "play-sound";
+import path from "path";
 
 const useAudioActions = () => {
   const audioPlayer = player();
+
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
@@ -68,7 +70,10 @@ const useAudioActions = () => {
         audio_transcript: transcribedData.transcribed_response.text,
       });
 
-      console.log({ speechResponse, transcribedData });
+      console.log({
+        speechResponse: speechResponse.openAI_speech_response,
+        transcribedData,
+      });
     }
   };
   return {
