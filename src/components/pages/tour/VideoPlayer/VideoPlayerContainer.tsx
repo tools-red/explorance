@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import useServerSideActions from "~/hooks/useServerSideActions";
 import VideoPlayer from "./VideoPlayer";
-import VideoControler from "../VideoController/VideoController";
+import VideoController from "../VideoController/VideoController";
 import { useVideoSequenceAtom } from "~/lib/atom";
 import { WalkthroughData } from "~/types";
 
@@ -59,7 +59,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
           <Text>Nothing to play right now</Text>
         )}
 
-        <VideoControler
+        <VideoController
           walkthroughData={walkthroughData}
           videoCount={walkthroughData.length}
           displayState={displayPlayer}

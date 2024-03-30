@@ -27,7 +27,7 @@ const VideoControllerCTA: React.FC<VideoControlerProps> = ({
       <Flex align="center" gap={2}>
         <Icon boxSize={iconSize} as={icon} />
         {label ? (
-          <Text fontWeight={400} fontSize="small">
+          <Text fontWeight={300} fontSize="small">
             {label}
           </Text>
         ) : (
