@@ -1,9 +1,13 @@
 import { Input } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useChatActions from "~/hooks/useChatActions";
 
 const VideoControllerChat = () => {
+  const { handleChatInput, executeChatPrompt } = useChatActions();
+
   const [showPlaceholder, setShowPlaceholder] = useState<boolean>(true);
   const [chatInput, setChatInput] = useState<string>("");
+
   return (
     <Input
       fontSize="small"
@@ -17,7 +21,9 @@ const VideoControllerChat = () => {
       h={8}
       onFocus={() => setShowPlaceholder(false)}
       onBlur={() => setShowPlaceholder(true)}
-      placeholder={showPlaceholder ? "Ask AI Anything" : ""}
+      onChange={(e) => handleChatInput(setChatInput, e.target.value)}
+      onKeyDown={(e) => executeChatPrompt(e, chatInput)}
+      placeholder={showPlaceholder ? `Ask AI anything` : ""}
       _placeholder={{ color: "white" }}
     />
   );

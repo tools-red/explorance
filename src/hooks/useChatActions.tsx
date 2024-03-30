@@ -4,10 +4,18 @@ const useChatActions = () => {
     chatInput: string
   ) => {
     setChatInput(chatInput);
-    console.log(chatInput);
   };
 
-  return { handleChatInput };
+  const executeChatPrompt = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+    prompt: string
+  ) => {
+    if (event.key === "Enter") {
+      console.log(prompt);
+    }
+  };
+
+  return { handleChatInput, executeChatPrompt };
 };
 
 export default useChatActions;
