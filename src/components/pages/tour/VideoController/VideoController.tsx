@@ -7,7 +7,7 @@ import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
 import React from "react";
 import { WalkthroughData } from "~/types";
-import VideoControllerChat from "./VideoControllerChat";
+import VideoControllerChat from "../TextChat/VideoControllerChat";
 
 interface VideoControllerProps {
   displayState: boolean;
