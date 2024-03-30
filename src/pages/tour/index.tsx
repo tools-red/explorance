@@ -5,8 +5,10 @@ import {
   Flex,
   Grid,
   GridItem,
+  Icon,
   Text,
 } from "@chakra-ui/react";
+import { IoSparklesSharp } from "react-icons/io5";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 import EvitarContainer from "~/components/pages/tour/EvitarContainer";
@@ -17,6 +19,7 @@ import { useVideoSequenceAtom } from "~/lib/atom";
 import { MotionBox, MotionCircle } from "~/lib/framer";
 import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
+import { shiningAnimation } from "~/lib/keyframes";
 
 export const getServerSideProps: GetServerSideProps<{
   walkthroughData: WalkthroughData;
@@ -107,7 +110,42 @@ const CampusWalkthrough: React.FC<
                 Embark on an immersive journey through our campus from the
                 comfort of your own device.
               </Text>
-              <Button mt={6}>Start Exploring Now</Button>
+              <Box position="relative">
+                <MotionBox
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7 }}
+                  zIndex={1}
+                  right={0}
+                  top={3}
+                  position="absolute"
+                >
+                  <Icon
+                    zIndex={1}
+                    right={0}
+                    top={3}
+                    filter="drop-shadow(0px 10px 10px #9747FF)"
+                    borderColor="#9747FF"
+                    boxSize={6}
+                    color="white"
+                    as={IoSparklesSharp}
+                    animation={`${shiningAnimation} 2s linear infinite`}
+                  />
+                </MotionBox>
+                <Button
+                  border="1px solid"
+                  borderColor="#4B4B4B"
+                  px={6}
+                  py={5}
+                  fontWeight={500}
+                  color="gray.100"
+                  bg="#181818"
+                  mt={6}
+                  onClick={() => loadExperience(walkthroughData)}
+                >
+                  Start Exploring Now
+                </Button>
+              </Box>
             </Flex>
           </MotionBox>
         </Flex>
