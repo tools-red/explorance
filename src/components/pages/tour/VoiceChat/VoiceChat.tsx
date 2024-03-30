@@ -1,5 +1,6 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import useAudioActions from "~/hooks/useAudioActions";
+import MicrophoneDisplay from "./MicrophoneDisplay";
 
 const VoiceChat = () => {
   const {
@@ -11,7 +12,12 @@ const VoiceChat = () => {
   } = useAudioActions();
   return (
     <Flex gap={3} flexDir="column" color="white">
-      <Button onClick={isRecording ? endRecording : initiateRecording}>
+      <MicrophoneDisplay
+        endRecording={endRecording}
+        isRecording={isRecording}
+        startRecording={initiateRecording}
+      />
+      {/* <Button onClick={isRecording ? endRecording : initiateRecording}>
         {isRecording ? "Stop Recording" : "Start Recording"}
       </Button>
       {!isRecording && (
@@ -22,7 +28,7 @@ const VoiceChat = () => {
         >
           Audio
         </Button>
-      )}
+      )} */}
     </Flex>
   );
 };

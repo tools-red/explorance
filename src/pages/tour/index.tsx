@@ -30,7 +30,7 @@ const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
   return (
-    <Grid bg="#121212" gap={3} p={3} h="100vh" templateColumns="1fr 5fr">
+    <Grid bg="#121212" gap={3} p={3} h="100vh" templateColumns="1fr 4fr">
       <Grid gap={3} templateRows="2fr 1fr">
         <EvitarContainer />
         <VoiceChatContainer />
