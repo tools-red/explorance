@@ -18,6 +18,7 @@ const VoiceChat = () => {
   return (
     <Flex gap={3} flexDir="column" color="white">
       <MicrophoneDisplay
+        isSpeaking={isSpeaking}
         endRecording={endRecording}
         isRecording={isRecording}
         startRecording={initiateRecording}
