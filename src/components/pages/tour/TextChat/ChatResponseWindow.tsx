@@ -1,7 +1,12 @@
-import { Box } from "@chakra-ui/react";
+import { MotionBox } from "~/lib/framer";
 
-const ChatResponseWindow = () => {
-  return <Box></Box>;
+interface ChatResponseWindowProps {
+  prompt: string;
+  respons: string;
+}
+
+const ChatResponseWindow: React.FC<ChatResponseWindowProps> = () => {
+  return <MotionBox></MotionBox>;
 };
 
 export default ChatResponseWindow;
