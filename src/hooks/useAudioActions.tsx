@@ -100,21 +100,21 @@ const useAudioActions = () => {
         audioFileBase64: audioBase64 ?? "",
       });
 
-      // const completionsData = await chatCompletionsMut.mutateAsync({
-      //   prompt: transcribedData.transcribed_response.text,
-      // });
-
-      const response = await axios.post<{
-        audio: string;
-        message: string;
-        status: string;
-      }>("http://127.0.0.1:5000/ask-handbook", {
-        query: transcribedData.transcribed_response.text,
+      const completionsData = await chatCompletionsMut.mutateAsync({
+        prompt: transcribedData.transcribed_response.text,
       });
 
-      playAudio(response.data?.audio);
+      // const response = await axios.post<{
+      //   audio: string;
+      //   message: string;
+      //   status: string;
+      // }>("http://127.0.0.1:5000/ask-handbook", {
+      //   query: transcribedData.transcribed_response.text,
+      // });
 
-      console.log({ transcribedData, response: response.data });
+      // playAudio(response.data?.audio);
+
+      console.log({ transcribedData, completionsData });
     }
   };
 
