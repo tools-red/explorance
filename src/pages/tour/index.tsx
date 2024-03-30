@@ -21,6 +21,7 @@ import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 import { shiningAnimation } from "~/lib/keyframes";
 import BeginExperiencePage from "~/components/pages/tour/PageComponents/BeginExperiencePage";
+import VideoExperiencePage from "~/components/pages/tour/PageComponents/VideoExperiencePage";
 
 export const getServerSideProps: GetServerSideProps<{
   walkthroughData: WalkthroughData;
@@ -50,19 +51,11 @@ const CampusWalkthrough: React.FC<
   return (
     <Box bg="#121212" h="100vh">
       {scriptData && scriptData.length > 0 ? (
-        <Grid gap={3} p={3} h="full" templateColumns="1fr 5fr">
-          <Grid gap={3} templateRows="2fr 1fr">
-            <EvitarContainer />
-            <VoiceChatContainer />
-          </Grid>
-          <GridItem>
-            <VideoPlayerContainer
-              sequence={sequence}
-              scriptData={scriptData}
-              walkthroughData={walkthroughData}
-            />
-          </GridItem>
-        </Grid>
+        <VideoExperiencePage
+          scriptData={scriptData}
+          sequence={sequence}
+          walkthroughData={walkthroughData}
+        />
       ) : (
         <BeginExperiencePage
           loadExperience={loadExperience}
