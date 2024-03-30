@@ -7,18 +7,25 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile }) => {
-    const [calcWidth, setCalcWidth] = useState<number | null>(null);
+  const [calcWidth, setCalcWidth] = useState<number | null>(null);
 
   useEffect(() => {
     const viewportHeight = window.innerHeight;
-    const aspectRatio = 16 / 9;
+    // const aspectRatio = 16 / 9;
+    const aspectRatio = 3840 / 1776;
+
     const newCalcWidth = viewportHeight * aspectRatio;
     setCalcWidth(newCalcWidth);
   }, []);
 
-
   return (
-    <Box width="100%" height="100%" position="relative" overflow="hidden" borderRadius="22px">
+    <Box
+      width="100%"
+      height="100%"
+      position="relative"
+      overflow="hidden"
+      borderRadius="22px"
+    >
       {calcWidth && (
         <ReactPlayer
           loop={true}

@@ -26,11 +26,14 @@ const useServerSideActions = () => {
     try {
       setIsLoading(true);
       const data = await fetchBucketContent();
+
       const updatedR2Data =
         data.data?.CDN_Response?.map((item) => ({
           ETag: item.ETag,
           Key: item.Key,
         })) || [];
+
+      console.log(walkthroughData);
 
       // Ensures Script verification from R2 Bucket
       const filteredScriptData = walkthroughData.filter((script) => {

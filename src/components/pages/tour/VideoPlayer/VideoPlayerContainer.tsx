@@ -18,7 +18,7 @@ interface VideoPlayerProps {
 const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   walkthroughData,
 }) => {
-  const { loadExperience, isLoading, scriptData } = useServerSideActions();
+  const { scriptData } = useServerSideActions();
   const [{ sequence }] = useVideoSequenceAtom();
 
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
@@ -40,7 +40,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   }, [sequence]);
 
   return (
-    <Flex h="full" borderRadius={22} w="full" flexDir="column">
+    <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
       <Flex
         h="full"
         align="center"
@@ -48,16 +48,12 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         w="full"
         position="relative"
       >
-        {displayPlayer ? (
+        {scriptData && scriptData.length > 0 ? (
           <VideoPlayer videoFile={selectedVideo[0]?.videoFile} />
         ) : (
-          <Flex gap={2} flexDir="column">
-            <Text>{isLoading ? `Fetching Videos...` : `Video Data`}</Text>
-            <Button onClick={() => loadExperience(walkthroughData)}>
-              Begin Tour
-            </Button>
-          </Flex>
+          <Text>Nothing to play right now</Text>
         )}
+
         <VideoControler
           walkthroughData={walkthroughData}
           videoCount={walkthroughData.length}
