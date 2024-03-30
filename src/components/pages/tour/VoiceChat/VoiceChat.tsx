@@ -7,22 +7,21 @@ const VoiceChat = () => {
   const {
     initiateRecording,
     endRecording,
-    isRecording,
     GenerateSpeech,
+    isRecording,
     isSpeaking,
+    isResponding,
   } = useAudioActions();
-
-  useEffect(() => {
-    console.log(isSpeaking);
-  }, [isSpeaking]);
   return (
     <Flex gap={3} flexDir="column" color="white">
       <MicrophoneDisplay
+        isResponding={isResponding}
         isSpeaking={isSpeaking}
         endRecording={endRecording}
         isRecording={isRecording}
         startRecording={initiateRecording}
       />
+      <Button onClick={GenerateSpeech}>Gen</Button>
       {/* <Button onClick={isRecording ? endRecording : initiateRecording}>
         {isRecording ? "Stop Recording" : "Start Recording"}
       </Button>

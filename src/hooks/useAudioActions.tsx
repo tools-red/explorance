@@ -11,7 +11,7 @@ const useAudioActions = () => {
   const [isRecording, setIsRecording] = useState<boolean>();
   const [userAudioChunks, setUserAudioChunks] = useState<Blob[]>([]);
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
-  const [aiAudioChunks, setAiAudioChunks] = useState<Blob[]>([]);
+  const [isResponding, setIsResponding] = useState<boolean>(false);
 
   // const [audioUrl, setAudioUrl] = useState("");
 
@@ -111,19 +111,20 @@ const useAudioActions = () => {
 
   const GenerateSpeech = async () => {
     if (userAudioChunks.length > 0) {
+      setIsResponding(true);
       const blob = new Blob(userAudioChunks, { type: "audio/mpeg" });
       const audioFile = new File([blob], "user_input.mp3", {
         type: "audio/mpeg",
       });
       const audioBase64 = await convertAudioFileToBase64(audioFile);
 
-      // const transcribedData = await transcribeAudioMut.mutateAsync({
-      //   audioFileBase64: audioBase64 ?? "",
-      // });
+      const transcribedData = await transcribeAudioMut.mutateAsync({
+        audioFileBase64: audioBase64 ?? "",
+      });
 
-      // const completionsData = await chatCompletionsMut.mutateAsync({
-      //   prompt: transcribedData.transcribed_response.text,
-      // });
+      const completionsData = await chatCompletionsMut.mutateAsync({
+        prompt: transcribedData.transcribed_response.text,
+      });
 
       // const response = await axios.post<{
       //   audio: string;
@@ -135,10 +136,12 @@ const useAudioActions = () => {
 
       // playAudio(response.data?.audio);
 
-      // console.log({
-      //   transcribedData,
-      //   completionsData: completionsData.chat_response.choices[0]?.text,
-      // });
+      console.log({
+        transcribedData,
+        completionsData,
+      });
+
+      setIsResponding(false);
     }
   };
 
@@ -147,6 +150,7 @@ const useAudioActions = () => {
     endRecording,
     isRecording,
     isSpeaking,
+    isResponding,
     GenerateSpeech,
     exportAudio,
   };

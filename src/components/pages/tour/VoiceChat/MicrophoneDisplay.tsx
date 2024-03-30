@@ -4,6 +4,7 @@ import { FaMicrophone } from "react-icons/fa";
 interface MicrophoneDisplayProps {
   isRecording: boolean | undefined;
   isSpeaking: boolean | undefined;
+  isResponding: boolean | undefined;
   startRecording: () => void;
   endRecording: () => void;
 }
@@ -11,6 +12,7 @@ interface MicrophoneDisplayProps {
 const MicrophoneDisplay: React.FC<MicrophoneDisplayProps> = ({
   isRecording,
   isSpeaking,
+  isResponding,
   endRecording,
   startRecording,
 }) => {
@@ -21,11 +23,19 @@ const MicrophoneDisplay: React.FC<MicrophoneDisplayProps> = ({
         _hover={{ cursor: "pointer" }}
         onClick={isRecording ? endRecording : startRecording}
         p={3}
-        bg={isSpeaking ? "rgba(0, 0, 0, 0.2)" : "black"}
+        bg={
+          isRecording ? (isSpeaking ? "rgba(0, 0, 0, 0.2)" : "black") : "black"
+        }
       >
         <Icon boxSize={8} as={FaMicrophone} />
       </Circle>
-      <Text fontSize="small">{isRecording ? `Listening` : `Talk to me`}</Text>
+      <Text fontSize="small">
+        {isRecording
+          ? `Listening`
+          : isResponding
+            ? `Processing Request`
+            : `Talk to me`}
+      </Text>
     </>
   );
 };
