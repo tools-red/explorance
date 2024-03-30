@@ -7,11 +7,13 @@ import { WalkthroughData } from "~/types";
 interface BeginExperiencePageProps {
   loadExperience: (data: WalkthroughData) => void;
   walkthroughData: WalkthroughData;
+  isLoading: boolean;
 }
 
 const BeginExperiencePage: React.FC<BeginExperiencePageProps> = ({
   loadExperience,
   walkthroughData,
+  isLoading,
 }) => {
   return (
     <Flex
@@ -93,6 +95,7 @@ const BeginExperiencePage: React.FC<BeginExperiencePageProps> = ({
               px={6}
               py={5}
               fontWeight={500}
+              isLoading={isLoading}
               color="gray.100"
               bg="#181818"
               mt={6}

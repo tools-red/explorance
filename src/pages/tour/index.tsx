@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
-  const { scriptData, loadExperience } = useServerSideActions();
+  const { scriptData, isLoading, loadExperience } = useServerSideActions();
   const [{ sequence }] = useVideoSequenceAtom();
 
   return (
@@ -44,6 +44,7 @@ const CampusWalkthrough: React.FC<
         />
       ) : (
         <BeginExperiencePage
+          isLoading={isLoading as boolean}
           loadExperience={loadExperience}
           walkthroughData={walkthroughData}
         />
