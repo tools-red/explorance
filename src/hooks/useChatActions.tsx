@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 
 const useChatActions = () => {
   // const LLMMut = api.openAI.LLMResponse.useMutation();
@@ -27,7 +28,10 @@ const useChatActions = () => {
     }
   };
 
-  return { handleChatInput, executeChatPrompt };
+  return {
+    handleChatInput,
+    executeChatPrompt,
+  };
 };
 
 export default useChatActions;
