@@ -4,6 +4,7 @@ import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 import player from "play-sound";
 
 import { recorded_audio_base64 } from "./b64test";
+import axios from "axios";
 
 const useAudioActions = () => {
   const audioPlayer = player();
@@ -99,13 +100,21 @@ const useAudioActions = () => {
         audioFileBase64: audioBase64 ?? "",
       });
 
-      const completionsData = await chatCompletionsMut.mutateAsync({
-        prompt: transcribedData.transcribed_response.text,
+      // const completionsData = await chatCompletionsMut.mutateAsync({
+      //   prompt: transcribedData.transcribed_response.text,
+      // });
+
+      const response = await axios.post<{
+        audio: string;
+        message: string;
+        status: string;
+      }>("http://127.0.0.1:5000/ask-handbook", {
+        query: transcribedData.transcribed_response.text,
       });
 
-      playAudio(recorded_audio_base64);
+      playAudio(response.data?.audio);
 
-      console.log({ completionsData, transcribedData });
+      console.log({ transcribedData, response: response.data });
     }
   };
 

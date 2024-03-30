@@ -1,6 +1,6 @@
 import os
 import base64
-from flask import Flask, request, jsonify
+
 from openai import OpenAI
 from langchain.document_loaders import PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -8,6 +8,9 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
+
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 os.environ["OPENAI_API_KEY"] = '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'
 
@@ -34,7 +37,7 @@ qa = RetrievalQA.from_chain_type(
     llm=llm, chain_type="stuff", retriever=retriever)
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/ask-handbook', methods=['POST'])
 def query_handler():
