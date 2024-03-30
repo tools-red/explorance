@@ -7,7 +7,7 @@ const VoiceChat = () => {
     endRecording,
     isRecording,
     GenerateSpeech,
-    exportAudio,
+    isSpeaking,
   } = useAudioActions();
   return (
     <Flex gap={3} flexDir="column" color="white">

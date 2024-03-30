@@ -2,8 +2,6 @@ import { useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 import player from "play-sound";
-
-import { recorded_audio_base64 } from "./b64test";
 import axios from "axios";
 
 const useAudioActions = () => {
@@ -12,6 +10,7 @@ const useAudioActions = () => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
   const [userAudioChunks, setUserAudioChunks] = useState<Blob[]>([]);
+  const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [aiAudioChunks, setAiAudioChunks] = useState<Blob[]>([]);
 
   // const [audioUrl, setAudioUrl] = useState("");
@@ -28,15 +27,37 @@ const useAudioActions = () => {
         audio: true,
       });
       const mediaRecorder = new MediaRecorder(audio_stream);
+      const audioContext = new AudioContext();
+
       mediaRecorderRef.current = mediaRecorder;
       mediaRecorder.start();
       setIsRecording(true);
+
+      const source = audioContext.createMediaStreamSource(audio_stream);
+      const analyzer = audioContext.createAnalyser();
+      analyzer.fftSize = 32;
+
+      const dataArray = new Uint8Array(analyzer.frequencyBinCount);
+
+      const updateColor = () => {
+        requestAnimationFrame(updateColor);
+        analyzer.getByteFrequencyData(dataArray);
+        const average =
+          dataArray.reduce((acc, val) => acc + val, 0) / dataArray.length;
+        if (average > 100) {
+          setIsSpeaking(true);
+        } else {
+          setIsSpeaking(false);
+        }
+      };
 
       mediaRecorder.ondataavailable = (event) => {
         if (event.data && event.data.size > 0) {
           setUserAudioChunks((prevChunks) => [...prevChunks, event.data]);
         }
       };
+
+      source.connect(analyzer);
     } catch (err) {
       console.error("Error in accessing media devices: ", err);
     }
@@ -96,13 +117,13 @@ const useAudioActions = () => {
       });
       const audioBase64 = await convertAudioFileToBase64(audioFile);
 
-      const transcribedData = await transcribeAudioMut.mutateAsync({
-        audioFileBase64: audioBase64 ?? "",
-      });
+      // const transcribedData = await transcribeAudioMut.mutateAsync({
+      //   audioFileBase64: audioBase64 ?? "",
+      // });
 
-      const completionsData = await chatCompletionsMut.mutateAsync({
-        prompt: transcribedData.transcribed_response.text,
-      });
+      // const completionsData = await chatCompletionsMut.mutateAsync({
+      //   prompt: transcribedData.transcribed_response.text,
+      // });
 
       // const response = await axios.post<{
       //   audio: string;
@@ -114,7 +135,10 @@ const useAudioActions = () => {
 
       // playAudio(response.data?.audio);
 
-      console.log({ transcribedData, completionsData });
+      // console.log({
+      //   transcribedData,
+      //   completionsData: completionsData.chat_response.choices[0]?.text,
+      // });
     }
   };
 
@@ -122,6 +146,7 @@ const useAudioActions = () => {
     initiateRecording,
     endRecording,
     isRecording,
+    isSpeaking,
     GenerateSpeech,
     exportAudio,
   };
