@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Circle,
+  Flex,
+  Grid,
+  GridItem,
+  Text,
+} from "@chakra-ui/react";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 import EvitarContainer from "~/components/pages/tour/EvitarContainer";
@@ -51,10 +59,44 @@ const CampusWalkthrough: React.FC<
           </GridItem>
         </Grid>
       ) : (
-        <Flex justify="center" align="center" h="full" w="full">
-          <Button onClick={() => loadExperience(walkthroughData)}>
-            Load Experience
-          </Button>
+        <Flex
+          justify="center"
+          align="center"
+          h="full"
+          w="full"
+          position="relative"
+          overflow="hidden"
+        >
+          <Circle
+            top={-560}
+            position="absolute"
+            bg="purple"
+            size="2xl"
+            filter="blur(250px)"
+          />
+          <Circle
+            bottom={-560}
+            position="absolute"
+            bg="purple"
+            size="2xl"
+            filter="blur(250px)"
+          />
+          <Flex zIndex={1} align="center" flexDir="column">
+            <Text fontSize="7xl" fontWeight={600} color="white">
+              Virtual Campus Tour
+            </Text>
+            <Text
+              textAlign="center"
+              maxW={490}
+              fontWeight={200}
+              color={"rgba(255, 255, 255, 0.4)"}
+              fontSize="lg"
+            >
+              Embark on an immersive journey through our campus from the comfort
+              of your own device.
+            </Text>
+            <Button mt={6}>Start Exploring Now</Button>
+          </Flex>
         </Flex>
       )}
     </Box>
