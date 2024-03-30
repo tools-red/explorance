@@ -2,7 +2,7 @@ import { Button, Flex, Icon, Text } from "@chakra-ui/react";
 import { IconType } from "react-icons/lib";
 
 interface VideoControlerProps {
-  label: string;
+  label?: string;
   icon: IconType;
   iconSize: number;
 }
@@ -26,9 +26,13 @@ const VideoControllerCTA: React.FC<VideoControlerProps> = ({
     >
       <Flex align="center" gap={2}>
         <Icon boxSize={iconSize} as={icon} />
-        <Text fontWeight={400} fontSize="small">
-          {label}
-        </Text>
+        {label ? (
+          <Text fontWeight={400} fontSize="small">
+            {label}
+          </Text>
+        ) : (
+          <></>
+        )}
       </Flex>
     </Button>
   );

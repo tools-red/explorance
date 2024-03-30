@@ -39,7 +39,7 @@ const VideoControler: React.FC<VideoControllerProps> = ({
       />
       <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
       <VideoControllerCTA iconSize={5} icon={BsCompass} label="Navigate" />
-      <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} label="Volume" />
+      <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} />
       <VideoControllerNavigator
         walkthroughData={walkthroughData}
         videoCount={videoCount}
