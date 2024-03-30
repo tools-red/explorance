@@ -32,7 +32,6 @@ export const openAIRouter = createTRPCRouter({
       const openAITextResponse = await openAI.completions.create({
         model: "gpt-3.5-turbo-instruct",
         prompt: prompt,
-        max_tokens: 4000,
       });
 
       return {

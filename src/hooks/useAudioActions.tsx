@@ -39,17 +39,7 @@ const useAudioActions = () => {
 
       const dataArray = new Uint8Array(analyzer.frequencyBinCount);
 
-      const updateColor = () => {
-        requestAnimationFrame(updateColor);
-        analyzer.getByteFrequencyData(dataArray);
-        const average =
-          dataArray.reduce((acc, val) => acc + val, 0) / dataArray.length;
-        if (average > 100) {
-          setIsSpeaking(true);
-        } else {
-          setIsSpeaking(false);
-        }
-      };
+      source.connect(analyzer);
 
       mediaRecorder.ondataavailable = (event) => {
         if (event.data && event.data.size > 0) {
@@ -57,7 +47,15 @@ const useAudioActions = () => {
         }
       };
 
-      source.connect(analyzer);
+      const updateIsSpeaking = () => {
+        analyzer.getByteFrequencyData(dataArray);
+        const average =
+          dataArray.reduce((acc, val) => acc + val, 0) / dataArray.length;
+        setIsSpeaking(average > 100); // Adjust threshold as needed
+        requestAnimationFrame(updateIsSpeaking);
+      };
+
+      updateIsSpeaking();
     } catch (err) {
       console.error("Error in accessing media devices: ", err);
     }
@@ -67,6 +65,8 @@ const useAudioActions = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
+      setUserAudioChunks([]);
+      mediaRecorderRef.current = null;
       console.log("Recording terminated");
     }
   };
