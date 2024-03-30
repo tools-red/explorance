@@ -13,14 +13,19 @@ interface VideoPlayerProps {
     scriptContent: string;
     videoFile: string;
   }[];
+  scriptData: {
+    sequenceNumber: string;
+    scriptContent: string;
+    videoFile: string;
+  }[];
+  sequence: number;
 }
 
 const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   walkthroughData,
+  scriptData,
+  sequence,
 }) => {
-  const { scriptData } = useServerSideActions();
-  const [{ sequence }] = useVideoSequenceAtom();
-
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
   const [selectedVideo, setSelectedVideo] = useState<WalkthroughData>([]);
 
