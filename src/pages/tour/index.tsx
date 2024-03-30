@@ -14,6 +14,7 @@ import VideoPlayerContainer from "~/components/pages/tour/VideoPlayer/VideoPlaye
 import VoiceChatContainer from "~/components/pages/tour/VoiceChat/VoiceChatContainer";
 import useServerSideActions from "~/hooks/useServerSideActions";
 import { useVideoSequenceAtom } from "~/lib/atom";
+import { MotionBox, MotionCircle } from "~/lib/framer";
 import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 
@@ -67,36 +68,48 @@ const CampusWalkthrough: React.FC<
           position="relative"
           overflow="hidden"
         >
-          <Circle
+          <MotionCircle
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
             top={-560}
             position="absolute"
             bg="purple"
             size="2xl"
             filter="blur(250px)"
           />
-          <Circle
+          <MotionCircle
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
             bottom={-560}
             position="absolute"
             bg="purple"
             size="2xl"
             filter="blur(250px)"
           />
-          <Flex zIndex={1} align="center" flexDir="column">
-            <Text fontSize="7xl" fontWeight={600} color="white">
-              Virtual Campus Tour
-            </Text>
-            <Text
-              textAlign="center"
-              maxW={490}
-              fontWeight={200}
-              color={"rgba(255, 255, 255, 0.4)"}
-              fontSize="lg"
-            >
-              Embark on an immersive journey through our campus from the comfort
-              of your own device.
-            </Text>
-            <Button mt={6}>Start Exploring Now</Button>
-          </Flex>
+          <MotionBox
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Flex zIndex={1} align="center" flexDir="column">
+              <Text fontSize="7xl" fontWeight={600} color="white">
+                Virtual Campus Tour
+              </Text>
+              <Text
+                textAlign="center"
+                maxW={490}
+                fontWeight={200}
+                color={"rgba(255, 255, 255, 0.4)"}
+                fontSize="lg"
+              >
+                Embark on an immersive journey through our campus from the
+                comfort of your own device.
+              </Text>
+              <Button mt={6}>Start Exploring Now</Button>
+            </Flex>
+          </MotionBox>
         </Flex>
       )}
     </Box>
