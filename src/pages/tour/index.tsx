@@ -4,6 +4,7 @@ import React from "react";
 import EvitarContainer from "~/components/pages/tour/EvitarContainer";
 import VideoPlayerContainer from "~/components/pages/tour/VideoPlayer/VideoPlayerContainer";
 import VoiceChatContainer from "~/components/pages/tour/VoiceChat/VoiceChatContainer";
+import useServerSideActions from "~/hooks/useServerSideActions";
 import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 
@@ -29,6 +30,7 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
+  const { scriptData } = useServerSideActions();
   return (
     <Grid bg="#121212" gap={3} p={3} h="100vh" templateColumns="1fr 5fr">
       <Grid gap={3} templateRows="2fr 1fr">

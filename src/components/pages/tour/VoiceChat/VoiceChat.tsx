@@ -22,18 +22,6 @@ const VoiceChat = () => {
         startRecording={initiateRecording}
       />
       <Button onClick={GenerateSpeech}>Gen</Button>
-      {/* <Button onClick={isRecording ? endRecording : initiateRecording}>
-        {isRecording ? "Stop Recording" : "Start Recording"}
-      </Button>
-      {!isRecording && (
-        <Button
-          onClick={() => {
-            GenerateSpeech();
-          }}
-        >
-          Audio
-        </Button>
-      )} */}
     </Flex>
   );
 };
