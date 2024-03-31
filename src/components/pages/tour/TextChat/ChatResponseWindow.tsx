@@ -2,11 +2,26 @@ import { Flex, Icon, Text } from "@chakra-ui/react";
 import { MotionBox } from "~/lib/framer";
 import { IoSparklesSharp } from "react-icons/io5";
 import { MdOutlineClose } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useResponseWindowAtom } from "~/lib/atom";
 
 const ChatResponseWindow = () => {
+  const [{ prompt, response }, setResponseWindowAtom] = useResponseWindowAtom();
   const [displayResponseWindow, setDisplayResponseWindow] =
     useState<boolean>(false);
+
+  useEffect(() => {
+    if (prompt.trim() !== "" && response.trim() !== "") {
+      setDisplayResponseWindow(true);
+    } else {
+      setDisplayResponseWindow(false);
+    }
+  }, [prompt, response]);
+
+  const closeResponseWindow = () => {
+    setDisplayResponseWindow(false);
+    setResponseWindowAtom({ prompt: "", response: "" });
+  };
 
   return (
     displayResponseWindow && (
@@ -37,7 +52,7 @@ const ChatResponseWindow = () => {
               transition="all 0.3s ease-in-out"
               cursor="pointer"
               _hover={{ color: "red.400" }}
-              onClick={() => setDisplayResponseWindow(false)}
+              onClick={closeResponseWindow}
               color="purple.300"
               boxSize={4}
               as={MdOutlineClose}

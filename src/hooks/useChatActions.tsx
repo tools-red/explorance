@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useResponseWindowAtom } from "~/lib/atom";
 
 const useChatActions = () => {
   // const LLMMut = api.openAI.LLMResponse.useMutation();
+  const [, setResponseWindowAtom] = useResponseWindowAtom();
 
   const handleChatInput = (
     setChatInput: (chatInput: string) => void,
@@ -13,9 +15,11 @@ const useChatActions = () => {
 
   const executeChatPrompt = async (
     event: React.KeyboardEvent<HTMLInputElement>,
-    prompt: string
+    prompt: string,
+    setIsGeneratingResponse: (state: boolean) => void
   ) => {
     if (event.key === "Enter") {
+      setIsGeneratingResponse(true);
       // secure later
       const response = await axios.post<{
         audio: string;
@@ -25,6 +29,8 @@ const useChatActions = () => {
         query: prompt,
       });
       console.log(response.data.message);
+      setResponseWindowAtom({ prompt, response: response.data.message });
+      setIsGeneratingResponse(false);
     }
   };
 
