@@ -1,7 +1,9 @@
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import z from "zod";
 import { openAI } from "~/lib/openAI";
-import OpenAI, { toFile } from "openai";
+import { toFile } from "openai";
+import axios from "axios";
+import { env } from "~/env.mjs";
 
 export const openAIRouter = createTRPCRouter({
   transcribeAudio: publicProcedure
@@ -37,5 +39,20 @@ export const openAIRouter = createTRPCRouter({
       return {
         chat_response: openAITextResponse,
       };
+    }),
+
+  LLMResponse: publicProcedure
+    .input(z.object({ query: z.string() }))
+    .mutation(async ({ input }) => {
+      const { query } = input;
+      const response = await axios.post<{
+        audio: string;
+        message: string;
+        status: string;
+      }>(env.EXPLORANCE_AI_ENDPOINT, {
+        query,
+      });
+
+      return { AI_Response: response };
     }),
 });

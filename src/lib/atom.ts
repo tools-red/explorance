@@ -1,6 +1,6 @@
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import { videoSequenceAtomState } from "~/types";
+import { videoSequenceAtomState, responseWindowAtomState } from "~/types";
 
 export const VideoSequenceAtom = atomWithStorage<videoSequenceAtomState>(
   "videoSequenceAtomState",
@@ -9,4 +9,9 @@ export const VideoSequenceAtom = atomWithStorage<videoSequenceAtomState>(
   }
 );
 
+export const ResponseWindowAtom = atom<responseWindowAtomState>({
+  prompt: "",
+  response: "",
+});
 export const useVideoSequenceAtom = () => useAtom(VideoSequenceAtom);
+export const useResponseWindowAtom = () => useAtom(ResponseWindowAtom);

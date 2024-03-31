@@ -37,6 +37,7 @@ export const env = createEnv({
     CONTENTFUL_ENVIRONMENT: z.string(),
     CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN: z.string(),
     OPENAI_API_KEY: z.string(),
+    EXPLORANCE_AI_ENDPOINT: z.string(),
   },
 
   /**
@@ -68,6 +69,7 @@ export const env = createEnv({
     CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN:
       process.env.CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    EXPLORANCE_AI_ENDPOINT: process.env.EXPLORANCE_AI_ENDPOINT,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

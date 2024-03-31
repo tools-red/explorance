@@ -38,6 +38,7 @@ const CampusWalkthrough: React.FC<
     <Box bg="#121212" h="100vh">
       {scriptData && scriptData.length > 0 ? (
         <VideoExperiencePage
+          isLoading={isLoading as boolean}
           scriptData={scriptData}
           sequence={sequence}
           walkthroughData={walkthroughData}

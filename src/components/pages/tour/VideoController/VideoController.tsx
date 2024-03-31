@@ -7,6 +7,7 @@ import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
 import React from "react";
 import { WalkthroughData } from "~/types";
+import VideoControllerChat from "../TextChat/VideoControllerChat";
 
 interface VideoControllerProps {
   displayState: boolean;
@@ -14,7 +15,7 @@ interface VideoControllerProps {
   walkthroughData: WalkthroughData;
 }
 
-const VideoControler: React.FC<VideoControllerProps> = ({
+const VideoController: React.FC<VideoControllerProps> = ({
   displayState,
   videoCount,
   walkthroughData,
@@ -37,9 +38,10 @@ const VideoControler: React.FC<VideoControllerProps> = ({
         videoCount={videoCount}
         direction={true}
       />
+      <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} />
+      <VideoControllerChat />
       <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
       <VideoControllerCTA iconSize={5} icon={BsCompass} label="Navigate" />
-      <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} label="Volume" />
       <VideoControllerNavigator
         walkthroughData={walkthroughData}
         videoCount={videoCount}
@@ -49,4 +51,4 @@ const VideoControler: React.FC<VideoControllerProps> = ({
   );
 };
 
-export default VideoControler;
+export default VideoController;

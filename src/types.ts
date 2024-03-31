@@ -10,4 +10,13 @@ type videoSequenceAtomState = {
   sequence: number;
 };
 
-export { type WalkthroughData, type videoSequenceAtomState };
+type responseWindowAtomState = {
+  prompt: string;
+  response: string;
+};
+
+export {
+  type WalkthroughData,
+  type videoSequenceAtomState,
+  type responseWindowAtomState,
+};

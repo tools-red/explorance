@@ -1,11 +1,10 @@
-import { Button, Flex, Text, filter } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import useServerSideActions from "~/hooks/useServerSideActions";
 import VideoPlayer from "./VideoPlayer";
-import VideoControler from "../VideoController/VideoController";
-import { useVideoSequenceAtom } from "~/lib/atom";
+import VideoController from "../VideoController/VideoController";
 import { WalkthroughData } from "~/types";
+import ChatResponseWindow from "../TextChat/ChatResponseWindow";
 
 interface VideoPlayerProps {
   walkthroughData: {
@@ -59,7 +58,9 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
           <Text>Nothing to play right now</Text>
         )}
 
-        <VideoControler
+        <ChatResponseWindow />
+
+        <VideoController
           walkthroughData={walkthroughData}
           videoCount={walkthroughData.length}
           displayState={displayPlayer}
