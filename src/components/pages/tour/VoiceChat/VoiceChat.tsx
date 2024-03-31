@@ -7,7 +7,6 @@ const VoiceChat = () => {
   const {
     initiateRecording,
     endRecording,
-    GenerateSpeech,
     isRecording,
     isSpeaking,
     isResponding,
@@ -21,7 +20,6 @@ const VoiceChat = () => {
         isRecording={isRecording}
         startRecording={initiateRecording}
       />
-      <Button onClick={GenerateSpeech}>Gen</Button>
     </Flex>
   );
 };

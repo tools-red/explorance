@@ -10,6 +10,7 @@ interface VideoExperiencePageProps {
   sequence: number;
   scriptData: WalkthroughData;
   walkthroughData: WalkthroughData;
+  isLoading: boolean;
 }
 
 const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({

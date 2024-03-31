@@ -61,16 +61,6 @@ const useAudioActions = () => {
     }
   };
 
-  const endRecording = () => {
-    if (mediaRecorderRef.current) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-      setUserAudioChunks([]);
-      mediaRecorderRef.current = null;
-      console.log("Recording terminated");
-    }
-  };
-
   const exportAudio = () => {
     if (userAudioChunks.length > 0) {
       const blob = new Blob(userAudioChunks, { type: "audio/mpeg" });
@@ -109,7 +99,14 @@ const useAudioActions = () => {
       .catch((error) => console.error("Failed to play audio:", error));
   };
 
-  const GenerateSpeech = async () => {
+  const endRecording = async () => {
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      setUserAudioChunks([]);
+      mediaRecorderRef.current = null;
+      console.log("Recording terminated");
+    }
     if (userAudioChunks.length > 0) {
       setIsResponding(true);
       const blob = new Blob(userAudioChunks, { type: "audio/mpeg" });
@@ -126,15 +123,15 @@ const useAudioActions = () => {
         prompt: transcribedData.transcribed_response.text,
       });
 
-      // const response = await axios.post<{
-      //   audio: string;
-      //   message: string;
-      //   status: string;
-      // }>("http://127.0.0.1:5000/ask-handbook", {
-      //   query: transcribedData.transcribed_response.text,
-      // });
+      const response = await axios.post<{
+        audio: string;
+        message: string;
+        status: string;
+      }>("http://127.0.0.1:5000/ask-handbook", {
+        query: transcribedData.transcribed_response.text,
+      });
 
-      // playAudio(response.data?.audio);
+      playAudio(response.data?.audio);
 
       console.log({
         transcribedData,
@@ -151,7 +148,6 @@ const useAudioActions = () => {
     isRecording,
     isSpeaking,
     isResponding,
-    GenerateSpeech,
     exportAudio,
   };
 };
