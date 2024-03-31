@@ -34,7 +34,7 @@ const ChatResponseWindow = () => {
         borderRadius={20}
         p={6}
         w={600}
-        bottom={40}
+        bottom={"100px"}
         position="absolute"
       >
         <Flex gap={3} flexDir="column">

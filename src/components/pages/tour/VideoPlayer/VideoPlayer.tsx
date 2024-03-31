@@ -31,6 +31,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile }) => {
           loop={true}
           playing={true}
           width={calcWidth}
+          // controls={true}
           height="100%"
           url={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${videoFile}`}
           style={{
