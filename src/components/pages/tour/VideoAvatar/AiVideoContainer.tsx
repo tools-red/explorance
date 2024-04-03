@@ -1,9 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
-import useAvatarActions from "~/hooks/useAvatarActions";
+import AiVideoPlayer from "./AiVideoPlayer";
 
-export const EvitarContainer = () => {
-  const { aiVideos } = useAvatarActions();
-
+export const AiVideoContainer = () => {
   return (
     <Flex
       borderRadius={22}
@@ -15,14 +13,9 @@ export const EvitarContainer = () => {
       position="relative" // Ensure positioning context for the absolute-positioned child
       overflow="hidden" // Hide overflow to prevent scrollbars
     >
-      {/* {videosFiltered.length > 0 && (
-        <IntroductionPlayer
-          setIntroEnd={setIntroEnd}
-          videoFile={aiVideos[1]?.Key as string}
-        />
-      )} */}
+      <AiVideoPlayer videoFile="" />
     </Flex>
   );
 };
 
-export default EvitarContainer;
+export default AiVideoContainer;

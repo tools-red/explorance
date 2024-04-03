@@ -1,10 +1,10 @@
 import ReactPlayer from "react-player";
 
-interface RegularPlayerProps {
+interface AiVideoPlayerProps {
   videoFile: string;
 }
 
-const RegularPlayer: React.FC<RegularPlayerProps> = ({ videoFile }) => {
+const AiVideoPlayer: React.FC<AiVideoPlayerProps> = ({ videoFile }) => {
   return (
     <ReactPlayer
       playing={true}
@@ -23,4 +23,4 @@ const RegularPlayer: React.FC<RegularPlayerProps> = ({ videoFile }) => {
   );
 };
 
-export default RegularPlayer;
+export default AiVideoPlayer;

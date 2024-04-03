@@ -2,7 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { WalkthroughData } from "~/types";
 
 import React, { useEffect, useState } from "react";
-import EvitarContainer from "../VideoAvatar/EvitarContainer";
+import AiVideoContainer from "../VideoAvatar/AiVideoContainer";
 import VoiceChatContainer from "../VoiceChat/VoiceChatContainer";
 import VideoPlayerContainer from "../VideoPlayer/VideoPlayerContainer";
 
@@ -38,7 +38,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
   return (
     <Grid gap={3} p={3} h="full" templateColumns="1fr 5fr">
       <Grid gap={3} templateRows="2fr 1fr">
-        <EvitarContainer />
+        <AiVideoContainer />
         <VoiceChatContainer />
       </Grid>
       <GridItem>
