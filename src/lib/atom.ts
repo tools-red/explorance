@@ -17,5 +17,7 @@ export const ResponseWindowAtom = atom<responseWindowAtomState>({
 export const VideoPlayAtom = atom<videoPlayState>({
   paused: false,
 });
+
 export const useVideoSequenceAtom = () => useAtom(VideoSequenceAtom);
 export const useResponseWindowAtom = () => useAtom(ResponseWindowAtom);
+export const useVideoPlayStateAtom = () => useAtom(VideoPlayAtom);
