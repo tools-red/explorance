@@ -2,7 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { WalkthroughData } from "~/types";
 
 import React from "react";
-import EvitarContainer from "../EvitarContainer";
+import EvitarContainer from "../VideoAvatar/EvitarContainer";
 import VoiceChatContainer from "../VoiceChat/VoiceChatContainer";
 import VideoPlayerContainer from "../VideoPlayer/VideoPlayerContainer";
 
