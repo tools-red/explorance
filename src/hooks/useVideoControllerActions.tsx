@@ -26,9 +26,6 @@ const useVideoControllerActions = () => {
     } else if (direction === true) {
       prevSequence();
     }
-    const VideoInSequence = walkthroughData.filter(
-      (script) => parseInt(script.sequenceNumber) === videoSequence.sequence
-    );
   };
 
   return { handleNavigation };
