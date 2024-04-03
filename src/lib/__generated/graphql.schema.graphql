@@ -498,9 +498,9 @@ input SysFilter {
 [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts)
 """
 type WalkthroughScripts implements Entry {
+  aiAvatarVideo(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): WalkthroughScriptsLinkingCollections
-  scriptContent(locale: String): String
   sequenceNumber(locale: String): String
   sys: Sys!
   videoFile(locale: String): String
@@ -516,14 +516,14 @@ type WalkthroughScriptsCollection {
 input WalkthroughScriptsFilter {
   AND: [WalkthroughScriptsFilter]
   OR: [WalkthroughScriptsFilter]
+  aiAvatarVideo: String
+  aiAvatarVideo_contains: String
+  aiAvatarVideo_exists: Boolean
+  aiAvatarVideo_in: [String]
+  aiAvatarVideo_not: String
+  aiAvatarVideo_not_contains: String
+  aiAvatarVideo_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  scriptContent: String
-  scriptContent_contains: String
-  scriptContent_exists: Boolean
-  scriptContent_in: [String]
-  scriptContent_not: String
-  scriptContent_not_contains: String
-  scriptContent_not_in: [String]
   sequenceNumber: String
   sequenceNumber_contains: String
   sequenceNumber_exists: Boolean
@@ -546,6 +546,8 @@ type WalkthroughScriptsLinkingCollections {
 }
 
 enum WalkthroughScriptsOrder {
+  aiAvatarVideo_ASC
+  aiAvatarVideo_DESC
   sequenceNumber_ASC
   sequenceNumber_DESC
   sys_firstPublishedAt_ASC
