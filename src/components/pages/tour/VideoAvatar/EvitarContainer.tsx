@@ -28,12 +28,12 @@ export const EvitarContainer = () => {
       position="relative" // Ensure positioning context for the absolute-positioned child
       overflow="hidden" // Hide overflow to prevent scrollbars
     >
-      {videosFiltered.length > 0 && (
+      {/* {videosFiltered.length > 0 && (
         <IntroductionPlayer
           setIntroEnd={setIntroEnd}
           videoFile={aiVideos[1]?.Key as string}
         />
-      )}
+      )} */}
     </Flex>
   );
 };
