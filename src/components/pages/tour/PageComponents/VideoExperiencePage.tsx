@@ -19,21 +19,21 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
   walkthroughData,
 }) => {
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
-  const [selectedVideo, setSelectedVideo] = useState<WalkthroughData>([]);
+  const [selectedScript, setselectedScript] = useState<WalkthroughData>([]);
 
   useEffect(() => {
     if (scriptData.length != 0) setDisplayPlayer(true);
     const filterVideo = scriptData.filter(
       (script) => parseInt(script.sequenceNumber) === 1
     );
-    setSelectedVideo(filterVideo ?? null);
+    setselectedScript(filterVideo ?? null);
   }, [scriptData]);
 
   useEffect(() => {
     const filterVideo = scriptData.filter(
       (script) => parseInt(script.sequenceNumber) === sequence
     );
-    setSelectedVideo(filterVideo ?? null);
+    setselectedScript(filterVideo ?? null);
   }, [sequence]);
   return (
     <Grid gap={3} p={3} h="full" templateColumns="1fr 5fr">
@@ -44,7 +44,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
       <GridItem>
         <VideoPlayerContainer
           displayPlayer={displayPlayer}
-          selectedVideo={selectedVideo}
+          selectedScript={selectedScript}
           walkthroughData={walkthroughData}
         />
       </GridItem>

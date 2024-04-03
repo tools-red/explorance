@@ -1,5 +1,4 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 
 import VideoPlayer from "./VideoPlayer";
 import VideoController from "../VideoController/VideoController";
@@ -9,16 +8,12 @@ import ChatResponseWindow from "../TextChat/ChatResponseWindow";
 interface VideoPlayerProps {
   walkthroughData: WalkthroughData;
   displayPlayer: boolean;
-  selectedVideo: {
-    sequenceNumber: string;
-    aiAvatarVideo: string;
-    videoFile: string;
-  }[];
+  selectedScript: WalkthroughData;
 }
 
 const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   displayPlayer,
-  selectedVideo,
+  selectedScript,
   walkthroughData,
 }) => {
   return (
@@ -31,7 +26,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         position="relative"
       >
         {walkthroughData && walkthroughData.length > 0 ? (
-          <VideoPlayer videoFile={selectedVideo[0]?.videoFile} />
+          <VideoPlayer videoFile={selectedScript[0]?.videoFile} />
         ) : (
           <Text>Nothing to play right now</Text>
         )}
