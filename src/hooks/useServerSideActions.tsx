@@ -4,9 +4,7 @@ import { WalkthroughData } from "~/types";
 import { api } from "~/utils/api";
 
 const useServerSideActions = () => {
-  const [scriptData, setScriptData] = useState<
-    { sequenceNumber: string; videoFile: string; scriptContent: string }[]
-  >([]);
+  const [scriptData, setScriptData] = useState<WalkthroughData>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [trpcClientError, setTrpcClientError] = useState<TRPCClientErrorLike<{
     input: void;

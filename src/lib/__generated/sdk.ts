@@ -643,9 +643,9 @@ export type SysFilter = {
 /** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts) */
 export type WalkthroughScripts = Entry & {
   __typename?: 'WalkthroughScripts';
+  aiAvatarVideo?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<WalkthroughScriptsLinkingCollections>;
-  scriptContent?: Maybe<Scalars['String']['output']>;
   sequenceNumber?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   videoFile?: Maybe<Scalars['String']['output']>;
@@ -653,14 +653,14 @@ export type WalkthroughScripts = Entry & {
 
 
 /** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts) */
-export type WalkthroughScriptsLinkedFromArgs = {
-  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+export type WalkthroughScriptsAiAvatarVideoArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts) */
-export type WalkthroughScriptsScriptContentArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
+export type WalkthroughScriptsLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -686,14 +686,14 @@ export type WalkthroughScriptsCollection = {
 export type WalkthroughScriptsFilter = {
   AND?: InputMaybe<Array<InputMaybe<WalkthroughScriptsFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<WalkthroughScriptsFilter>>>;
+  aiAvatarVideo?: InputMaybe<Scalars['String']['input']>;
+  aiAvatarVideo_contains?: InputMaybe<Scalars['String']['input']>;
+  aiAvatarVideo_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  aiAvatarVideo_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  aiAvatarVideo_not?: InputMaybe<Scalars['String']['input']>;
+  aiAvatarVideo_not_contains?: InputMaybe<Scalars['String']['input']>;
+  aiAvatarVideo_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  scriptContent?: InputMaybe<Scalars['String']['input']>;
-  scriptContent_contains?: InputMaybe<Scalars['String']['input']>;
-  scriptContent_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  scriptContent_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  scriptContent_not?: InputMaybe<Scalars['String']['input']>;
-  scriptContent_not_contains?: InputMaybe<Scalars['String']['input']>;
-  scriptContent_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sequenceNumber?: InputMaybe<Scalars['String']['input']>;
   sequenceNumber_contains?: InputMaybe<Scalars['String']['input']>;
   sequenceNumber_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -725,6 +725,8 @@ export type WalkthroughScriptsLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum WalkthroughScriptsOrder {
+  AiAvatarVideoAsc = 'aiAvatarVideo_ASC',
+  AiAvatarVideoDesc = 'aiAvatarVideo_DESC',
   SequenceNumberAsc = 'sequenceNumber_ASC',
   SequenceNumberDesc = 'sequenceNumber_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -751,7 +753,7 @@ export type CampusEventCollectionQuery = { __typename?: 'Query', campusEventColl
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', sequenceNumber?: string | null, videoFile?: string | null, scriptContent?: string | null } | null> } | null };
+export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null } | null> } | null };
 
 
 export const CampusEventCollectionDocument = gql`
@@ -771,9 +773,9 @@ export const WalkthroughScriptsCollectionDocument = gql`
     query walkthroughScriptsCollection {
   walkthroughScriptsCollection {
     items {
-      sequenceNumber
       videoFile
-      scriptContent
+      sequenceNumber
+      aiAvatarVideo
     }
   }
 }

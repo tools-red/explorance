@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps<{
       walkthroughData:
         contentfulWalkthroughData.walkthroughScriptsCollection?.items.map(
           (object) => ({
-            scriptContent: object?.scriptContent ?? "",
+            aiAvatarVideo: object?.aiAvatarVideo ?? "",
             sequenceNumber: object?.sequenceNumber ?? "",
             videoFile: object?.videoFile ?? "",
           })
