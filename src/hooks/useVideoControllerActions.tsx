@@ -1,8 +1,9 @@
-import { useVideoSequenceAtom } from "~/lib/atom";
+import { useVideoPlayStateAtom, useVideoSequenceAtom } from "~/lib/atom";
 import { WalkthroughData } from "~/types";
 
 const useVideoControllerActions = () => {
   const [videoSequence, setVideoSequence] = useVideoSequenceAtom();
+  const [videoPauseState, setVideoPauseState] = useVideoPlayStateAtom();
 
   const handleNavigation = (
     direction: boolean,
@@ -28,7 +29,12 @@ const useVideoControllerActions = () => {
     }
   };
 
-  return { handleNavigation };
+  const handleVideoPauseState = () => {
+    setVideoPauseState({ paused: !videoPauseState.paused });
+    console.log({ videoPauseState });
+  };
+
+  return { handleNavigation, handleVideoPauseState };
 };
 
 export default useVideoControllerActions;

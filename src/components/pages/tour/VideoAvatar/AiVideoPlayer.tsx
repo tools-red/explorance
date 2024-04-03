@@ -1,13 +1,16 @@
 import ReactPlayer from "react-player";
+import { useVideoPlayStateAtom } from "~/lib/atom";
 
 interface AiVideoPlayerProps {
   videoFile: string | undefined | null;
 }
 
 const AiVideoPlayer: React.FC<AiVideoPlayerProps> = ({ videoFile }) => {
+  const [{ paused }] = useVideoPlayStateAtom();
+
   return (
     <ReactPlayer
-      playing={true}
+      playing={paused}
       width="100%"
       // controls={true}
       height="100%"

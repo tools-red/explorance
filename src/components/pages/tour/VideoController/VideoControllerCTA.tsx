@@ -5,12 +5,14 @@ interface VideoControlerProps {
   label?: string;
   icon: IconType;
   iconSize: number;
-  handleOperation?: 
+  handleOperation?: () => void;
 }
+
 const VideoControllerCTA: React.FC<VideoControlerProps> = ({
   icon,
   label,
   iconSize,
+  handleOperation,
 }) => {
   return (
     <Button
@@ -24,6 +26,7 @@ const VideoControllerCTA: React.FC<VideoControlerProps> = ({
         color: "#1E1E1E",
         bg: "white",
       }}
+      onClick={handleOperation}
     >
       <Flex align="center" gap={2}>
         <Icon boxSize={iconSize} as={icon} />
