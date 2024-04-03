@@ -5,6 +5,7 @@ interface VideoControlerProps {
   label?: string;
   icon: IconType;
   iconSize: number;
+  handleOperation?: 
 }
 const VideoControllerCTA: React.FC<VideoControlerProps> = ({
   icon,

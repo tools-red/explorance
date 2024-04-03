@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { Md360 } from "react-icons/md";
 import { BsCompass } from "react-icons/bs";
 import { IoVolumeHigh } from "react-icons/io5";
+import { FaPause } from "react-icons/fa6";
 
 import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
@@ -39,6 +40,7 @@ const VideoController: React.FC<VideoControllerProps> = ({
         direction={true}
       />
       <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} />
+      <VideoControllerCTA iconSize={5} icon={FaPause} />
       <VideoControllerChat />
       <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
       <VideoControllerCTA iconSize={5} icon={BsCompass} label="Navigate" />
