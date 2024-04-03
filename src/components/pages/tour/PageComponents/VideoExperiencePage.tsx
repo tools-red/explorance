@@ -38,7 +38,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
   return (
     <Grid gap={3} p={3} h="full" templateColumns="1fr 5fr">
       <Grid gap={3} templateRows="2fr 1fr">
-        <AiVideoContainer />
+        <AiVideoContainer selectedScript={selectedScript} />
         <VoiceChatContainer />
       </Grid>
       <GridItem>

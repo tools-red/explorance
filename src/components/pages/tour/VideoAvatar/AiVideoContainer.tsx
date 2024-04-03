@@ -1,7 +1,16 @@
 import { Flex, Text } from "@chakra-ui/react";
 import AiVideoPlayer from "./AiVideoPlayer";
+import React from "react";
+import { WalkthroughData } from "~/types";
 
-export const AiVideoContainer = () => {
+interface AiVideoContainerProps {
+  selectedScript: WalkthroughData;
+}
+
+export const AiVideoContainer: React.FC<AiVideoContainerProps> = ({
+  selectedScript,
+}) => {
+  console.log(selectedScript);
   return (
     <Flex
       borderRadius={22}
@@ -13,7 +22,11 @@ export const AiVideoContainer = () => {
       position="relative" // Ensure positioning context for the absolute-positioned child
       overflow="hidden" // Hide overflow to prevent scrollbars
     >
-      <AiVideoPlayer videoFile="" />
+      {selectedScript && selectedScript.length > 0 ? (
+        <AiVideoPlayer videoFile={selectedScript[0]?.aiAvatarVideo} />
+      ) : (
+        <Text>No video Loaded right now</Text>
+      )}
     </Flex>
   );
 };

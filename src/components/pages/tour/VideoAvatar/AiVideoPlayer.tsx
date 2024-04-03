@@ -1,7 +1,7 @@
 import ReactPlayer from "react-player";
 
 interface AiVideoPlayerProps {
-  videoFile: string;
+  videoFile: string | undefined | null;
 }
 
 const AiVideoPlayer: React.FC<AiVideoPlayerProps> = ({ videoFile }) => {
