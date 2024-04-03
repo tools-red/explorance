@@ -26,7 +26,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         position="relative"
       >
         {walkthroughData && walkthroughData.length > 0 ? (
-          <VideoPlayer videoFile={selectedScript[0]?.videoFile} />
+          <VideoPlayer volume={0.2} videoFile={selectedScript[0]?.videoFile} />
         ) : (
           <Text>Nothing to play right now</Text>
         )}

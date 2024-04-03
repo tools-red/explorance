@@ -4,9 +4,10 @@ import ReactPlayer from "react-player";
 
 interface VideoPlayerProps {
   videoFile: string | undefined;
+  volume: number;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile, volume }) => {
   const [calcWidth, setCalcWidth] = useState<number | null>(null);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile }) => {
     >
       {calcWidth && (
         <ReactPlayer
+          volume={volume}
           loop={true}
           playing={true}
           width={calcWidth}
