@@ -1,21 +1,8 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import useAvatarActions from "~/hooks/useAvatarActions";
-import IntroductionPlayer from "./IntroductionPlayer";
 
 export const EvitarContainer = () => {
   const { aiVideos } = useAvatarActions();
-  useEffect(() => {
-    console.log(aiVideos);
-  }, [aiVideos]);
-
-  const [introEnd, setIntroEnd] = useState<boolean>(false);
-
-  const videosFiltered = aiVideos?.filter((video) =>
-    video?.Key?.includes("library")
-  );
-
-  console.log(videosFiltered);
 
   return (
     <Flex
