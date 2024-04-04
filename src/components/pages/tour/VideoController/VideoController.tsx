@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useDisclosure } from "@chakra-ui/react";
 import { Md360 } from "react-icons/md";
 import { BsCompass } from "react-icons/bs";
 import { IoVolumeHigh } from "react-icons/io5";
@@ -11,6 +11,7 @@ import { WalkthroughData } from "~/types";
 import VideoControllerChat from "../TextChat/VideoControllerChat";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 import useVideoControllerActions from "~/hooks/useVideoControllerActions";
+import TourNavigation from "../TourNavigation/TourNavigation";
 
 interface VideoControllerProps {
   displayState: boolean;
@@ -23,6 +24,7 @@ const VideoController: React.FC<VideoControllerProps> = ({
   videoCount,
   walkthroughData,
 }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { handleVideoPauseState } = useVideoControllerActions();
   const [videoPauseState] = useVideoPlayStateAtom();
 
@@ -52,7 +54,13 @@ const VideoController: React.FC<VideoControllerProps> = ({
       />
       <VideoControllerChat />
       <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
-      <VideoControllerCTA iconSize={5} icon={BsCompass} label="Navigate" />
+      <VideoControllerCTA
+        handleOperation={onOpen}
+        iconSize={5}
+        icon={BsCompass}
+        label="Navigate"
+      />
+      <TourNavigation modalState={isOpen} handleModal={onClose} />
       <VideoControllerNavigator
         walkthroughData={walkthroughData}
         videoCount={videoCount}

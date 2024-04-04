@@ -24,8 +24,7 @@ const ModalLayout: React.FC<ModalLayoutProps> = ({
 }) => {
   return (
     <Modal isOpen={modalState} onClose={handleModal}>
-      <ModalOverlay />
-      <ModalContent>
+      <ModalContent position="absolute">
         {hasTitle ? (
           <>
             <ModalHeader>{modalTitle}</ModalHeader>
