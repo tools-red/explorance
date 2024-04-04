@@ -34,7 +34,11 @@ const useVideoControllerActions = () => {
     console.log({ videoPauseState });
   };
 
-  return { handleNavigation, handleVideoPauseState };
+  const handleSkipNavigation = (videoNumber: number) => {
+    setVideoSequence({ sequence: videoNumber });
+  };
+
+  return { handleNavigation, handleVideoPauseState, handleSkipNavigation };
 };
 
 export default useVideoControllerActions;
