@@ -6,25 +6,27 @@ import { FaPause, FaPlay } from "react-icons/fa6";
 
 import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
-import React from "react";
+import React, { useState } from "react";
 import { WalkthroughData } from "~/types";
 import VideoControllerChat from "../TextChat/VideoControllerChat";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 import useVideoControllerActions from "~/hooks/useVideoControllerActions";
-import TourNavigation from "../TourNavigation/TourNavigation";
 
 interface VideoControllerProps {
   displayState: boolean;
   videoCount: number;
   walkthroughData: WalkthroughData;
+  SetShowNavigator: (state: boolean) => void;
+  showNavigator: boolean;
 }
 
 const VideoController: React.FC<VideoControllerProps> = ({
   displayState,
   videoCount,
   walkthroughData,
+  SetShowNavigator,
+  showNavigator,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const { handleVideoPauseState } = useVideoControllerActions();
   const [videoPauseState] = useVideoPlayStateAtom();
 
@@ -55,12 +57,11 @@ const VideoController: React.FC<VideoControllerProps> = ({
       <VideoControllerChat />
       <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
       <VideoControllerCTA
-        handleOperation={onOpen}
+        handleOperation={() => SetShowNavigator(!showNavigator)}
         iconSize={5}
         icon={BsCompass}
         label="Navigate"
       />
-
       <VideoControllerNavigator
         walkthroughData={walkthroughData}
         videoCount={videoCount}
