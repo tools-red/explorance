@@ -1,24 +1,10 @@
 import { Text } from "@chakra-ui/react";
 import ModalLayout from "~/components/componentLayouts/ModalLayout";
 
-interface TourNavigationProps {
-  modalState: boolean;
-  handleModal: () => void;
-}
+interface TourNavigationProps {}
 
-const TourNavigation: React.FC<TourNavigationProps> = ({
-  handleModal,
-  modalState,
-}) => {
-  return (
-    <ModalLayout
-      hasTitle={false}
-      handleModal={handleModal}
-      modalState={modalState}
-    >
-      <Text>Navigation Modal</Text>
-    </ModalLayout>
-  );
+const TourNavigation: React.FC<TourNavigationProps> = ({}) => {
+  return <Text>Navigation Modal</Text>;
 };
 
 export default TourNavigation;

@@ -60,7 +60,7 @@ const VideoController: React.FC<VideoControllerProps> = ({
         icon={BsCompass}
         label="Navigate"
       />
-      <TourNavigation modalState={isOpen} handleModal={onClose} />
+
       <VideoControllerNavigator
         walkthroughData={walkthroughData}
         videoCount={videoCount}
