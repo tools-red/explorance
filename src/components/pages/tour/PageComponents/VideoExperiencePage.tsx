@@ -18,7 +18,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
 }) => {
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
   const [selectedScript, setselectedScript] = useState<WalkthroughData>([]);
-  const { scriptData, loadExperience } = useServerSideActions();
+  const { scriptData, isLoading, loadExperience } = useServerSideActions();
   const [{ sequence }] = useVideoSequenceAtom();
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
           />
         ) : (
           <VideoPlayerStatic
+            isLoading={isLoading as boolean}
             loadExperience={loadExperience}
             walkthroughData={walkthroughData}
           />
