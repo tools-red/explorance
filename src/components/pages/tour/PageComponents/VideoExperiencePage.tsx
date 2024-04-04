@@ -7,6 +7,7 @@ import VoiceChatContainer from "../VoiceChat/VoiceChatContainer";
 import VideoPlayerContainer from "../VideoPlayer/VideoPlayerContainer";
 import { useVideoSequenceAtom } from "~/lib/atom";
 import useServerSideActions from "~/hooks/useServerSideActions";
+import VideoPlayerStatic from "../VideoPlayer/VideoPlayerStatic";
 
 interface VideoExperiencePageProps {
   walkthroughData: WalkthroughData;
@@ -48,16 +49,10 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
             walkthroughData={walkthroughData}
           />
         ) : (
-          <Box
-            w="full"
-            h="full
-        "
-            bg="red"
-          >
-            <Button onClick={() => loadExperience(walkthroughData)}>
-              Load Experience
-            </Button>
-          </Box>
+          <VideoPlayerStatic
+            loadExperience={loadExperience}
+            walkthroughData={walkthroughData}
+          />
         )}
       </GridItem>
     </Grid>
