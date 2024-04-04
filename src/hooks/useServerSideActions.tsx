@@ -6,12 +6,8 @@ import { api } from "~/utils/api";
 const useServerSideActions = () => {
   const [scriptData, setScriptData] = useState<WalkthroughData>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
-  const [trpcClientError, setTrpcClientError] = useState<TRPCClientErrorLike<{
-    input: void;
-    output: any[];
-    transformer: boolean;
-    errorShape: any;
-  }> | null>(null);
+  const [introVideo, setIntroVideo] = useState<string>("");
+  const [isIntroLoading, setIsIntroLoading] = useState<boolean>(false);
 
   const { refetch: fetchBucketContent } = api.r2.fetchBucketContent.useQuery(
     undefined,
@@ -19,6 +15,24 @@ const useServerSideActions = () => {
       enabled: false,
     }
   );
+
+  const loadIntroductionVideo = async () => {
+    setIsIntroLoading(true);
+    const R2Data = await fetchBucketContent();
+    const updatedR2Data =
+      R2Data.data?.CDN_Response?.map((item) => ({
+        ETag: item.ETag,
+        Key: item.Key,
+      })) || [];
+
+    const foundItem = updatedR2Data.find(
+      (item) => item.Key === "AI_guide_Introduction.mp4"
+    );
+    setIntroVideo(foundItem?.Key as string);
+    setIsIntroLoading(false);
+
+    console.log(introVideo);
+  };
 
   const loadExperience = async (walkthroughData: WalkthroughData) => {
     try {
@@ -40,13 +54,13 @@ const useServerSideActions = () => {
 
       setScriptData([...filteredScriptData]);
     } catch (error: any) {
-      setTrpcClientError(error);
+      console.log(error);
     } finally {
       setIsLoading(false); // Ensure to set loading state to false regardless of success or failure
     }
   };
 
-  return { loadExperience, isLoading, scriptData };
+  return { loadExperience, loadIntroductionVideo, isLoading, scriptData };
 };
 
 export default useServerSideActions;

@@ -3,8 +3,9 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 
-import React from "react";
+import React, { useEffect } from "react";
 import VideoExperiencePage from "~/components/pages/tour/PageComponents/VideoExperiencePage";
+import useServerSideActions from "~/hooks/useServerSideActions";
 
 export const getServerSideProps: GetServerSideProps<{
   walkthroughData: WalkthroughData;
@@ -28,6 +29,10 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
+  const { loadIntroductionVideo } = useServerSideActions();
+  useEffect(() => {
+    loadIntroductionVideo();
+  }, []);
   return (
     <Box bg="#121212" h="100vh">
       <VideoExperiencePage walkthroughData={walkthroughData} />
