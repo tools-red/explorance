@@ -32,10 +32,12 @@ const walkthroughs = [
 
 interface TourNavigationProps {
   displayNavigationModal: boolean;
+  hideNavigationModal: () => void;
 }
 
 const TourNavigation: React.FC<TourNavigationProps> = ({
   displayNavigationModal,
+  hideNavigationModal,
 }) => {
   const { handleSkipNavigation } = useVideoControllerActions();
 
@@ -55,7 +57,10 @@ const TourNavigation: React.FC<TourNavigationProps> = ({
       >
         {walkthroughs.map(({ image, title, duration, sequenceNumber }, i) => (
           <GridItem
-            onClick={() => handleSkipNavigation(sequenceNumber)}
+            onClick={() => {
+              handleSkipNavigation(sequenceNumber);
+              hideNavigationModal();
+            }}
             as={Box}
             key={i}
             bg="rgba(255, 255, 255, 0.1)"

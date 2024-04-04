@@ -20,7 +20,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
 }) => {
   const [showNavigator, SetShowNavigator] = useState<boolean>(false);
   return (
-    <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
+    <Flex h="full" borderRadius={22} w="full" bg="#1E1E1E" flexDir="column">
       <Flex
         h="full"
         align="center"
@@ -35,7 +35,10 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         )}
 
         <ChatResponseWindow />
-        <TourNavigation displayNavigationModal={showNavigator} />
+        <TourNavigation
+          displayNavigationModal={showNavigator}
+          hideNavigationModal={() => SetShowNavigator(false)}
+        />
 
         <VideoController
           showNavigator={showNavigator}
