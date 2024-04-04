@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem } from "@chakra-ui/react";
 import { WalkthroughData } from "~/types";
 
 import React, { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
 }) => {
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
   const [selectedScript, setselectedScript] = useState<WalkthroughData>([]);
-  const { scriptData, isLoading, loadExperience } = useServerSideActions();
+  const { scriptData, loadExperience } = useServerSideActions();
   const [{ sequence }] = useVideoSequenceAtom();
 
   useEffect(() => {
@@ -41,11 +41,24 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
         <VoiceChatContainer />
       </Grid>
       <GridItem>
-        <VideoPlayerContainer
-          displayPlayer={displayPlayer}
-          selectedScript={selectedScript}
-          walkthroughData={walkthroughData}
-        />
+        {scriptData && scriptData.length > 0 ? (
+          <VideoPlayerContainer
+            displayPlayer={displayPlayer}
+            selectedScript={selectedScript}
+            walkthroughData={walkthroughData}
+          />
+        ) : (
+          <Box
+            w="full"
+            h="full
+        "
+            bg="red"
+          >
+            <Button onClick={() => loadExperience(walkthroughData)}>
+              Load Experience
+            </Button>
+          </Box>
+        )}
       </GridItem>
     </Grid>
   );

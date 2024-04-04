@@ -16,24 +16,6 @@ const useServerSideActions = () => {
     }
   );
 
-  const loadIntroductionVideo = async () => {
-    setIsIntroLoading(true);
-    const R2Data = await fetchBucketContent();
-    const updatedR2Data =
-      R2Data.data?.CDN_Response?.map((item) => ({
-        ETag: item.ETag,
-        Key: item.Key,
-      })) || [];
-
-    const foundItem = updatedR2Data.find(
-      (item) => item.Key === "AI_guide_Introduction.mp4"
-    );
-    setIntroVideo(foundItem?.Key as string);
-    setIsIntroLoading(false);
-
-    console.log(introVideo);
-  };
-
   const loadExperience = async (walkthroughData: WalkthroughData) => {
     try {
       setIsLoading(true);
@@ -60,7 +42,11 @@ const useServerSideActions = () => {
     }
   };
 
-  return { loadExperience, loadIntroductionVideo, isLoading, scriptData };
+  return {
+    loadExperience,
+    isLoading,
+    scriptData,
+  };
 };
 
 export default useServerSideActions;

@@ -1,7 +1,11 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Spinner, Text } from "@chakra-ui/react";
 import AiVideoPlayer from "./AiVideoPlayer";
 import React from "react";
 import { WalkthroughData } from "~/types";
+// import ReactPlayer from "react-player";
+
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 interface AiVideoContainerProps {
   selectedScript: WalkthroughData;
@@ -25,7 +29,21 @@ export const AiVideoContainer: React.FC<AiVideoContainerProps> = ({
       {selectedScript && selectedScript.length > 0 ? (
         <AiVideoPlayer videoFile={selectedScript[0]?.aiAvatarVideo} />
       ) : (
-        <Text>No video Loaded right now</Text>
+        <ReactPlayer
+          url={`https://pub-75274250b3dd42109b51e593903a7d41.r2.dev/AI_guide_Introduction.mp4`}
+          playing={true}
+          loop={true}
+          width="100%"
+          // controls={true}
+          height="100%"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            objectFit: "cover",
+          }}
+        />
       )}
     </Flex>
   );

@@ -29,10 +29,6 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
-  const { loadIntroductionVideo } = useServerSideActions();
-  useEffect(() => {
-    loadIntroductionVideo();
-  }, []);
   return (
     <Box bg="#121212" h="100vh">
       <VideoExperiencePage walkthroughData={walkthroughData} />
