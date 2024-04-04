@@ -1,7 +1,6 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import useAudioActions from "~/hooks/useAudioActions";
 import MicrophoneDisplay from "./MicrophoneDisplay";
-import { useEffect } from "react";
 
 const VoiceChat = () => {
   const {
