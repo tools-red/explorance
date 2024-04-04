@@ -1,9 +1,43 @@
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+} from "@chakra-ui/react";
+
 interface ModalLayoutProps {
   children: React.ReactNode;
+  modalState: boolean;
+  hasTitle: boolean;
+  modalTitle?: string;
+  handleModal: () => void;
 }
 
-const ModalLayout: React.FC<ModalLayoutProps> = ({ children }) => {
-  return;
+const ModalLayout: React.FC<ModalLayoutProps> = ({
+  children,
+  handleModal,
+  modalState,
+  hasTitle = false,
+  modalTitle,
+}) => {
+  return (
+    <Modal isOpen={modalState} onClose={handleModal}>
+      <ModalOverlay />
+      <ModalContent>
+        {hasTitle ? (
+          <>
+            <ModalHeader>{modalTitle}</ModalHeader>
+            <ModalCloseButton />
+          </>
+        ) : (
+          <></>
+        )}
+        <ModalBody>{children}</ModalBody>
+      </ModalContent>
+    </Modal>
+  );
 };
 
 export default ModalLayout;
