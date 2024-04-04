@@ -5,21 +5,20 @@ import React, { useEffect, useState } from "react";
 import AiVideoContainer from "../VideoAvatar/AiVideoContainer";
 import VoiceChatContainer from "../VoiceChat/VoiceChatContainer";
 import VideoPlayerContainer from "../VideoPlayer/VideoPlayerContainer";
+import { useVideoSequenceAtom } from "~/lib/atom";
+import useServerSideActions from "~/hooks/useServerSideActions";
 
 interface VideoExperiencePageProps {
-  sequence: number;
-  scriptData: WalkthroughData;
   walkthroughData: WalkthroughData;
-  isLoading: boolean;
 }
 
 const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
-  scriptData,
-  sequence,
   walkthroughData,
 }) => {
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
   const [selectedScript, setselectedScript] = useState<WalkthroughData>([]);
+  const { scriptData, isLoading, loadExperience } = useServerSideActions();
+  const [{ sequence }] = useVideoSequenceAtom();
 
   useEffect(() => {
     if (scriptData.length != 0) setDisplayPlayer(true);
