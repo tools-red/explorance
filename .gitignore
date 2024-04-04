@@ -42,3 +42,5 @@ yarn-error.log*
 *.tsbuildinfo
 
 env/
+ai/storage/
+ai/__pycache__/
