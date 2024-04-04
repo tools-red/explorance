@@ -4,6 +4,8 @@ import VideoPlayer from "./VideoPlayer";
 import VideoController from "../VideoController/VideoController";
 import { WalkthroughData } from "~/types";
 import ChatResponseWindow from "../TextChat/ChatResponseWindow";
+import TourNavigation from "../TourNavigation/TourNavigation";
+import { useState } from "react";
 
 interface VideoPlayerProps {
   walkthroughData: WalkthroughData;
@@ -16,6 +18,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   selectedScript,
   walkthroughData,
 }) => {
+  const [showNavigator, SetShowNavigator] = useState<boolean>(false);
   return (
     <Flex h="full" borderRadius={22} w="full" bg="green" flexDir="column">
       <Flex
@@ -32,8 +35,11 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         )}
 
         <ChatResponseWindow />
+        <TourNavigation displayNavigationModal={showNavigator} />
 
         <VideoController
+          showNavigator={showNavigator}
+          SetShowNavigator={SetShowNavigator}
           walkthroughData={walkthroughData}
           videoCount={walkthroughData.length}
           displayState={displayPlayer}
