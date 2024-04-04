@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 import player from "play-sound";
@@ -101,46 +101,65 @@ const useAudioActions = () => {
       .catch((error) => console.error("Failed to play audio:", error));
   };
 
+  const [isDataAvailable, setIsDataAvailable] = useState(false);
+
+  useEffect(() => {
+    const handleUserEndRecording = async () => {
+      if (userAudioChunks.length > 0) {
+        setIsResponding(true);
+        const blob = new Blob(userAudioChunks, { type: "audio/mpeg" });
+        const audioFile = new File([blob], "user_input.mp3", {
+          type: "audio/mpeg",
+        });
+        const audioBase64 = await convertAudioFileToBase64(audioFile);
+
+        const transcribedData = await transcribeAudioMut.mutateAsync({
+          audioFileBase64: audioBase64 ?? "",
+        });
+
+        const completionsData = await chatCompletionsMut.mutateAsync({
+          prompt: transcribedData.transcribed_response.text,
+        });
+
+        const response = await axios.post<{
+          audio: string;
+          message: string;
+          status: string;
+        }>("http://127.0.0.1:5000/ask-handbook", {
+          query: transcribedData.transcribed_response.text,
+        });
+
+        playAudio(response.data?.audio);
+
+        console.log({
+          transcribedData,
+          completionsData,
+        });
+
+        setUserAudioChunks([]);
+
+        setIsResponding(false);
+      }
+    };
+
+    if (isDataAvailable && userAudioChunks.length > 0) {
+      // Proceed with the rest of the logic here
+      // For example, transcribe the audio, generate responses, etc.
+
+      // Reset isDataAvailable to false after processing
+      handleUserEndRecording();
+      setIsDataAvailable(false);
+    }
+  }, [userAudioChunks, isDataAvailable]);
+
   const endRecording = async () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
-      setUserAudioChunks([]);
+      // setUserAudioChunks([]);
+      setIsDataAvailable(true);
       mediaRecorderRef.current = null;
       console.log("Recording terminated");
-    }
-    if (userAudioChunks.length > 0) {
-      setIsResponding(true);
-      const blob = new Blob(userAudioChunks, { type: "audio/mpeg" });
-      const audioFile = new File([blob], "user_input.mp3", {
-        type: "audio/mpeg",
-      });
-      const audioBase64 = await convertAudioFileToBase64(audioFile);
-
-      const transcribedData = await transcribeAudioMut.mutateAsync({
-        audioFileBase64: audioBase64 ?? "",
-      });
-
-      const completionsData = await chatCompletionsMut.mutateAsync({
-        prompt: transcribedData.transcribed_response.text,
-      });
-
-      const response = await axios.post<{
-        audio: string;
-        message: string;
-        status: string;
-      }>("http://127.0.0.1:5000/ask-handbook", {
-        query: transcribedData.transcribed_response.text,
-      });
-
-      playAudio(response.data?.audio);
-
-      console.log({
-        transcribedData,
-        completionsData,
-      });
-
-      setIsResponding(false);
     }
   };
 
