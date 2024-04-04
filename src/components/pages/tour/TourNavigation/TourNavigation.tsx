@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import {} from "@numairawan/video-duration";
+// import {} from "@numairawan/video-duration";
 
 interface TourNavigationProps {
   displayNavigationModal: boolean;
