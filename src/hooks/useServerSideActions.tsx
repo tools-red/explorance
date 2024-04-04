@@ -6,12 +6,8 @@ import { api } from "~/utils/api";
 const useServerSideActions = () => {
   const [scriptData, setScriptData] = useState<WalkthroughData>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
-  const [trpcClientError, setTrpcClientError] = useState<TRPCClientErrorLike<{
-    input: void;
-    output: any[];
-    transformer: boolean;
-    errorShape: any;
-  }> | null>(null);
+  const [introVideo, setIntroVideo] = useState<string>("");
+  const [isIntroLoading, setIsIntroLoading] = useState<boolean>(false);
 
   const { refetch: fetchBucketContent } = api.r2.fetchBucketContent.useQuery(
     undefined,
@@ -40,13 +36,17 @@ const useServerSideActions = () => {
 
       setScriptData([...filteredScriptData]);
     } catch (error: any) {
-      setTrpcClientError(error);
+      console.log(error);
     } finally {
       setIsLoading(false); // Ensure to set loading state to false regardless of success or failure
     }
   };
 
-  return { loadExperience, isLoading, scriptData };
+  return {
+    loadExperience,
+    isLoading,
+    scriptData,
+  };
 };
 
 export default useServerSideActions;

@@ -1,25 +1,25 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem } from "@chakra-ui/react";
 import { WalkthroughData } from "~/types";
 
 import React, { useEffect, useState } from "react";
 import AiVideoContainer from "../VideoAvatar/AiVideoContainer";
 import VoiceChatContainer from "../VoiceChat/VoiceChatContainer";
 import VideoPlayerContainer from "../VideoPlayer/VideoPlayerContainer";
+import { useVideoSequenceAtom } from "~/lib/atom";
+import useServerSideActions from "~/hooks/useServerSideActions";
+import VideoPlayerStatic from "../VideoPlayer/VideoPlayerStatic";
 
 interface VideoExperiencePageProps {
-  sequence: number;
-  scriptData: WalkthroughData;
   walkthroughData: WalkthroughData;
-  isLoading: boolean;
 }
 
 const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
-  scriptData,
-  sequence,
   walkthroughData,
 }) => {
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
   const [selectedScript, setselectedScript] = useState<WalkthroughData>([]);
+  const { scriptData, isLoading, loadExperience } = useServerSideActions();
+  const [{ sequence }] = useVideoSequenceAtom();
 
   useEffect(() => {
     if (scriptData.length != 0) setDisplayPlayer(true);
@@ -42,11 +42,19 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
         <VoiceChatContainer />
       </Grid>
       <GridItem>
-        <VideoPlayerContainer
-          displayPlayer={displayPlayer}
-          selectedScript={selectedScript}
-          walkthroughData={walkthroughData}
-        />
+        {scriptData && scriptData.length > 0 ? (
+          <VideoPlayerContainer
+            displayPlayer={displayPlayer}
+            selectedScript={selectedScript}
+            walkthroughData={walkthroughData}
+          />
+        ) : (
+          <VideoPlayerStatic
+            isLoading={isLoading as boolean}
+            loadExperience={loadExperience}
+            walkthroughData={walkthroughData}
+          />
+        )}
       </GridItem>
     </Grid>
   );

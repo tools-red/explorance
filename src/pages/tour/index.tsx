@@ -1,13 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useVideoSequenceAtom } from "~/lib/atom";
 import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 
-import React from "react";
-import useServerSideActions from "~/hooks/useServerSideActions";
-import BeginExperiencePage from "~/components/pages/tour/PageComponents/BeginExperiencePage";
+import React, { useEffect } from "react";
 import VideoExperiencePage from "~/components/pages/tour/PageComponents/VideoExperiencePage";
+import useServerSideActions from "~/hooks/useServerSideActions";
 
 export const getServerSideProps: GetServerSideProps<{
   walkthroughData: WalkthroughData;
@@ -31,25 +29,9 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusWalkthrough: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ walkthroughData }) => {
-  const { scriptData, isLoading, loadExperience } = useServerSideActions();
-  const [{ sequence }] = useVideoSequenceAtom();
-
   return (
     <Box bg="#121212" h="100vh">
-      {scriptData && scriptData.length > 0 ? (
-        <VideoExperiencePage
-          isLoading={isLoading as boolean}
-          scriptData={scriptData}
-          sequence={sequence}
-          walkthroughData={walkthroughData}
-        />
-      ) : (
-        <BeginExperiencePage
-          isLoading={isLoading as boolean}
-          loadExperience={loadExperience}
-          walkthroughData={walkthroughData}
-        />
-      )}
+      <VideoExperiencePage walkthroughData={walkthroughData} />
     </Box>
   );
 };
