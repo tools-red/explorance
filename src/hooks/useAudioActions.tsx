@@ -23,6 +23,8 @@ const useAudioActions = () => {
 
   const initiateRecording = async () => {
     try {
+      console.log("starting to record");
+
       const audio_stream = await navigator.mediaDevices.getUserMedia({
         audio: true,
       });

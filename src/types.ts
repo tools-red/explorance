@@ -15,8 +15,13 @@ type responseWindowAtomState = {
   response: string;
 };
 
+type videoPlayState = {
+  paused: boolean;
+};
+
 export {
   type WalkthroughData,
   type videoSequenceAtomState,
   type responseWindowAtomState,
+  type videoPlayState,
 };

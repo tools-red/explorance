@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
+import { useVideoPlayStateAtom } from "~/lib/atom";
 
 interface VideoPlayerProps {
   videoFile: string | undefined;
@@ -8,6 +9,7 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile, volume }) => {
+  const [{ paused }] = useVideoPlayStateAtom();
   const [calcWidth, setCalcWidth] = useState<number | null>(null);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile, volume }) => {
         <ReactPlayer
           volume={volume}
           loop={true}
-          playing={true}
+          playing={paused}
           width={calcWidth}
           // controls={true}
           height="100%"
