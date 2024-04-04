@@ -58,7 +58,7 @@ const TourNavigation: React.FC<TourNavigationProps> = ({
         {walkthroughs.map(({ image, title, duration, sequenceNumber }, i) => (
           <GridItem
             onClick={() => {
-              handleSkipNavigation(sequenceNumber);
+              void handleSkipNavigation(sequenceNumber);
               hideNavigationModal();
             }}
             as={Box}
