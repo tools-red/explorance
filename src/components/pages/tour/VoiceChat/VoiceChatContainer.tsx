@@ -19,7 +19,7 @@ const VoiceChatContainer = () => {
       <MotionBox
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.8 }}
         display={paused ? "" : "none"}
         color="white"
         borderRadius={10}
