@@ -648,6 +648,7 @@ export type WalkthroughScripts = Entry & {
   linkedFrom?: Maybe<WalkthroughScriptsLinkingCollections>;
   sequenceNumber?: Maybe<Scalars['String']['output']>;
   sys: Sys;
+  videoDataType?: Maybe<Scalars['String']['output']>;
   videoFile?: Maybe<Scalars['String']['output']>;
 };
 
@@ -666,6 +667,12 @@ export type WalkthroughScriptsLinkedFromArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts) */
 export type WalkthroughScriptsSequenceNumberArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts) */
+export type WalkthroughScriptsVideoDataTypeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -702,6 +709,13 @@ export type WalkthroughScriptsFilter = {
   sequenceNumber_not_contains?: InputMaybe<Scalars['String']['input']>;
   sequenceNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
+  videoDataType?: InputMaybe<Scalars['String']['input']>;
+  videoDataType_contains?: InputMaybe<Scalars['String']['input']>;
+  videoDataType_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  videoDataType_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  videoDataType_not?: InputMaybe<Scalars['String']['input']>;
+  videoDataType_not_contains?: InputMaybe<Scalars['String']['input']>;
+  videoDataType_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   videoFile?: InputMaybe<Scalars['String']['input']>;
   videoFile_contains?: InputMaybe<Scalars['String']['input']>;
   videoFile_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -737,6 +751,8 @@ export enum WalkthroughScriptsOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  VideoDataTypeAsc = 'videoDataType_ASC',
+  VideoDataTypeDesc = 'videoDataType_DESC',
   VideoFileAsc = 'videoFile_ASC',
   VideoFileDesc = 'videoFile_DESC'
 }
@@ -753,7 +769,7 @@ export type CampusEventCollectionQuery = { __typename?: 'Query', campusEventColl
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null } | null> } | null };
+export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null, videoDataType?: string | null } | null> } | null };
 
 
 export const CampusEventCollectionDocument = gql`
@@ -776,6 +792,7 @@ export const WalkthroughScriptsCollectionDocument = gql`
       videoFile
       sequenceNumber
       aiAvatarVideo
+      videoDataType
     }
   }
 }

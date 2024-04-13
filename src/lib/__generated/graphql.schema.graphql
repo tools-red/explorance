@@ -503,6 +503,7 @@ type WalkthroughScripts implements Entry {
   linkedFrom(allowedLocales: [String]): WalkthroughScriptsLinkingCollections
   sequenceNumber(locale: String): String
   sys: Sys!
+  videoDataType(locale: String): String
   videoFile(locale: String): String
 }
 
@@ -532,6 +533,13 @@ input WalkthroughScriptsFilter {
   sequenceNumber_not_contains: String
   sequenceNumber_not_in: [String]
   sys: SysFilter
+  videoDataType: String
+  videoDataType_contains: String
+  videoDataType_exists: Boolean
+  videoDataType_in: [String]
+  videoDataType_not: String
+  videoDataType_not_contains: String
+  videoDataType_not_in: [String]
   videoFile: String
   videoFile_contains: String
   videoFile_exists: Boolean
@@ -558,6 +566,8 @@ enum WalkthroughScriptsOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  videoDataType_ASC
+  videoDataType_DESC
   videoFile_ASC
   videoFile_DESC
 }

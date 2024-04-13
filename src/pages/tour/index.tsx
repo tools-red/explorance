@@ -20,6 +20,7 @@ export const getServerSideProps: GetServerSideProps<{
             aiAvatarVideo: object?.aiAvatarVideo ?? "",
             sequenceNumber: object?.sequenceNumber ?? "",
             videoFile: object?.videoFile ?? "",
+            videoDataType: object?.videoDataType ?? "",
           })
         ) ?? [],
     },

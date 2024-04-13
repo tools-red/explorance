@@ -4,6 +4,7 @@ query walkthroughScriptsCollection {
       videoFile
       sequenceNumber
       aiAvatarVideo
+      videoDataType
     }
   }
 }

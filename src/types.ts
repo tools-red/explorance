@@ -3,6 +3,7 @@ type WalkthroughData = {
   sequenceNumber: string;
   videoFile: string;
   aiAvatarVideo: string;
+  videoDataType: string;
 }[];
 
 // atom state types
