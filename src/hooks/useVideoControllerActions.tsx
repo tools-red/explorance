@@ -5,11 +5,7 @@ const useVideoControllerActions = () => {
   const [videoSequence, setVideoSequence] = useVideoSequenceAtom();
   const [videoPauseState, setVideoPauseState] = useVideoPlayStateAtom();
 
-  const handleNavigation = (
-    direction: boolean,
-    videoCount: number,
-    walkthroughData: WalkthroughData
-  ) => {
+  const handleNavigation = (direction: boolean, videoCount: number) => {
     const nextSequence = () => {
       if (videoSequence.sequence < videoCount) {
         setVideoSequence({ sequence: videoSequence.sequence + 1 });
@@ -31,7 +27,6 @@ const useVideoControllerActions = () => {
 
   const handleVideoPauseState = () => {
     setVideoPauseState({ paused: !videoPauseState.paused });
-    console.log({ videoPauseState });
   };
 
   const handleSkipNavigation = (videoNumber: number) => {

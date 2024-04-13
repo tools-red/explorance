@@ -14,7 +14,6 @@ interface AiVideoContainerProps {
 export const AiVideoContainer: React.FC<AiVideoContainerProps> = ({
   selectedScript,
 }) => {
-  console.log(selectedScript);
   return (
     <Flex
       borderRadius={22}
