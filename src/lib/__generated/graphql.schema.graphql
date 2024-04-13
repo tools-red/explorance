@@ -503,6 +503,7 @@ type WalkthroughScripts implements Entry {
   linkedFrom(allowedLocales: [String]): WalkthroughScriptsLinkingCollections
   sequenceNumber(locale: String): String
   sys: Sys!
+  videoCaptions(locale: String): WalkthroughScriptsVideoCaptions
   videoDataType(locale: String): String
   videoFile(locale: String): String
 }
@@ -533,6 +534,9 @@ input WalkthroughScriptsFilter {
   sequenceNumber_not_contains: String
   sequenceNumber_not_in: [String]
   sys: SysFilter
+  videoCaptions_contains: String
+  videoCaptions_exists: Boolean
+  videoCaptions_not_contains: String
   videoDataType: String
   videoDataType_contains: String
   videoDataType_exists: Boolean
@@ -570,6 +574,46 @@ enum WalkthroughScriptsOrder {
   videoDataType_DESC
   videoFile_ASC
   videoFile_DESC
+}
+
+type WalkthroughScriptsVideoCaptions {
+  json: JSON!
+  links: WalkthroughScriptsVideoCaptionsLinks!
+}
+
+type WalkthroughScriptsVideoCaptionsAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type WalkthroughScriptsVideoCaptionsEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type WalkthroughScriptsVideoCaptionsLinks {
+  assets: WalkthroughScriptsVideoCaptionsAssets!
+  entries: WalkthroughScriptsVideoCaptionsEntries!
+  resources: WalkthroughScriptsVideoCaptionsResources!
+}
+
+type WalkthroughScriptsVideoCaptionsResources {
+  block: [WalkthroughScriptsVideoCaptionsResourcesBlock!]!
+  hyperlink: [WalkthroughScriptsVideoCaptionsResourcesHyperlink!]!
+  inline: [WalkthroughScriptsVideoCaptionsResourcesInline!]!
+}
+
+type WalkthroughScriptsVideoCaptionsResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type WalkthroughScriptsVideoCaptionsResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type WalkthroughScriptsVideoCaptionsResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 interface _Node {

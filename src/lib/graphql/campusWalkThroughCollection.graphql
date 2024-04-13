@@ -5,6 +5,9 @@ query walkthroughScriptsCollection {
       sequenceNumber
       aiAvatarVideo
       videoDataType
+      videoCaptions {
+        json
+      }
     }
   }
 }
