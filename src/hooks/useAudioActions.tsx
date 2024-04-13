@@ -3,6 +3,7 @@ import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
 import player from "play-sound";
 import axios from "axios";
+import { useVideoPlayStateAtom } from "~/lib/atom";
 
 const useAudioActions = () => {
   const audioPlayer = player();
@@ -21,9 +22,11 @@ const useAudioActions = () => {
   const transcribeAudioMut = api.openAI.transcribeAudio.useMutation();
   const chatCompletionsMut = api.openAI.chatCompletions.useMutation();
 
+  const [{ paused }, setVideoPauseState] = useVideoPlayStateAtom();
+
   const initiateRecording = async () => {
     try {
-      console.log("starting to record");
+      setVideoPauseState({ paused: !paused });
 
       const audio_stream = await navigator.mediaDevices.getUserMedia({
         audio: true,
@@ -153,6 +156,7 @@ const useAudioActions = () => {
   }, [userAudioChunks, isDataAvailable]);
 
   const endRecording = async () => {
+    setVideoPauseState({ paused: !paused });
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
