@@ -6,8 +6,6 @@ import axios from "axios";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 
 const useAudioActions = () => {
-  const audioPlayer = player();
-
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
   const [userAudioChunks, setUserAudioChunks] = useState<Blob[]>([]);

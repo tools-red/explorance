@@ -648,7 +648,7 @@ export type WalkthroughScripts = Entry & {
   linkedFrom?: Maybe<WalkthroughScriptsLinkingCollections>;
   sequenceNumber?: Maybe<Scalars['String']['output']>;
   sys: Sys;
-  videoCaptions?: Maybe<WalkthroughScriptsVideoCaptions>;
+  videoCaptions?: Maybe<Scalars['String']['output']>;
   videoDataType?: Maybe<Scalars['String']['output']>;
   videoFile?: Maybe<Scalars['String']['output']>;
 };
@@ -716,9 +716,13 @@ export type WalkthroughScriptsFilter = {
   sequenceNumber_not_contains?: InputMaybe<Scalars['String']['input']>;
   sequenceNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
+  videoCaptions?: InputMaybe<Scalars['String']['input']>;
   videoCaptions_contains?: InputMaybe<Scalars['String']['input']>;
   videoCaptions_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  videoCaptions_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  videoCaptions_not?: InputMaybe<Scalars['String']['input']>;
   videoCaptions_not_contains?: InputMaybe<Scalars['String']['input']>;
+  videoCaptions_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   videoDataType?: InputMaybe<Scalars['String']['input']>;
   videoDataType_contains?: InputMaybe<Scalars['String']['input']>;
   videoDataType_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -761,59 +765,13 @@ export enum WalkthroughScriptsOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  VideoCaptionsAsc = 'videoCaptions_ASC',
+  VideoCaptionsDesc = 'videoCaptions_DESC',
   VideoDataTypeAsc = 'videoDataType_ASC',
   VideoDataTypeDesc = 'videoDataType_DESC',
   VideoFileAsc = 'videoFile_ASC',
   VideoFileDesc = 'videoFile_DESC'
 }
-
-export type WalkthroughScriptsVideoCaptions = {
-  __typename?: 'WalkthroughScriptsVideoCaptions';
-  json: Scalars['JSON']['output'];
-  links: WalkthroughScriptsVideoCaptionsLinks;
-};
-
-export type WalkthroughScriptsVideoCaptionsAssets = {
-  __typename?: 'WalkthroughScriptsVideoCaptionsAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type WalkthroughScriptsVideoCaptionsEntries = {
-  __typename?: 'WalkthroughScriptsVideoCaptionsEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type WalkthroughScriptsVideoCaptionsLinks = {
-  __typename?: 'WalkthroughScriptsVideoCaptionsLinks';
-  assets: WalkthroughScriptsVideoCaptionsAssets;
-  entries: WalkthroughScriptsVideoCaptionsEntries;
-  resources: WalkthroughScriptsVideoCaptionsResources;
-};
-
-export type WalkthroughScriptsVideoCaptionsResources = {
-  __typename?: 'WalkthroughScriptsVideoCaptionsResources';
-  block: Array<WalkthroughScriptsVideoCaptionsResourcesBlock>;
-  hyperlink: Array<WalkthroughScriptsVideoCaptionsResourcesHyperlink>;
-  inline: Array<WalkthroughScriptsVideoCaptionsResourcesInline>;
-};
-
-export type WalkthroughScriptsVideoCaptionsResourcesBlock = ResourceLink & {
-  __typename?: 'WalkthroughScriptsVideoCaptionsResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type WalkthroughScriptsVideoCaptionsResourcesHyperlink = ResourceLink & {
-  __typename?: 'WalkthroughScriptsVideoCaptionsResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type WalkthroughScriptsVideoCaptionsResourcesInline = ResourceLink & {
-  __typename?: 'WalkthroughScriptsVideoCaptionsResourcesInline';
-  sys: ResourceSys;
-};
 
 export type _Node = {
   _id: Scalars['ID']['output'];
@@ -827,7 +785,7 @@ export type CampusEventCollectionQuery = { __typename?: 'Query', campusEventColl
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null, videoDataType?: string | null, videoCaptions?: { __typename?: 'WalkthroughScriptsVideoCaptions', json: any } | null } | null> } | null };
+export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null, videoDataType?: string | null } | null> } | null };
 
 
 export const CampusEventCollectionDocument = gql`
@@ -851,9 +809,6 @@ export const WalkthroughScriptsCollectionDocument = gql`
       sequenceNumber
       aiAvatarVideo
       videoDataType
-      videoCaptions {
-        json
-      }
     }
   }
 }
