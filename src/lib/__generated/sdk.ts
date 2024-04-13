@@ -785,7 +785,7 @@ export type CampusEventCollectionQuery = { __typename?: 'Query', campusEventColl
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null, videoDataType?: string | null } | null> } | null };
+export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null, videoDataType?: string | null, videoCaptions?: string | null } | null> } | null };
 
 
 export const CampusEventCollectionDocument = gql`
@@ -809,6 +809,7 @@ export const WalkthroughScriptsCollectionDocument = gql`
       sequenceNumber
       aiAvatarVideo
       videoDataType
+      videoCaptions
     }
   }
 }

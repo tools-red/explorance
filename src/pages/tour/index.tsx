@@ -21,6 +21,7 @@ export const getServerSideProps: GetServerSideProps<{
             sequenceNumber: object?.sequenceNumber ?? "",
             videoFile: object?.videoFile ?? "",
             videoDataType: object?.videoDataType ?? "",
+            videoCaptions: object?.videoCaptions ?? "",
           })
         ) ?? [],
     },

@@ -4,6 +4,7 @@ type WalkthroughData = {
   videoFile: string;
   aiAvatarVideo: string;
   videoDataType: string;
+  videoCaptions: string;
 }[];
 
 // atom state types
