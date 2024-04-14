@@ -18,7 +18,6 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
   Dimension: { input: any; output: any; }
   HexColor: { input: any; output: any; }
-  JSON: { input: any; output: any; }
   Quality: { input: any; output: any; }
 };
 
@@ -206,141 +205,131 @@ export enum AssetOrder {
   WidthDesc = 'width_DESC'
 }
 
-/** An event that happened on campus. [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvent) */
-export type CampusEvent = Entry & {
-  __typename?: 'CampusEvent';
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEvents = Entry & {
+  __typename?: 'CampusEvents';
   contentfulMetadata: ContentfulMetadata;
-  date?: Maybe<Scalars['DateTime']['output']>;
-  description?: Maybe<CampusEventDescription>;
-  linkedFrom?: Maybe<CampusEventLinkingCollections>;
-  name?: Maybe<Scalars['String']['output']>;
+  eventType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  guestspeakerName?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<CampusEventsLinkingCollections>;
   sys: Sys;
+  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  talkDate?: Maybe<Scalars['DateTime']['output']>;
+  talkTitle?: Maybe<Scalars['String']['output']>;
+  talkVideo?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** An event that happened on campus. [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvent) */
-export type CampusEventDateArgs = {
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsEventTypeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-/** An event that happened on campus. [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvent) */
-export type CampusEventDescriptionArgs = {
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsGuestspeakerNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-/** An event that happened on campus. [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvent) */
-export type CampusEventLinkedFromArgs = {
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** An event that happened on campus. [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvent) */
-export type CampusEventNameArgs = {
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsTagsArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CampusEventCollection = {
-  __typename?: 'CampusEventCollection';
-  items: Array<Maybe<CampusEvent>>;
+
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsTalkDateArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsTalkTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsTalkVideoArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CampusEventsCollection = {
+  __typename?: 'CampusEventsCollection';
+  items: Array<Maybe<CampusEvents>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
 };
 
-export type CampusEventDescription = {
-  __typename?: 'CampusEventDescription';
-  json: Scalars['JSON']['output'];
-  links: CampusEventDescriptionLinks;
-};
-
-export type CampusEventDescriptionAssets = {
-  __typename?: 'CampusEventDescriptionAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type CampusEventDescriptionEntries = {
-  __typename?: 'CampusEventDescriptionEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type CampusEventDescriptionLinks = {
-  __typename?: 'CampusEventDescriptionLinks';
-  assets: CampusEventDescriptionAssets;
-  entries: CampusEventDescriptionEntries;
-  resources: CampusEventDescriptionResources;
-};
-
-export type CampusEventDescriptionResources = {
-  __typename?: 'CampusEventDescriptionResources';
-  block: Array<CampusEventDescriptionResourcesBlock>;
-  hyperlink: Array<CampusEventDescriptionResourcesHyperlink>;
-  inline: Array<CampusEventDescriptionResourcesInline>;
-};
-
-export type CampusEventDescriptionResourcesBlock = ResourceLink & {
-  __typename?: 'CampusEventDescriptionResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type CampusEventDescriptionResourcesHyperlink = ResourceLink & {
-  __typename?: 'CampusEventDescriptionResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type CampusEventDescriptionResourcesInline = ResourceLink & {
-  __typename?: 'CampusEventDescriptionResourcesInline';
-  sys: ResourceSys;
-};
-
-export type CampusEventFilter = {
-  AND?: InputMaybe<Array<InputMaybe<CampusEventFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<CampusEventFilter>>>;
+export type CampusEventsFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CampusEventsFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CampusEventsFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  date?: InputMaybe<Scalars['DateTime']['input']>;
-  date_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  date_gt?: InputMaybe<Scalars['DateTime']['input']>;
-  date_gte?: InputMaybe<Scalars['DateTime']['input']>;
-  date_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  date_lt?: InputMaybe<Scalars['DateTime']['input']>;
-  date_lte?: InputMaybe<Scalars['DateTime']['input']>;
-  date_not?: InputMaybe<Scalars['DateTime']['input']>;
-  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  description_contains?: InputMaybe<Scalars['String']['input']>;
-  description_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  description_not_contains?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  name_contains?: InputMaybe<Scalars['String']['input']>;
-  name_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  name_not?: InputMaybe<Scalars['String']['input']>;
-  name_not_contains?: InputMaybe<Scalars['String']['input']>;
-  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  eventType_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  eventType_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  eventType_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  eventType_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  guestspeakerName?: InputMaybe<Scalars['String']['input']>;
+  guestspeakerName_contains?: InputMaybe<Scalars['String']['input']>;
+  guestspeakerName_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  guestspeakerName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  guestspeakerName_not?: InputMaybe<Scalars['String']['input']>;
+  guestspeakerName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  guestspeakerName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
+  tags_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tags_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  talkDate?: InputMaybe<Scalars['DateTime']['input']>;
+  talkDate_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  talkDate_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  talkDate_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  talkDate_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  talkDate_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  talkDate_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  talkDate_not?: InputMaybe<Scalars['DateTime']['input']>;
+  talkDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  talkTitle?: InputMaybe<Scalars['String']['input']>;
+  talkTitle_contains?: InputMaybe<Scalars['String']['input']>;
+  talkTitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  talkTitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  talkTitle_not?: InputMaybe<Scalars['String']['input']>;
+  talkTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
+  talkTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  talkVideo?: InputMaybe<Scalars['String']['input']>;
+  talkVideo_contains?: InputMaybe<Scalars['String']['input']>;
+  talkVideo_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  talkVideo_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  talkVideo_not?: InputMaybe<Scalars['String']['input']>;
+  talkVideo_not_contains?: InputMaybe<Scalars['String']['input']>;
+  talkVideo_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type CampusEventLinkingCollections = {
-  __typename?: 'CampusEventLinkingCollections';
+export type CampusEventsLinkingCollections = {
+  __typename?: 'CampusEventsLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
 };
 
 
-export type CampusEventLinkingCollectionsEntryCollectionArgs = {
+export type CampusEventsLinkingCollectionsEntryCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export enum CampusEventOrder {
-  DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
+export enum CampusEventsOrder {
+  GuestspeakerNameAsc = 'guestspeakerName_ASC',
+  GuestspeakerNameDesc = 'guestspeakerName_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -348,7 +337,13 @@ export enum CampusEventOrder {
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TalkDateAsc = 'talkDate_ASC',
+  TalkDateDesc = 'talkDate_DESC',
+  TalkTitleAsc = 'talkTitle_ASC',
+  TalkTitleDesc = 'talkTitle_DESC',
+  TalkVideoAsc = 'talkVideo_ASC',
+  TalkVideoDesc = 'talkVideo_DESC'
 }
 
 export type ContentfulMetadata = {
@@ -508,8 +503,8 @@ export type Query = {
   _node?: Maybe<_Node>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
-  campusEvent?: Maybe<CampusEvent>;
-  campusEventCollection?: Maybe<CampusEventCollection>;
+  campusEvents?: Maybe<CampusEvents>;
+  campusEventsCollection?: Maybe<CampusEventsCollection>;
   entryCollection?: Maybe<EntryCollection>;
   walkthroughScripts?: Maybe<WalkthroughScripts>;
   walkthroughScriptsCollection?: Maybe<WalkthroughScriptsCollection>;
@@ -540,20 +535,20 @@ export type QueryAssetCollectionArgs = {
 };
 
 
-export type QueryCampusEventArgs = {
+export type QueryCampusEventsArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-export type QueryCampusEventCollectionArgs = {
+export type QueryCampusEventsCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Array<InputMaybe<CampusEventOrder>>>;
+  order?: InputMaybe<Array<InputMaybe<CampusEventsOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<CampusEventFilter>;
+  where?: InputMaybe<CampusEventsFilter>;
 };
 
 
@@ -581,16 +576,6 @@ export type QueryWalkthroughScriptsCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<WalkthroughScriptsFilter>;
-};
-
-export type ResourceLink = {
-  sys: ResourceSys;
-};
-
-export type ResourceSys = {
-  __typename?: 'ResourceSys';
-  linkType: Scalars['String']['output'];
-  urn: Scalars['String']['output'];
 };
 
 export type Sys = {
@@ -648,6 +633,7 @@ export type WalkthroughScripts = Entry & {
   linkedFrom?: Maybe<WalkthroughScriptsLinkingCollections>;
   sequenceNumber?: Maybe<Scalars['String']['output']>;
   sys: Sys;
+  videoCaptions?: Maybe<Scalars['String']['output']>;
   videoDataType?: Maybe<Scalars['String']['output']>;
   videoFile?: Maybe<Scalars['String']['output']>;
 };
@@ -667,6 +653,12 @@ export type WalkthroughScriptsLinkedFromArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts) */
 export type WalkthroughScriptsSequenceNumberArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/walkthroughScripts) */
+export type WalkthroughScriptsVideoCaptionsArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -709,6 +701,13 @@ export type WalkthroughScriptsFilter = {
   sequenceNumber_not_contains?: InputMaybe<Scalars['String']['input']>;
   sequenceNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
+  videoCaptions?: InputMaybe<Scalars['String']['input']>;
+  videoCaptions_contains?: InputMaybe<Scalars['String']['input']>;
+  videoCaptions_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  videoCaptions_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  videoCaptions_not?: InputMaybe<Scalars['String']['input']>;
+  videoCaptions_not_contains?: InputMaybe<Scalars['String']['input']>;
+  videoCaptions_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   videoDataType?: InputMaybe<Scalars['String']['input']>;
   videoDataType_contains?: InputMaybe<Scalars['String']['input']>;
   videoDataType_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -751,6 +750,8 @@ export enum WalkthroughScriptsOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  VideoCaptionsAsc = 'videoCaptions_ASC',
+  VideoCaptionsDesc = 'videoCaptions_DESC',
   VideoDataTypeAsc = 'videoDataType_ASC',
   VideoDataTypeDesc = 'videoDataType_DESC',
   VideoFileAsc = 'videoFile_ASC',
@@ -764,7 +765,7 @@ export type _Node = {
 export type CampusEventCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CampusEventCollectionQuery = { __typename?: 'Query', campusEventCollection?: { __typename?: 'CampusEventCollection', items: Array<{ __typename?: 'CampusEvent', name?: string | null, date?: any | null, description?: { __typename?: 'CampusEventDescription', json: any } | null } | null> } | null };
+export type CampusEventCollectionQuery = { __typename?: 'Query', campusEventsCollection?: { __typename?: 'CampusEventsCollection', items: Array<{ __typename?: 'CampusEvents', guestspeakerName?: string | null, talkTitle?: string | null, tags?: Array<string | null> | null, talkDate?: any | null, eventType?: Array<string | null> | null, talkVideo?: string | null } | null> } | null };
 
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -774,13 +775,14 @@ export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthro
 
 export const CampusEventCollectionDocument = gql`
     query campusEventCollection {
-  campusEventCollection {
+  campusEventsCollection {
     items {
-      name
-      date
-      description {
-        json
-      }
+      guestspeakerName
+      talkTitle
+      tags
+      talkDate
+      eventType
+      talkVideo
     }
   }
 }

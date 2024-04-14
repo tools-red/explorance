@@ -1,11 +1,12 @@
 query campusEventCollection {
-	campusEventCollection {
-		items {
-			name
-			date
-			description {
-				json
-			}
-		}
-	}
+  campusEventsCollection {
+    items {
+      guestspeakerName
+      talkTitle
+      tags
+      talkDate
+      eventType
+      talkVideo
+    }
+  }
 }
