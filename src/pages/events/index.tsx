@@ -2,6 +2,10 @@ import { Box, Circle, Flex, Text } from "@chakra-ui/react";
 import SearchBar from "~/components/pages/events/EventNavigation/SearchBar";
 
 const CampusEvents = () => {
+  const handleTestSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+
   return (
     <Box overflowX="hidden" position="relative" bg="#121212" h="100vh">
       <Circle
@@ -54,7 +58,7 @@ const CampusEvents = () => {
           Explore our diverse range of upcoming events featuring industry
           experts sharing insights on cutting-edge topics.
         </Text>
-        <SearchBar />
+        <SearchBar handleTypeEvent={handleTestSearch} />
       </Flex>
     </Box>
   );

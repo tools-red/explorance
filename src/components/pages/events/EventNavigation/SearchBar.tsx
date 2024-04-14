@@ -10,13 +10,18 @@ import {
 import { IoSearchOutline } from "react-icons/io5";
 import { PiCommand } from "react-icons/pi";
 
-const SearchBar = () => {
+interface SearchBarProps {
+  handleTypeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ handleTypeEvent }) => {
   return (
     <InputGroup mt={8} maxW={600}>
       <InputLeftElement pointerEvents="none">
         <Icon boxSize={5} color="#9A9FA5" as={IoSearchOutline} />
       </InputLeftElement>
       <Input
+        color="white"
         bg="#181818"
         border="1px solid"
         borderColor="#4B4B4B"
@@ -28,6 +33,7 @@ const SearchBar = () => {
         _hover={{
           borderColor: "#9747FF",
         }}
+        onChange={(e) => handleTypeEvent(e)}
       />
       <InputRightElement mr={2} pointerEvents="none">
         <Flex
