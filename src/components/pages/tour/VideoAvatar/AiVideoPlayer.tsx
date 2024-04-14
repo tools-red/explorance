@@ -3,10 +3,18 @@ import { useVideoPlayStateAtom } from "~/lib/atom";
 
 interface AiVideoPlayerProps {
   videoFile: string | undefined | null;
+  videoCaptions: string | undefined | null;
 }
 
-const AiVideoPlayer: React.FC<AiVideoPlayerProps> = ({ videoFile }) => {
+const AiVideoPlayer: React.FC<AiVideoPlayerProps> = ({
+  videoFile,
+  videoCaptions,
+}) => {
   const [{ paused }] = useVideoPlayStateAtom();
+
+  console.log(
+    `${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${videoCaptions as string}`
+  );
 
   return (
     <ReactPlayer

@@ -26,7 +26,10 @@ export const AiVideoContainer: React.FC<AiVideoContainerProps> = ({
       overflow="hidden" // Hide overflow to prevent scrollbars
     >
       {selectedScript && selectedScript.length > 0 ? (
-        <AiVideoPlayer videoFile={selectedScript[0]?.aiAvatarVideo} />
+        <AiVideoPlayer
+          videoCaptions={selectedScript[0]?.videoCaptions}
+          videoFile={selectedScript[0]?.aiAvatarVideo}
+        />
       ) : (
         <ReactPlayer
           url={`https://pub-75274250b3dd42109b51e593903a7d41.r2.dev/AI_guide_Introduction.mp4`}
