@@ -1,4 +1,5 @@
 import { Box, Circle, Flex, Text } from "@chakra-ui/react";
+import SearchBar from "~/components/pages/events/EventNavigation/SearchBar";
 
 const CampusEvents = () => {
   return (
@@ -53,6 +54,7 @@ const CampusEvents = () => {
           Explore our diverse range of upcoming events featuring industry
           experts sharing insights on cutting-edge topics.
         </Text>
+        <SearchBar />
       </Flex>
     </Box>
   );
