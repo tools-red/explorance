@@ -1,10 +1,9 @@
 import { Box, Circle, Flex, Text } from "@chakra-ui/react";
 import SearchBar from "~/components/pages/events/EventNavigation/SearchBar";
+import useEventActions from "~/hooks/useEventActions";
 
 const CampusEvents = () => {
-  const handleTestSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const { handleTestSearch } = useEventActions();
 
   return (
     <Box overflowX="hidden" position="relative" bg="#121212" h="100vh">
