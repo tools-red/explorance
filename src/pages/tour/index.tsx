@@ -3,9 +3,8 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 
-import React, { useEffect } from "react";
+import React from "react";
 import VideoExperiencePage from "~/components/pages/tour/PageComponents/VideoExperiencePage";
-import useServerSideActions from "~/hooks/useServerSideActions";
 
 export const getServerSideProps: GetServerSideProps<{
   walkthroughData: WalkthroughData;
