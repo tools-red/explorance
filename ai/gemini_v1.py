@@ -10,6 +10,9 @@ master_prompt = """As a virtual tour guide for the Shiv Nadar Institute of Emine
 with open('docs/handbook_manual_text.txt', 'r', encoding='utf-8') as f:
     handbook_ctx = f.read()
 
+with open('docs/snu.edu.in_extracted_text_cleaned.txt', 'r', encoding='utf-8') as f:
+    website_ctx = f.read()
+
 chat_history = []
 
 
@@ -27,6 +30,7 @@ while True:
     response = model.generate_content([
         master_prompt,
         handbook_ctx,
+        website_ctx,
         *chat_history
     ])
 
