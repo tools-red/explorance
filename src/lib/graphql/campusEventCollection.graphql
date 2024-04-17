@@ -1,4 +1,4 @@
-query campusEventCollection {
+query campusEventsCollection {
   campusEventsCollection {
     items {
       guestspeakerName
