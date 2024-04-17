@@ -762,10 +762,10 @@ export type _Node = {
   _id: Scalars['ID']['output'];
 };
 
-export type CampusEventCollectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type CampusEventsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CampusEventCollectionQuery = { __typename?: 'Query', campusEventsCollection?: { __typename?: 'CampusEventsCollection', items: Array<{ __typename?: 'CampusEvents', guestspeakerName?: string | null, talkTitle?: string | null, tags?: Array<string | null> | null, talkDate?: any | null, eventType?: Array<string | null> | null, talkVideo?: string | null } | null> } | null };
+export type CampusEventsCollectionQuery = { __typename?: 'Query', campusEventsCollection?: { __typename?: 'CampusEventsCollection', items: Array<{ __typename?: 'CampusEvents', guestspeakerName?: string | null, talkTitle?: string | null, tags?: Array<string | null> | null, talkDate?: any | null, eventType?: Array<string | null> | null, talkVideo?: string | null } | null> } | null };
 
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -773,8 +773,8 @@ export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: 
 export type WalkthroughScriptsCollectionQuery = { __typename?: 'Query', walkthroughScriptsCollection?: { __typename?: 'WalkthroughScriptsCollection', items: Array<{ __typename?: 'WalkthroughScripts', videoFile?: string | null, sequenceNumber?: string | null, aiAvatarVideo?: string | null, videoDataType?: string | null } | null> } | null };
 
 
-export const CampusEventCollectionDocument = gql`
-    query campusEventCollection {
+export const CampusEventsCollectionDocument = gql`
+    query campusEventsCollection {
   campusEventsCollection {
     items {
       guestspeakerName
@@ -807,8 +807,8 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    campusEventCollection(variables?: CampusEventCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CampusEventCollectionQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CampusEventCollectionQuery>(CampusEventCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'campusEventCollection', 'query', variables);
+    campusEventsCollection(variables?: CampusEventsCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CampusEventsCollectionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CampusEventsCollectionQuery>(CampusEventsCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'campusEventsCollection', 'query', variables);
     },
     walkthroughScriptsCollection(variables?: WalkthroughScriptsCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<WalkthroughScriptsCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<WalkthroughScriptsCollectionQuery>(WalkthroughScriptsCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'walkthroughScriptsCollection', 'query', variables);
