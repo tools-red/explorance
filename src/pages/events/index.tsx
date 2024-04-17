@@ -1,9 +1,38 @@
 import { Box, Circle, Flex, Text } from "@chakra-ui/react";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import React from "react";
 import SearchBar from "~/components/EventNavigation/SearchBar";
 import useEventActions from "~/hooks/useEventActions";
+import { graphQL } from "~/lib/graphQL";
+import { CampusEventsData } from "~/types";
 
-const CampusEvents = () => {
+// @ts-ignore
+export const getServerSideProps: GetServerSideProps<{
+  campusEventsData: CampusEventsData;
+}> = async () => {
+  const contentfulCampusEventsData = await graphQL.campusEventsCollection();
+  return {
+    props: {
+      campusEventsData:
+        contentfulCampusEventsData.campusEventsCollection?.items.map(
+          (object) => ({
+            guestSpeakerName: object?.guestspeakerName ?? "",
+            eventType: object?.eventType ?? "",
+            tags: object?.tags ?? [],
+            talkDate: object?.talkDate ?? "",
+            talkTitle: object?.talkTitle ?? "",
+            talkVideo: object?.talkVideo ?? "",
+          })
+        ) ?? [],
+    },
+  };
+};
+
+const CampusEvents: React.FC<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ campusEventsData }) => {
   const { handleTestSearch } = useEventActions();
+  console.log(campusEventsData);
 
   return (
     <Box overflowX="hidden" position="relative" bg="#121212" h="100vh">

@@ -6,6 +6,15 @@ type WalkthroughData = {
   videoDataType: string;
 }[];
 
+type CampusEventsData = {
+  guestSpeakerName: string;
+  talkTitle: string;
+  tags: string[];
+  talkDate: string;
+  eventType: string[];
+  talkVideo: string;
+}[];
+
 // atom state types
 type videoSequenceAtomState = {
   sequence: number;
@@ -22,6 +31,7 @@ type videoPlayState = {
 
 export {
   type WalkthroughData,
+  type CampusEventsData,
   type videoSequenceAtomState,
   type responseWindowAtomState,
   type videoPlayState,
