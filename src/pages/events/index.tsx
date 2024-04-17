@@ -1,5 +1,5 @@
 import { Box, Circle, Flex, Text } from "@chakra-ui/react";
-import SearchBar from "~/components/pages/events/EventNavigation/SearchBar";
+import SearchBar from "~/components/EventNavigation/SearchBar";
 import useEventActions from "~/hooks/useEventActions";
 
 const CampusEvents = () => {
