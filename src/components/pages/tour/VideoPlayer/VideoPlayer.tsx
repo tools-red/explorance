@@ -3,6 +3,9 @@ import { Box } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 
+// import testSubs from "../../../../assets/subs/AI_guide_Entrance_caption_file.vtt";
+// import ok from "../../../../assets/subs/AI_guide_Entrance_caption_file.vtt"
+
 interface VideoPlayerProps {
   videoFile: string | undefined;
   volume: number;
@@ -31,6 +34,21 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile, volume }) => {
     >
       {calcWidth && (
         <ReactPlayer
+          config={{
+            file: {
+              attributes: { crossOrigin: "true" },
+              tracks: [
+                {
+                  default: true,
+                  kind: "captions",
+                  srcLang: "en",
+                  // src: "subs/AI_guide_Entrance_caption_file.vtt",
+                  src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${"AI_guide_Entrance_caption_file.vtt"}`,
+                  label: "English",
+                },
+              ],
+            },
+          }}
           volume={volume}
           loop={true}
           playing={paused}
