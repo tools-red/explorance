@@ -122,6 +122,7 @@ enum AssetOrder {
 """
 type CampusEvents implements Entry {
   contentfulMetadata: ContentfulMetadata!
+  eventSlug(locale: String): String
   eventType(locale: String): [String]
   guestspeakerName(locale: String): String
   linkedFrom(allowedLocales: [String]): CampusEventsLinkingCollections
@@ -144,6 +145,13 @@ input CampusEventsFilter {
   AND: [CampusEventsFilter]
   OR: [CampusEventsFilter]
   contentfulMetadata: ContentfulMetadataFilter
+  eventSlug: String
+  eventSlug_contains: String
+  eventSlug_exists: Boolean
+  eventSlug_in: [String]
+  eventSlug_not: String
+  eventSlug_not_contains: String
+  eventSlug_not_in: [String]
   eventType_contains_all: [String]
   eventType_contains_none: [String]
   eventType_contains_some: [String]
@@ -191,6 +199,8 @@ type CampusEventsLinkingCollections {
 }
 
 enum CampusEventsOrder {
+  eventSlug_ASC
+  eventSlug_DESC
   guestspeakerName_ASC
   guestspeakerName_DESC
   sys_firstPublishedAt_ASC

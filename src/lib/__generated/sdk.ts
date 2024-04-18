@@ -218,6 +218,7 @@ export enum AssetOrder {
 export type CampusEvents = Entry & {
   __typename?: 'CampusEvents';
   contentfulMetadata: ContentfulMetadata;
+  eventSlug?: Maybe<Scalars['String']['output']>;
   eventType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   guestspeakerName?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<CampusEventsLinkingCollections>;
@@ -227,6 +228,12 @@ export type CampusEvents = Entry & {
   talkTitle?: Maybe<Scalars['String']['output']>;
   talkVideo?: Maybe<Scalars['String']['output']>;
   thumbnailPicture?: Maybe<Asset>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsEventSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -290,6 +297,13 @@ export type CampusEventsFilter = {
   AND?: InputMaybe<Array<InputMaybe<CampusEventsFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CampusEventsFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  eventSlug?: InputMaybe<Scalars['String']['input']>;
+  eventSlug_contains?: InputMaybe<Scalars['String']['input']>;
+  eventSlug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  eventSlug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  eventSlug_not?: InputMaybe<Scalars['String']['input']>;
+  eventSlug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  eventSlug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   eventType_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   eventType_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   eventType_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -346,6 +360,8 @@ export type CampusEventsLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum CampusEventsOrder {
+  EventSlugAsc = 'eventSlug_ASC',
+  EventSlugDesc = 'eventSlug_DESC',
   GuestspeakerNameAsc = 'guestspeakerName_ASC',
   GuestspeakerNameDesc = 'guestspeakerName_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -783,7 +799,7 @@ export type _Node = {
 export type CampusEventsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CampusEventsCollectionQuery = { __typename?: 'Query', campusEventsCollection?: { __typename?: 'CampusEventsCollection', items: Array<{ __typename?: 'CampusEvents', guestspeakerName?: string | null, talkTitle?: string | null, tags?: Array<string | null> | null, talkDate?: any | null, eventType?: Array<string | null> | null, talkVideo?: string | null, thumbnailPicture?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
+export type CampusEventsCollectionQuery = { __typename?: 'Query', campusEventsCollection?: { __typename?: 'CampusEventsCollection', items: Array<{ __typename?: 'CampusEvents', guestspeakerName?: string | null, talkTitle?: string | null, tags?: Array<string | null> | null, talkDate?: any | null, eventType?: Array<string | null> | null, talkVideo?: string | null, eventSlug?: string | null, thumbnailPicture?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -804,6 +820,7 @@ export const CampusEventsCollectionDocument = gql`
       thumbnailPicture {
         url
       }
+      eventSlug
     }
   }
 }

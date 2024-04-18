@@ -1,5 +1,7 @@
+import { Text } from "@chakra-ui/react";
+
 const EventSlugPage = () => {
-  return;
+  return <Text>ass</Text>;
 };
 
 export default EventSlugPage;

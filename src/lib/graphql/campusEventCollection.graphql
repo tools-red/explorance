@@ -10,6 +10,7 @@ query campusEventsCollection {
       thumbnailPicture {
         url
       }
+      eventSlug
     }
   }
 }
