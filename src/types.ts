@@ -13,6 +13,9 @@ type CampusEventsData = {
   talkDate: string;
   eventType: string[];
   talkVideo: string;
+  thumbnailPicture: {
+    url: string;
+  };
 }[];
 
 // atom state types

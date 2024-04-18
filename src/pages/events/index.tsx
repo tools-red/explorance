@@ -23,6 +23,9 @@ export const getServerSideProps: GetServerSideProps<{
             talkDate: object?.talkDate ?? "",
             talkTitle: object?.talkTitle ?? "",
             talkVideo: object?.talkVideo ?? "",
+            thumbnailPicture: {
+              url: object?.thumbnailPicture?.url ?? "",
+            },
           })
         ) ?? [],
     },
