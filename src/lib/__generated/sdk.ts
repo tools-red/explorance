@@ -171,7 +171,16 @@ export type AssetFilter = {
 
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
+  campusEventsCollection?: Maybe<CampusEventsCollection>;
   entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type AssetLinkingCollectionsCampusEventsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -217,6 +226,7 @@ export type CampusEvents = Entry & {
   talkDate?: Maybe<Scalars['DateTime']['output']>;
   talkTitle?: Maybe<Scalars['String']['output']>;
   talkVideo?: Maybe<Scalars['String']['output']>;
+  thumbnailPicture?: Maybe<Asset>;
 };
 
 
@@ -259,6 +269,13 @@ export type CampusEventsTalkTitleArgs = {
 /** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
 export type CampusEventsTalkVideoArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents) */
+export type CampusEventsThumbnailPictureArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type CampusEventsCollection = {
@@ -312,6 +329,7 @@ export type CampusEventsFilter = {
   talkVideo_not?: InputMaybe<Scalars['String']['input']>;
   talkVideo_not_contains?: InputMaybe<Scalars['String']['input']>;
   talkVideo_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  thumbnailPicture_exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type CampusEventsLinkingCollections = {
@@ -765,7 +783,7 @@ export type _Node = {
 export type CampusEventsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CampusEventsCollectionQuery = { __typename?: 'Query', campusEventsCollection?: { __typename?: 'CampusEventsCollection', items: Array<{ __typename?: 'CampusEvents', guestspeakerName?: string | null, talkTitle?: string | null, tags?: Array<string | null> | null, talkDate?: any | null, eventType?: Array<string | null> | null, talkVideo?: string | null } | null> } | null };
+export type CampusEventsCollectionQuery = { __typename?: 'Query', campusEventsCollection?: { __typename?: 'CampusEventsCollection', items: Array<{ __typename?: 'CampusEvents', guestspeakerName?: string | null, talkTitle?: string | null, tags?: Array<string | null> | null, talkDate?: any | null, eventType?: Array<string | null> | null, talkVideo?: string | null, thumbnailPicture?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type WalkthroughScriptsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -783,6 +801,9 @@ export const CampusEventsCollectionDocument = gql`
       talkDate
       eventType
       talkVideo
+      thumbnailPicture {
+        url
+      }
     }
   }
 }

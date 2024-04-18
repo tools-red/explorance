@@ -7,6 +7,9 @@ query campusEventsCollection {
       talkDate
       eventType
       talkVideo
+      thumbnailPicture {
+        url
+      }
     }
   }
 }

@@ -90,6 +90,7 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  campusEventsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): CampusEventsCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
 }
 
@@ -129,6 +130,7 @@ type CampusEvents implements Entry {
   talkDate(locale: String): DateTime
   talkTitle(locale: String): String
   talkVideo(locale: String): String
+  thumbnailPicture(locale: String, preview: Boolean): Asset
 }
 
 type CampusEventsCollection {
@@ -181,6 +183,7 @@ input CampusEventsFilter {
   talkVideo_not: String
   talkVideo_not_contains: String
   talkVideo_not_in: [String]
+  thumbnailPicture_exists: Boolean
 }
 
 type CampusEventsLinkingCollections {
