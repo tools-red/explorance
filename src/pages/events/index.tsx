@@ -26,6 +26,7 @@ export const getServerSideProps: GetServerSideProps<{
             thumbnailPicture: {
               url: object?.thumbnailPicture?.url ?? "",
             },
+            eventSlug: object?.eventSlug ?? "",
           })
         ) ?? [],
     },

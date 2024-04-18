@@ -16,6 +16,7 @@ type CampusEventsData = {
   thumbnailPicture: {
     url: string;
   };
+  eventSlug: string;
 }[];
 
 // atom state types
@@ -32,10 +33,26 @@ type videoPlayState = {
   paused: boolean;
 };
 
+type selectedEventAtom = {
+  selectedEvent: {
+    guestSpeakerName: string;
+    talkTitle: string;
+    tags: string[];
+    talkDate: string;
+    eventType: string[];
+    talkVideo: string;
+    thumbnailPicture: {
+      url: string;
+    };
+    eventSlug: string;
+  } | null;
+};
+
 export {
   type WalkthroughData,
   type CampusEventsData,
   type videoSequenceAtomState,
   type responseWindowAtomState,
   type videoPlayState,
+  type selectedEventAtom,
 };
