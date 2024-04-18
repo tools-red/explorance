@@ -1,6 +1,7 @@
-import { Box, Flex, Icon, Text } from "@chakra-ui/react";
+import { Box, Flex, Icon, Spinner, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { MdOutlineArrowOutward } from "react-icons/md";
+import useEventActions from "~/hooks/useEventActions";
 import { CampusEventsData } from "~/types";
 import { formatDate } from "~/utils/helpers";
 
@@ -10,6 +11,8 @@ interface EventsCardProp {
 }
 
 const EventsCard: React.FC<EventsCardProp> = ({ event, index }) => {
+  const { redirectToEventPage, isRedirecting } = useEventActions();
+
   return (
     <Box>
       <Flex width={260} height={220} flexDir="column" key={index}>
@@ -37,6 +40,7 @@ const EventsCard: React.FC<EventsCardProp> = ({ event, index }) => {
             {event.eventType}
           </Text>
           <Icon
+            onClick={() => redirectToEventPage(event)}
             _hover={{
               cursor: "pointer",
               bg: "white",
@@ -54,7 +58,7 @@ const EventsCard: React.FC<EventsCardProp> = ({ event, index }) => {
             zIndex={1}
             bottom={3}
             right={2}
-            as={MdOutlineArrowOutward}
+            as={isRedirecting ? Spinner : MdOutlineArrowOutward}
           />
           <Image
             alt="card_thumbnail"

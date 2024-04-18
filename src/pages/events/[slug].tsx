@@ -1,7 +1,9 @@
 import { Text } from "@chakra-ui/react";
+import { useCampusEventsAtom } from "~/lib/atom";
 
 const EventSlugPage = () => {
-  return <Text>ass</Text>;
+  const [{ selectedEvent }] = useCampusEventsAtom();
+  return <Text>{selectedEvent?.talkTitle}</Text>;
 };
 
 export default EventSlugPage;
