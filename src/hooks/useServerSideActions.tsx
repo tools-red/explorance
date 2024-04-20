@@ -13,6 +13,13 @@ const useServerSideActions = () => {
     }
   );
 
+  const { refetch: fetchWalkthroughData } = api.supabaseDB.fetchALL.useQuery(
+    undefined,
+    {
+      enabled: false,
+    }
+  );
+
   const loadExperience = async (walkthroughData: WalkthroughData) => {
     try {
       setIsLoading(true);
