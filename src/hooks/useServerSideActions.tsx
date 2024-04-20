@@ -1,4 +1,3 @@
-import { TRPCClientErrorLike } from "@trpc/client";
 import { useState } from "react";
 import { WalkthroughData } from "~/types";
 import { api } from "~/utils/api";
@@ -6,8 +5,6 @@ import { api } from "~/utils/api";
 const useServerSideActions = () => {
   const [scriptData, setScriptData] = useState<WalkthroughData>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
-  const [introVideo, setIntroVideo] = useState<string>("");
-  const [isIntroLoading, setIsIntroLoading] = useState<boolean>(false);
 
   const { refetch: fetchBucketContent } = api.r2.fetchBucketContent.useQuery(
     undefined,
