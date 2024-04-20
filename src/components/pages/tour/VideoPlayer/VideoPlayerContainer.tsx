@@ -19,6 +19,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
   walkthroughData,
 }) => {
   const [showNavigator, SetShowNavigator] = useState<boolean>(false);
+  const [showCaptions, SetShowCaptions] = useState<boolean>(false);
   return (
     <Flex h="full" borderRadius={22} w="full" bg="#1E1E1E" flexDir="column">
       <Flex
@@ -29,7 +30,11 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         position="relative"
       >
         {walkthroughData && walkthroughData.length > 0 ? (
-          <VideoPlayer volume={0.2} videoFile={selectedScript[0]?.videoFile} />
+          <VideoPlayer
+            volume={0.2}
+            videoFile={selectedScript[0]?.videoFile}
+            showCaptions={showCaptions}
+          />
         ) : (
           <Text>Nothing to play right now</Text>
         )}
@@ -43,6 +48,8 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         <VideoController
           showNavigator={showNavigator}
           SetShowNavigator={SetShowNavigator}
+          showCaptions={showCaptions}
+          SetShowCaptions={SetShowCaptions}
           walkthroughData={walkthroughData}
           videoCount={walkthroughData.length}
           displayState={displayPlayer}

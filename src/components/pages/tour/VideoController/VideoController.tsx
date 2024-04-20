@@ -3,6 +3,7 @@ import { Md360 } from "react-icons/md";
 import { BsCompass } from "react-icons/bs";
 import { IoVolumeHigh } from "react-icons/io5";
 import { FaPause, FaPlay } from "react-icons/fa6";
+import { BiCaptions, BiSolidCaptions } from "react-icons/bi";
 
 import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
@@ -18,6 +19,8 @@ interface VideoControllerProps {
   walkthroughData: WalkthroughData;
   SetShowNavigator: (state: boolean) => void;
   showNavigator: boolean;
+  SetShowCaptions: (state: boolean) => void;
+  showCaptions: boolean;
 }
 
 const VideoController: React.FC<VideoControllerProps> = ({
@@ -26,6 +29,8 @@ const VideoController: React.FC<VideoControllerProps> = ({
   walkthroughData,
   SetShowNavigator,
   showNavigator,
+  SetShowCaptions,
+  showCaptions,
 }) => {
   const { handleVideoPauseState } = useVideoControllerActions();
   const [videoPauseState] = useVideoPlayStateAtom();
@@ -61,6 +66,12 @@ const VideoController: React.FC<VideoControllerProps> = ({
         iconSize={5}
         icon={BsCompass}
         label="Navigate"
+      />
+      <VideoControllerCTA
+        handleOperation={() => SetShowCaptions(!showCaptions)}
+        iconSize={5}
+        icon={showCaptions ? BiSolidCaptions : BiCaptions}
+        label="Captions"
       />
       <VideoControllerNavigator
         walkthroughData={walkthroughData}

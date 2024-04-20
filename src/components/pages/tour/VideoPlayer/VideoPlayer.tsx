@@ -9,9 +9,14 @@ import { useVideoPlayStateAtom } from "~/lib/atom";
 interface VideoPlayerProps {
   videoFile: string | undefined;
   volume: number;
+  showCaptions: boolean;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile, volume }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({
+  videoFile,
+  volume,
+  showCaptions,
+}) => {
   const [{ paused }] = useVideoPlayStateAtom();
   const [calcWidth, setCalcWidth] = useState<number | null>(null);
 
@@ -32,6 +37,22 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoFile, volume }) => {
       overflow="hidden"
       borderRadius="22px"
     >
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            video::cue {
+              visibility: ${showCaptions ? "visible" : "hidden"};
+              font-family: sans-serif;
+              font-weight: normal;
+              font-size: 2vmin;
+              color: white;
+              background: rgba(0,0,0,.4);
+              padding: 2vmin;
+              border-radius: 4vmin;
+            }
+          `,
+        }}
+      ></style>
       {calcWidth && (
         <ReactPlayer
           config={{
