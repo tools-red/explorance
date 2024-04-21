@@ -30,8 +30,7 @@ const useServerSideActions = () => {
       videoDataType: row_value.video_type,
     }));
 
-    setScriptData([...(filtered_DB_Response ?? [])]);
-    console.log(scriptData);
+    return filtered_DB_Response;
   };
 
   const loadExperience = async (walkthroughData: WalkthroughData) => {
@@ -63,6 +62,7 @@ const useServerSideActions = () => {
   return {
     loadExperience,
     filterWalkthroughData,
+    isFetchingWalkthroughData,
     isLoading,
     scriptData,
   };
