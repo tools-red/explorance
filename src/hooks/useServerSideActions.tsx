@@ -13,12 +13,26 @@ const useServerSideActions = () => {
     }
   );
 
-  const { refetch: fetchWalkthroughData } = api.supabaseDB.fetchALL.useQuery(
-    undefined,
-    {
-      enabled: false,
-    }
-  );
+  const {
+    refetch: fetchWalkthroughData,
+    isLoading: isFetchingWalkthroughData,
+  } = api.supabaseDB.fetchALL.useQuery(undefined, {
+    enabled: false,
+  });
+
+  const filterWalkthroughData = async () => {
+    const data = await fetchWalkthroughData();
+    const DB_response = await data?.data?.DB_response;
+    const filtered_DB_Response = DB_response?.map((row_value) => ({
+      sequenceNumber: row_value.sequence_number,
+      videoFile: row_value.tour_video,
+      aiAvatarVideo: row_value.ai_video,
+      videoDataType: row_value.video_type,
+    }));
+
+    setScriptData([...(filtered_DB_Response ?? [])]);
+    console.log(scriptData);
+  };
 
   const loadExperience = async (walkthroughData: WalkthroughData) => {
     try {
@@ -48,6 +62,7 @@ const useServerSideActions = () => {
 
   return {
     loadExperience,
+    filterWalkthroughData,
     isLoading,
     scriptData,
   };

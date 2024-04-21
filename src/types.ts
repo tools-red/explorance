@@ -1,9 +1,11 @@
+import { videoDataType } from "./enums";
+
 // data types
 type WalkthroughData = {
   sequenceNumber: string;
   videoFile: string;
   aiAvatarVideo: string;
-  videoDataType: string;
+  videoDataType: videoDataType;
 }[];
 
 // atom state types
