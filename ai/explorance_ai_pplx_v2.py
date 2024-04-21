@@ -20,14 +20,6 @@ persist_directory = "./storage"
 pdf_path = "./docs/student_handbook_2023.pdf"
 text_path = "./docs/handbook_manual_text.txt"
 
-# loader = PyMuPDFLoader(pdf_path)
-# documents = loader.load()
-
-# text_splitter = RecursiveCharacterTextSplitter(
-#     chunk_size=512, chunk_overlap=10)
-# texts = text_splitter.split_documents(documents)
-
-
 loader = TextLoader(text_path)
 documents = loader.load()
 

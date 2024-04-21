@@ -17,7 +17,7 @@ const VideoControllerNavigator: React.FC<VideoControllerNavigatorProps> = ({
   const { handleNavigation } = useVideoControllerActions();
   return (
     <Circle
-      onClick={() => handleNavigation(direction, videoCount, walkthroughData)}
+      onClick={() => handleNavigation(direction, videoCount)}
       _hover={{
         bg: "white",
         color: "black",

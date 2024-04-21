@@ -1,4 +1,13 @@
-import { Box, Button, Circle, Flex, Icon, Text, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Circle,
+  Flex,
+  Icon,
+  Text,
+  Image,
+  Spinner,
+} from "@chakra-ui/react";
 import { WalkthroughData } from "~/types";
 import { MotionBox } from "~/lib/framer";
 import { IoSparklesSharp } from "react-icons/io5";
@@ -7,18 +16,19 @@ import { shiningAnimation } from "~/lib/keyframes";
 import React from "react";
 import NextImage from "next/image";
 import TextArt from "../../../../../public/textArt.svg";
-// import SNUBG from "../../../../../public/SNUBG.png";
 
 interface VideoPlayerStaticProps {
   loadExperience: (input: WalkthroughData) => void;
   walkthroughData: WalkthroughData;
   isLoading: boolean;
+  isFetchingWalkthroughData: boolean;
 }
 
 const VideoPlayerStatic: React.FC<VideoPlayerStaticProps> = ({
   loadExperience,
   walkthroughData,
   isLoading,
+  isFetchingWalkthroughData,
 }) => {
   return (
     <Flex
@@ -71,25 +81,29 @@ const VideoPlayerStatic: React.FC<VideoPlayerStaticProps> = ({
               animation={`${shiningAnimation} 2s linear infinite`}
             />
           </MotionBox>
-          <Button
-            mb={5}
-            border="1px solid"
-            borderColor="#4B4B4B"
-            _hover={{
-              bg: "gray.100",
-              color: "#181818",
-            }}
-            px={6}
-            py={5}
-            fontWeight={500}
-            isLoading={isLoading}
-            color="gray.100"
-            bg="#181818"
-            mt={6}
-            onClick={() => loadExperience(walkthroughData)}
-          >
-            Start Exploring Now
-          </Button>
+          {isFetchingWalkthroughData ? (
+            <Spinner />
+          ) : (
+            <Button
+              mb={5}
+              border="1px solid"
+              borderColor="#4B4B4B"
+              _hover={{
+                bg: "gray.100",
+                color: "#181818",
+              }}
+              px={6}
+              py={5}
+              fontWeight={500}
+              isLoading={isLoading}
+              color="gray.100"
+              bg="#181818"
+              mt={6}
+              onClick={() => loadExperience(walkthroughData)}
+            >
+              Start Exploring Now
+            </Button>
+          )}
         </Box>
       </Flex>
       <Image
