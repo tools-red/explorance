@@ -28,6 +28,7 @@ const useServerSideActions = () => {
       videoFile: row_value.tour_video,
       aiAvatarVideo: row_value.ai_video,
       videoDataType: row_value.video_type,
+      captionsFile: row_value.captions_file,
     }));
 
     return filtered_DB_Response;

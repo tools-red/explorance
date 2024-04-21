@@ -10,12 +10,14 @@ interface VideoPlayerProps {
   videoFile: string | undefined;
   volume: number;
   showCaptions: boolean;
+  captionsFile: string;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   videoFile,
   volume,
   showCaptions,
+  captionsFile,
 }) => {
   const [{ paused }] = useVideoPlayStateAtom();
   const [calcWidth, setCalcWidth] = useState<number | null>(null);
@@ -63,8 +65,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                   default: true,
                   kind: "captions",
                   srcLang: "en",
-                  // src: "subs/AI_guide_Entrance_caption_file.vtt",
-                  src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${"AI_guide_Entrance_caption_file.vtt"}`,
+                  src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${captionsFile}`,
                   label: "English",
                 },
               ],

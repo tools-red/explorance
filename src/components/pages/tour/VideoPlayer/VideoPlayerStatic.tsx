@@ -16,7 +16,6 @@ import { shiningAnimation } from "~/lib/keyframes";
 import React from "react";
 import NextImage from "next/image";
 import TextArt from "../../../../../public/textArt.svg";
-// import SNUBG from "../../../../../public/SNUBG.png";
 
 interface VideoPlayerStaticProps {
   loadExperience: (input: WalkthroughData) => void;
