@@ -1,5 +1,4 @@
 import { useVideoPlayStateAtom, useVideoSequenceAtom } from "~/lib/atom";
-import { WalkthroughData } from "~/types";
 
 const useVideoControllerActions = () => {
   const [videoSequence, setVideoSequence] = useVideoSequenceAtom();

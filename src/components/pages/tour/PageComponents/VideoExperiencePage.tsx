@@ -11,10 +11,12 @@ import VideoPlayerStatic from "../VideoPlayer/VideoPlayerStatic";
 
 interface VideoExperiencePageProps {
   walkthroughData: WalkthroughData;
+  isFetchingWalkthroughData: boolean;
 }
 
 const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
   walkthroughData,
+  isFetchingWalkthroughData,
 }) => {
   const [displayPlayer, setDisplayPlayer] = useState<boolean>(false);
   const [selectedScript, setselectedScript] = useState<WalkthroughData>([]);
@@ -50,6 +52,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
           />
         ) : (
           <VideoPlayerStatic
+            isFetchingWalkthroughData={isFetchingWalkthroughData}
             isLoading={isLoading as boolean}
             loadExperience={loadExperience}
             walkthroughData={walkthroughData}
