@@ -15,7 +15,7 @@ const CampusWalkthrough = () => {
   useEffect(() => {
     const FetchData = async () => {
       const data = await filterWalkthroughData();
-      console.log({ data });
+      setWalkthroughData([...(data ?? [])]);
     };
 
     FetchData();
@@ -24,7 +24,10 @@ const CampusWalkthrough = () => {
   }, [isFetchingWalkthroughData]);
   return (
     <Box bg="#121212" h="100vh">
-      <VideoExperiencePage walkthroughData={walkthroughData} />
+      <VideoExperiencePage
+        isFetchingWalkthroughData={isFetchingWalkthroughData}
+        walkthroughData={walkthroughData}
+      />
     </Box>
   );
 };
