@@ -17,6 +17,12 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    domains: [
+      "images.ctfassets.net",
+      "pub-75274250b3dd42109b51e593903a7d41.r2.dev",
+    ],
+  },
 };
 
 export default config;

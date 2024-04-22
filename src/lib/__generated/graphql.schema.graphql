@@ -90,6 +90,7 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  campusEventsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): CampusEventsCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
 }
 
@@ -117,99 +118,91 @@ enum AssetOrder {
 }
 
 """
-An event that happened on campus. [See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvent)
+[See type definition](https://app.contentful.com/spaces/nn685bngrpld/content_types/campusEvents)
 """
-type CampusEvent implements Entry {
+type CampusEvents implements Entry {
   contentfulMetadata: ContentfulMetadata!
-  date(locale: String): DateTime
-  description(locale: String): CampusEventDescription
-  linkedFrom(allowedLocales: [String]): CampusEventLinkingCollections
-  name(locale: String): String
+  eventSlug(locale: String): String
+  eventType(locale: String): [String]
+  guestspeakerName(locale: String): String
+  linkedFrom(allowedLocales: [String]): CampusEventsLinkingCollections
   sys: Sys!
+  tags(locale: String): [String]
+  talkDate(locale: String): DateTime
+  talkTitle(locale: String): String
+  talkVideo(locale: String): String
+  thumbnailPicture(locale: String, preview: Boolean): Asset
 }
 
-type CampusEventCollection {
-  items: [CampusEvent]!
+type CampusEventsCollection {
+  items: [CampusEvents]!
   limit: Int!
   skip: Int!
   total: Int!
 }
 
-type CampusEventDescription {
-  json: JSON!
-  links: CampusEventDescriptionLinks!
-}
-
-type CampusEventDescriptionAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type CampusEventDescriptionEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type CampusEventDescriptionLinks {
-  assets: CampusEventDescriptionAssets!
-  entries: CampusEventDescriptionEntries!
-  resources: CampusEventDescriptionResources!
-}
-
-type CampusEventDescriptionResources {
-  block: [CampusEventDescriptionResourcesBlock!]!
-  hyperlink: [CampusEventDescriptionResourcesHyperlink!]!
-  inline: [CampusEventDescriptionResourcesInline!]!
-}
-
-type CampusEventDescriptionResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type CampusEventDescriptionResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type CampusEventDescriptionResourcesInline implements ResourceLink {
-  sys: ResourceSys!
-}
-
-input CampusEventFilter {
-  AND: [CampusEventFilter]
-  OR: [CampusEventFilter]
+input CampusEventsFilter {
+  AND: [CampusEventsFilter]
+  OR: [CampusEventsFilter]
   contentfulMetadata: ContentfulMetadataFilter
-  date: DateTime
-  date_exists: Boolean
-  date_gt: DateTime
-  date_gte: DateTime
-  date_in: [DateTime]
-  date_lt: DateTime
-  date_lte: DateTime
-  date_not: DateTime
-  date_not_in: [DateTime]
-  description_contains: String
-  description_exists: Boolean
-  description_not_contains: String
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
+  eventSlug: String
+  eventSlug_contains: String
+  eventSlug_exists: Boolean
+  eventSlug_in: [String]
+  eventSlug_not: String
+  eventSlug_not_contains: String
+  eventSlug_not_in: [String]
+  eventType_contains_all: [String]
+  eventType_contains_none: [String]
+  eventType_contains_some: [String]
+  eventType_exists: Boolean
+  guestspeakerName: String
+  guestspeakerName_contains: String
+  guestspeakerName_exists: Boolean
+  guestspeakerName_in: [String]
+  guestspeakerName_not: String
+  guestspeakerName_not_contains: String
+  guestspeakerName_not_in: [String]
   sys: SysFilter
+  tags_contains_all: [String]
+  tags_contains_none: [String]
+  tags_contains_some: [String]
+  tags_exists: Boolean
+  talkDate: DateTime
+  talkDate_exists: Boolean
+  talkDate_gt: DateTime
+  talkDate_gte: DateTime
+  talkDate_in: [DateTime]
+  talkDate_lt: DateTime
+  talkDate_lte: DateTime
+  talkDate_not: DateTime
+  talkDate_not_in: [DateTime]
+  talkTitle: String
+  talkTitle_contains: String
+  talkTitle_exists: Boolean
+  talkTitle_in: [String]
+  talkTitle_not: String
+  talkTitle_not_contains: String
+  talkTitle_not_in: [String]
+  talkVideo: String
+  talkVideo_contains: String
+  talkVideo_exists: Boolean
+  talkVideo_in: [String]
+  talkVideo_not: String
+  talkVideo_not_contains: String
+  talkVideo_not_in: [String]
+  thumbnailPicture_exists: Boolean
 }
 
-type CampusEventLinkingCollections {
+type CampusEventsLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
 }
 
-enum CampusEventOrder {
-  date_ASC
-  date_DESC
-  name_ASC
-  name_DESC
+enum CampusEventsOrder {
+  eventSlug_ASC
+  eventSlug_DESC
+  guestspeakerName_ASC
+  guestspeakerName_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -218,6 +211,12 @@ enum CampusEventOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  talkDate_ASC
+  talkDate_DESC
+  talkTitle_ASC
+  talkTitle_DESC
+  talkVideo_ASC
+  talkVideo_DESC
 }
 
 type ContentfulMetadata {
@@ -419,11 +418,6 @@ input ImageTransformOptions {
 }
 
 """
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-"""
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
 """
 scalar Quality
@@ -432,20 +426,11 @@ type Query {
   _node(id: ID!, locale: String, preview: Boolean): _Node
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
-  campusEvent(id: String!, locale: String, preview: Boolean): CampusEvent
-  campusEventCollection(limit: Int = 100, locale: String, order: [CampusEventOrder], preview: Boolean, skip: Int = 0, where: CampusEventFilter): CampusEventCollection
+  campusEvents(id: String!, locale: String, preview: Boolean): CampusEvents
+  campusEventsCollection(limit: Int = 100, locale: String, order: [CampusEventsOrder], preview: Boolean, skip: Int = 0, where: CampusEventsFilter): CampusEventsCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   walkthroughScripts(id: String!, locale: String, preview: Boolean): WalkthroughScripts
   walkthroughScriptsCollection(limit: Int = 100, locale: String, order: [WalkthroughScriptsOrder], preview: Boolean, skip: Int = 0, where: WalkthroughScriptsFilter): WalkthroughScriptsCollection
-}
-
-interface ResourceLink {
-  sys: ResourceSys!
-}
-
-type ResourceSys {
-  linkType: String!
-  urn: String!
 }
 
 type Sys {
@@ -503,6 +488,7 @@ type WalkthroughScripts implements Entry {
   linkedFrom(allowedLocales: [String]): WalkthroughScriptsLinkingCollections
   sequenceNumber(locale: String): String
   sys: Sys!
+  videoCaptions(locale: String): String
   videoDataType(locale: String): String
   videoFile(locale: String): String
 }
@@ -533,6 +519,13 @@ input WalkthroughScriptsFilter {
   sequenceNumber_not_contains: String
   sequenceNumber_not_in: [String]
   sys: SysFilter
+  videoCaptions: String
+  videoCaptions_contains: String
+  videoCaptions_exists: Boolean
+  videoCaptions_in: [String]
+  videoCaptions_not: String
+  videoCaptions_not_contains: String
+  videoCaptions_not_in: [String]
   videoDataType: String
   videoDataType_contains: String
   videoDataType_exists: Boolean
@@ -566,6 +559,8 @@ enum WalkthroughScriptsOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  videoCaptions_ASC
+  videoCaptions_DESC
   videoDataType_ASC
   videoDataType_DESC
   videoFile_ASC
