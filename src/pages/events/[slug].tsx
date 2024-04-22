@@ -66,7 +66,7 @@ const EventSlugPage = () => {
                 <Image
                   alt="card_thumbnail"
                   layout="fill"
-                  src={selectedEvent?.thumbnailPicture.url ?? ""}
+                  src={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${selectedEvent?.thumbnail_url}`}
                 />
               </Box>
             </GridItem>
