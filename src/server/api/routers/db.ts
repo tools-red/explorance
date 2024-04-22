@@ -17,4 +17,19 @@ export const dbRouter = createTRPCRouter({
       console.log(`Error while fetching Tour / Walkthrough Data : ${error}`);
     }
   }),
+
+  fetchCampusEvents: publicProcedure.query(async () => {
+    try {
+      const { data: CampusEventsData, error: CampusEventsDataError } =
+        await supabase.from("campus_events").select("*");
+
+      if (CampusEventsDataError) throw CampusEventsDataError;
+
+      return {
+        DB_response: CampusEventsData,
+      };
+    } catch (err) {
+      console.log(`Error while fetching campus Events Data : ${err}`);
+    }
+  }),
 });
