@@ -1,6 +1,6 @@
 import { Box, Circle, Flex, Text } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import React from "react";
+import React, { useEffect } from "react";
 import SearchBar from "~/components/pages/events/EventNavigation/SearchBar";
 import EventsLandingPage from "~/components/pages/events/PageComponents/EventsLandingPage";
 import useEventActions from "~/hooks/useEventActions";
@@ -36,8 +36,12 @@ export const getServerSideProps: GetServerSideProps<{
 const CampusEvents: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ campusEventsData }) => {
-  const { handleTestSearch } = useEventActions();
+  const { handleTestSearch, handleCampusFetchData } = useEventActions();
   console.log(campusEventsData);
+
+  useEffect(() => {
+    handleCampusFetchData();
+  });
 
   return (
     <EventsLandingPage
