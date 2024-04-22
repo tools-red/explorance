@@ -3,7 +3,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import { error } from "console";
 
 export const dbRouter = createTRPCRouter({
-  fetchALL: publicProcedure.query(async () => {
+  fetchCampusTours: publicProcedure.query(async () => {
     try {
       const { data: WalkthroughData, error: WalkthroughDataError } =
         await supabase.from("campus_tour").select("*");

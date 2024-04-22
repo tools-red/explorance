@@ -16,7 +16,7 @@ const useServerSideActions = () => {
   const {
     refetch: fetchWalkthroughData,
     isLoading: isFetchingWalkthroughData,
-  } = api.supabaseDB.fetchALL.useQuery(undefined, {
+  } = api.supabaseDB.fetchCampusTours.useQuery(undefined, {
     enabled: false,
   });
 
