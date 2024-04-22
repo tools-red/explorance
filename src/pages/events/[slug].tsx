@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import ReactPlayer from "react-player";
 import { useCampusEventsAtom } from "~/lib/atom";
 
 const EventSlugPage = () => {
@@ -70,7 +71,28 @@ const EventSlugPage = () => {
                 />
               </Box>
             </GridItem>
-            <GridItem bg="green">Grid 2</GridItem>
+            <GridItem
+              position="relative"
+              overflow="hidden"
+              borderRadius={20}
+              height="470px"
+              width="100%"
+            >
+              <ReactPlayer
+                playing={false}
+                controls={true}
+                height="100%"
+                width="100%"
+                url={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${selectedEvent?.talkVideo}`}
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  position: "absolute",
+                  objectFit: "cover",
+                }}
+              />
+            </GridItem>
           </Grid>
         </Flex>
       </Flex>
