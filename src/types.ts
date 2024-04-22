@@ -16,9 +16,7 @@ type CampusEventsData = {
   talkDate: string;
   eventType: string[];
   talkVideo: string;
-  thumbnailPicture: {
-    url: string;
-  };
+  thumbnail_url: string;
   eventSlug: string;
 }[];
 
@@ -44,9 +42,7 @@ type selectedEventAtom = {
     talkDate: string;
     eventType: string[];
     talkVideo: string;
-    thumbnailPicture: {
-      url: string;
-    };
+    thumbnail_url: string;
     eventSlug: string;
   } | null;
 };
