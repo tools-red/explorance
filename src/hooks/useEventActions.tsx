@@ -26,6 +26,7 @@ const useEventActions = () => {
         talkVideo: event.event_video,
         thumbnail_url: event.event_guest_picture,
         eventSlug: event.event_slug,
+        transcription_id: event.transcription_id,
       }));
 
       setCampusEventData(parsed_data);

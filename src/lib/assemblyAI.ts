@@ -1,7 +1,8 @@
 import { AssemblyAI } from "assemblyai";
+import { env } from "~/env.mjs";
 
 const assemblyAIClient = new AssemblyAI({
-  apiKey: "b8e1a568520942b786aa4f48a780c86b",
+  apiKey: env.ASSEMBLY_AI_API_KEY,
 });
 
 export default assemblyAIClient;
