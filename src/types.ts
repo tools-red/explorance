@@ -18,6 +18,7 @@ type CampusEventsData = {
   talkVideo: string;
   thumbnail_url: string;
   eventSlug: string;
+  transcription_id: string;
 }[];
 
 // atom state types
@@ -44,6 +45,7 @@ type selectedEventAtom = {
     talkVideo: string;
     thumbnail_url: string;
     eventSlug: string;
+    transcription_id: string;
   } | null;
 };
 

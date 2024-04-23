@@ -40,6 +40,7 @@ export const env = createEnv({
     EXPLORANCE_AI_ENDPOINT: z.string(),
     SUPABASE_URL: z.string(),
     SUPABASE_API_KEY: z.string(),
+    ASSEMBLY_AI_API_KEY: z.string(),
   },
 
   /**
@@ -74,6 +75,7 @@ export const env = createEnv({
     EXPLORANCE_AI_ENDPOINT: process.env.EXPLORANCE_AI_ENDPOINT,
     SUPABASE_API_KEY: process.env.SUPABASE_API_KEY,
     SUPABASE_URL: process.env.SUPABASE_URL,
+    ASSEMBLY_AI_API_KEY: process.env.ASSEMBLY_AI_API_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

@@ -33,6 +33,7 @@
     "@trpc/server": "next",
     "@types/blob-stream": "^0.1.33",
     "@types/play-sound": "^1.1.2",
+    "assemblyai": "^4.4.1",
     "audio-buffer": "^5.0.0",
     "axios": "^1.6.8",
     "blob-stream": "^0.1.3",
