@@ -1,4 +1,4 @@
-import { Box, Circle, Flex, Text } from "@chakra-ui/react";
+import { Box, Circle, Flex, Spinner, Text } from "@chakra-ui/react";
 import SearchBar from "../EventNavigation/SearchBar";
 import { CampusEventsData } from "~/types";
 import EventsView from "../EventNavigation/EventsView";
@@ -75,7 +75,11 @@ const EventsLandingPage: React.FC<EventsLandingPageProps> = ({
             </Text>
             <SearchBar handleTypeEvent={handleSearch} />
           </Flex>
-          <EventsView campusEvents={campusEventsData} />
+          {campusEventsData && campusEventsData.length > 0 ? (
+            <EventsView campusEvents={campusEventsData} />
+          ) : (
+            <Spinner />
+          )}
         </Flex>
       </Flex>
     </Box>

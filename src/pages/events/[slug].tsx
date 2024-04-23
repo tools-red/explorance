@@ -1,5 +1,7 @@
 import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import ReactPlayer from "react-player";
+import EventVideoPlayerContainer from "~/components/pages/events/EventVideo/EventVideoPlayer";
 import { useCampusEventsAtom } from "~/lib/atom";
 
 const EventSlugPage = () => {
@@ -66,11 +68,22 @@ const EventSlugPage = () => {
                 <Image
                   alt="card_thumbnail"
                   layout="fill"
-                  src={selectedEvent?.thumbnailPicture.url ?? ""}
+                  src={
+                    `${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${selectedEvent?.thumbnail_url}` ??
+                    ""
+                  }
                 />
               </Box>
             </GridItem>
-            <GridItem bg="green">Grid 2</GridItem>
+            <GridItem
+              position="relative"
+              overflow="hidden"
+              borderRadius={20}
+              height="470px"
+              width="100%"
+            >
+              <EventVideoPlayerContainer selectedEvent={selectedEvent} />
+            </GridItem>
           </Grid>
         </Flex>
       </Flex>

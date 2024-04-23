@@ -1,9 +1,10 @@
 import { Box, Flex, Icon, Spinner, Text } from "@chakra-ui/react";
-import Image from "next/image";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import useEventActions from "~/hooks/useEventActions";
 import { CampusEventsData } from "~/types";
 import { formatDate } from "~/utils/helpers";
+
+import Image from "next/image";
 
 interface EventsCardProp {
   event: CampusEventsData[0];
@@ -63,7 +64,7 @@ const EventsCard: React.FC<EventsCardProp> = ({ event, index }) => {
           <Image
             alt="card_thumbnail"
             layout="fill"
-            src={event.thumbnailPicture.url}
+            src={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${event.thumbnail_url}`}
           />
         </Box>
       </Flex>
