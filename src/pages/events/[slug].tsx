@@ -9,12 +9,14 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
-import ReactPlayer from "react-player";
 import EventVideoPlayerContainer from "~/components/pages/events/EventVideo/EventVideoPlayer";
+import useEventActions from "~/hooks/useEventActions";
 import { useCampusEventsAtom } from "~/lib/atom";
 
 const EventSlugPage = () => {
+  const { handleSendQueryToAi } = useEventActions();
   const [{ selectedEvent }] = useCampusEventsAtom();
+
   const [testInput, setTestInput] = useState<string>("");
 
   return (
@@ -88,7 +90,16 @@ const EventSlugPage = () => {
                 </Box>
                 <Box h={300} borderRadius={20} bg="red.400">
                   <Input onChange={(e) => setTestInput(e.target.value)} />
-                  <Button onClick={() => console.log(testInput)}>Send</Button>
+                  <Button
+                    onClick={() =>
+                      handleSendQueryToAi(
+                        testInput,
+                        selectedEvent?.transcription_id ?? ""
+                      )
+                    }
+                  >
+                    Send
+                  </Button>
                 </Box>
               </Flex>
             </GridItem>
