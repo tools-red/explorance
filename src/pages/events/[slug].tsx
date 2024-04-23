@@ -88,7 +88,7 @@ const EventSlugPage = () => {
                 </Box>
                 <Box h={300} borderRadius={20} bg="red.400">
                   <Input onChange={(e) => setTestInput(e.target.value)} />
-                  <Button>Send</Button>
+                  <Button onClick={() => console.log(testInput)}>Send</Button>
                 </Box>
               </Flex>
             </GridItem>

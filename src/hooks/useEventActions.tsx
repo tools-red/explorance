@@ -8,6 +8,8 @@ const useEventActions = () => {
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
   const [campusEventsData, setCampusEventData] = useState<CampusEventsData>([]);
 
+  const sendQueryToAIMut = api.assemblyAI.sendChatQuery.useMutation();
+
   const { refetch: fetchCampusEventsData } =
     api.supabaseDB.fetchCampusEvents.useQuery(undefined, {
       enabled: false,
@@ -44,10 +46,23 @@ const useEventActions = () => {
     setIsRedirecting(false);
   };
 
+  const handleSendQueryToAi = async (
+    user_query: string,
+    transcription_id: string
+  ) => {
+    const response = await sendQueryToAIMut.mutateAsync({
+      query: user_query,
+      transcription_id: transcription_id,
+    });
+
+    console.log({ LeMUR_Response: response.LeMUR_response });
+  };
+
   return {
     handleTestSearch,
     redirectToEventPage,
     handleCampusFetchData,
+    handleSendQueryToAi,
     campusEventsData,
     isRedirecting,
   };
