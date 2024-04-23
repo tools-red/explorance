@@ -1,6 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { graphQL } from "~/lib/graphQL";
 import { WalkthroughData } from "~/types";
 
 import React, { useEffect, useState } from "react";
