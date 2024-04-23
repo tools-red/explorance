@@ -27,7 +27,7 @@ const EventSlugPage = () => {
           <Flex bg="red">hi</Flex>
           <Grid gap={5} templateColumns="2fr 5fr">
             <GridItem>
-              <Flex h="100%" bg="yellow" gap={3} flexDir="column">
+              <Flex h="100%" gap={3} flexDir="column">
                 <Box
                   border="1px"
                   borderColor="#181818"

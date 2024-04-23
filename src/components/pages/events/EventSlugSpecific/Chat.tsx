@@ -1,4 +1,13 @@
-import { Box, Button, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Icon,
+  Input,
+  InputGroup,
+  InputRightAddon,
+} from "@chakra-ui/react";
+
+import { IoMicOutline } from "react-icons/io5";
 
 interface ChatProps {
   setInput: (input_value: string) => void;
@@ -14,11 +23,40 @@ const Chat: React.FC<ChatProps> = ({
   user_input,
 }) => {
   return (
-    <Box h={300} borderRadius={20} bg="red.400">
-      <Input onChange={(e) => setInput(e.target.value)} />
-      <Button onClick={() => handleSendQueryToAi(user_input, transcription_id)}>
+    <Box h={300} borderRadius={20} bg="rgba(24, 24, 24, 0.5)">
+      <InputGroup>
+        <InputRightAddon border="none" bg="none">
+          <Icon
+            color="white"
+            bg="#1B1B1B"
+            border="1px"
+            borderColor="rgba(255, 255, 255, 0.1)"
+            borderRadius="50%"
+            p={2}
+            boxSize={10}
+            as={IoMicOutline}
+          />
+        </InputRightAddon>
+        <Input
+          borderRadius={12}
+          color="white"
+          bg="#1B1B1B"
+          border="1px"
+          borderColor="rgba(255, 255, 255, 0.1)"
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Ask AI anything"
+          fontSize="small"
+          _hover={{
+            borderColor: "purple.500",
+          }}
+          _placeholder={{
+            color: "rgba(255, 255, 255, 0.6)",
+          }}
+        />
+      </InputGroup>
+      {/* <Button onClick={() => handleSendQueryToAi(user_input, transcription_id)}>
         Send
-      </Button>
+      </Button> */}
     </Box>
   );
 };
