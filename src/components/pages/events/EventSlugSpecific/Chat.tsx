@@ -59,18 +59,6 @@ const Chat: React.FC<ChatProps> = ({
         </Flex>
         <Flex justify="center">
           <InputGroup px={3} w={"100%"}>
-            {/* <InputRightAddon border="none" bg="none">
-            <Icon
-              color="white"
-              bg="#1B1B1B"
-              border="1px"
-              borderColor="rgba(255, 255, 255, 0.1)"
-              borderRadius="50%"
-              p={2}
-              boxSize={10}
-              as={IoMicOutline}
-            />
-          </InputRightAddon> */}
             <Input
               borderRadius={10}
               color="white"

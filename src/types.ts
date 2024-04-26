@@ -21,6 +21,11 @@ type CampusEventsData = {
   transcription_id: string;
 }[];
 
+type ChatMessages = {
+  sender: string;
+  content: string;
+}[];
+
 // atom state types
 type videoSequenceAtomState = {
   sequence: number;
@@ -52,6 +57,7 @@ type selectedEventAtom = {
 export {
   type WalkthroughData,
   type CampusEventsData,
+  type ChatMessages,
   type videoSequenceAtomState,
   type responseWindowAtomState,
   type videoPlayState,
