@@ -9,6 +9,7 @@ const useEventActions = () => {
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
   const [campusEventsData, setCampusEventData] = useState<CampusEventsData>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
+  const [isResponding, setIsResponding] = useState<boolean>(false);
 
   const sendQueryToAIMut = api.assemblyAI.sendChatQuery.useMutation();
 
@@ -52,28 +53,27 @@ const useEventActions = () => {
     user_query: string,
     transcription_id: string
   ) => {
+    const newUserMessage: ChatMessages[0] = {
+      sender: chatMessagesSenders.User,
+      content: user_query,
+    };
+
+    setChatMessages((prevMessages) => [...prevMessages, newUserMessage]);
+    setIsResponding(true);
     const response = await sendQueryToAIMut.mutateAsync({
       query: user_query,
       transcription_id: transcription_id,
     });
 
     if (response.LeMUR_response) {
-      const newUserMessage: ChatMessages[0] = {
-        sender: chatMessagesSenders.User,
-        content: user_query,
-      };
-
       const aiMessage: ChatMessages[0] = {
         sender: chatMessagesSenders.AI,
         content: response.LeMUR_response,
       };
 
       // Update chat messages state by concatenating the new messages
-      setChatMessages((prevMessages) => [
-        ...prevMessages,
-        newUserMessage,
-        aiMessage,
-      ]);
+      setChatMessages((prevMessages) => [...prevMessages, aiMessage]);
+      setIsResponding(false);
     }
 
     console.log({ LeMUR_Response: response.LeMUR_response });
@@ -86,6 +86,7 @@ const useEventActions = () => {
     handleSendQueryToAi,
     campusEventsData,
     isRedirecting,
+    isResponding,
     chatMessages,
   };
 };

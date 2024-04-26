@@ -7,7 +7,7 @@ import useEventActions from "~/hooks/useEventActions";
 import { useCampusEventsAtom } from "~/lib/atom";
 
 const EventSlugPage = () => {
-  const { handleSendQueryToAi, chatMessages } = useEventActions();
+  const { handleSendQueryToAi, chatMessages, isResponding } = useEventActions();
   const [{ selectedEvent }] = useCampusEventsAtom();
 
   const [user_input, setInput] = useState<string>("");
@@ -91,6 +91,7 @@ const EventSlugPage = () => {
                   setInput={setInput}
                   user_input={user_input}
                   transcription_id={selectedEvent?.transcription_id ?? ""}
+                  isResponding={isResponding}
                 />
               </Flex>
             </GridItem>

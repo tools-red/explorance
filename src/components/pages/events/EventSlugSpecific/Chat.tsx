@@ -5,6 +5,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 
@@ -19,6 +20,7 @@ interface ChatProps {
   user_input: string;
   transcription_id: string;
   chatMessages: ChatMessages;
+  isResponding: boolean;
 }
 
 const Chat: React.FC<ChatProps> = ({
@@ -27,14 +29,13 @@ const Chat: React.FC<ChatProps> = ({
   transcription_id,
   user_input,
   chatMessages,
+  isResponding,
 }) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleSendQueryToAi(user_input, transcription_id);
     }
   };
-
-  console.log({ chatMessages });
 
   return (
     <Box overflowY={"auto"} h={300} borderRadius={20} bg="#181818">
@@ -56,10 +57,15 @@ const Chat: React.FC<ChatProps> = ({
                   w="full"
                 >
                   <Box
+                    fontSize="small"
                     borderRadius={10}
-                    bg="red"
+                    bg={chat.sender === "user" ? "#1B1B1B" : "purple.500"}
                     px={3}
                     py={1}
+                    border={chat.sender === "user" ? "1px solid" : ""}
+                    borderColor={
+                      chat.sender === "user" ? "rgba(255, 255, 255, 0.1)" : ""
+                    }
                     color="white"
                     transition="all 0.3s"
                   >
@@ -130,22 +136,26 @@ const Chat: React.FC<ChatProps> = ({
                   as={IoMicOutline}
                   transition="all 0.2s"
                 />
-                <Icon
-                  _hover={{
-                    cursor: "pointer",
-                    bg: "white",
-                    color: "#1B1B1B",
-                  }}
-                  color="white"
-                  bg="#1B1B1B"
-                  border="1px"
-                  borderColor="rgba(255, 255, 255, 0.1)"
-                  borderRadius="20%"
-                  p={0.5}
-                  boxSize={7}
-                  as={IoIosSend}
-                  transition="all 0.2s"
-                />
+                {isResponding ? (
+                  <Spinner color="purple.500" />
+                ) : (
+                  <Icon
+                    _hover={{
+                      cursor: "pointer",
+                      bg: "white",
+                      color: "#1B1B1B",
+                    }}
+                    color="white"
+                    bg="#1B1B1B"
+                    border="1px"
+                    borderColor="rgba(255, 255, 255, 0.1)"
+                    borderRadius="20%"
+                    p={0.5}
+                    boxSize={7}
+                    as={IoIosSend}
+                    transition="all 0.2s"
+                  />
+                )}
               </Flex>
             </InputRightElement>
           </InputGroup>
