@@ -8,20 +8,53 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chat from "~/components/pages/events/EventSlugSpecific/Chat";
 import EventVideoPlayerContainer from "~/components/pages/events/EventVideo/EventVideoPlayer";
+import { chatMessagesSenders } from "~/enums";
 import useEventActions from "~/hooks/useEventActions";
 import { useCampusEventsAtom } from "~/lib/atom";
+import { ChatMessages } from "~/types";
 
 const EventSlugPage = () => {
   const { handleSendQueryToAi } = useEventActions();
   const [{ selectedEvent }] = useCampusEventsAtom();
 
   const [user_input, setInput] = useState<string>("");
+  const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
+
+  useEffect(() => {
+    // Define the testMessages function directly within useEffect
+    const testMessages = () => {
+      const messages: ChatMessages = [
+        { content: "Hi", sender: chatMessagesSenders.User },
+        { content: "Umm Hi...?", sender: chatMessagesSenders.AI },
+        {
+          content: "Do you wanna go out with me ?",
+          sender: chatMessagesSenders.User,
+        },
+        {
+          content: "Omg noooo, I have a bf....",
+          sender: chatMessagesSenders.AI,
+        },
+      ];
+
+      setChatMessages(messages);
+      console.log(chatMessages); // Logs the messages array
+    };
+
+    // Call testMessages and add an empty dependency array
+    testMessages();
+  }, []);
+
+  console.log(chatMessages);
 
   return (
-    <Box h="100vh" bg="#121212">
+    <Box
+      boxShadow={`inset 0px 1.32px 1.32px rgba(255, 255, 255, 0.25)`}
+      h="100vh"
+      bg="#121212"
+    >
       <Flex justify="center" flexDir="column" align="center" w="full">
         <Flex mt={5} gap={3} flexDir="column" w={1200}>
           <Flex bg="red">hi</Flex>
@@ -90,6 +123,7 @@ const EventSlugPage = () => {
                   />
                 </Box>
                 <Chat
+                  chatMessages={chatMessages}
                   handleSendQueryToAi={handleSendQueryToAi}
                   setInput={setInput}
                   user_input={user_input}

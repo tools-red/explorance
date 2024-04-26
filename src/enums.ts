@@ -3,4 +3,9 @@ enum videoDataType {
   Experience_3D = "3D",
 }
 
-export { videoDataType };
+enum chatMessagesSenders {
+  User = "user",
+  AI = "AI",
+}
+
+export { videoDataType, chatMessagesSenders };

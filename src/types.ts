@@ -1,4 +1,4 @@
-import { videoDataType } from "./enums";
+import { chatMessagesSenders, videoDataType } from "./enums";
 
 // data types
 type WalkthroughData = {
@@ -22,7 +22,7 @@ type CampusEventsData = {
 }[];
 
 type ChatMessages = {
-  sender: string;
+  sender: chatMessagesSenders;
   content: string;
 }[];
 
