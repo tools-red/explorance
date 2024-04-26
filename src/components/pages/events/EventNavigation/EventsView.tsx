@@ -15,7 +15,7 @@ const EventsView: React.FC<EventsViewProps> = ({ campusEvents }) => {
   return (
     <Grid w="full" rowGap={10} templateColumns="repeat(3,1fr)">
       {campusEvents.map((event, index) => {
-        return <EventsCard event={event} index={index} />;
+        return <EventsCard event={event} key={index} />;
       })}
     </Grid>
   );
