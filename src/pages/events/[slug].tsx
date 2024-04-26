@@ -1,27 +1,16 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  GridItem,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Chat from "~/components/pages/events/EventSlugSpecific/Chat";
 import EventVideoPlayerContainer from "~/components/pages/events/EventVideo/EventVideoPlayer";
-import { chatMessagesSenders } from "~/enums";
 import useEventActions from "~/hooks/useEventActions";
 import { useCampusEventsAtom } from "~/lib/atom";
-import { ChatMessages } from "~/types";
 
 const EventSlugPage = () => {
-  const { handleSendQueryToAi } = useEventActions();
+  const { handleSendQueryToAi, chatMessages } = useEventActions();
   const [{ selectedEvent }] = useCampusEventsAtom();
 
   const [user_input, setInput] = useState<string>("");
-  const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
 
   return (
     <Box

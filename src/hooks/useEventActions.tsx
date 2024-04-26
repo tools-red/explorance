@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { chatMessagesSenders } from "~/enums";
 import { useCampusEventsAtom } from "~/lib/atom";
-import { CampusEventsData } from "~/types";
+import { CampusEventsData, ChatMessages } from "~/types";
 import { api } from "~/utils/api";
 
 const useEventActions = () => {
   const [, setSelectedCampusAtom] = useCampusEventsAtom();
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
   const [campusEventsData, setCampusEventData] = useState<CampusEventsData>([]);
+  const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
 
   const sendQueryToAIMut = api.assemblyAI.sendChatQuery.useMutation();
 
@@ -55,6 +57,25 @@ const useEventActions = () => {
       transcription_id: transcription_id,
     });
 
+    if (response.LeMUR_response) {
+      const newUserMessage: ChatMessages[0] = {
+        sender: chatMessagesSenders.User,
+        content: user_query,
+      };
+
+      const aiMessage: ChatMessages[0] = {
+        sender: chatMessagesSenders.AI,
+        content: response.LeMUR_response,
+      };
+
+      // Update chat messages state by concatenating the new messages
+      setChatMessages((prevMessages) => [
+        ...prevMessages,
+        newUserMessage,
+        aiMessage,
+      ]);
+    }
+
     console.log({ LeMUR_Response: response.LeMUR_response });
   };
 
@@ -65,6 +86,7 @@ const useEventActions = () => {
     handleSendQueryToAi,
     campusEventsData,
     isRedirecting,
+    chatMessages,
   };
 };
 

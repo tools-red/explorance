@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useResponseWindowAtom } from "~/lib/atom";
+import { ChatMessages } from "~/types";
 
 const useChatActions = () => {
   // const LLMMut = api.openAI.LLMResponse.useMutation();
