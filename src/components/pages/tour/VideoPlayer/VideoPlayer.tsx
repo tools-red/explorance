@@ -3,14 +3,20 @@ import { Box } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 
-// import testSubs from "../../../../assets/subs/AI_guide_Entrance_caption_file.vtt";
-// import ok from "../../../../assets/subs/AI_guide_Entrance_caption_file.vtt"
+import ThreeSixtySubplayer from "./ThreeSixtySubplayer";
+
+// import dynamic from 'next/dynamic';
+
+// const AFrameScene = dynamic(() => import('./ThreeSixtySubplayer'), {
+//   ssr: false,
+//  });
 
 interface VideoPlayerProps {
   videoFile: string | undefined;
   volume: number;
   showCaptions: boolean;
   captionsFile: string;
+  is360: boolean;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -18,6 +24,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   volume,
   showCaptions,
   captionsFile,
+  is360 = true,
 }) => {
   const [{ paused }] = useVideoPlayStateAtom();
   const [calcWidth, setCalcWidth] = useState<number | null>(null);
@@ -56,36 +63,47 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         }}
       ></style>
       {calcWidth && (
-        <ReactPlayer
-          config={{
-            file: {
-              attributes: { crossOrigin: "true" },
-              tracks: [
-                {
-                  default: true,
-                  kind: "captions",
-                  srcLang: "en",
-                  src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${captionsFile}`,
-                  label: "English",
+        <>
+          {is360 ? (
+            <ThreeSixtySubplayer
+              // TODO: Make 360 video source dynamic
+              // videoSrc={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}sarc_360_4k.mp4`}
+              videoSrc="/test-videos/sarc_360_4k.mp4"
+            />
+          ) : (
+            // <AFrameScene videoFile="" />
+            <ReactPlayer
+              config={{
+                file: {
+                  attributes: { crossOrigin: "true" },
+                  tracks: [
+                    {
+                      default: true,
+                      kind: "captions",
+                      srcLang: "en",
+                      src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${captionsFile}`,
+                      label: "English",
+                    },
+                  ],
                 },
-              ],
-            },
-          }}
-          volume={volume}
-          loop={true}
-          playing={paused}
-          width={calcWidth}
-          // controls={true}
-          height="100%"
-          url={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${videoFile}`}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            objectFit: "cover",
-          }}
-        />
+              }}
+              volume={volume}
+              loop={true}
+              playing={paused}
+              width={calcWidth}
+              // controls={true}
+              height="100%"
+              url={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${videoFile}`}
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                objectFit: "cover",
+              }}
+            />
+          )}
+        </>
       )}
     </Box>
   );
