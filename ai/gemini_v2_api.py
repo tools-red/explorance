@@ -2,7 +2,7 @@ import os
 import base64
 
 import google.generativeai as genai
-from openai import OpenAI
+from google.cloud import texttospeech
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -21,8 +21,9 @@ CORS(app)
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
-@app.route('/snu-explorance-ai/textonly', methods=['POST'])
-def explorance_ai_textonly():
+
+@app.route('/ask-handbook', methods=['POST'])
+def query_handler():
     user_input = request.json.get('query')
 
     if not user_input:
@@ -56,56 +57,28 @@ def explorance_ai_textonly():
     response_text = response.text
     chat_history.append(f"AI's response: {response_text}")
 
-    try:
-        return jsonify({"message": response_text, "status": "success"}), 200
-    except Exception as err:
-        return jsonify({"message": str(err), "status": "error"}), 500
+    # Initialize Google TTS client for TTS
+    # Define text synthesis parameters
+    synthesis_input = texttospeech.SynthesisInput(text=response_text)
+    voice = texttospeech.VoiceSelectionParams(
+        language_code="en-US",  # Adjust language code if needed
+        ssml_gender=texttospeech.SsmlVoiceGender.FEMALE,  # Choose voice gender
+    )
+    audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
 
-@app.route('/snu-explorance-ai/audio', methods=['POST'])
-def explorance_ai_audio():
-    user_input = request.json.get('query')
+    # Create a Text-to-Speech client
+    client = texttospeech.TextToSpeechClient()
 
-    if not user_input:
-        return jsonify({"message": "No question provided", "status": "error"}), 400
-
-    # Load context text files (optional, modify paths if needed)
-    try:
-        with open(handbook_path, 'r', encoding='utf-8') as f:
-            handbook_ctx = f.read()
-        with open(website_path, 'r', encoding='utf-8') as f:
-            website_ctx = f.read()
-    except FileNotFoundError:
-        return jsonify({"message": "Context text files not found", "status": "error"}), 400
-
-    # Use chat history from request body (if provided)
-    chat_history = []
-    if request.json.get('chatHistory'):
-        chat_history = request.json.get('chatHistory')
-
-    # Update chat history
-    chat_history.append(f"User's question: {user_input}")
-
-    # Generate response from Gemini
-    response = model.generate_content([
-        master_prompt,
-        handbook_ctx,
-        website_ctx,
-        *chat_history
-    ])
-
-    response_text = response.text
-    chat_history.append(f"AI's response: {response_text}")
-
-    # Initialize OpenAI client for TTS (assuming you have it set up)
-    client = OpenAI(api_key=OPENAI_API_KEY)
 
     try:
         # Generate audio using TTS API
-        response = client.audio.speech.create(
-            model="tts-1",
-            voice="alloy",
-            input=response_text
+        response = client.synthesize_speech(
+            input=synthesis_input, voice=voice, audio_config=audio_config
         )
+
+        # Check if audio content exists
+        if not response.audio_content:
+            raise RuntimeError("Failed to generate audio content")  # Specific error
 
         # Save audio to temporary file (optional)
         speech_file_path = "speech.mp3"
@@ -122,7 +95,9 @@ def explorance_ai_audio():
         # Return JSON response with text, audio (if generated), and status
         return jsonify({"message": response_text, "audio": encoded_string, "status": "success"}), 200
     except Exception as err:
+        # Handle general errors
         return jsonify({"message": str(err), "status": "error"}), 500
+
 
 
 if __name__ == '__main__':

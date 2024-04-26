@@ -128,7 +128,7 @@ const useAudioActions = () => {
           audio: string;
           message: string;
           status: string;
-        }>("http://127.0.0.1:5000/ask-handbook", {
+        }>("http://127.0.0.1:5000/snu-explorance-ai/audio", {
           query: transcribedData.transcribed_response.text,
         });
 
