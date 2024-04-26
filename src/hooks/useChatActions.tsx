@@ -24,7 +24,7 @@ const useChatActions = () => {
         audio: string;
         message: string;
         status: string;
-      }>("http://127.0.0.1:5000/snu-explorance-ai/textonly", {
+      }>("http://13.201.60.85/snu-explorance-ai/textonly", {
         query: prompt,
       });
       console.log(response.data.message);
