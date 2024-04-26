@@ -23,32 +23,6 @@ const EventSlugPage = () => {
   const [user_input, setInput] = useState<string>("");
   const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
 
-  useEffect(() => {
-    // Define the testMessages function directly within useEffect
-    const testMessages = () => {
-      const messages: ChatMessages = [
-        { content: "Hi", sender: chatMessagesSenders.User },
-        { content: "Umm Hi...?", sender: chatMessagesSenders.AI },
-        {
-          content: "Do you wanna go out with me ?",
-          sender: chatMessagesSenders.User,
-        },
-        {
-          content: "Omg noooo, I have a bf....",
-          sender: chatMessagesSenders.AI,
-        },
-      ];
-
-      setChatMessages(messages);
-      console.log(chatMessages); // Logs the messages array
-    };
-
-    // Call testMessages and add an empty dependency array
-    testMessages();
-  }, []);
-
-  console.log(chatMessages);
-
   return (
     <Box
       boxShadow={`inset 0px 1.32px 1.32px rgba(255, 255, 255, 0.25)`}
