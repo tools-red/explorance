@@ -20,7 +20,6 @@ const EventSlugPage = () => {
     >
       <Flex justify="center" flexDir="column" align="center" w="full">
         <Flex mt={5} gap={3} flexDir="column" w={1200}>
-          <Flex bg="red">hi</Flex>
           <Grid gap={5} templateColumns="2fr 5fr">
             <GridItem>
               <Flex h="100%" gap={3} flexDir="column">

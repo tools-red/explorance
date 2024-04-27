@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { chatMessagesSenders } from "~/enums";
 import { useCampusEventsAtom } from "~/lib/atom";
-import { CampusEventsData, ChatMessages } from "~/types";
+import { CampusEventsData, ChatMessages, DBResponseType } from "~/types";
 import { api } from "~/utils/api";
 
 const useEventActions = () => {
@@ -36,8 +36,6 @@ const useEventActions = () => {
       }));
 
       setCampusEventData(parsed_data as CampusEventsData);
-
-      console.log({ campusEventsData, parsed_data });
     }
   };
 
@@ -50,8 +48,8 @@ const useEventActions = () => {
     const parsedTags: string[] = [];
 
     if (DB_response) {
-      DB_response.forEach((event: CampusEventsData[0]) => {
-        event?.tags?.forEach((tag) => {
+      DB_response.forEach((event: DBResponseType) => {
+        event?.video_tags?.forEach((tag) => {
           if (tag && !parsedTags.includes(tag)) {
             parsedTags.push(tag);
           }
@@ -59,7 +57,6 @@ const useEventActions = () => {
       });
 
       setUniqueTags(parsedTags);
-      console.log({ parsedTags });
     }
   };
 
@@ -110,6 +107,7 @@ const useEventActions = () => {
     handleCampusFetchData,
     handleSendQueryToAi,
     fetchEventTags,
+    uniqueTags,
     campusEventsData,
     isRedirecting,
     isResponding,

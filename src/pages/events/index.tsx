@@ -8,6 +8,7 @@ const CampusEvents = () => {
     handleCampusFetchData,
     fetchEventTags,
     campusEventsData,
+    uniqueTags,
   } = useEventActions();
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const CampusEvents = () => {
 
   return (
     <EventsLandingPage
+      uniqueTags={uniqueTags}
       handleSearch={handleTestSearch}
       campusEventsData={campusEventsData}
     />

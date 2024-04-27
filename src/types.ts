@@ -78,4 +78,5 @@ export {
   type responseWindowAtomState,
   type videoPlayState,
   type selectedEventAtom,
+  type DBResponseType,
 };

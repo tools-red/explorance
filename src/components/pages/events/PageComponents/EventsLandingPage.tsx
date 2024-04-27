@@ -1,16 +1,19 @@
-import { Box, Circle, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Circle, Flex, Spinner, Text } from "@chakra-ui/react";
 import SearchBar from "../EventNavigation/SearchBar";
 import { CampusEventsData } from "~/types";
 import EventsView from "../EventNavigation/EventsView";
+import EventTagsDisplay from "../EventNavigation/EventTagsDisplay";
 
 interface EventsLandingPageProps {
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
   campusEventsData: CampusEventsData;
+  uniqueTags: string[];
 }
 
 const EventsLandingPage: React.FC<EventsLandingPageProps> = ({
   campusEventsData,
   handleSearch,
+  uniqueTags,
 }) => {
   return (
     <Box overflowX="hidden" position="relative" bg="#121212" h="100vh">
@@ -39,7 +42,7 @@ const EventsLandingPage: React.FC<EventsLandingPageProps> = ({
         flexDir="column"
       >
         <Flex gap={10} w={1000} flexDir="column">
-          <Flex gap={3} mt={150} align="center" flexDir="column">
+          <Flex gap={3} mt={"70px"} align="center" flexDir="column">
             <Box
               borderRadius={20}
               px={4}
@@ -74,23 +77,17 @@ const EventsLandingPage: React.FC<EventsLandingPageProps> = ({
               experts sharing insights on cutting-edge topics.
             </Text>
             <SearchBar handleTypeEvent={handleSearch} />
-            {/* <Flex w="full" color="white" bg="yellow">
-              {uniqueTags && uniqueTags.length > 0 ? (
-                <Spinner color="purple" />
-              ) : (
-                <Flex w="full">
-                  {uniqueTags.map((tag) => {
-                    return <Text>{tag}</Text>;
-                  })}
-                </Flex>
-              )}
-            </Flex> */}
           </Flex>
-          {campusEventsData && campusEventsData.length > 0 ? (
-            <EventsView campusEvents={campusEventsData} />
-          ) : (
-            <Spinner />
-          )}
+          <Flex mt={3} gap={7} flexDir={"column"}>
+            <EventTagsDisplay uniqueTags={uniqueTags} />
+            <Box>
+              {campusEventsData && campusEventsData.length > 0 ? (
+                <EventsView campusEvents={campusEventsData} />
+              ) : (
+                <Spinner />
+              )}
+            </Box>
+          </Flex>
         </Flex>
       </Flex>
     </Box>
