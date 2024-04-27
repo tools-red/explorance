@@ -1,4 +1,4 @@
-import { Box, Button, Circle, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Circle, Flex, Spinner, Text } from "@chakra-ui/react";
 import SearchBar from "../EventNavigation/SearchBar";
 import { CampusEventsData } from "~/types";
 import EventsView from "../EventNavigation/EventsView";

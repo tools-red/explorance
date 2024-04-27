@@ -6,11 +6,15 @@ import { api } from "~/utils/api";
 
 const useEventActions = () => {
   const [, setSelectedCampusAtom] = useCampusEventsAtom();
+
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
-  const [campusEventsData, setCampusEventData] = useState<CampusEventsData>([]);
-  const [uniqueTags, setUniqueTags] = useState<string[]>([]);
-  const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
   const [isResponding, setIsResponding] = useState<boolean>(false);
+
+  const [campusEventsData, setCampusEventData] = useState<CampusEventsData>([]);
+  const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
+
+  const [uniqueTags, setUniqueTags] = useState<string[]>([]);
+  const [eventTypes, setEventTypes] = useState<string[]>([]);
 
   const sendQueryToAIMut = api.assemblyAI.sendChatQuery.useMutation();
 
@@ -43,8 +47,6 @@ const useEventActions = () => {
     const data = await fetchCampusEventsData();
     const DB_response = data?.data?.DB_response;
 
-    console.log(DB_response);
-
     const parsedTags: string[] = [];
 
     if (DB_response) {
@@ -57,6 +59,23 @@ const useEventActions = () => {
       });
 
       setUniqueTags(parsedTags);
+    }
+  };
+
+  const fetchEventTypes = async () => {
+    const data = await fetchCampusEventsData();
+    const DB_response = data?.data?.DB_response;
+
+    const Types: string[] = [];
+
+    if (DB_response) {
+      DB_response.forEach((event: DBResponseType) => {
+        if (event?.event_type && !Types.includes(event?.event_type)) {
+          Types.push(event?.event_type);
+        }
+      });
+
+      setEventTypes(Types);
     }
   };
 
@@ -107,6 +126,8 @@ const useEventActions = () => {
     handleCampusFetchData,
     handleSendQueryToAi,
     fetchEventTags,
+    fetchEventTypes,
+    eventTypes,
     uniqueTags,
     campusEventsData,
     isRedirecting,
