@@ -8,15 +8,14 @@ import Image from "next/image";
 
 interface EventsCardProp {
   event: CampusEventsData[0];
-  index: number;
 }
 
-const EventsCard: React.FC<EventsCardProp> = ({ event, index }) => {
+const EventsCard: React.FC<EventsCardProp> = ({ event }) => {
   const { redirectToEventPage, isRedirecting } = useEventActions();
 
   return (
     <Box>
-      <Flex width={260} height={220} flexDir="column" key={index}>
+      <Flex width={260} height={220} flexDir="column">
         <Box
           border="1px"
           borderRadius={20}

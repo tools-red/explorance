@@ -1,4 +1,4 @@
-import { videoDataType } from "./enums";
+import { chatMessagesSenders, videoDataType } from "./enums";
 
 // data types
 type WalkthroughData = {
@@ -19,6 +19,11 @@ type CampusEventsData = {
   thumbnail_url: string;
   eventSlug: string;
   transcription_id: string;
+}[];
+
+type ChatMessages = {
+  sender: chatMessagesSenders;
+  content: string;
 }[];
 
 // atom state types
@@ -52,6 +57,7 @@ type selectedEventAtom = {
 export {
   type WalkthroughData,
   type CampusEventsData,
+  type ChatMessages,
   type videoSequenceAtomState,
   type responseWindowAtomState,
   type videoPlayState,

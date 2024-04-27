@@ -10,6 +10,8 @@ const CampusEvents = () => {
     handleCampusFetchData();
   }, []);
 
+  console.log(campusEventsData);
+
   return (
     <EventsLandingPage
       handleSearch={handleTestSearch}

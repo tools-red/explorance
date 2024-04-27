@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  GridItem,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
 import Chat from "~/components/pages/events/EventSlugSpecific/Chat";
@@ -15,13 +7,17 @@ import useEventActions from "~/hooks/useEventActions";
 import { useCampusEventsAtom } from "~/lib/atom";
 
 const EventSlugPage = () => {
-  const { handleSendQueryToAi } = useEventActions();
+  const { handleSendQueryToAi, chatMessages, isResponding } = useEventActions();
   const [{ selectedEvent }] = useCampusEventsAtom();
 
   const [user_input, setInput] = useState<string>("");
 
   return (
-    <Box h="100vh" bg="#121212">
+    <Box
+      boxShadow={`inset 0px 1.32px 1.32px rgba(255, 255, 255, 0.25)`}
+      h="100vh"
+      bg="#121212"
+    >
       <Flex justify="center" flexDir="column" align="center" w="full">
         <Flex mt={5} gap={3} flexDir="column" w={1200}>
           <Flex bg="red">hi</Flex>
@@ -90,10 +86,12 @@ const EventSlugPage = () => {
                   />
                 </Box>
                 <Chat
+                  chatMessages={chatMessages}
                   handleSendQueryToAi={handleSendQueryToAi}
                   setInput={setInput}
                   user_input={user_input}
                   transcription_id={selectedEvent?.transcription_id ?? ""}
+                  isResponding={isResponding}
                 />
               </Flex>
             </GridItem>
