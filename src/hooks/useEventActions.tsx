@@ -8,6 +8,7 @@ const useEventActions = () => {
   const [, setSelectedCampusAtom] = useCampusEventsAtom();
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
   const [campusEventsData, setCampusEventData] = useState<CampusEventsData>([]);
+  const [uniqueTags, setUniqueTags] = useState<string[]>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessages>([]);
   const [isResponding, setIsResponding] = useState<boolean>(false);
 
@@ -37,6 +38,26 @@ const useEventActions = () => {
       setCampusEventData(parsed_data as CampusEventsData);
 
       console.log({ campusEventsData, parsed_data });
+    }
+  };
+
+  const fetchEventTags = async () => {
+    const data = await fetchCampusEventsData();
+    const DB_response = data?.data?.DB_response;
+
+    const parsedTags: string[] = [];
+
+    if (DB_response) {
+      DB_response.forEach((event: CampusEventsData[0]) => {
+        event.tags.forEach((tag) => {
+          if (tag && !parsedTags.includes(tag)) {
+            parsedTags.push(tag);
+          }
+        });
+      });
+
+      setUniqueTags(parsedTags);
+      console.log({ uniqueTags });
     }
   };
 
@@ -86,6 +107,7 @@ const useEventActions = () => {
     redirectToEventPage,
     handleCampusFetchData,
     handleSendQueryToAi,
+    fetchCampusEventsData,
     campusEventsData,
     isRedirecting,
     isResponding,
