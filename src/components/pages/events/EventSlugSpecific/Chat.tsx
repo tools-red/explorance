@@ -117,10 +117,14 @@ const Chat: React.FC<ChatProps> = ({
                 color: "rgba(255, 255, 255, 0.6)",
               }}
             />
-            <InputRightElement mr={7}>
-              <Flex gap={1}>
+            <InputRightElement mr={3}>
+              {isResponding ? (
+                <Spinner color="purple.500" />
+              ) : (
                 <Icon
-                  onClick={() => console.log("Mic")}
+                  onClick={() =>
+                    handleSendQueryToAi(user_input, transcription_id)
+                  }
                   _hover={{
                     cursor: "pointer",
                     bg: "white",
@@ -128,35 +132,13 @@ const Chat: React.FC<ChatProps> = ({
                   }}
                   color="white"
                   bg="#1B1B1B"
-                  border="1px"
-                  borderColor="rgba(255, 255, 255, 0.1)"
                   borderRadius="20%"
                   p={0.5}
                   boxSize={7}
-                  as={IoMicOutline}
+                  as={IoIosSend}
                   transition="all 0.2s"
                 />
-                {isResponding ? (
-                  <Spinner color="purple.500" />
-                ) : (
-                  <Icon
-                    _hover={{
-                      cursor: "pointer",
-                      bg: "white",
-                      color: "#1B1B1B",
-                    }}
-                    color="white"
-                    bg="#1B1B1B"
-                    border="1px"
-                    borderColor="rgba(255, 255, 255, 0.1)"
-                    borderRadius="20%"
-                    p={0.5}
-                    boxSize={7}
-                    as={IoIosSend}
-                    transition="all 0.2s"
-                  />
-                )}
-              </Flex>
+              )}
             </InputRightElement>
           </InputGroup>
         </Flex>
