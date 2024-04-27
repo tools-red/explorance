@@ -20,7 +20,7 @@ const useEventActions = () => {
 
   const handleCampusFetchData = async () => {
     const data = await fetchCampusEventsData();
-    const DB_response = await data?.data?.DB_response;
+    const DB_response = data?.data?.DB_response;
     if (DB_response) {
       const parsed_data = DB_response.map((event: any) => ({
         guestSpeakerName: event.event_speaker_name,
@@ -34,7 +34,9 @@ const useEventActions = () => {
         transcription_id: event.transcript_id,
       }));
 
-      setCampusEventData(parsed_data);
+      setCampusEventData(parsed_data as CampusEventsData);
+
+      console.log({ campusEventsData, parsed_data });
     }
   };
 
