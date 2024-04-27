@@ -45,11 +45,13 @@ const useEventActions = () => {
     const data = await fetchCampusEventsData();
     const DB_response = data?.data?.DB_response;
 
+    console.log(DB_response);
+
     const parsedTags: string[] = [];
 
     if (DB_response) {
       DB_response.forEach((event: CampusEventsData[0]) => {
-        event.tags.forEach((tag) => {
+        event?.tags?.forEach((tag) => {
           if (tag && !parsedTags.includes(tag)) {
             parsedTags.push(tag);
           }
@@ -57,7 +59,7 @@ const useEventActions = () => {
       });
 
       setUniqueTags(parsedTags);
-      console.log({ uniqueTags });
+      console.log({ parsedTags });
     }
   };
 
@@ -107,7 +109,7 @@ const useEventActions = () => {
     redirectToEventPage,
     handleCampusFetchData,
     handleSendQueryToAi,
-    fetchCampusEventsData,
+    fetchEventTags,
     campusEventsData,
     isRedirecting,
     isResponding,

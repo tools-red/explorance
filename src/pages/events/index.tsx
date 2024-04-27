@@ -3,11 +3,16 @@ import EventsLandingPage from "~/components/pages/events/PageComponents/EventsLa
 import useEventActions from "~/hooks/useEventActions";
 
 const CampusEvents = () => {
-  const { handleTestSearch, handleCampusFetchData, campusEventsData } =
-    useEventActions();
+  const {
+    handleTestSearch,
+    handleCampusFetchData,
+    fetchEventTags,
+    campusEventsData,
+  } = useEventActions();
 
   useEffect(() => {
     handleCampusFetchData();
+    fetchEventTags();
   }, []);
 
   return (

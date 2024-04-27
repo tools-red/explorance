@@ -54,6 +54,22 @@ type selectedEventAtom = {
   } | null;
 };
 
+// response types
+type DBResponseType = {
+  captions_file: string | null;
+  created_at: string;
+  event_date: string;
+  event_guest_picture: string;
+  event_slug: string;
+  event_speaker_name: string;
+  event_title: string;
+  event_type: string;
+  event_video: string;
+  id: number;
+  transcript_id: string;
+  video_tags: string[];
+};
+
 export {
   type WalkthroughData,
   type CampusEventsData,
