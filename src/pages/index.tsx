@@ -9,7 +9,9 @@ export default function Home() {
       await filterWalkthroughData();
     };
 
-    asyncF();
+    asyncF().catch((err) => {
+      console.log(`error --> : ${err}`);
+    });
   }, []);
   return (
     <Flex flexDir="column">

@@ -152,7 +152,9 @@ const useAudioActions = () => {
         setIsDataAvailable(false);
       };
 
-      asyncF();
+      asyncF().catch((err: string) => {
+        console.log(`error --> ${err}`);
+      });
     }
   }, [userAudioChunks, isDataAvailable]);
 
