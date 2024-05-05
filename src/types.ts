@@ -1,5 +1,32 @@
 import { chatMessagesSenders, videoDataType } from "./enums";
 
+// Supabase Types
+type TourDatabaseResponse = {
+  sequence_number: string;
+  tour_video: string;
+  ai_video: string;
+  video_type: videoDataType;
+  captions_file: string;
+};
+
+type EventDatabaseResponse = {
+  event_speaker_name: string;
+  event_title: string;
+  video_tags: string[];
+  event_date: string;
+  event_type: string[];
+  event_video: string;
+  event_guest_picture: string;
+  event_slug: string;
+  transcript_id: string;
+};
+
+// CDN Types
+type BucketType = {
+  ETag: string;
+  Key: string;
+};
+
 // data types
 type WalkthroughData = {
   sequenceNumber: string;
@@ -55,6 +82,9 @@ type selectedEventAtom = {
 };
 
 export {
+  type EventDatabaseResponse,
+  type TourDatabaseResponse,
+  type BucketType,
   type WalkthroughData,
   type CampusEventsData,
   type ChatMessages,

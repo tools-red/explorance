@@ -17,12 +17,14 @@ const useAvatarActions = () => {
     try {
       const response = await fetchBucketContent();
       const videos = response.data?.CDN_Response;
-      const aiVideos = videos?.filter((video) => video?.Key?.includes("AI"));
+      const aiVideos = videos?.filter((video: any) =>
+        video?.Key?.includes("AI")
+      );
       const filteredAiVideoData =
         aiVideos?.map((item) => ({
           ETag: item.ETag,
           Key: item.Key,
-        })) || [];
+        })) ?? [];
 
       // Set the filtered AI videos to the state
       setAiVideos([...filteredAiVideoData]);
@@ -33,7 +35,11 @@ const useAvatarActions = () => {
   };
 
   useEffect(() => {
-    loadAIExperience();
+    const asyncF = async () => {
+      await loadAIExperience();
+    };
+
+    asyncF();
   }, []);
 
   return { aiVideos }; // Export aiVideos state

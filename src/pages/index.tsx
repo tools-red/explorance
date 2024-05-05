@@ -5,7 +5,11 @@ import useServerSideActions from "~/hooks/useServerSideActions";
 export default function Home() {
   const { filterWalkthroughData } = useServerSideActions();
   useEffect(() => {
-    filterWalkthroughData();
+    const asyncF = async () => {
+      await filterWalkthroughData();
+    };
+
+    asyncF();
   }, []);
   return (
     <Flex flexDir="column">

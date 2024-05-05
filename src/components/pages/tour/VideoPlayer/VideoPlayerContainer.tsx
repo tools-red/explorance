@@ -31,7 +31,7 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
       >
         {walkthroughData && walkthroughData.length > 0 ? (
           <VideoPlayer
-            captionsFile={selectedScript[0]?.captionsFile as string}
+            captionsFile={selectedScript[0]?.captionsFile ?? ""}
             volume={0.2}
             videoFile={selectedScript[0]?.videoFile}
             showCaptions={showCaptions}

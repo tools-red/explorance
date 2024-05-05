@@ -18,8 +18,6 @@ const CampusWalkthrough = () => {
     };
 
     FetchData();
-
-    console.log({ isFetchingWalkthroughData });
   }, [isFetchingWalkthroughData]);
   return (
     <Box bg="#121212" h="100vh">

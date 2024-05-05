@@ -60,7 +60,7 @@ const EventsLandingPage: React.FC<EventsLandingPageProps> = ({
               lineHeight={"120%"}
               color="white"
             >
-              Stay Ahead in Today's Dynamic Landscape
+              Stay Ahead in Today&apos;s Dynamic Landscape
             </Text>
             <Text
               textAlign="center"

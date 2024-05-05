@@ -14,7 +14,7 @@ import { IoSparklesSharp } from "react-icons/io5";
 import { shiningAnimation } from "~/lib/keyframes";
 
 import React from "react";
-import NextImage from "next/image";
+import NextImage, { StaticImageData } from "next/image";
 import TextArt from "../../../../../public/textArt.svg";
 
 interface VideoPlayerStaticProps {
@@ -57,7 +57,12 @@ const VideoPlayerStatic: React.FC<VideoPlayerStaticProps> = ({
           Explore Shiv Nadar IoE with the power of AI
         </Text>
         <Box mt={5}>
-          <NextImage src={TextArt} width={900} height={900} alt="Text Art" />
+          <NextImage
+            src={TextArt as StaticImageData}
+            width={900}
+            height={900}
+            alt="Text Art"
+          />
         </Box>
         <Box position="relative">
           <MotionBox

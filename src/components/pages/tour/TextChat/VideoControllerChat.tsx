@@ -6,9 +6,8 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { IoSparklesSharp } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useChatActions from "~/hooks/useChatActions";
-import { useResponseWindowAtom } from "~/lib/atom";
 
 const VideoControllerChat = () => {
   const { handleChatInput, executeChatPrompt } = useChatActions();
@@ -24,14 +23,13 @@ const VideoControllerChat = () => {
       <InputLeftElement
         pb={2}
         pointerEvents="none" // Ensure the icon doesn't interfere with input events
-        children={
-          isGeneratingResponse ? (
-            <Spinner size="sm" color="white" />
-          ) : (
-            <Icon as={IoSparklesSharp} color="white" />
-          )
-        } // Set the icon color and other styles
-      />
+      >
+        {isGeneratingResponse ? (
+          <Spinner size="sm" color="white" />
+        ) : (
+          <Icon as={IoSparklesSharp} color="white" />
+        )}
+      </InputLeftElement>
       <Input
         h={8}
         fontSize="small"
@@ -46,8 +44,8 @@ const VideoControllerChat = () => {
         }}
         onBlur={() => setShowPlaceholder(true)}
         onChange={(e) => handleChatInput(setChatInput, e.target.value)}
-        onKeyDown={(e) => {
-          executeChatPrompt(e, chatInput, setIsGeneratingResponse);
+        onKeyDown={async (e) => {
+          await executeChatPrompt(e, chatInput, setIsGeneratingResponse);
         }}
         placeholder={showPlaceholder ? `Ask AI anything` : ""}
         _placeholder={{ color: "white" }}

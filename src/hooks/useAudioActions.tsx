@@ -146,12 +146,13 @@ const useAudioActions = () => {
     };
 
     if (isDataAvailable && userAudioChunks.length > 0) {
-      // Proceed with the rest of the logic here
-      // For example, transcribe the audio, generate responses, etc.
-
       // Reset isDataAvailable to false after processing
-      handleUserEndRecording();
-      setIsDataAvailable(false);
+      const asyncF = async () => {
+        handleUserEndRecording();
+        setIsDataAvailable(false);
+      };
+
+      asyncF();
     }
   }, [userAudioChunks, isDataAvailable]);
 

@@ -7,7 +7,11 @@ const CampusEvents = () => {
     useEventActions();
 
   useEffect(() => {
-    handleCampusFetchData();
+    const asyncF = async () => {
+      await handleCampusFetchData();
+    };
+
+    asyncF();
   }, []);
 
   return (

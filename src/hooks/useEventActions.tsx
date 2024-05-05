@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { chatMessagesSenders } from "~/enums";
 import { useCampusEventsAtom } from "~/lib/atom";
-import { CampusEventsData, ChatMessages } from "~/types";
+import { CampusEventsData, ChatMessages, EventDatabaseResponse } from "~/types";
 import { api } from "~/utils/api";
 
 const useEventActions = () => {
@@ -22,10 +22,10 @@ const useEventActions = () => {
     const data = await fetchCampusEventsData();
     const DB_response = data?.data?.DB_response;
     if (DB_response) {
-      const parsed_data = DB_response.map((event: any) => ({
+      const parsed_data = DB_response.map((event: EventDatabaseResponse) => ({
         guestSpeakerName: event.event_speaker_name,
         talkTitle: event.event_title,
-        tags: event.video_tags as string[],
+        tags: event.video_tags,
         talkDate: event.event_date,
         eventType: event.event_type,
         talkVideo: event.event_video,
@@ -46,7 +46,7 @@ const useEventActions = () => {
 
   const redirectToEventPage = async (event: CampusEventsData[0]) => {
     setIsRedirecting(true);
-    await setSelectedCampusAtom({ selectedEvent: event });
+    setSelectedCampusAtom({ selectedEvent: event });
     window.location.href = `/events/${event.eventSlug}`;
     setIsRedirecting(false);
   };

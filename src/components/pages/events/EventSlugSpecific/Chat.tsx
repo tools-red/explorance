@@ -9,10 +9,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { IoMicOutline } from "react-icons/io5";
 import { IoChatboxEllipses } from "react-icons/io5";
 import { IoIosSend } from "react-icons/io";
 import { ChatMessages } from "~/types";
+import { chatMessagesSenders } from "~/enums";
 
 interface ChatProps {
   setInput: (input_value: string) => void;
@@ -49,22 +49,37 @@ const Chat: React.FC<ChatProps> = ({
             overflowY="auto"
             transition="all 0.3s"
           >
-            {chatMessages.map((chat) => {
+            {chatMessages.map((chat, index) => {
               return (
                 <Flex
-                  justify={chat.sender === "user" ? "flex-end" : "flex-start"}
+                  key={index}
+                  justify={
+                    chat.sender === chatMessagesSenders.User
+                      ? "flex-end"
+                      : "flex-start"
+                  }
                   px={2}
                   w="full"
                 >
                   <Box
                     fontSize="small"
                     borderRadius={10}
-                    bg={chat.sender === "user" ? "#1B1B1B" : "purple.500"}
+                    bg={
+                      chat.sender === chatMessagesSenders.User
+                        ? "#1B1B1B"
+                        : "purple.500"
+                    }
                     px={3}
                     py={1}
-                    border={chat.sender === "user" ? "1px solid" : ""}
+                    border={
+                      chat.sender === chatMessagesSenders.User
+                        ? "1px solid"
+                        : ""
+                    }
                     borderColor={
-                      chat.sender === "user" ? "rgba(255, 255, 255, 0.1)" : ""
+                      chat.sender === chatMessagesSenders.User
+                        ? "rgba(255, 255, 255, 0.1)"
+                        : ""
                     }
                     color="white"
                     transition="all 0.3s"
