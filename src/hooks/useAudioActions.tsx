@@ -128,7 +128,7 @@ const useAudioActions = () => {
           audio: string;
           message: string;
           status: string;
-        }>("http://13.201.60.85/snu-explorance-ai/audio", {
+        }>("https://snu-explorance.somesh.xyz/ai/snu-explorance-ai/audio", {
           query: transcribedData.transcribed_response.text,
         });
 
