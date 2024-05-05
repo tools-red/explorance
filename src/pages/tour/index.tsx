@@ -13,6 +13,7 @@ const CampusWalkthrough = () => {
   useEffect(() => {
     const FetchData = async () => {
       const data = await filterWalkthroughData();
+      console.log(data);
       setWalkthroughData([...(data ?? [])]);
     };
 

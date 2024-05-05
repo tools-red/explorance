@@ -22,7 +22,7 @@ const useServerSideActions = () => {
 
   const filterWalkthroughData = async () => {
     const data = await fetchWalkthroughData();
-    const DB_response = await data?.data?.DB_response;
+    const DB_response = data?.data?.DB_response;
     const filtered_DB_Response = DB_response?.map((row_value) => ({
       sequenceNumber: row_value.sequence_number,
       videoFile: row_value.tour_video,
