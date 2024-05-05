@@ -55,7 +55,7 @@ const useServerSideActions = () => {
       });
 
       setScriptData([...filteredScriptData]);
-    } catch (err: any) {
+    } catch (err) {
       console.log(err);
     } finally {
       setIsLoading(false); // Ensure to set loading state to false regardless of success or failure

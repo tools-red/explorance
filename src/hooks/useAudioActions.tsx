@@ -148,13 +148,11 @@ const useAudioActions = () => {
     if (isDataAvailable && userAudioChunks.length > 0) {
       // Reset isDataAvailable to false after processing
       const asyncF = async () => {
-        handleUserEndRecording();
+        await handleUserEndRecording();
         setIsDataAvailable(false);
       };
 
-      asyncF().catch((err: string) => {
-        console.log(`error --> ${err}`);
-      });
+      asyncF().catch(console.error);
     }
   }, [userAudioChunks, isDataAvailable]);
 

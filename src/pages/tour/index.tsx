@@ -17,7 +17,7 @@ const CampusWalkthrough = () => {
       setWalkthroughData([...(data ?? [])]);
     };
 
-    FetchData();
+    FetchData().catch(console.error);
   }, [isFetchingWalkthroughData]);
   return (
     <Box bg="#121212" h="100vh">

@@ -17,9 +17,7 @@ const useAvatarActions = () => {
     try {
       const response = await fetchBucketContent();
       const videos = response.data?.CDN_Response;
-      const aiVideos = videos?.filter((video: any) =>
-        video?.Key?.includes("AI")
-      );
+      const aiVideos = videos?.filter((video) => video?.Key?.includes("AI"));
       const filteredAiVideoData =
         aiVideos?.map((item) => ({
           ETag: item.ETag,
@@ -39,7 +37,7 @@ const useAvatarActions = () => {
       await loadAIExperience();
     };
 
-    asyncF();
+    asyncF().catch(console.error);
   }, []);
 
   return { aiVideos }; // Export aiVideos state
