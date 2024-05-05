@@ -1,10 +1,11 @@
-import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Icon, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
 import Chat from "~/components/pages/events/EventSlugSpecific/Chat";
 import EventVideoPlayerContainer from "~/components/pages/events/EventVideo/EventVideoPlayer";
 import useEventActions from "~/hooks/useEventActions";
 import { useCampusEventsAtom } from "~/lib/atom";
+import { PiKeyReturnFill } from "react-icons/pi";
 
 const EventSlugPage = () => {
   const { handleSendQueryToAi, chatMessages, isResponding } = useEventActions();
@@ -20,7 +21,25 @@ const EventSlugPage = () => {
     >
       <Flex justify="center" flexDir="column" align="center" w="full">
         <Flex mt={5} gap={3} flexDir="column" w={1200}>
-          <Flex bg="red">hi</Flex>
+          <Flex>
+            <Flex align="center" gap={2}>
+              <Icon
+                onClick={() => (window.location.href = "/events")}
+                _hover={{
+                  cursor: "pointer",
+                  color: "white",
+                }}
+                color="gray.700"
+                borderRadius="20%"
+                boxSize={6}
+                as={PiKeyReturnFill}
+                transition="all 0.2s"
+              />
+              <Text fontSize="15px" color="gray.200">
+                Back to Events
+              </Text>
+            </Flex>
+          </Flex>
           <Grid gap={5} templateColumns="2fr 5fr">
             <GridItem>
               <Flex h="100%" gap={3} flexDir="column">
