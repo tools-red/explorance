@@ -12,8 +12,10 @@ export const dbRouter = createTRPCRouter({
       return {
         DB_response: WalkthroughData,
       };
-    } catch (err: any) {
-      console.log(`Error while fetching Tour / Walkthrough Data : ${err}`);
+    } catch (err) {
+      console.log(
+        `Error while fetching Tour / Walkthrough Data : ${err as string}`
+      );
     }
   }),
 
@@ -27,8 +29,8 @@ export const dbRouter = createTRPCRouter({
       return {
         DB_response: CampusEventsData,
       };
-    } catch (err: any) {
-      console.log(`Error while fetching campus Events Data : ${err}`);
+    } catch (err) {
+      console.log(`Error while fetching campus Events Data : ${err as string}`);
     }
   }),
 });

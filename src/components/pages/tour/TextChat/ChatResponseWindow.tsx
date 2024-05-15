@@ -4,6 +4,7 @@ import { IoSparklesSharp } from "react-icons/io5";
 import { MdOutlineClose } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useResponseWindowAtom } from "~/lib/atom";
+import Markdown from "react-markdown";
 
 const ChatResponseWindow = () => {
   const [{ prompt, response }, setResponseWindowAtom] = useResponseWindowAtom();
@@ -59,7 +60,7 @@ const ChatResponseWindow = () => {
             />
           </Flex>
           <Text lineHeight="155.5%" color="white">
-            {response}
+            <Markdown>{response}</Markdown>
           </Text>
         </Flex>
       </MotionBox>

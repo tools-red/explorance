@@ -20,10 +20,7 @@ const VideoControllerChat = () => {
 
   return (
     <InputGroup w={80}>
-      <InputLeftElement
-        pb={2}
-        pointerEvents="none" // Ensure the icon doesn't interfere with input events
-      >
+      <InputLeftElement pb={2} pointerEvents="none">
         {isGeneratingResponse ? (
           <Spinner size="sm" color="white" />
         ) : (
@@ -44,8 +41,10 @@ const VideoControllerChat = () => {
         }}
         onBlur={() => setShowPlaceholder(true)}
         onChange={(e) => handleChatInput(setChatInput, e.target.value)}
-        onKeyDown={async (e) => {
-          await executeChatPrompt(e, chatInput, setIsGeneratingResponse);
+        onKeyDown={(e) => {
+          executeChatPrompt(e, chatInput, setIsGeneratingResponse).catch(
+            console.error
+          );
         }}
         placeholder={showPlaceholder ? `Ask AI anything` : ""}
         _placeholder={{ color: "white" }}

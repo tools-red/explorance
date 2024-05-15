@@ -11,7 +11,7 @@ const CampusEvents = () => {
       await handleCampusFetchData();
     };
 
-    asyncF();
+    asyncF().catch(console.error);
   }, []);
 
   return (
