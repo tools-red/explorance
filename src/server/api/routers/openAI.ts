@@ -13,17 +13,29 @@ export const openAIRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ input }) => {
-      const { audioFileBase64 } = input;
-      const buffer = Buffer.from(audioFileBase64, "base64"); // Convert the base64 string to a Buffer
+      try {
+        const { audioFileBase64 } = input;
 
-      const uploadableFile = await toFile(buffer, "some.mp3");
+        console.log({ audioFileBase64 });
 
-      const transcription = await openAI.audio.transcriptions.create({
-        model: "whisper-1",
-        file: uploadableFile, // Pass the Buffer directly to OpenAI
-      });
+        const buffer = Buffer.from(audioFileBase64, "base64"); // Convert the base64 string to a Buffer
 
-      return { transcribed_response: transcription };
+        const uploadableFile = await toFile(buffer, "some.mp3");
+
+        const transcription = await openAI.audio.transcriptions.create({
+          file: uploadableFile, // Pass the Buffer directly to OpenAI
+          language: "en",
+          model: "whisper-1",
+        });
+
+        console.log({ tText: transcription });
+
+        return { transcribed_response: transcription };
+      } catch (e) {
+        console.error(e);
+
+        return { transcribed_response: "transcription didnt work" };
+      }
     }),
 
   chatCompletions: publicProcedure
