@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import React from "react";
 
 interface PageLayoutProps {
@@ -7,9 +7,11 @@ interface PageLayoutProps {
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
   return (
-    <Box bg="yellow" maxW={1200}>
-      {children}
-    </Box>
+    <Flex justify="center">
+      <Flex flexDir="column" w={1100}>
+        {children}
+      </Flex>
+    </Flex>
   );
 };
 
