@@ -1,6 +1,7 @@
-import Navbar from "../Navbar";
 import { Flex } from "@chakra-ui/react";
 import { URLs } from "~/constants";
+
+import Navbar from "../Navbar";
 
 const HeroSection = () => {
   return (
