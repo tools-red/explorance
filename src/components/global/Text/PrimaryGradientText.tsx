@@ -4,6 +4,7 @@ import React from "react";
 interface PrimaryGradientTextProps {
   label: string;
   fontSize: string;
+  textPosition: string;
 }
 
 const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({
