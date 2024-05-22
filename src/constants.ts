@@ -1,6 +1,6 @@
 // Landing page constants
 
-export const URLS: { url_label: string; url_location: string }[] = [
+export const URLs: { url_label: string; url_location: string }[] = [
   { url_label: "About", url_location: "/" },
   { url_label: "Integrations", url_location: "/" },
   { url_label: "Pricing", url_location: "/" },
