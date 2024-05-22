@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 
-interface SectionLayoutProps {
+interface PageLayoutProps {
   children: React.ReactNode;
 }
 
-const SectionLayout: React.FC<SectionLayoutProps> = ({ children }) => {
+const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
   return (
     <Box bg="yellow" maxW={1200}>
       {children}
@@ -13,4 +13,4 @@ const SectionLayout: React.FC<SectionLayoutProps> = ({ children }) => {
   );
 };
 
-export default SectionLayout;
+export default PageLayout;
