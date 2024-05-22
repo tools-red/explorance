@@ -1,4 +1,4 @@
-import { Flex, Text, Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React from "react";
 
 interface PageLayoutProps {
