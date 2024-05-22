@@ -20,12 +20,19 @@ const NavigationItems: React.FC<NavigationItemsProps> = ({ URLs }) => {
     >
       {URLs.map((navItem, index) => {
         return (
-          <Flex key={index} gap={6} align="center" bg="none">
-            <Text fontSize="small" as="a" href={navItem.url_location}>
+          <Flex key={index} gap={8} align="center" bg="none">
+            <Text
+              bgGradient="linear(to-b, #B6C2F1 0%, #EBEFFF 100%)"
+              bgClip="text"
+              fontSize="small"
+              fontWeight={600}
+              as="a"
+              href={navItem.url_location}
+            >
               {navItem.url_label}
             </Text>
             {index < URLs.length - 1 ? (
-              <Text color="#A0AEE5" bg="none">
+              <Text color="rgba(161, 174, 229, 0.65)" bg="none">
                 &#x2022;
               </Text>
             ) : (

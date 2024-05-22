@@ -3,14 +3,18 @@ import React from "react";
 
 interface PrimaryGradientTextProps {
   label: string;
+  fontSize: string;
 }
 
-const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({ label }) => {
+const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({
+  label,
+  fontSize,
+}) => {
   return (
     <Text
       bgGradient="linear(to-b, #B6C2F1 0%, #EBEFFF 100%)"
       bgClip="text"
-      fontSize="xl"
+      fontSize={fontSize}
       fontWeight={600}
     >
       {label}

@@ -10,12 +10,14 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ URLs }) => {
   return (
     <Flex align="center" mt={5} justify="space-between">
-      <PrimaryGradientText label="Explorance" />
+      <PrimaryGradientText fontSize="large" label="Explorance" />
       <NavigationItems URLs={URLs} />
       <PrimaryLinkCTA
-        CTA_addOn={false}
         CTA_label="Get Started"
         CTA_location="/tour"
+        CTA_addOn={true}
+        CTA_addOnLabel="it's free"
+        CTA_addOnLabelSize="small"
       />
     </Flex>
   );
