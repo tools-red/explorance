@@ -13,6 +13,7 @@ const Navbar: React.FC<NavbarProps> = ({ URLs }) => {
       <PrimaryGradientText fontSize="large" label="Explorance" />
       <NavigationItems URLs={URLs} />
       <PrimaryLinkCTA
+        CTA_labelSize="small"
         CTA_label="Get Started"
         CTA_location="/tour"
         CTA_addOn={true}

@@ -13,6 +13,7 @@ const NavigationItems: React.FC<NavigationItemsProps> = ({ URLs }) => {
       gap={8}
       px={5}
       py={2}
+      ml={20}
       border="1px solid"
       borderColor="gray.700"
       color="white"
