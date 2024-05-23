@@ -9,15 +9,16 @@ const HeroSection = () => {
     <Flex flexDir="column">
       <Navbar URLs={URLs} />
       <Text
-        pt={150}
-        fontSize="xxx-large"
-        fontWeight={600}
-        bgGradient="linear(to-b, #B6C2F1 0%, #EBEFFF 100%)"
+        pt={120}
+        bgGradient="linear(to-b, #A1AEE5 0%, #ECF0FF 100%)"
         bgClip="text"
+        fontSize="xxx-large"
+        fontFamily="SFPro"
+        fontWeight={600}
         textAlign="center"
       >
-        Transform your exploration journey <br /> with out innovative AI
-        solutions
+        Transform Your Exploration Journey <br /> with out Innovative AI
+        Solutions
       </Text>
     </Flex>
   );

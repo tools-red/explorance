@@ -1,19 +1,19 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
 
-interface PrimaryGradientTextProps {
+interface SecondaryGradientTextProps {
   label: string;
   fontSize: string;
   textPosition?: string;
 }
 
-const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({
+const SecondaryGradientText: React.FC<SecondaryGradientTextProps> = ({
   label,
   fontSize,
 }) => {
   return (
     <Text
-      bgGradient="linear(to-b, #B6C2F1 0%, #EBEFFF 100%)"
+      bgGradient="linear(to-b, #A1AEE5 0%, #ECF0FF 100%)"
       bgClip="text"
       fontFamily="SFPro"
       fontSize={fontSize}
@@ -24,4 +24,4 @@ const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({
   );
 };
 
-export default PrimaryGradientText;
+export default SecondaryGradientText;

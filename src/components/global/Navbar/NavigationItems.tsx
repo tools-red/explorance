@@ -25,6 +25,7 @@ const NavigationItems: React.FC<NavigationItemsProps> = ({ URLs }) => {
               bgGradient="linear(to-b, #B6C2F1 0%, #EBEFFF 100%)"
               bgClip="text"
               fontSize="small"
+              fontFamily="SFPro"
               fontWeight={600}
               as="a"
               href={navItem.url_location}
