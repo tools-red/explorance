@@ -6,6 +6,7 @@ import { WalkthroughData } from "~/types";
 import ChatResponseWindow from "../TextChat/ChatResponseWindow";
 import TourNavigation from "../TourNavigation/TourNavigation";
 import { useState } from "react";
+import ThreeSixtyVideoPlayer from "~/components/pages/tour/VideoPlayer/ThreeSixtyVideoPlayer";
 
 interface VideoPlayerProps {
   walkthroughData: WalkthroughData;
@@ -30,13 +31,19 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         position="relative"
       >
         {walkthroughData && walkthroughData.length > 0 ? (
-          <VideoPlayer
+          <ThreeSixtyVideoPlayer
             captionsFile={selectedScript[0]?.captionsFile ?? ""}
             volume={0.2}
             videoFile={selectedScript[0]?.videoFile}
             showCaptions={showCaptions}
           />
         ) : (
+          // <VideoPlayer
+          //   captionsFile={selectedScript[0]?.captionsFile ?? ""}
+          //   volume={0.2}
+          //   videoFile={selectedScript[0]?.videoFile}
+          //   showCaptions={showCaptions}
+          // />
           <Text>Nothing to play right now</Text>
         )}
 

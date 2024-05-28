@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Box } from "@chakra-ui/react";
-import ReactPlayer from "react-player";
+import View360, { StereoEquiProjection } from "@egjs/react-view360";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 
-interface VideoPlayerProps {
+import "@egjs/react-view360/css/view360.min.css";
+
+interface ThreeSixtyVideoPlayerProps {
   videoFile: string | undefined;
   volume: number;
   showCaptions: boolean;
   captionsFile: string;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({
+const ThreeSixtyVideoPlayer: React.FC<ThreeSixtyVideoPlayerProps> = ({
   videoFile,
   volume,
   showCaptions,
@@ -27,6 +29,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     const newCalcWidth = viewportHeight * aspectRatio;
     setCalcWidth(newCalcWidth);
   }, []);
+
+  const projection = useMemo(
+    () =>
+      new StereoEquiProjection({
+        src: `${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}SARC_FoodCourt_360.mp4`,
+        mode: "top_bottom",
+        video: {
+          autoplay: true,
+          loop: true,
+        },
+        // url={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${videoFile}`}
+      }),
+    []
+  );
 
   return (
     <Box
@@ -53,39 +69,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         }}
       ></style>
       {calcWidth && (
-        <ReactPlayer
-          config={{
-            file: {
-              attributes: { crossOrigin: "true" },
-              tracks: [
-                {
-                  default: true,
-                  kind: "captions",
-                  srcLang: "en",
-                  src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${captionsFile}`,
-                  label: "English",
-                },
-              ],
-            },
-          }}
-          volume={volume}
-          loop={true}
-          playing={paused}
-          width={calcWidth}
-          // controls={true}
-          height="100%"
-          url={`${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${videoFile}`}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            objectFit: "cover",
-          }}
-        />
+        <>
+          <View360 className="is-16by9" projection={projection} />
+        </>
       )}
     </Box>
   );
 };
 
-export default VideoPlayer;
+export default ThreeSixtyVideoPlayer;
