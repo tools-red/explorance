@@ -1,17 +1,26 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 import PrimaryGradientText from "./PrimaryGradientText";
+import { IconType } from "react-icons/lib";
 
 interface TagProps {
   tag_label: string;
   customColor?: boolean;
   customColorHex?: string;
+  addOnLogo?: boolean;
+  addOnLogoSize?: number;
+  addOnLogoColor?: string;
+  addOnLogoValue?: IconType;
 }
 
 const Tag: React.FC<TagProps> = ({
   tag_label,
   customColor,
   customColorHex,
+  addOnLogo,
+  addOnLogoSize,
+  addOnLogoColor,
+  addOnLogoValue,
 }) => {
   return (
     <Box
@@ -29,6 +38,10 @@ const Tag: React.FC<TagProps> = ({
         customColorHex={customColorHex}
         label={tag_label}
         fontSize="small"
+        addOnLogo={addOnLogo}
+        addOnLogoSize={addOnLogoSize}
+        addOnLogoColor={addOnLogoColor}
+        addOnLogoValue={addOnLogoValue}
       />
     </Box>
   );

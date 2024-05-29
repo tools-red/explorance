@@ -1,4 +1,6 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
+import { GoArrowUpRight } from "react-icons/go";
+
 import PrimaryGradientText from "~/components/global/Text/PrimaryGradientText";
 import Tag from "~/components/global/Text/Tag";
 
@@ -11,6 +13,10 @@ const ProductsSection = () => {
             customColorHex="#A1AEE5"
             customColor={true}
             tag_label="Our Products"
+            addOnLogo={true}
+            addOnLogoSize={4}
+            addOnLogoColor="rgba(161, 174, 229, 0.65)"
+            addOnLogoValue={GoArrowUpRight}
           />
           <PrimaryGradientText
             fontSize="40px"

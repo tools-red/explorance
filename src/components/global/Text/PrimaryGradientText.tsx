@@ -1,5 +1,6 @@
-import { Text } from "@chakra-ui/react";
+import { Flex, Icon, Text } from "@chakra-ui/react";
 import React from "react";
+import { IconType } from "react-icons/lib";
 
 interface PrimaryGradientTextProps {
   label: string;
@@ -8,6 +9,10 @@ interface PrimaryGradientTextProps {
   lineHeight?: string;
   customColor?: boolean;
   customColorHex?: string;
+  addOnLogo?: boolean;
+  addOnLogoSize?: number;
+  addOnLogoColor?: string;
+  addOnLogoValue?: IconType;
 }
 
 const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({
@@ -16,11 +21,16 @@ const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({
   lineHeight,
   customColor,
   customColorHex,
+  addOnLogo,
+  addOnLogoSize,
+  addOnLogoColor,
+  addOnLogoValue,
 }) => {
   return (
-    <>
+    <Flex gap={1} bg="none" align="center">
       {customColor ? (
         <Text
+          bg="none"
           color={customColorHex}
           fontFamily="SFPro"
           fontSize={fontSize}
@@ -41,7 +51,17 @@ const PrimaryGradientText: React.FC<PrimaryGradientTextProps> = ({
           {label}
         </Text>
       )}
-    </>
+      {addOnLogo ? (
+        <Icon
+          color={addOnLogoColor}
+          bg="none"
+          boxSize={addOnLogoSize}
+          as={addOnLogoValue}
+        />
+      ) : (
+        <></>
+      )}
+    </Flex>
   );
 };
 
