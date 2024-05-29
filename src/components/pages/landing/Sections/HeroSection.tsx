@@ -60,7 +60,7 @@ const HeroSection = () => {
         <Box
           border="1px solid"
           borderColor="rgba(161, 174, 229, 0.2)"
-          borderRadius={20}
+          borderRadius={40}
           overflow={"hidden"}
           mt={8}
           width={900}
