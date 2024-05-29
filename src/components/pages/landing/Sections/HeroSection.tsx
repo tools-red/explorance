@@ -63,7 +63,7 @@ const HeroSection = () => {
           borderRadius={40}
           overflow={"hidden"}
           mt={8}
-          width={900}
+          width={1050}
         >
           <Image alt="Hero-Image" src={HeroImage} objectFit="cover" />
         </Box>

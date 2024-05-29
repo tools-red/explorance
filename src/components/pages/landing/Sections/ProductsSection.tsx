@@ -1,5 +1,6 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { GoArrowUpRight } from "react-icons/go";
+import PrimaryLinkCTA from "~/components/global/Buttons/PrimaryLinkCTA";
 
 import PrimaryGradientText from "~/components/global/Text/PrimaryGradientText";
 import Tag from "~/components/global/Text/Tag";
@@ -7,7 +8,7 @@ import Tag from "~/components/global/Text/Tag";
 const ProductsSection = () => {
   return (
     <Flex flexDir="column">
-      <Flex>
+      <Flex align="flex-end" justify="space-between">
         <Flex gap={5} maxW={350} align="flex-start" flexDir="column">
           <Tag
             customColorHex="#A1AEE5"
@@ -25,7 +26,18 @@ const ProductsSection = () => {
             Powered Solutions`}
           />
         </Flex>
-        <Flex flexDir="column"></Flex>
+        <Flex gap={6} align="flex-start" flexDir="column">
+          <Text fontFamily="SFPro" fontSize="medium" color="#A0AEE5">
+            Explore our innovative AI solutions designed to revolutionize <br />{" "}
+            your exploration and learning experiences. sessions.
+          </Text>
+          <PrimaryLinkCTA
+            CTA_labelSize="small"
+            CTA_location="/"
+            CTA_addOn={false}
+            CTA_label="Get Started"
+          />
+        </Flex>
       </Flex>
     </Flex>
   );
