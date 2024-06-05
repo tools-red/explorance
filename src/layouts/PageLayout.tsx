@@ -7,7 +7,7 @@ interface PageLayoutProps {
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
   return (
-    <Flex justify="center">
+    <Flex bg="#030515" justify="center">
       <Flex gap={20} flexDir="column" w={1100}>
         {children}
       </Flex>
