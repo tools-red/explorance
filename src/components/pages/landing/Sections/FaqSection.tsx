@@ -1,13 +1,18 @@
 import { Flex } from "@chakra-ui/react";
+import FaqDropDown from "../Interactive/FaqDropDown";
+import { FAQAccordingContent } from "~/constants";
 
 const FaqSection = () => {
   return (
-    <Flex w="full" bg="red">
+    <Flex justify="space-between" w="full" bg="red">
       <Flex bg="yellow" flexDir="column">
         Hi
       </Flex>
       <Flex bg="green" flexDir="column">
-        Hi
+        <FaqDropDown
+          allowMultiple={true}
+          accordianContentArray={FAQAccordingContent}
+        />
       </Flex>
     </Flex>
   );

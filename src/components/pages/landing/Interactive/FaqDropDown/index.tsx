@@ -1,14 +1,14 @@
 import { Accordion } from "@chakra-ui/react";
 import FaqAccordianItem from "./FaqAccordianItem";
 
-interface DropDownHolderProps {
+interface FaqDropDownProps {
   allowMultiple: boolean;
   accordianContentArray?: { Question: string; Answer: string }[];
   Question?: string;
   Answer?: string;
 }
 
-const DropDownHolder: React.FC<DropDownHolderProps> = ({
+const FaqDropDown: React.FC<FaqDropDownProps> = ({
   allowMultiple,
   accordianContentArray,
   Question,
@@ -37,4 +37,4 @@ const DropDownHolder: React.FC<DropDownHolderProps> = ({
   );
 };
 
-export default DropDownHolder;
+export default FaqDropDown;

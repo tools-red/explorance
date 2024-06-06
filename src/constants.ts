@@ -43,3 +43,20 @@ export const SolutionsSectionCardContent: {
       "Access our AI solutions that include features like captions, voice/chat functionality, and intuitive navigation, ensuring inclusivity for all users.",
   },
 ];
+
+export const FAQAccordingContent: { Question: string; Answer: string }[] = [
+  { Question: "What are AI Powered Campus Tours", Answer: "Answer 1" },
+  {
+    Question: "How can I participate in Speaker Sessions?",
+    Answer: "Answer 2",
+  },
+  {
+    Question: "How can AI help optimize learning in speaker sessions?",
+    Answer: "Answer 2",
+  },
+  {
+    Question: "Can I schedule a specific time for the tours and sessions?",
+    Answer: "Answer 3",
+  },
+  { Question: "What accessibility features do you offer?", Answer: "Answer 4" },
+];
