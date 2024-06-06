@@ -37,7 +37,9 @@ const SecondaryCardType: React.FC<SecondaryCardTypeProps> = ({
         <Text fontSize="xl" color="white">
           {CardTitle}
         </Text>
-        <Text color="#A1AEE5">{CardText}</Text>
+        <Text fontSize="15px" color="#A1AEE5">
+          {CardText}
+        </Text>
       </Flex>
     </Flex>
   );

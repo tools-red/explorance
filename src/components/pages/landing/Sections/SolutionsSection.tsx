@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 
 import { GoArrowUpRight } from "react-icons/go";
 import { MdKeyboardCommandKey } from "react-icons/md";
@@ -63,13 +63,13 @@ const SolutionsSection = () => {
         <Image alt="Card-Image" src={CubeImage ?? ""} objectFit="cover" />
       </Box>
 
-      <Flex>
+      <Grid templateColumns="repeat(3, 1fr)">
         <SecondaryCardType
           CardIcon={MdKeyboardCommandKey}
           CardTitle="Limited Access to Campuses"
           CardText="Experience virtual campus tours from anywhere with our AI-powered solutions, overcoming distance and accessibility barriers."
         />
-      </Flex>
+      </Grid>
     </Flex>
   );
 };
