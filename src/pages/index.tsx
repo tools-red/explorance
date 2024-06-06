@@ -1,4 +1,5 @@
 import FaqSection from "~/components/pages/landing/Sections/FaqSection";
+import FooterSection from "~/components/pages/landing/Sections/FooterSection";
 import HeroSection from "~/components/pages/landing/Sections/HeroSection";
 import ProductsSection from "~/components/pages/landing/Sections/ProductsSection";
 import SolutionsSection from "~/components/pages/landing/Sections/SolutionsSection";
@@ -11,6 +12,7 @@ export default function Home() {
       <ProductsSection />
       <SolutionsSection />
       <FaqSection />
+      <FooterSection />
     </PageLayout>
   );
 }
