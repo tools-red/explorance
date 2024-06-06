@@ -4,11 +4,11 @@ import { FAQAccordingContent } from "~/constants";
 
 const FaqSection = () => {
   return (
-    <Flex justify="space-between" w="full" bg="red">
+    <Flex fontFamily="SFPro" mb={30} mt={200} justify="space-between" w="full">
       <Flex bg="yellow" flexDir="column">
         Hi
       </Flex>
-      <Flex bg="green" flexDir="column">
+      <Flex color="white" flexDir="column">
         <FaqDropDown
           allowMultiple={true}
           accordianContentArray={FAQAccordingContent}

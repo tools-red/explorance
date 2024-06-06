@@ -22,6 +22,8 @@ const FaqDropDown: React.FC<FaqDropDownProps> = ({
             return (
               <FaqAccordianItem
                 key={i}
+                index={i}
+                lenght={accordianContentArray.length}
                 Question={content.Question}
                 Answer={content.Answer}
               />
