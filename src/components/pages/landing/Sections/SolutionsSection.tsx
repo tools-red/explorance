@@ -1,10 +1,13 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+
 import { GoArrowUpRight } from "react-icons/go";
+import { MdKeyboardCommandKey } from "react-icons/md";
 
 import Image from "next/image";
 
 import CubeImage from "../../../../../public/StaticImages/SolutionsSecImg.png";
 import Tag from "~/components/global/Text/Tag";
+import SecondaryCardType from "../Cards/SecondaryCardType";
 
 const SolutionsSection = () => {
   return (
@@ -59,6 +62,14 @@ const SolutionsSection = () => {
         </Flex>
         <Image alt="Card-Image" src={CubeImage ?? ""} objectFit="cover" />
       </Box>
+
+      <Flex>
+        <SecondaryCardType
+          CardIcon={MdKeyboardCommandKey}
+          CardTitle="Limited Access to Campuses"
+          CardText="Experience virtual campus tours from anywhere with our AI-powered solutions, overcoming distance and accessibility barriers."
+        />
+      </Flex>
     </Flex>
   );
 };
