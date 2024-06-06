@@ -26,7 +26,7 @@ const FaqAccordianItem: React.FC<FaqAccordianItemProps> = ({
       borderColor="rgba(161, 174, 229, 0.4)"
       borderBottom={index && lenght ? (index === lenght - 1 ? "none" : "") : ""}
       borderTop={index === 0 ? "none" : ""}
-      py={4}
+      py={5}
     >
       <AccordionButton>
         <Box pr={5} as="span" flex="1" textAlign="left">
