@@ -16,7 +16,7 @@ const SolutionsSection = () => {
           flexDirection="column"
           position="absolute"
           left="50%"
-          bottom="9%"
+          bottom="8%"
           transform={`translate(-${45}%)`}
           gap={3}
           // Apply upper fade gradient here
@@ -35,7 +35,6 @@ const SolutionsSection = () => {
             addOnLogoValue={GoArrowUpRight}
           />
           <Text
-            bg="none"
             bgGradient="linear(to-b, #B6C2F1 0%, #EBEFFF 100%)"
             bgClip="text"
             fontSize="45px"
@@ -47,7 +46,6 @@ const SolutionsSection = () => {
             AI Solutions for <br /> Modern Challenges
           </Text>
           <Text
-            bg="none"
             textAlign="center"
             fontFamily="SFPro"
             fontSize="medium"

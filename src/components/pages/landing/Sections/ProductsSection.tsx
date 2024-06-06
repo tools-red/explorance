@@ -8,7 +8,7 @@ import CampusTourGuideImage from "../../../../../public/StaticImages/CampusTourG
 import CampusTourInteractionImage from "../../../../../public/StaticImages/CampusTourInteraction.png";
 
 import PrimaryLinkCTA from "~/components/global/Buttons/PrimaryLinkCTA";
-import PrimaryCardType from "~/components/global/Cards/PrimaryCardType";
+import PrimaryCardType from "~/components/pages/landing/Cards/PrimaryCardType";
 
 import PrimaryGradientText from "~/components/global/Text/PrimaryGradientText";
 import Tag from "~/components/global/Text/Tag";
