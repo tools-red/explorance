@@ -1,29 +1,18 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { useEffect } from "react";
-import useServerSideActions from "~/hooks/useServerSideActions";
+import FaqSection from "~/components/pages/landing/Sections/FaqSection";
+import FooterSection from "~/components/pages/landing/Sections/FooterSection";
+import HeroSection from "~/components/pages/landing/Sections/HeroSection";
+import ProductsSection from "~/components/pages/landing/Sections/ProductsSection";
+import SolutionsSection from "~/components/pages/landing/Sections/SolutionsSection";
+import PageLayout from "~/layouts/PageLayout";
 
 export default function Home() {
-  const { filterWalkthroughData } = useServerSideActions();
-  useEffect(() => {
-    const asyncF = async () => {
-      await filterWalkthroughData();
-    };
-
-    asyncF().catch((err) => {
-      console.log(`error --> : ${err}`);
-    });
-  }, []);
   return (
-    <Flex flexDir="column">
-      <Text>Index Page</Text>
-      <Flex gap={2}>
-        <Button as="a" href="/tour">
-          Campus Tour
-        </Button>
-        <Button as="a" href="/events">
-          Campus Events
-        </Button>
-      </Flex>
-    </Flex>
+    <PageLayout>
+      <HeroSection />
+      <ProductsSection />
+      <SolutionsSection />
+      <FaqSection />
+      <FooterSection />
+    </PageLayout>
   );
 }
