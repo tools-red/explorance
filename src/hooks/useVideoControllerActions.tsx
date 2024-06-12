@@ -28,11 +28,27 @@ const useVideoControllerActions = () => {
     setVideoPauseState({ paused: !videoPauseState.paused });
   };
 
+  const handleVideoSwitchDisplay = (
+    switchState: boolean,
+    altBtnStyle: boolean,
+    setSwitchState: (state: boolean) => void,
+    setAltBtnStyle: (state: boolean) => void
+  ) => {
+    setVideoPauseState({ paused: !videoPauseState.paused });
+    setSwitchState(!switchState);
+    setAltBtnStyle(!altBtnStyle);
+  };
+
   const handleSkipNavigation = (videoNumber: number) => {
     setVideoSequence({ sequence: videoNumber });
   };
 
-  return { handleNavigation, handleVideoPauseState, handleSkipNavigation };
+  return {
+    handleNavigation,
+    handleVideoPauseState,
+    handleSkipNavigation,
+    handleVideoSwitchDisplay,
+  };
 };
 
 export default useVideoControllerActions;

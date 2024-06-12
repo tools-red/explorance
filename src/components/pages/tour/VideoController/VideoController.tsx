@@ -17,22 +17,31 @@ interface VideoControllerProps {
   displayState: boolean;
   videoCount: number;
   walkthroughData: WalkthroughData;
-  SetShowNavigator: (state: boolean) => void;
   showNavigator: boolean;
-  SetShowCaptions: (state: boolean) => void;
   showCaptions: boolean;
+  showThreeSixty: boolean;
+  alternateThreeSixtyBtnStyle: boolean;
+  SetShowNavigator: (state: boolean) => void;
+  SetShowCaptions: (state: boolean) => void;
+  setShowThreeSixty: (state: boolean) => void;
+  setAlternateThreeSixtyBtnStyle: (state: boolean) => void;
 }
 
 const VideoController: React.FC<VideoControllerProps> = ({
   displayState,
   videoCount,
   walkthroughData,
-  SetShowNavigator,
   showNavigator,
-  SetShowCaptions,
   showCaptions,
+  showThreeSixty,
+  alternateThreeSixtyBtnStyle,
+  SetShowNavigator,
+  SetShowCaptions,
+  setShowThreeSixty,
+  setAlternateThreeSixtyBtnStyle,
 }) => {
-  const { handleVideoPauseState } = useVideoControllerActions();
+  const { handleVideoPauseState, handleVideoSwitchDisplay } =
+    useVideoControllerActions();
   const [videoPauseState] = useVideoPlayStateAtom();
 
   return (
@@ -61,7 +70,20 @@ const VideoController: React.FC<VideoControllerProps> = ({
         icon={videoPauseState.paused ? FaPause : FaPlay}
       />
       <VideoControllerChat />
-      <VideoControllerCTA iconSize={5} icon={Md360} label="360° View" />
+      <VideoControllerCTA
+        handleOperation={() =>
+          handleVideoSwitchDisplay(
+            showThreeSixty,
+            alternateThreeSixtyBtnStyle,
+            setShowThreeSixty,
+            setAlternateThreeSixtyBtnStyle
+          )
+        }
+        alternateStateIndicate={alternateThreeSixtyBtnStyle}
+        iconSize={5}
+        icon={Md360}
+        label="360° View"
+      />
       <VideoControllerCTA
         handleOperation={() => SetShowNavigator(!showNavigator)}
         iconSize={5}

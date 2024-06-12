@@ -21,6 +21,10 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
 }) => {
   const [showNavigator, SetShowNavigator] = useState<boolean>(false);
   const [showCaptions, SetShowCaptions] = useState<boolean>(false);
+  const [displayThreeSixty, setDisplayThreeSixty] = useState<boolean>(false);
+  const [alterNateThreeSixtyBtnStyle, setAlternateThreeSixtyBtnStyle] =
+    useState<boolean>(false);
+
   return (
     <Flex h="full" borderRadius={22} w="full" bg="#1E1E1E" flexDir="column">
       <Flex
@@ -31,19 +35,24 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         position="relative"
       >
         {walkthroughData && walkthroughData.length > 0 ? (
-          <ThreeSixtyVideoPlayer
-            captionsFile={selectedScript[0]?.captionsFile ?? ""}
-            volume={0.2}
-            videoFile={selectedScript[0]?.videoFile}
-            showCaptions={showCaptions}
-          />
+          <>
+            {displayThreeSixty ? (
+              <ThreeSixtyVideoPlayer
+                captionsFile={selectedScript[0]?.captionsFile ?? ""}
+                volume={0.2}
+                videoFile={selectedScript[0]?.videoFile}
+                showCaptions={showCaptions}
+              />
+            ) : (
+              <VideoPlayer
+                captionsFile={selectedScript[0]?.captionsFile ?? ""}
+                volume={0.2}
+                videoFile={selectedScript[0]?.videoFile}
+                showCaptions={showCaptions}
+              />
+            )}
+          </>
         ) : (
-          // <VideoPlayer
-          //   captionsFile={selectedScript[0]?.captionsFile ?? ""}
-          //   volume={0.2}
-          //   videoFile={selectedScript[0]?.videoFile}
-          //   showCaptions={showCaptions}
-          // />
           <Text>Nothing to play right now</Text>
         )}
 
@@ -54,6 +63,10 @@ const VideoPlayerContainer: React.FC<VideoPlayerProps> = ({
         />
 
         <VideoController
+          alternateThreeSixtyBtnStyle={alterNateThreeSixtyBtnStyle}
+          setAlternateThreeSixtyBtnStyle={setAlternateThreeSixtyBtnStyle}
+          showThreeSixty={displayThreeSixty}
+          setShowThreeSixty={setDisplayThreeSixty}
           showNavigator={showNavigator}
           SetShowNavigator={SetShowNavigator}
           showCaptions={showCaptions}
