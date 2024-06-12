@@ -53,7 +53,7 @@ const VideoExperiencePage: React.FC<VideoExperiencePageProps> = ({
         ) : (
           <VideoPlayerStatic
             isFetchingWalkthroughData={isFetchingWalkthroughData}
-            isLoading={isLoading as boolean}
+            isLoading={isLoading}
             loadExperience={loadExperience}
             walkthroughData={walkthroughData}
           />
