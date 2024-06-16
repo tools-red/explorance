@@ -7,7 +7,7 @@ import { BiCaptions, BiSolidCaptions } from "react-icons/bi";
 
 import VideoControllerNavigator from "./VideoControllerNavigator";
 import VideoControllerCTA from "./VideoControllerCTA";
-import React, { useState } from "react";
+import React from "react";
 import { WalkthroughData } from "~/types";
 import VideoControllerChat from "../TextChat/VideoControllerChat";
 import { useVideoPlayStateAtom } from "~/lib/atom";

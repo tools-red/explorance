@@ -28,9 +28,11 @@ export const openAIRouter = createTRPCRouter({
           model: "whisper-1",
         });
 
-        console.log({ tText: transcription });
+        const transcribedText = transcription.text;
 
-        return { transcribed_response: transcription };
+        console.log({ tText: transcribedText });
+
+        return { transcribed_response: transcribedText };
       } catch (e) {
         console.error(e);
 
@@ -47,6 +49,8 @@ export const openAIRouter = createTRPCRouter({
         model: "gpt-3.5-turbo-instruct",
         prompt: prompt,
       });
+
+      console.log({ openAITextResponse });
 
       return {
         chat_response: openAITextResponse,
