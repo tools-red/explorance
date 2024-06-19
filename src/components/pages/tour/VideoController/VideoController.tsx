@@ -10,7 +10,10 @@ import VideoControllerCTA from "./VideoControllerCTA";
 import React from "react";
 import { WalkthroughData } from "~/types";
 import VideoControllerChat from "../TextChat/VideoControllerChat";
-import { useVideoPlayStateAtom } from "~/lib/atom";
+import {
+  usePlayVideoDisabledStateAtom,
+  useVideoPlayStateAtom,
+} from "~/lib/atom";
 import useVideoControllerActions from "~/hooks/useVideoControllerActions";
 
 interface VideoControllerProps {
@@ -42,7 +45,9 @@ const VideoController: React.FC<VideoControllerProps> = ({
 }) => {
   const { handleVideoPauseState, handleVideoSwitchDisplay } =
     useVideoControllerActions();
+
   const [videoPauseState] = useVideoPlayStateAtom();
+  const [videoPlayCTADisabledState] = usePlayVideoDisabledStateAtom();
 
   return (
     <Flex
@@ -65,6 +70,7 @@ const VideoController: React.FC<VideoControllerProps> = ({
       />
       <VideoControllerCTA iconSize={5} icon={IoVolumeHigh} />
       <VideoControllerCTA
+        isDisabled={videoPlayCTADisabledState.disabled}
         handleOperation={handleVideoPauseState}
         iconSize={5}
         icon={videoPauseState.paused ? FaPause : FaPlay}

@@ -3,7 +3,10 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
-import { useVideoPlayStateAtom } from "~/lib/atom";
+import {
+  usePlayVideoDisabledStateAtom,
+  useVideoPlayStateAtom,
+} from "~/lib/atom";
 
 const useAudioActions = () => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -16,6 +19,7 @@ const useAudioActions = () => {
   const chatCompletionsMut = api.openAI.chatCompletions.useMutation();
 
   const [{ paused }, setVideoPauseState] = useVideoPlayStateAtom();
+  const [, setVideoPlayCTADisabledState] = usePlayVideoDisabledStateAtom();
 
   const initiateRecording = async () => {
     try {
@@ -91,8 +95,13 @@ const useAudioActions = () => {
     });
     const audioUrl = URL.createObjectURL(audioBlob);
     const audioElem = new Audio(audioUrl);
+    audioElem.addEventListener("play", () => {
+      setVideoPauseState({ paused: false });
+      setVideoPlayCTADisabledState({ disabled: true });
+    });
     audioElem.addEventListener("ended", () => {
       setVideoPauseState({ paused: true });
+      setVideoPlayCTADisabledState({ disabled: false });
     });
     audioElem
       .play()
