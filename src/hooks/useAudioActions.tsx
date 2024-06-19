@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
-import player from "play-sound";
 import axios from "axios";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 
 const useAudioActions = () => {
-  const audioPlayer = player();
-
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>();
   const [userAudioChunks, setUserAudioChunks] = useState<Blob[]>([]);
@@ -157,11 +154,10 @@ const useAudioActions = () => {
   }, [userAudioChunks, isDataAvailable]);
 
   const endRecording = async () => {
-    setVideoPauseState({ paused: !paused });
+    setVideoPauseState({ paused: paused });
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
-      // setUserAudioChunks([]);
       setIsDataAvailable(true);
       mediaRecorderRef.current = null;
       console.log("Recording terminated");

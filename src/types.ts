@@ -81,6 +81,14 @@ type selectedEventAtom = {
   } | null;
 };
 
+type SubtitleTrackArray = {
+  default: boolean;
+  kind: string;
+  srcLang: string;
+  src: string;
+  label: string;
+}[];
+
 export {
   type EventDatabaseResponse,
   type TourDatabaseResponse,
@@ -92,4 +100,5 @@ export {
   type responseWindowAtomState,
   type videoPlayState,
   type selectedEventAtom,
+  type SubtitleTrackArray,
 };

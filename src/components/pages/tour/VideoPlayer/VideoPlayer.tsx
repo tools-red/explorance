@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
 import { useVideoPlayStateAtom } from "~/lib/atom";
+import { SubtitleTrackArrayType } from "~/types";
 
 interface VideoPlayerProps {
   videoFile: string | undefined;
@@ -18,6 +19,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 }) => {
   const [{ paused }] = useVideoPlayStateAtom();
   const [calcWidth, setCalcWidth] = useState<number | null>(null);
+  // const [subtitleTrackState, setSubtitleTrackState] = useState<
+  //   SubtitleTrackArrayType[]
+  // >([
+  //   {
+  //     default: true,
+  //     kind: "captions",
+  //     srcLang: "en",
+  //     src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${captionsFile}`,
+  //     label: "English",
+  //   },
+  // ]);
 
   useEffect(() => {
     const viewportHeight = window.innerHeight;
@@ -27,6 +39,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     const newCalcWidth = viewportHeight * aspectRatio;
     setCalcWidth(newCalcWidth);
   }, []);
+
+  // useEffect(() => {
+  //   setSubtitleTrackState([]);
+  //   const newSubtitleTrack: SubtitleTrackArrayType = {
+  //     default: true,
+  //     kind: "captions",
+  //     srcLang: "en",
+  //     src: `/api/util/vtt-rewriter?url=${process.env.NEXT_PUBLIC_CLOUDFLARE_PUBLIC_URL}${captionsFile}`,
+  //     label: "English",
+  //   };
+  //   setSubtitleTrackState((prevTrack) => [newSubtitleTrack, ...prevTrack]);
+  //   console.log(subtitleTrackState);
+  // }, [captionsFile]);
 
   return (
     <Box
