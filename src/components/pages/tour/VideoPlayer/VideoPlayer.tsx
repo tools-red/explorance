@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
 import { useVideoPlayStateAtom } from "~/lib/atom";
-import { SubtitleTrackArrayType } from "~/types";
 
 interface VideoPlayerProps {
   videoFile: string | undefined;
