@@ -125,7 +125,7 @@ const useAudioActions = () => {
         });
 
         const completionsData = await chatCompletionsMut.mutateAsync({
-          prompt: transcribedData.transcribed_response as string,
+          prompt: transcribedData.transcribed_response,
         });
 
         const response = await axios.post<{
@@ -133,7 +133,7 @@ const useAudioActions = () => {
           message: string;
           status: string;
         }>("https://snu-explorance.somesh.xyz/ai/snu-explorance-ai/audio", {
-          query: transcribedData.transcribed_response as string,
+          query: transcribedData.transcribed_response,
         });
 
         playAudio(response.data?.audio);
