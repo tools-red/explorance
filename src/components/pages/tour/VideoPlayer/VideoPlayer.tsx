@@ -39,6 +39,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     setCalcWidth(newCalcWidth);
   }, []);
 
+  useEffect(() => {
+    console.log(paused);
+  }, [paused]);
+
   // useEffect(() => {
   //   setSubtitleTrackState([]);
   //   const newSubtitleTrack: SubtitleTrackArrayType = {
@@ -94,7 +98,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           }}
           volume={volume}
           loop={true}
-          playing={paused}
+          playing={paused} // change nomenclature
           width={calcWidth}
           // controls={true}
           height="100%"

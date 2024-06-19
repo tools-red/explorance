@@ -1,7 +1,8 @@
+import axios from "axios";
+
 import { useEffect, useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { convertAudioFileToBase64 } from "~/utils/fileToBase64";
-import axios from "axios";
 import { useVideoPlayStateAtom } from "~/lib/atom";
 
 const useAudioActions = () => {
@@ -11,11 +12,6 @@ const useAudioActions = () => {
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [isResponding, setIsResponding] = useState<boolean>(false);
 
-  // const [audioUrl, setAudioUrl] = useState("");
-
-  // const [audioBuffer, setAudioBuffer] = useState(null);
-  // const [audioSource, setAudioSource] = useState(null);
-
   const transcribeAudioMut = api.openAI.transcribeAudio.useMutation();
   const chatCompletionsMut = api.openAI.chatCompletions.useMutation();
 
@@ -23,8 +19,7 @@ const useAudioActions = () => {
 
   const initiateRecording = async () => {
     try {
-      setVideoPauseState({ paused: !paused });
-
+      setVideoPauseState({ paused: false });
       const audio_stream = await navigator.mediaDevices.getUserMedia({
         audio: true,
       });
@@ -96,6 +91,9 @@ const useAudioActions = () => {
     });
     const audioUrl = URL.createObjectURL(audioBlob);
     const audioElem = new Audio(audioUrl);
+    audioElem.addEventListener("ended", () => {
+      setVideoPauseState({ paused: true });
+    });
     audioElem
       .play()
       .catch((error) => console.error("Failed to play audio:", error));
@@ -154,7 +152,6 @@ const useAudioActions = () => {
   }, [userAudioChunks, isDataAvailable]);
 
   const endRecording = async () => {
-    setVideoPauseState({ paused: paused });
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);

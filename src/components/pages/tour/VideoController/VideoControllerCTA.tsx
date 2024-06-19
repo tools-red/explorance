@@ -6,6 +6,7 @@ interface VideoControlerProps {
   icon: IconType;
   alternateStateIndicate?: boolean;
   iconSize: number;
+  isDisabled?: boolean;
   handleOperation?: () => void;
 }
 
@@ -13,11 +14,13 @@ const VideoControllerCTA: React.FC<VideoControlerProps> = ({
   icon,
   label,
   iconSize,
+  isDisabled,
   alternateStateIndicate,
   handleOperation,
 }) => {
   return (
     <Button
+      isDisabled={isDisabled}
       borderRadius={20}
       p={2}
       h={8}

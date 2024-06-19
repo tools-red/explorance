@@ -81,13 +81,17 @@ type selectedEventAtom = {
   } | null;
 };
 
-type SubtitleTrackArray = {
+type PlayVideoCTADisabledAtomState = {
+  disabled: boolean;
+};
+
+type SubtitleTrackArrayType = {
   default: boolean;
   kind: string;
   srcLang: string;
   src: string;
   label: string;
-}[];
+};
 
 export {
   type EventDatabaseResponse,
@@ -100,5 +104,6 @@ export {
   type responseWindowAtomState,
   type videoPlayState,
   type selectedEventAtom,
-  type SubtitleTrackArray,
+  type SubtitleTrackArrayType,
+  type PlayVideoCTADisabledAtomState,
 };

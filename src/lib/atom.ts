@@ -1,10 +1,11 @@
 import { atom, useAtom } from "jotai";
-import { atomWithStorage, selectAtom } from "jotai/utils";
+import { atomWithStorage } from "jotai/utils";
 import {
   videoSequenceAtomState,
   responseWindowAtomState,
   videoPlayState,
   selectedEventAtom,
+  PlayVideoCTADisabledAtomState,
 } from "~/types";
 
 export const VideoSequenceAtom = atom<videoSequenceAtomState>({
@@ -20,6 +21,10 @@ export const VideoPlayAtom = atom<videoPlayState>({
   paused: true,
 });
 
+export const PlayVideoCTADisabledAtom = atom<PlayVideoCTADisabledAtomState>({
+  disabled: false,
+});
+
 export const CampusEventsAtom = atomWithStorage<selectedEventAtom>(
   "selectedEventAtom",
   {
@@ -31,3 +36,5 @@ export const useVideoSequenceAtom = () => useAtom(VideoSequenceAtom);
 export const useResponseWindowAtom = () => useAtom(ResponseWindowAtom);
 export const useVideoPlayStateAtom = () => useAtom(VideoPlayAtom);
 export const useCampusEventsAtom = () => useAtom(CampusEventsAtom);
+export const usePlayVideoDisabledStateAtom = () =>
+  useAtom(PlayVideoCTADisabledAtom);
