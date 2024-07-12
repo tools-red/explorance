@@ -1,13 +1,13 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import HeroCarousel from "~/components/home/HeroCarousel";
 import BasePageLayout from "~/layouts/BasePageLayout";
 
 const Home = () => {
   return (
     <BasePageLayout>
-      <Box>
+      <Flex flexDir="column">
         <HeroCarousel />
-      </Box>
+      </Flex>
     </BasePageLayout>
   );
 };
