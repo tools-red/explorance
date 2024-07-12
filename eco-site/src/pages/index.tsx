@@ -1,10 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
+import BasePageLayout from "~/layouts/BasePageLayout";
 
 const Home = () => {
   return (
-    <Box>
+    <BasePageLayout>
       <Text>Project Starts here</Text>
-    </Box>
+    </BasePageLayout>
   );
 };
 
