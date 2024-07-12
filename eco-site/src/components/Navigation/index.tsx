@@ -2,11 +2,11 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 
 interface NavigationProps {}
 
-const Navigation = () => {
+const Navigation: React.FC<NavigationProps> = ({}) => {
   return (
-    <Flex>
+    <Flex p={3} align="center" justify="space-between">
       <Text>Product Logo</Text>
-      <Flex>
+      <Flex align="center" gap={3}>
         <Button>Sign In</Button>
         <Button>Cart</Button>
       </Flex>
