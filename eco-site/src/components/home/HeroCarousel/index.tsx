@@ -3,6 +3,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { SwiperSlide, Swiper } from "swiper/react";
 
 import "swiper/css";
+import CarouselSlide from "./CarouselSlide";
 
 interface HeroCarouselProps {}
 
@@ -17,25 +18,13 @@ const HeroCarousel: React.FC<HeroCarouselProps> = () => {
         slidesPerView={1}
       >
         <SwiperSlide>
-          <Flex align="center" justify="center" w="full" bg="green.500" h={450}>
-            <Text>Slide 1</Text>
-          </Flex>
+          <CarouselSlide color="green.500" carouselImage="Slide 1" />
         </SwiperSlide>
         <SwiperSlide>
-          <Flex align="center" justify="center" w="full" bg="blue.500" h={450}>
-            <Text>Slide 2</Text>
-          </Flex>
+          <CarouselSlide color="blue.500" carouselImage="Slide 2" />
         </SwiperSlide>
         <SwiperSlide>
-          <Flex
-            align="center"
-            justify="center"
-            w="full"
-            bg="orange.500"
-            h={450}
-          >
-            <Text>Slide 3</Text>
-          </Flex>
+          <CarouselSlide color="orange.400" carouselImage="Slide 3" />
         </SwiperSlide>
       </Swiper>
     </Box>
