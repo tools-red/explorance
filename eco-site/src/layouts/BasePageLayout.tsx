@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
-import Navigation from "~/components/Navigation";
+import Navigation from "~/components/global/Navigation";
 
 interface BasePageLayoutProps {
   children: React.ReactNode;
