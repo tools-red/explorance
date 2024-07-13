@@ -10,7 +10,7 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = ({ children }) => {
   return (
     <Flex flexDir={"column"}>
       <Navigation />
-      <Box bg="red">{children}</Box>
+      <Box>{children}</Box>
     </Flex>
   );
 };

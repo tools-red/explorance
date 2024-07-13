@@ -4,6 +4,5 @@ interface ContentLakeProductsType {
   productTitle: string;
   slug: string;
 }
-[];
 
 export { type ContentLakeProductsType };
