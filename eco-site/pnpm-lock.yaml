@@ -41,6 +41,9 @@ dependencies:
   geist:
     specifier: ^1.3.0
     version: 1.3.1(next@14.2.5)
+  jotai:
+    specifier: ^2.9.0
+    version: 2.9.0(@types/react@18.3.3)(react@18.3.1)
   next:
     specifier: ^14.2.4
     version: 14.2.5(@babel/core@7.24.8)(react-dom@18.3.1)(react@18.3.1)
@@ -7680,6 +7683,22 @@ packages:
 
   /jose@5.6.3:
     resolution: {integrity: sha512-1Jh//hEEwMhNYPDDLwXHa2ePWgWiFNNUadVmguAAw2IJ6sj9mNxV5tGXJNqlMkJAybF6Lgw1mISDxTePP/187g==}
+    dev: false
+
+  /jotai@2.9.0(@types/react@18.3.3)(react@18.3.1):
+    resolution: {integrity: sha512-MioTpMvR78IGfJ+W8EwQj3kwTkb+u0reGnTyg3oJZMWK9rK9v8NBSC9Rhrg9jrrFYA6bGZtzJa96zsuAYF6W3w==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.3.3
+      react: 18.3.1
     dev: false
 
   /js-tokens@4.0.0:
