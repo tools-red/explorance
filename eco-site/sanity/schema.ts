@@ -21,12 +21,26 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           name: "slug",
           title: "Slug",
           type: "slug",
-          options: { source: "name" },
+          options: {
+            // Corrected property: source: "productTitle"
+            source: "productTitle", // Use "productTitle" as the source for slug generation
+          },
         },
         {
           name: "productDescription",
           title: "Product Description",
           type: "string",
+        },
+        {
+          name: "productType",
+          title: "Product Type",
+          type: "string",
+          options: {
+            list: [
+              { title: "Caffine", value: "caffine" },
+              { title: "Medicine", value: "medecine" },
+            ],
+          },
         },
       ],
     },
