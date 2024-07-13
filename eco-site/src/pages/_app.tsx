@@ -1,6 +1,7 @@
 import { GeistSans } from "geist/font/sans";
 import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { Provider as JotaiProvider } from "jotai";
 
 import { type Session } from "next-auth";
 import { type AppType } from "next/app";
@@ -16,9 +17,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <ChakraProvider>
-        <div className={GeistSans.className}>
-          <Component {...pageProps} />
-        </div>
+        <JotaiProvider>
+          <div className={GeistSans.className}>
+            <Component {...pageProps} />
+          </div>
+        </JotaiProvider>
       </ChakraProvider>
     </SessionProvider>
   );
