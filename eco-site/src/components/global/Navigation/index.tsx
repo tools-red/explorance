@@ -1,16 +1,26 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
+import Cart from "../Cart";
 
 interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = ({}) => {
+  const {
+    isOpen: isCartOpen,
+    onOpen: onCartOpen,
+    onClose: onCartClose,
+  } = useDisclosure();
+
   return (
-    <Flex p={3} align="center" justify="space-between">
-      <Text>Product Logo</Text>
-      <Flex align="center" gap={3}>
-        <Button>Sign In</Button>
-        <Button>Cart</Button>
+    <Box>
+      <Flex p={3} align="center" justify="space-between">
+        <Text>Product Logo</Text>
+        <Flex align="center" gap={3}>
+          <Button>Sign In</Button>
+          <Button onClick={onCartOpen}>Cart</Button>
+        </Flex>
       </Flex>
-    </Flex>
+      <Cart isOpen={isCartOpen} onClose={onCartClose} />
+    </Box>
   );
 };
 

@@ -21,7 +21,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
-        <DrawerHeader>Create your account</DrawerHeader>
+        <DrawerHeader>Your Shopping Cart</DrawerHeader>
 
         <DrawerBody>
           <Text>Cart is empty...</Text>
@@ -29,9 +29,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
         <DrawerFooter>
           <Button variant="outline" mr={3} onClick={onClose}>
-            Cancel
+            Clear Cart
           </Button>
-          <Button colorScheme="blue">Save</Button>
+          <Button colorScheme="blue">Purchase</Button>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
