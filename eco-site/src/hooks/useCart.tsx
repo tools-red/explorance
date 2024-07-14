@@ -46,7 +46,28 @@ const useCart = () => {
     }
   };
 
-  return;
+  const removeFromCart = (productId: string) => {
+    const existingItem = cartItems.items.find(
+      (item) => item.productDetails.productId === productId
+    );
+
+    if (existingItem) {
+      const updatedCart = cartItems.items.filter(
+        (item) => item.productDetails.productId !== productId
+      );
+
+      const newTotalPrice =
+        cartItems.totalPrice -
+        existingItem?.productDetails.productPrice *
+          existingItem?.cartItemAmount;
+
+      setCartState({
+        cartItems: { items: updatedCart, totalPrice: newTotalPrice },
+      });
+    }
+  };
+
+  return { addToCart, removeFromCart };
 };
 
 export default useCart;
