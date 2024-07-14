@@ -67,7 +67,16 @@ const useCart = () => {
     }
   };
 
-  return { addToCart, removeFromCart };
+  const clearCart = () => {
+    setCartState({
+      cartItems: {
+        items: [],
+        totalPrice: 0,
+      },
+    });
+  };
+
+  return { addToCart, removeFromCart, clearCart };
 };
 
 export default useCart;

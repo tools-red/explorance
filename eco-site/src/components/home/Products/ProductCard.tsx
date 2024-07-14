@@ -4,9 +4,13 @@ import { FaCartPlus } from "react-icons/fa";
 
 interface ProductCardProps {
   product: ContentLakeProductsType;
+  addToCart: (
+    product: ContentLakeProductsType,
+    productQuantity?: number
+  ) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
   return (
     <Flex w={180} flexDir="column">
       <Box h={200} w="full" bgColor="purple.500" />
@@ -21,6 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             p={2}
             fontSize="small"
             rightIcon={<Icon as={FaCartPlus} />}
+            onClick={() => addToCart(product)}
           >
             Add to Cart
           </Button>

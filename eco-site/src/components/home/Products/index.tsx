@@ -1,12 +1,21 @@
 import { Box, Flex, Grid, GridItem, Spinner, Text } from "@chakra-ui/react";
 import { ContentLakeProductsType } from "~/types/contentLake";
 import ProductCard from "./ProductCard";
+import useCart from "~/hooks/useCart";
+import { useCartAtom } from "~/lib/atom";
+import { useEffect } from "react";
 
 interface ProductsProps {
   products: ContentLakeProductsType[];
 }
 
 const Products: React.FC<ProductsProps> = ({ products }) => {
+  const { addToCart } = useCart();
+  const [{ cartItems }] = useCartAtom();
+
+  useEffect(() => {
+    console.log({ cartItems });
+  }, [cartItems]);
   return (
     <Box p={5}>
       {products && products.length > 0 ? (
@@ -14,7 +23,7 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
           {products?.map((product, index) => {
             return (
               <GridItem key={index}>
-                <ProductCard product={product} />
+                <ProductCard addToCart={addToCart} product={product} />
               </GridItem>
             );
           })}
