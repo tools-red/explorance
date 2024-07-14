@@ -1,4 +1,5 @@
 interface ContentLakeProductsType {
+  productId: string;
   productDescription: string;
   productPrice: number;
   productTitle: string;

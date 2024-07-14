@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import HeroCarousel from "~/components/home/HeroCarousel";
 import Products from "~/components/home/Products";
@@ -16,6 +16,7 @@ export const getServerSideProps = (async () => {
 const Home = ({
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  console.log({ products });
   return (
     <BasePageLayout>
       <Flex flexDir="column">

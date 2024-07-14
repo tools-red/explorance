@@ -9,7 +9,6 @@ import {
   DrawerOverlay,
   Text,
 } from "@chakra-ui/react";
-import { useCartAtom } from "~/lib/atom";
 
 interface CartProps {
   isOpen: boolean;

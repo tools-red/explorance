@@ -7,7 +7,7 @@ interface CartItem {
 
 interface Cart {
   items: CartItem[]; // Array of CartItem objects
-  totalPrice: number | 0; // Total price of all items in the cart
+  totalPrice: number; // Total price of all items in the cart
 }
 
 export { type Cart, type CartItem };
