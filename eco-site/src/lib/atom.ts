@@ -3,7 +3,7 @@ import { atomWithStorage } from "jotai/utils";
 import { cartAtomStateType } from "~/types/atom";
 
 const cartAtom = atomWithStorage<cartAtomStateType>("CartAtomState", {
-  cartItems: [],
+  cartItems: { items: [], totalPrice: 0 },
 });
 
 export const useCartAtom = () => useAtom(cartAtom);
