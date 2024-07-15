@@ -1,5 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { ContentLakeProductsType } from "~/types/contentLake";
+import ProductDisplay from "../Products/ProductDisplay";
+import useCart from "~/hooks/useCart";
 
 interface FeaturedProductsProps {
   featuredProducts: ContentLakeProductsType[];
@@ -8,9 +10,10 @@ interface FeaturedProductsProps {
 const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
   featuredProducts,
 }) => {
+  const { addToCart } = useCart();
   return (
     <Box bg="#FAF1EC">
-      <Flex py={10} w={1150} marginX="auto" flexDir="column">
+      <Flex py={20} w={1150} marginX="auto" flexDir="column">
         <Flex gap={20} flexDir="column">
           <Flex mb={10} gap={3} flexDir={"column"}>
             <Flex flexDir="column">
@@ -27,6 +30,7 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
             </Text>
           </Flex>
         </Flex>
+        <ProductDisplay products={featuredProducts} addToCart={addToCart} />
       </Flex>
     </Box>
   );
