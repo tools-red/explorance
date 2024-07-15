@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, useDisclosure } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
 
 import LogoArt from "../../../../public/Indibliss_Logo.svg";
@@ -6,6 +6,7 @@ import LogoArt from "../../../../public/Indibliss_Logo.svg";
 import Image from "next/image";
 import Cart from "../Cart";
 import { StaticImageData } from "next/image";
+import SearchBar from "../SearchBar";
 
 interface NavigationProps {}
 
@@ -21,11 +22,12 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
       <Flex p={3} align="center" justify="space-between">
         <Image
           alt="Logo Art"
-          width={130}
-          height={130}
+          width={150}
+          height={150}
           src={LogoArt as StaticImageData}
         />
         <Flex align="center" gap={3}>
+          <SearchBar />
           <Button
             onClick={() =>
               signIn("google", {
