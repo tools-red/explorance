@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
+import { signIn } from "next-auth/react";
 import Cart from "../Cart";
 
 interface NavigationProps {}
@@ -15,7 +16,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
       <Flex p={3} align="center" justify="space-between">
         <Text>Product Logo</Text>
         <Flex align="center" gap={3}>
-          <Button>Sign In</Button>
+          <Button onClick={() => signIn("google")}>Sign In</Button>
           <Button onClick={onCartOpen}>Cart</Button>
         </Flex>
       </Flex>

@@ -38,37 +38,6 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-  callbacks: {
-    signIn: async ({ profile }) => {
-      if (!profile?.email) {
-        throw new Error("No Profile Found");
-      }
-
-      await db.user.upsert({
-        where: {
-          email: profile.email,
-        },
-        create: {
-          email: profile.email,
-          name: profile.name,
-          image: profile.image,
-        },
-        update: {
-          name: profile.name,
-          image: profile.image,
-        },
-      });
-
-      return true;
-    },
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
-  },
   adapter: PrismaAdapter(db) as Adapter,
   providers: [
     GoogleProvider({
@@ -85,6 +54,35 @@ export const authOptions: NextAuthOptions = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
+  callbacks: {
+    signIn: async ({ profile }) => {
+      if (!profile?.email) {
+        throw new Error("No Profile Found");
+      }
+
+      await db.user.upsert({
+        where: {
+          email: profile.email,
+        },
+        create: {
+          email: profile.email,
+          name: profile.name,
+        },
+        update: {
+          name: profile.name,
+        },
+      });
+
+      return true;
+    },
+    session: ({ session, user }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: user.id,
+      },
+    }),
+  },
 };
 
 /**
