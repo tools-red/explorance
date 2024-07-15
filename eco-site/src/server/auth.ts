@@ -6,9 +6,9 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
-import DiscordProvider from "next-auth/providers/discord";
+import GoogleProvider from "next-auth/providers/google";
 
-import { env } from "~/env";
+import { env } from "~/env.mjs";
 import { db } from "~/server/db";
 
 /**
@@ -39,6 +39,28 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
+    signIn: async ({ profile }) => {
+      if (!profile?.email) {
+        throw new Error("No Profile Found");
+      }
+
+      await db.user.upsert({
+        where: {
+          email: profile.email,
+        },
+        create: {
+          email: profile.email,
+          name: profile.name,
+          image: profile.image,
+        },
+        update: {
+          name: profile.name,
+          image: profile.image,
+        },
+      });
+
+      return true;
+    },
     session: ({ session, user }) => ({
       ...session,
       user: {
@@ -49,9 +71,9 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(db) as Adapter,
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
     /**
      * ...add more providers here.
