@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Spinner, Text } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import ProductView from "~/components/product/ProductView";
@@ -13,18 +13,18 @@ export const getServerSideProps = (async (context) => {
   );
   return { props: { productData } };
 }) satisfies GetServerSideProps<{
-  productData: ContentLakeProductsType | undefined;
+  productData: ContentLakeProductsType[];
 }>;
 
 const ProductViewPage = ({
   productData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const router = useRouter();
+  console.log({ productData });
   return (
     <BasePageLayout>
       <ProductView
-        productNameCrumb={productData?.productTitle ?? ""}
-        productTypeCrumb={productData?.productType ?? ""}
+        productNameCrumb={productData[0]?.productTitle ?? ""}
+        productTypeCrumb={productData[0]?.productType ?? ""}
       />
     </BasePageLayout>
   );

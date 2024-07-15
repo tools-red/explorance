@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import BreadCrumbs from "~/components/global/BreadCrumbs";
+import { toTitleCase } from "~/utils/helpers";
 
 interface ProductViewProps {
   productTypeCrumb: string;
@@ -15,7 +16,10 @@ const ProductView: React.FC<ProductViewProps> = ({
       <BreadCrumbs
         crumbArray={[
           { crumbLabel: "Home", isSelected: false },
-          { crumbLabel: `${productTypeCrumb} products`, isSelected: false },
+          {
+            crumbLabel: `${toTitleCase(productTypeCrumb)}`,
+            isSelected: false,
+          },
           { crumbLabel: `${productNameCrumb}`, isSelected: true },
         ]}
         selectedIndex={2}

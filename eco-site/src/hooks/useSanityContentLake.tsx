@@ -16,7 +16,7 @@ const useSanityContentLake = () => {
 
   const fetchProductDetailsFromContentLake = async (
     slug: string
-  ): Promise<ContentLakeProductsType | undefined> => {
+  ): Promise<ContentLakeProductsType[]> => {
     try {
       const productData =
         await client.fetch(`*[_type == "product" && slug.current == "${slug}"]{
@@ -29,7 +29,7 @@ const useSanityContentLake = () => {
         "ImageURL" : productImage.asset->url,
         }`);
 
-      return productData as ContentLakeProductsType;
+      return productData as ContentLakeProductsType[];
     } catch (err) {
       console.log("Error");
       throw new Error("Error while fetching productData");
