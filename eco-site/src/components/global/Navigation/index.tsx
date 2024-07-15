@@ -16,7 +16,16 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
       <Flex p={3} align="center" justify="space-between">
         <Text>Product Logo</Text>
         <Flex align="center" gap={3}>
-          <Button onClick={() => signIn("google")}>Sign In</Button>
+          <Button
+            onClick={() =>
+              signIn("google", {
+                redirect: true,
+                callbackUrl: "/",
+              })
+            }
+          >
+            Sign In
+          </Button>
           <Button onClick={onCartOpen}>Cart</Button>
         </Flex>
       </Flex>
