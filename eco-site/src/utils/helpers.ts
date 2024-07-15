@@ -1,5 +1,6 @@
 const toTitleCase = (str: string) => {
-  return str.replace(/\b\w/g, (match) => match.toUpperCase());
+  const result = str.replace(/([A-Z])/g, " $1");
+  return result.charAt(0).toUpperCase() + result.slice(1);
 };
 
 export { toTitleCase };

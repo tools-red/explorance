@@ -22,10 +22,12 @@ const ProductViewPage = ({
   console.log({ productData });
   return (
     <BasePageLayout>
-      <ProductView
-        productNameCrumb={productData[0]?.productTitle ?? ""}
-        productTypeCrumb={productData[0]?.productType ?? ""}
-      />
+      <Flex mt={10} flexDir="column">
+        <ProductView
+          productNameCrumb={productData[0]?.productTitle ?? ""}
+          productTypeCrumb={productData[0]?.productType ?? ""}
+        />
+      </Flex>
     </BasePageLayout>
   );
 };
