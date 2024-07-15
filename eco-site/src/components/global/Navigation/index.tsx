@@ -1,4 +1,5 @@
-import { Box, Button, Flex, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, useDisclosure } from "@chakra-ui/react";
+import { FiUser, FiShoppingCart } from "react-icons/fi";
 import { signIn } from "next-auth/react";
 
 import LogoArt from "../../../../public/Indibliss_Logo.svg";
@@ -7,6 +8,7 @@ import Image from "next/image";
 import Cart from "../Cart";
 import { StaticImageData } from "next/image";
 import SearchBar from "../SearchBar";
+import IconCTA from "~/components/buttons/IconCta";
 
 interface NavigationProps {}
 
@@ -26,19 +28,12 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
           height={150}
           src={LogoArt as StaticImageData}
         />
-        <Flex align="center" gap={3}>
+        <Flex align="center" gap={6}>
           <SearchBar />
-          <Button
-            onClick={() =>
-              signIn("google", {
-                redirect: true,
-                callbackUrl: "/",
-              })
-            }
-          >
-            Sign In
-          </Button>
-          <Button onClick={onCartOpen}>Cart</Button>
+          <Flex gap={4}>
+            <IconCTA CTAIcon={FiUser} EventHandler={() => {}} />
+            <IconCTA CTAIcon={FiShoppingCart} EventHandler={onCartOpen} />
+          </Flex>
         </Flex>
       </Flex>
       <Cart isOpen={isCartOpen} onClose={onCartClose} />
