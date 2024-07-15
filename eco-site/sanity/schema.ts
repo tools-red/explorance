@@ -15,6 +15,12 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           validation: (Rule) => Rule.required(),
         },
         {
+          name: "productImage",
+          title: "Product Image",
+          type: "image",
+          validation: (Rule) => Rule.required(),
+        },
+        {
           name: "productId",
           title: "Product ID",
           type: "string",

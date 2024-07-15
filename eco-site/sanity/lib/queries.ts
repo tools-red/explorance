@@ -1,5 +1,5 @@
 // Product Content Lake Queries
-const fetchAllProducts: string = `*[_type == "product"]{
+const fetchAllProductsQuery: string = `*[_type == "product"]{
 productId,
   productTitle,
   productPrice,
@@ -8,4 +8,13 @@ productId,
   "ImageURL" : productImage.asset->url,
 }`;
 
-export { fetchAllProducts };
+const fetchAllFeaturedProductsQuery: string = `*[_type == "featuredProducts"] {
+productId,
+  productTitle,
+  productPrice,
+  "slug": slug.current,
+  productDescription,
+  "ImageURL" : productImage.asset->url,
+}`;
+
+export { fetchAllProductsQuery, fetchAllFeaturedProductsQuery };
