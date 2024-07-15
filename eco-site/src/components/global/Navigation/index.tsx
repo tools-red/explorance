@@ -14,7 +14,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   return (
     <Box>
       <Flex p={3} align="center" justify="space-between">
-        <Text>Product Logo</Text>
+        <Text className="marcellus-regular">Product Logo</Text>
         <Flex align="center" gap={3}>
           <Button
             onClick={() =>
