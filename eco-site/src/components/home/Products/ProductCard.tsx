@@ -1,6 +1,5 @@
 import { Box, Button, Flex, Icon, Text, useToast } from "@chakra-ui/react";
 import { ContentLakeProductsType } from "~/types/contentLake";
-import { FaCartPlus } from "react-icons/fa";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -17,6 +16,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
   const [buttonOpacity, setButtonOpacity] = useState<number>(0);
   return (
     <Flex
+      cursor="pointer"
+      onClick={() => (window.location.href = `/products/${product.slug}`)}
       onMouseEnter={() => setButtonOpacity(1)}
       onMouseLeave={() => setButtonOpacity(0)}
       w={300}
@@ -47,10 +48,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
         </Button>
       </Box>
       <Flex mt={3} align="center" flexDir="column">
-        <Text fontSize="large" className="marcellus-regular">
+        <Text
+          color={buttonOpacity === 1 ? "#CC724F" : ""}
+          fontSize="large"
+          className="marcellus-regular"
+        >
           {product.productTitle}
         </Text>
-        <Text fontWeight={300}>{`$${product.productPrice}`}</Text>
+        <Text fontWeight={300}>{`$${product.productPrice.toFixed(2)}`}</Text>
       </Flex>
     </Flex>
   );

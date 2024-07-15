@@ -14,8 +14,30 @@ const useSanityContentLake = () => {
     }
   };
 
+  const fetchProductDetailsFromContentLake = async (
+    slug: string
+  ): Promise<ContentLakeProductsType | undefined> => {
+    try {
+      const productData =
+        await client.fetch(`*[_type == "product" && slug.current == "${slug}"]{
+        productId,
+        productTitle,
+        productPrice,
+        "slug": slug.current,
+        productDescription,
+        "ImageURL" : productImage.asset->url,
+        }`);
+
+      return productData as ContentLakeProductsType;
+    } catch (err) {
+      console.log("Error");
+      throw new Error("Error while fetching productData");
+    }
+  };
+
   return {
     fetchProductsFromContentLake,
+    fetchProductDetailsFromContentLake,
   };
 };
 

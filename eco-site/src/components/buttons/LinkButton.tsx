@@ -16,6 +16,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       variant="none"
       px={5}
       borderRadius={20}
+      fontWeight={400}
       color={altScheme ? "#CC723F" : "white"}
       bg={altScheme ? "#FAF1EC" : "#CC723F"}
       as="a"
