@@ -22,11 +22,11 @@ const BreadCrumbs: React.FC<BreadCrumbProps> = ({ crumbArray }) => {
       </BreadcrumbItem>
 
       <BreadcrumbItem>
-        <BreadcrumbLink href="#">About</BreadcrumbLink>
+        <BreadcrumbLink href="#">Collections</BreadcrumbLink>
       </BreadcrumbItem>
 
       <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href="#">Contact</BreadcrumbLink>
+        <BreadcrumbLink href="#">Shop All</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
   );
