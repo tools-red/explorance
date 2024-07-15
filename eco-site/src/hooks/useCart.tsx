@@ -1,9 +1,11 @@
+import { useToast } from "@chakra-ui/react";
 import { useCartAtom } from "~/lib/atom";
 import { ContentLakeProductsType } from "~/types/contentLake";
 import { CartItem } from "~/types/purchase";
 
 const useCart = () => {
   const [{ cartItems }, setCartState] = useCartAtom();
+  const toast = useToast();
 
   const addToCart = (
     product: ContentLakeProductsType,
@@ -28,6 +30,15 @@ const useCart = () => {
       setCartState({
         cartItems: { items: updatedCart, totalPrice: newTotalPrice },
       });
+
+      toast({
+        title: "Added to cart",
+        description: `Added ${product.productTitle} to cart`,
+        status: "success",
+        position: "bottom-left",
+        duration: 9000,
+        isClosable: true,
+      });
     } else {
       const newItem: CartItem = {
         productDetails: product,
@@ -42,6 +53,15 @@ const useCart = () => {
           items: [...cartItems.items, newItem],
           totalPrice: newTotalPrice,
         },
+      });
+
+      toast({
+        title: "Added to cart",
+        description: `Added ${product.productTitle} to cart`,
+        status: "success",
+        position: "bottom-left",
+        duration: 9000,
+        isClosable: true,
       });
     }
   };

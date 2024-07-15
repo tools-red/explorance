@@ -1,6 +1,9 @@
-import { Box, Button, Flex, Icon, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Text, useToast } from "@chakra-ui/react";
 import { ContentLakeProductsType } from "~/types/contentLake";
 import { FaCartPlus } from "react-icons/fa";
+
+import Image from "next/image";
+import { useState } from "react";
 
 interface ProductCardProps {
   product: ContentLakeProductsType;
@@ -11,25 +14,43 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
+  const [buttonOpacity, setButtonOpacity] = useState<number>(0);
   return (
-    <Flex w={180} flexDir="column">
-      <Box h={200} w="full" bgColor="purple.500" />
-      <Flex mt={2} flexDir="column">
-        <Text fontWeight={600}>{product.productTitle}</Text>
-        <Flex align="center" justify="space-between">
-          <Text>${product.productPrice}</Text>
-          <Button
-            variant="none"
-            bg="green.200"
-            size="small"
-            p={2}
-            fontSize="small"
-            rightIcon={<Icon as={FaCartPlus} />}
-            onClick={() => addToCart(product)}
-          >
-            Add to Cart
-          </Button>
-        </Flex>
+    <Flex
+      onMouseEnter={() => setButtonOpacity(1)}
+      onMouseLeave={() => setButtonOpacity(0)}
+      w={300}
+      flexDir="column"
+      overflow="hidden"
+    >
+      {/* Added overflow: hidden */}
+      <Box position="relative" width={300} height={400}>
+        <Image
+          src={product.ImageURL}
+          alt={`Image-Product-${product.productId}`}
+          layout="fill"
+          objectFit="cover"
+        />
+        <Button
+          bg="#CC723F"
+          color="white"
+          top={0}
+          position="absolute"
+          opacity={buttonOpacity} // Initial opacity set to 0
+          onClick={() => addToCart(product)}
+          transition="all 0.3s ease-in-out" // Added transition for smooth hover effect
+          _hover={{
+            bg: "#AB4C15",
+          }}
+        >
+          Add to Cart
+        </Button>
+      </Box>
+      <Flex mt={3} align="center" flexDir="column">
+        <Text fontSize="large" className="marcellus-regular">
+          {product.productTitle}
+        </Text>
+        <Text fontWeight={300}>{`$${product.productPrice}`}</Text>
       </Flex>
     </Flex>
   );

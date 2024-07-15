@@ -4,7 +4,8 @@ productId,
   productTitle,
   productPrice,
   "slug": slug.current,
-  productDescription
+  productDescription,
+  "ImageURL" : productImage.asset->url,
 }`;
 
 export { fetchAllProducts };

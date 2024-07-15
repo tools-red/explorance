@@ -20,7 +20,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   } = useDisclosure();
 
   return (
-    <Box marginX="auto" w={1150}>
+    <Box mt={3} marginX="auto" w={1150}>
       <Flex p={3} align="center" justify="space-between">
         <Image
           alt="Logo Art"
