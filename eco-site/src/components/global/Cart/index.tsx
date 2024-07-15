@@ -11,9 +11,11 @@ import {
   Icon,
   Text,
 } from "@chakra-ui/react";
-import { IoCloseCircle } from "react-icons/io5";
-import useCart from "~/hooks/useCart";
+import { IoClose } from "react-icons/io5";
 import { useCartAtom } from "~/lib/atom";
+
+import useCart from "~/hooks/useCart";
+import Image from "next/image";
 
 interface CartProps {
   isOpen: boolean;
@@ -27,33 +29,53 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
-      <DrawerContent>
+      <DrawerContent color="white" bg="#222121">
         <DrawerCloseButton />
-        <DrawerHeader>Your Shopping Cart</DrawerHeader>
+        <DrawerHeader fontWeight={300} className="marcellus-regular">
+          Cart
+        </DrawerHeader>
 
         <DrawerBody>
           {cartItems.items.length > 0 ? (
             <Flex gap={3} flexDir="column">
               {cartItems.items.map((item, index) => {
                 return (
-                  <Flex gap={2} key={index} flexDir="column">
-                    <Flex flexDir="column">
-                      <Flex align="center" justify="space-between">
-                        <Text fontSize="large" fontWeight={600}>
-                          {item.productDetails.productTitle}
+                  <Flex gap={5}>
+                    <Image
+                      src={item.productDetails.ImageURL}
+                      width={50}
+                      height={50}
+                      alt={`Image-Product-${item.productDetails.productId}`}
+                    />
+                    <Flex w="full" gap={2} key={index} flexDir="column">
+                      <Flex gap={1} flexDir="column">
+                        <Flex align="center" justify="space-between">
+                          <Text
+                            fontWeight={300}
+                            className="marcellus-regular"
+                            fontSize="large"
+                          >
+                            {item.productDetails.productTitle}
+                          </Text>
+                          <Icon
+                            onClick={() =>
+                              removeFromCart(item.productDetails.productId)
+                            }
+                            cursor="pointer"
+                            color="white"
+                            boxSize={4}
+                            as={IoClose}
+                          />
+                        </Flex>
+                        <Text fontSize="small" fontWeight={300}>
+                          ${item.productDetails.productPrice}
                         </Text>
-                        <Icon
-                          onClick={() =>
-                            removeFromCart(item.productDetails.productId)
-                          }
-                          color="red"
-                          boxSize={5}
-                          as={IoCloseCircle}
-                        />
                       </Flex>
-                      <Text>${item.productDetails.productPrice}</Text>
+                      <Text
+                        color="#949494"
+                        fontSize="small"
+                      >{`Quantity : ${item.cartItemAmount}`}</Text>
                     </Flex>
-                    <Text>{`Quantity : ${item.cartItemAmount}`}</Text>
                   </Flex>
                 );
               })}
@@ -65,12 +87,23 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
         <DrawerFooter>
           <Flex gap={3} w="full" flexDir="column">
-            {" "}
-            <Text>Total: $ {cartItems.totalPrice}</Text>
-            <Button variant="outline" mr={3} onClick={clearCart}>
+            <Flex justify="space-between">
+              <Text className="marcellus-regular">Total:</Text>
+              <Text>${cartItems.totalPrice}</Text>
+            </Flex>
+            <Button
+              bg="#CC724F"
+              border="none"
+              color="white"
+              variant="outline"
+              _hover={{ bg: "#AB4C15" }}
+              onClick={clearCart}
+            >
               Clear Cart
             </Button>
-            <Button colorScheme="blue">Purchase</Button>
+            <Button bg="#FAF1EC" color="#CC724F">
+              Purchase
+            </Button>
           </Flex>
         </DrawerFooter>
       </DrawerContent>
