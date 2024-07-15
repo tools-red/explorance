@@ -8,7 +8,7 @@ import Image from "next/image";
 import Cart from "../Cart";
 import { StaticImageData } from "next/image";
 import SearchBar from "../SearchBar";
-import IconCTA from "~/components/buttons/IconCta";
+import IconCTA from "~/components/global/Buttons/IconCta";
 
 interface NavigationProps {}
 

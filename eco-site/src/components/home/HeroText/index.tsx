@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import LinkButton from "~/components/buttons/LinkButton";
+import LinkButton from "~/components/global/Buttons/LinkButton";
 
 const HeroText = () => {
   return (

@@ -23,6 +23,7 @@ const useSanityContentLake = () => {
         productId,
         productTitle,
         productPrice,
+        productType,
         "slug": slug.current,
         productDescription,
         "ImageURL" : productImage.asset->url,

@@ -1,6 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
+import ProductView from "~/components/product/ProductView";
 import useSanityContentLake from "~/hooks/useSanityContentLake";
 import BasePageLayout from "~/layouts/BasePageLayout";
 import { ContentLakeProductsType } from "~/types/contentLake";
@@ -19,10 +20,12 @@ const ProductViewPage = ({
   productData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
-  console.log({ productData });
   return (
     <BasePageLayout>
-      <Text>Hi this page is for {router.query.slug}</Text>
+      <ProductView
+        productNameCrumb={productData?.productTitle ?? ""}
+        productTypeCrumb={productData?.productType ?? ""}
+      />
     </BasePageLayout>
   );
 };
