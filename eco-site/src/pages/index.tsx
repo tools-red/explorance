@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import HeroCarousel from "~/components/home/HeroCarousel";
+import HeroText from "~/components/home/HeroText";
 import Products from "~/components/home/Products";
 import useSanityContentLake from "~/hooks/useSanityContentLake";
 import BasePageLayout from "~/layouts/BasePageLayout";
@@ -20,6 +21,7 @@ const Home = ({
   return (
     <BasePageLayout>
       <Flex flexDir="column">
+        <HeroText />
         <HeroCarousel />
       </Flex>
       <Products products={products} />
