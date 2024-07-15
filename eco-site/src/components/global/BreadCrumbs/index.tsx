@@ -1,34 +1,26 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Icon,
-} from "@chakra-ui/react";
-import { BsSlashLg } from "react-icons/bs";
+import { Flex, Text } from "@chakra-ui/react";
 
 interface BreadCrumbProps {
-  crumbArray: { crumbLabel: string; crumbHref: "/" }[];
+  crumbArray: { crumbLabel: string; isSelected: boolean }[];
   selectedIndex: number;
 }
 
 const BreadCrumbs: React.FC<BreadCrumbProps> = ({ crumbArray }) => {
   return (
-    <Breadcrumb
-      spacing="8px"
-      separator={<Icon as={BsSlashLg} color="gray.500" />}
-    >
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Home</BreadcrumbLink>
-      </BreadcrumbItem>
-
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Collections</BreadcrumbLink>
-      </BreadcrumbItem>
-
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href="#">Shop All</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>
+    <Flex gap={1.5}>
+      {crumbArray.map((crumb, index) => {
+        return (
+          <Flex
+            color={crumb.isSelected ? "black" : "gray.500"}
+            gap={1.5}
+            key={index}
+          >
+            <Text>{`${crumb.crumbLabel}`}</Text>
+            <Text> {`${index === crumbArray.length - 1 ? "" : "/"}`}</Text>
+          </Flex>
+        );
+      })}
+    </Flex>
   );
 };
 

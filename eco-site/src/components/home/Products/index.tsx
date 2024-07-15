@@ -20,7 +20,14 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
   return (
     <Flex my={10} w={1150} marginX="auto" flexDir="column">
       <Flex gap={20} flexDir="column">
-        <BreadCrumbs selectedIndex={0} crumbArray={[]} />
+        <BreadCrumbs
+          selectedIndex={0}
+          crumbArray={[
+            { crumbLabel: "Home", isSelected: false },
+            { crumbLabel: "Collections", isSelected: false },
+            { crumbLabel: "Shopping", isSelected: true },
+          ]}
+        />
         <Flex mb={10} gap={3} flexDir={"column"}>
           <Text className="marcellus-regular" fontSize="40px" w={500}>
             Shop All Natural Delights
