@@ -17,7 +17,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
   return (
     <Flex
       cursor="pointer"
-      onClick={() => (window.location.href = `/products/${product.slug}`)}
       onMouseEnter={() => setButtonOpacity(1)}
       onMouseLeave={() => setButtonOpacity(0)}
       w={300}
@@ -49,6 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
       </Box>
       <Flex mt={3} align="center" flexDir="column">
         <Text
+          onClick={() => (window.location.href = `/products/${product.slug}`)}
           color={buttonOpacity === 1 ? "#CC724F" : ""}
           fontSize="large"
           className="marcellus-regular"
