@@ -11,6 +11,7 @@ import useSanityContentLake from "~/hooks/useSanityContentLake";
 import BasePageLayout from "~/layouts/BasePageLayout";
 import { ContentLakeProductsType } from "~/types/contentLake";
 import FeaturedProducts from "~/components/home/FeaturedProducts";
+import Banner from "~/components/home/Banner";
 
 export const getServerSideProps = (async () => {
   const { fetchProductsFromContentLake } = useSanityContentLake();
@@ -38,6 +39,7 @@ const Home = ({
       </Flex>
       <FeaturedProducts featuredProducts={featuredProducts} />
       <Products products={products} />
+      <Banner />
     </BasePageLayout>
   );
 };
