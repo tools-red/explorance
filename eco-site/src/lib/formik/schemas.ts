@@ -7,7 +7,7 @@ const CheckoutFormSchema = Yup.object().shape({
   address: Yup.string().required("Please enter your address"),
   city: Yup.string().required("Please specify your city"),
   state: Yup.string().required("Please specify your state"),
-  postalCode: Yup.number().required("Please specify your postal code"),
+  postalcode: Yup.string().required("Please specify your postal code"),
 });
 
 export { CheckoutFormSchema };
