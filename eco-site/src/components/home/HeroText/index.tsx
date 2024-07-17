@@ -12,7 +12,7 @@ const HeroText = () => {
       flexDir="row"
     >
       <Text className="marcellus-regular" fontSize="40px" w={500}>
-        Discover Pure Organics Bliss & Ayurvedic Delights with Indiibliss
+        Discover Pure Organics Bliss & Ayurvedic Delights with Indibliss
       </Text>
       <Flex flexDir="column">
         <Text w={500}>
