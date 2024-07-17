@@ -31,12 +31,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
         <Flex align="center" gap={6}>
           <SearchBar />
           <Flex gap={4}>
-            <IconCTA
-              CTAIcon={FiUser}
-              EventHandler={() =>
-                signIn("google", { callbackUrl: "/", redirect: true })
-              }
-            />
+            <IconCTA CTAIcon={FiUser} EventHandler={() => signIn("google")} />
             <IconCTA CTAIcon={FiShoppingCart} EventHandler={onCartOpen} />
           </Flex>
         </Flex>

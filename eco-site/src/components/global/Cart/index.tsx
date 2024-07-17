@@ -101,7 +101,11 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
             >
               Clear Cart
             </Button>
-            <Button bg="#FAF1EC" color="#CC724F">
+            <Button
+              onClick={() => (window.location.href = "/checkout")}
+              bg="#FAF1EC"
+              color="#CC724F"
+            >
               Purchase
             </Button>
           </Flex>
