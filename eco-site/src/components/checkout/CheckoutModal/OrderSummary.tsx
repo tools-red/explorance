@@ -54,7 +54,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ cartItems }) => {
       </Flex>
       <Flex gap={1} flexDir="column">
         <Button color="white" bg="#CC723F" _hover={{ bg: "#B45722" }}>
-          Checkout
+          Edit Cart
         </Button>
         <Button color="#CC723F" bg="#FAF1EC" _hover={{ bg: "#F8E5DB" }}>
           Cancel

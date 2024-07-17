@@ -9,7 +9,7 @@ interface CheckoutModalProps {
 
 const CheckoutModal: React.FC<CheckoutModalProps> = ({ cartItems }) => {
   return (
-    <Flex flexDir="row" h={500}>
+    <Flex gap={5} flexDir="row" h={500}>
       <CheckoutForm />
       <OrderSummary cartItems={cartItems} />
     </Flex>

@@ -1,33 +1,18 @@
-import { Flex, FormLabel, Input } from "@chakra-ui/react";
-import { Field } from "formik";
+import { Flex, FormLabel } from "@chakra-ui/react";
 
-interface FormInputFeildProps {
+interface FormInputFeildLayoutProps {
   formLable: string;
-  placeholder: string;
-  name: string;
-  type: string;
+  children: React.ReactNode;
 }
 
-const FormInputFeild: React.FC<FormInputFeildProps> = ({
+const FormInputFeildLayout: React.FC<FormInputFeildLayoutProps> = ({
   formLable,
-  name,
-  placeholder,
-  type,
-}) => {
-  return (
-    <Flex w="full" flexDir="column">
-      <FormLabel>{formLable}</FormLabel>
-      <Input
-        border="1px solid"
-        borderColor="rgba(0, 0, 0, 0.2)"
-        placeholder={placeholder}
-        _placeholder={{ fontWeight: 200 }}
-        as={Field}
-        name={name}
-        type={type}
-      />
-    </Flex>
-  );
-};
+  children,
+}) => (
+  <Flex w="full" flexDir="column">
+    <FormLabel>{formLable}</FormLabel>
+    {children}
+  </Flex>
+);
 
-export default FormInputFeild;
+export default FormInputFeildLayout;
