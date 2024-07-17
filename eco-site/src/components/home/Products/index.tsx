@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { ContentLakeProductsType } from "~/types/contentLake";
 import useCart from "~/hooks/useCart";
-import { useCartAtom } from "~/lib/atom";
+import { useCartAtom } from "~/lib/jotai/atom";
 import { useEffect } from "react";
 import ProductDisplay from "./ProductDisplay";
 import BreadCrumbs from "~/components/global/BreadCrumbs";

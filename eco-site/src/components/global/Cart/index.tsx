@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { IoClose } from "react-icons/io5";
-import { useCartAtom } from "~/lib/atom";
+import { useCartAtom } from "~/lib/jotai/atom";
 
 import useCart from "~/hooks/useCart";
 import Image from "next/image";

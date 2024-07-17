@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { useCartAtom } from "~/lib/atom";
+import { useCartAtom } from "~/lib/jotai/atom";
 
 import CheckoutModal from "~/components/checkout/CheckoutModal";
 

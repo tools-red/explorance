@@ -1,5 +1,5 @@
 import { useToast } from "@chakra-ui/react";
-import { useCartAtom } from "~/lib/atom";
+import { useCartAtom } from "~/lib/jotai/atom";
 import { ContentLakeProductsType } from "~/types/contentLake";
 import { CartItem } from "~/types/purchase";
 
