@@ -1,6 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import OrderSummary from "./OrderSummary";
 import { Cart } from "~/types/purchase";
+import CheckoutForm from "./CheckoutForm";
 
 interface CheckoutModalProps {
   cartItems: Cart;
@@ -9,7 +10,7 @@ interface CheckoutModalProps {
 const CheckoutModal: React.FC<CheckoutModalProps> = ({ cartItems }) => {
   return (
     <Flex flexDir="row" h={500}>
-      <Flex w={450} flexDir="column"></Flex>
+      <CheckoutForm />
       <OrderSummary cartItems={cartItems} />
     </Flex>
   );
