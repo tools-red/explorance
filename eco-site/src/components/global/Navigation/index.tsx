@@ -36,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ products }) => {
           />
         </Box>
         <Flex align="center" gap={6}>
-          <SearchBar />
+          <SearchBar products={products} />
           <Flex gap={4}>
             <IconCTA CTAIcon={FiUser} EventHandler={() => signIn("google")} />
             <Box pos="relative">
