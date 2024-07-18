@@ -9,4 +9,4 @@ const generatePurchaseId = () => {
   return `PUR-${timestamp}${randomChars}`;
 };
 
-export { toTitleCase };
+export { toTitleCase, generatePurchaseId };
