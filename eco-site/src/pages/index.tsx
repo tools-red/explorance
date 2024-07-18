@@ -37,7 +37,7 @@ const Home = ({
         <HeroText />
         <HeroCarousel />
       </Flex>
-      <FeaturedProducts featuredProducts={featuredProducts} />
+      {/* <FeaturedProducts featuredProducts={featuredProducts} /> */}
       <Products products={products} />
       <Banner />
     </BasePageLayout>
