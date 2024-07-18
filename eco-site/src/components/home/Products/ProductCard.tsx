@@ -31,14 +31,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
       overflow="hidden"
     >
       {/* Added overflow: hidden */}
-      <Box position="relative" width={width ?? 300} height={height ?? 400}>
+      <Box
+        onClick={() => (window.location.href = `/products/${product.slug}`)}
+        position="relative"
+        width={width ?? 300}
+        height={height ?? 400}
+      >
         <Image
           src={product.ImageURL}
           alt={`Image-Product-${product.productId}`}
           layout="fill"
           objectFit="cover"
         />
-        <Button
+        {/* <Button
           bg="#CC723F"
           color="white"
           top={0}
@@ -51,10 +56,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
           }}
         >
           Add to Cart
-        </Button>
+        </Button> */}
       </Box>
       <Flex mt={3} align="center" flexDir="column">
         <Text
+          transition="all 0.3s"
           onClick={() => (window.location.href = `/products/${product.slug}`)}
           color={buttonOpacity === 1 ? "#CC724F" : ""}
           fontSize="large"
