@@ -24,10 +24,11 @@ const useSanityContentLake = () => {
         productId,
         productTitle,
         productPrice,
-        productType,
+        stockCount,
         "slug": slug.current,
         productDescription,
         "ImageURL" : productImage.asset->url,
+        "patchId": _id,
         }`);
 
       return productData as ContentLakeProductsType[];

@@ -13,7 +13,7 @@ import useCart from "~/hooks/useCart";
 import useSanityContentLake from "~/hooks/useSanityContentLake";
 import BasePageLayout from "~/layouts/BasePageLayout";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import ProductCard from "~/components/home/Products/ProductCard";
 
 export const getServerSideProps = (async (context) => {
