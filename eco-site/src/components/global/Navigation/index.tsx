@@ -22,8 +22,8 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   } = useDisclosure();
 
   return (
-    <Box mt={3} marginX="auto" w={1150}>
-      <Flex p={3} align="center" justify="space-between">
+    <Box mt={6} marginX="auto" w={1150}>
+      <Flex align="center" justify="space-between">
         <Box cursor="pointer" onClick={() => (window.location.href = "/")}>
           <Image
             alt="Logo Art"
