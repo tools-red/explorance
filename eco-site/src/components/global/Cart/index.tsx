@@ -102,6 +102,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
               Clear Cart
             </Button>
             <Button
+              isDisabled={cartItems.items.length === 0 ? true : false}
               onClick={() => (window.location.href = "/checkout")}
               bg="#FAF1EC"
               color="#CC724F"
