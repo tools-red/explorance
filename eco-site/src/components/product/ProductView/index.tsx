@@ -22,14 +22,28 @@ const ProductView: React.FC<ProductViewProps> = ({
       <Flex gap={10} flexDir="column">
         <Flex gap={3} flexDir="column">
           <Text fontSize="6xl">{productData?.productTitle}</Text>
-          <Text className="marcellus-regular" fontSize="2xl">
-            ${productData?.productPrice.toFixed(2)}
-          </Text>
+          <Flex align="center" gap={3}>
+            <Text className="marcellus-regular" fontSize="2xl">
+              ${productData?.productPrice.toFixed(2)}
+            </Text>
+            {productData?.stockCount === 0 ? (
+              <Text fontWeight={500} color="red.500">
+                Out of Stock
+              </Text>
+            ) : productData?.stockCount! < 5 ? (
+              <Text fontWeight={500} color="orange.500">
+                Few in Stock
+              </Text>
+            ) : (
+              <></>
+            )}
+          </Flex>
           <Text mt={3} color="#797979" w={500}>
             {productData?.productDescription}
           </Text>
         </Flex>
         <AddCartCTA
+          stockCount={productData?.stockCount!}
           product={productData as ContentLakeProductsType}
           addToCart={addToCart}
         />

@@ -62,7 +62,20 @@ const ProductCard: React.FC<ProductCardProps> = ({
         >
           {product.productTitle}
         </Text>
-        <Text fontWeight={300}>{`$${product.productPrice.toFixed(2)}`}</Text>
+        <Flex gap={3}>
+          <Text fontWeight={300}>{`$${product.productPrice.toFixed(2)}`}</Text>
+          {product.stockCount === 0 ? (
+            <Text fontWeight={500} color="red.500">
+              Out of Stock
+            </Text>
+          ) : product.stockCount < 5 ? (
+            <Text fontWeight={500} color="orange.500">
+              Few in Stock
+            </Text>
+          ) : (
+            <></>
+          )}
+        </Flex>
       </Flex>
     </Flex>
   );

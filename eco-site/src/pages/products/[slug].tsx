@@ -47,7 +47,7 @@ const ProductViewPage = ({
           crumbArray={[
             { crumbLabel: "Home", isSelected: false },
             {
-              crumbLabel: `${toTitleCase(productData[0]?.productType ?? "")}`,
+              crumbLabel: "Collection",
               isSelected: false,
             },
             {

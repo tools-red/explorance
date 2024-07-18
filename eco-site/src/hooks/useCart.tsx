@@ -18,7 +18,10 @@ const useCart = () => {
     if (existingItem) {
       const updatedCart = cartItems.items.map((item) => {
         if (item.productDetails.productId === product.productId) {
-          return { ...item, cartItemAmount: item.cartItemAmount + 1 };
+          return {
+            ...item,
+            cartItemAmount: item.cartItemAmount + (productQuantity ?? 1),
+          };
         } else {
           return item;
         }

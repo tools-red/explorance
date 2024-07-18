@@ -5,17 +5,26 @@ import { ContentLakeProductsType } from "~/types/contentLake";
 
 interface AddCartCTAProps {
   product: ContentLakeProductsType;
+  stockCount: number;
   addToCart: (
     product: ContentLakeProductsType,
     productQuantity?: number
   ) => void;
 }
 
-const AddCartCTA: React.FC<AddCartCTAProps> = ({ addToCart, product }) => {
+const AddCartCTA: React.FC<AddCartCTAProps> = ({
+  addToCart,
+  product,
+  stockCount,
+}) => {
   const [quanity, setQuantity] = useState<number>(1);
 
   const handleQuantityIncrease = () => {
-    setQuantity(quanity + 1);
+    if (quanity === stockCount) {
+      return;
+    } else {
+      setQuantity(quanity + 1);
+    }
   };
   const handleQuantityDecrease = () => {
     if (quanity > 1) {
@@ -28,6 +37,7 @@ const AddCartCTA: React.FC<AddCartCTAProps> = ({ addToCart, product }) => {
   return (
     <Flex align="center" gap={3}>
       <Flex
+        color={stockCount === 0 ? "gray.400" : ""}
         borderRadius={5}
         px={4}
         py={3}
@@ -35,18 +45,30 @@ const AddCartCTA: React.FC<AddCartCTAProps> = ({ addToCart, product }) => {
         gap={4}
         align="center"
       >
-        <Icon cursor="pointer" onClick={handleQuantityDecrease} as={FaMinus} />
+        <Icon
+          cursor={stockCount === 0 ? "not-allowed" : "pointer"}
+          onClick={stockCount === 0 ? () => {} : handleQuantityDecrease}
+          as={FaMinus}
+        />
         <Text>{quanity}</Text>
-        <Icon cursor="pointer" onClick={handleQuantityIncrease} as={FaPlus} />
+        <Icon
+          cursor={stockCount === 0 ? "not-allowed" : "pointer"}
+          onClick={stockCount === 0 ? () => {} : handleQuantityIncrease}
+          as={FaPlus}
+        />
       </Flex>
       <Button
+        isDisabled={stockCount === 0 ? true : false}
         color="white"
         bg="black"
         p={6}
         fontSize="small"
         textTransform="uppercase"
         _hover={{}}
-        onClick={() => addToCart(product, quanity)}
+        onClick={() => {
+          setQuantity(1);
+          addToCart(product, quanity);
+        }}
       >
         Add to Cart
       </Button>
