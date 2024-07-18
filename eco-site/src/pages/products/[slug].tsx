@@ -5,7 +5,6 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { fetchAllProductsQuery } from "../../../sanity/lib/queries";
 import { ContentLakeProductsType } from "~/types/contentLake";
-import { toTitleCase } from "~/utils/helpers";
 
 import BreadCrumbs from "~/components/global/BreadCrumbs";
 import ProductView from "~/components/product/ProductView";

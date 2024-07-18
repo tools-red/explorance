@@ -21,21 +21,24 @@ const ProductView: React.FC<ProductViewProps> = ({
     <Flex align="center" justify="space-between" mt={10}>
       <Flex gap={10} flexDir="column">
         <Flex gap={3} flexDir="column">
-          <Text fontSize="6xl">{productData?.productTitle}</Text>
+          <Text className="marcellus-regular" fontSize="6xl">
+            {productData?.productTitle}
+          </Text>
           <Flex align="center" gap={3}>
-            <Text className="marcellus-regular" fontSize="2xl">
-              ${productData?.productPrice.toFixed(2)}
-            </Text>
+            <Text fontSize="2xl">${productData?.productPrice.toFixed(2)}</Text>
             {productData?.stockCount === 0 ? (
               <Text fontWeight={500} color="red.500">
                 Out of Stock
               </Text>
             ) : productData?.stockCount! < 5 ? (
               <Text fontWeight={500} color="orange.500">
-                Few in Stock
+                {`Few in Stock (${productData?.stockCount})`}
               </Text>
             ) : (
-              <></>
+              <Flex gap={2}>
+                <Text fontWeight={500}>{`Availability:`}</Text>
+                <Text color="gray.500">{`${productData?.stockCount} in stock`}</Text>
+              </Flex>
             )}
           </Flex>
           <Text mt={3} color="#797979" w={500}>
