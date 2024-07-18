@@ -22,12 +22,14 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   return (
     <Box mt={3} marginX="auto" w={1150}>
       <Flex p={3} align="center" justify="space-between">
-        <Image
-          alt="Logo Art"
-          width={150}
-          height={150}
-          src={LogoArt as StaticImageData}
-        />
+        <Box cursor="pointer" onClick={() => (window.location.href = "/")}>
+          <Image
+            alt="Logo Art"
+            width={150}
+            height={150}
+            src={LogoArt as StaticImageData}
+          />
+        </Box>
         <Flex align="center" gap={6}>
           <SearchBar />
           <Flex gap={4}>
