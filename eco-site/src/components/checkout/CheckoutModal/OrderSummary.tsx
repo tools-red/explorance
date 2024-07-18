@@ -10,7 +10,7 @@ interface OrderSummaryProps {
 const OrderSummary: React.FC<OrderSummaryProps> = ({ cartItems }) => {
   return (
     <Flex justify="space-between" flexDir="column" w={400}>
-      <Flex h={250} overflowY="auto" gap={3} flexDir="column">
+      <Flex pr={1} h={300} overflowY="auto" gap={3} flexDir="column">
         {cartItems.items.map((item, index) => {
           return (
             <Flex justify="space-between" key={index}>
@@ -37,27 +37,29 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ cartItems }) => {
           );
         })}
       </Flex>
-      <Flex gap={1} flexDir="column">
-        <Flex justify="space-between">
-          <Text>Subtotal</Text>
-          <Text>{`$${cartItems.totalPrice.toFixed(2)}`}</Text>
+      <Flex flexDir="column" gap={3}>
+        <Flex gap={1} flexDir="column">
+          <Flex justify="space-between">
+            <Text>Subtotal</Text>
+            <Text>{`$${cartItems.totalPrice.toFixed(2)}`}</Text>
+          </Flex>
+          <Flex justify="space-between">
+            <Text>Shipping</Text>
+            <Text>{`$${(90).toFixed(2)}`}</Text>
+          </Flex>
+          <Divider my={1.5} borderColor="gray.300" />
+          <Flex justify="space-between">
+            <Text>Total</Text>
+            <Text>{`$${(cartItems.totalPrice + 90).toFixed(2)}`}</Text>
+          </Flex>
         </Flex>
-        <Flex justify="space-between">
-          <Text>Shipping</Text>
-          <Text>{`$${(90).toFixed(2)}`}</Text>
-        </Flex>
-        <Divider my={1.5} borderColor="gray.300" />
-        <Flex justify="space-between">
-          <Text>Total</Text>
-          <Text>{`$${(cartItems.totalPrice + 90).toFixed(2)}`}</Text>
-        </Flex>
-      </Flex>
-      <Flex gap={1} flexDir="column">
-        <Button color="white" bg="#CC723F" _hover={{ bg: "#B45722" }}>
-          Edit Cart
-        </Button>
-        <Button color="#CC723F" bg="#FAF1EC" _hover={{ bg: "#F8E5DB" }}>
-          Cancel
+        <Button
+          onClick={() => (window.location.href = "/")}
+          color="white"
+          bg="#CC723F"
+          _hover={{ bg: "#B45722" }}
+        >
+          Cancel Purchase
         </Button>
       </Flex>
     </Flex>
