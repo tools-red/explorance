@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Icon, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Text, useDisclosure } from "@chakra-ui/react";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import { signIn } from "next-auth/react";
 
@@ -9,10 +9,12 @@ import Cart from "../Cart";
 import { StaticImageData } from "next/image";
 import SearchBar from "../SearchBar";
 import IconCTA from "~/components/global/Buttons/IconCta";
+import { useCartAtom } from "~/lib/jotai/atom";
 
 interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = ({}) => {
+  const [{ cartItems }] = useCartAtom();
   const {
     isOpen: isCartOpen,
     onOpen: onCartOpen,
@@ -34,7 +36,25 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
           <SearchBar />
           <Flex gap={4}>
             <IconCTA CTAIcon={FiUser} EventHandler={() => signIn("google")} />
-            <IconCTA CTAIcon={FiShoppingCart} EventHandler={onCartOpen} />
+            <Box pos="relative">
+              <IconCTA CTAIcon={FiShoppingCart} EventHandler={onCartOpen} />
+              {cartItems.items.length > 0 ? (
+                <Text
+                  color="white"
+                  fontSize="small"
+                  borderRadius={20}
+                  bg="#CC723F"
+                  px={2}
+                  pos="absolute"
+                  top={-4}
+                  right={-5}
+                >
+                  {cartItems.items.length}
+                </Text>
+              ) : (
+                <></>
+              )}
+            </Box>
           </Flex>
         </Flex>
       </Flex>
