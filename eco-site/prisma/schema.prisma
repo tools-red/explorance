@@ -65,3 +65,15 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model Purchases {
+    id              String @id @default(cuid())
+    name            String
+    address         String
+    city            String
+    email           String
+    mobile          String
+    postalcode      String
+    state           String
+    purchase_id     String
+}
