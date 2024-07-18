@@ -11,13 +11,15 @@ import { Formik, Form, Field } from "formik";
 import { InitalCheckoutFormValues } from "~/lib/formik/initialValues";
 import { CheckoutFormSchema } from "~/lib/formik/schemas";
 import { CheckoutFormType } from "~/types/form";
+import { useState } from "react";
+import { useCartAtom } from "~/lib/jotai/atom";
 
 import FormInputFeild from "~/components/global/Form/Feilds/FormInputFeild";
 import useOrder from "~/hooks/useOrder";
-import { useState } from "react";
 
 const CheckoutForm = () => {
   const toast = useToast();
+  const [{ cartItems }, setCartAtom] = useCartAtom();
   const { createOrder } = useOrder();
 
   const [error, setError] = useState<boolean>(false);
@@ -32,21 +34,39 @@ const CheckoutForm = () => {
       setIsSubmitting(true);
       const generate_order_response = await createOrder(
         values,
+        cartItems,
         setError,
         setErrorMessage
       );
       if (generate_order_response && generate_order_response.purchase_order) {
         setOrderState(generate_order_response.order_state);
         setCTAMessage("Order Confirmed");
-        window.location.href = "/";
+        toast({
+          title: "Order Confimed",
+          description: "Your Order details have been sent to your mail",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "bottom-left",
+        });
+        setCartAtom({
+          cartItems: { items: [], totalPrice: 0 },
+        });
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 3000);
       } else {
         setError(true);
         setErrorMessage("Couldn't generate purchase request");
+        setIsSubmitting(false);
+        setCTAMessage("Checkout");
       }
     } catch (err) {
       console.log(err);
       setError(true);
       setErrorMessage("Something went wrong processing order");
+      setIsSubmitting(false);
+      setCTAMessage("Checkout");
       throw new Error("Something went wrong processing order");
     }
   };

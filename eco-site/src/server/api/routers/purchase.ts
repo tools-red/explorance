@@ -7,18 +7,26 @@ import { generatePurchaseId } from "~/utils/helpers";
 
 const purchase = createTRPCRouter({
   createPurchase: publicProcedure
-    .input(Yup.object(CheckoutFormSchema.fields))
+    .input(
+      Yup.object({
+        formData: Yup.object(CheckoutFormSchema.fields),
+        purchaseDetails: Yup.mixed(),
+      })
+    )
     .mutation(async ({ input }) => {
       try {
         const {
-          address,
-          city,
-          email,
-          firstname,
-          lastname,
-          mobile,
-          postalcode,
-          state,
+          formData: {
+            address,
+            city,
+            email,
+            firstname,
+            lastname,
+            mobile,
+            postalcode,
+            state,
+          },
+          purchaseDetails,
         } = input;
 
         const purchase_Id = generatePurchaseId();
@@ -33,6 +41,7 @@ const purchase = createTRPCRouter({
             postalcode: postalcode as string,
             state: state as string,
             purchase_id: purchase_Id,
+            purchase_details: purchaseDetails,
           },
         });
 
