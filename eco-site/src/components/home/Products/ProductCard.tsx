@@ -6,13 +6,20 @@ import { useState } from "react";
 
 interface ProductCardProps {
   product: ContentLakeProductsType;
+  width?: number;
+  height?: number;
   addToCart: (
     product: ContentLakeProductsType,
     productQuantity?: number
   ) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  height,
+  width,
+  addToCart,
+}) => {
   const [buttonOpacity, setButtonOpacity] = useState<number>(0);
   return (
     <Flex
@@ -24,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
       overflow="hidden"
     >
       {/* Added overflow: hidden */}
-      <Box position="relative" width={300} height={400}>
+      <Box position="relative" width={width ?? 300} height={height ?? 400}>
         <Image
           src={product.ImageURL}
           alt={`Image-Product-${product.productId}`}
