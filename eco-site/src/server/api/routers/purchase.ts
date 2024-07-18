@@ -38,7 +38,7 @@ const purchase = createTRPCRouter({
 
         return {
           purchase_order: purchase_order,
-          orderState: true,
+          order_state: true,
         };
       } catch (err) {
         console.log(err);
