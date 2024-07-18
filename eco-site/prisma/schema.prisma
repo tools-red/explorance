@@ -76,4 +76,5 @@ model Purchases {
     postalcode      String
     state           String
     purchase_id     String
+    purchase_details Json
 }
