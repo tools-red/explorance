@@ -31,7 +31,7 @@ const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   console.log({ products });
   return (
-    <BasePageLayout>
+    <BasePageLayout products={products}>
       <Flex flexDir="column">
         <HeroText />
         <HeroCarousel />

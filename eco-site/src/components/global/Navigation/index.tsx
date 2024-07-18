@@ -10,10 +10,13 @@ import { StaticImageData } from "next/image";
 import SearchBar from "../SearchBar";
 import IconCTA from "~/components/global/Buttons/IconCta";
 import { useCartAtom } from "~/lib/jotai/atom";
+import { ContentLakeProductsType } from "~/types/contentLake";
 
-interface NavigationProps {}
+interface NavigationProps {
+  products: ContentLakeProductsType[];
+}
 
-const Navigation: React.FC<NavigationProps> = ({}) => {
+const Navigation: React.FC<NavigationProps> = ({ products }) => {
   const [{ cartItems }] = useCartAtom();
   const {
     isOpen: isCartOpen,

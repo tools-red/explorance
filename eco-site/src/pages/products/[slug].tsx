@@ -41,7 +41,7 @@ const ProductViewPage = ({
   );
 
   return (
-    <BasePageLayout>
+    <BasePageLayout products={products}>
       <Flex w={1150} marginX="auto" mt={10} flexDir="column">
         <BreadCrumbs
           crumbArray={[
