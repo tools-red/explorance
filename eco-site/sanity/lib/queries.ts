@@ -1,12 +1,13 @@
 // Product Content Lake Queries
 const fetchAllProductsQuery: string = `*[_type == "product"]{
-productId,
+  productId,
   productTitle,
   productPrice,
-  productType,
+  stockCount,
   "slug": slug.current,
   productDescription,
   "ImageURL" : productImage.asset->url,
+  "patchId": _id,
 }`;
 
 const fetchAllFeaturedProductsQuery: string = `*[_type == "featuredProducts"] {

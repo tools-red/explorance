@@ -113,18 +113,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           validation: (Rule) => Rule.required(),
         },
         {
-          name: "productType",
-          title: "Product Type",
-          type: "string",
-          options: {
-            list: [
-              { title: "Coconut Oil", value: "coconutOil" },
-              { title: "Honey", value: "honey" },
-              { title: "Tea", value: "tea" },
-              { title: "Jaggery", value: "jaggery" },
-              { title: "Special filter coffee", value: "specialFilterCoffee" },
-            ],
-          },
+          name: "stockCount",
+          title: "stock Count",
+          type: "number",
           validation: (Rule) => Rule.required(),
         },
       ],

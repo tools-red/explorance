@@ -16,10 +16,12 @@ import { useCartAtom } from "~/lib/jotai/atom";
 
 import FormInputFeild from "~/components/global/Form/Feilds/FormInputFeild";
 import useOrder from "~/hooks/useOrder";
+import useSanityContentLake from "~/hooks/useSanityContentLake";
 
 const CheckoutForm = () => {
   const toast = useToast();
   const [{ cartItems }, setCartAtom] = useCartAtom();
+  const { updateContentLakeProductStock } = useSanityContentLake();
   const { createOrder } = useOrder();
 
   const [error, setError] = useState<boolean>(false);
@@ -39,6 +41,7 @@ const CheckoutForm = () => {
         setErrorMessage
       );
       if (generate_order_response && generate_order_response.purchase_order) {
+        await updateContentLakeProductStock(cartItems.items);
         setOrderState(generate_order_response.order_state);
         setCTAMessage("Order Confirmed");
         toast({
@@ -70,6 +73,13 @@ const CheckoutForm = () => {
       throw new Error("Something went wrong processing order");
     }
   };
+
+  cartItems.items.map((item) => {
+    console.log({
+      itemName: item.productDetails.productTitle,
+      itemPatchId: item.productDetails.patchId,
+    });
+  });
 
   return (
     <Box w={500}>
