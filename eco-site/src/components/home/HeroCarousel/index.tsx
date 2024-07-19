@@ -10,9 +10,7 @@ import SliderImage4 from "../../../../public/SliderImage4.jpg";
 import "swiper/css";
 import CarouselSlide from "./CarouselSlide";
 
-interface HeroCarouselProps {}
-
-const HeroCarousel: React.FC<HeroCarouselProps> = () => {
+const HeroCarousel = () => {
   return (
     <Box>
       <Swiper

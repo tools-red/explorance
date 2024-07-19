@@ -85,7 +85,7 @@ const ProductViewPage = ({
                   </SwiperSlide>
                 ))
               ) : (
-                <Box>Couldn't load data, please refresh page</Box>
+                <Box>Couldn&apos;t load data, please refresh page</Box>
               )}
             </Swiper>
           </Flex>

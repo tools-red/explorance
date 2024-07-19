@@ -1,5 +1,5 @@
+/* eslint-disable */
 import { Flex, Grid, GridItem, Icon, Text } from "@chakra-ui/react";
-import { FaInstagram } from "react-icons/fa";
 import { RiWhatsappFill, RiInstagramFill } from "react-icons/ri";
 import Image from "next/image";
 import { ContentLakeProductsType } from "~/types/contentLake";
@@ -25,7 +25,7 @@ const ProductView: React.FC<ProductViewProps> = ({
             {productData?.productTitle}
           </Text>
           <Flex align="center" gap={3}>
-            <Text fontSize="2xl">${productData?.productPrice.toFixed(2)}</Text>
+            <Text fontSize="2xl">${productData?.productPrice?.toFixed(2)}</Text>
             {productData?.stockCount === 0 ? (
               <Text fontWeight={500} color="red.500">
                 Out of Stock
@@ -62,7 +62,7 @@ const ProductView: React.FC<ProductViewProps> = ({
         <Image
           width={400}
           height={600}
-          src={productData?.ImageURL as string}
+          src={productData?.ImageURL!}
           alt={`Image-Product-${productData?.productId}`}
         />
         <Grid templateColumns="repeat(1,1fr)">

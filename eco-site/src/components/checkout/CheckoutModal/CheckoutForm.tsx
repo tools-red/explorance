@@ -41,7 +41,7 @@ const CheckoutForm = () => {
         setError,
         setErrorMessage
       );
-      if (generate_order_response && generate_order_response.purchase_order) {
+      if (generate_order_response?.purchase_order) {
         await updateContentLakeProductStock(cartItems.items);
         setOrderState(generate_order_response.order_state);
         setCTAMessage("Order Confirmed");

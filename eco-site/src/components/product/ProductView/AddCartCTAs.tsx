@@ -47,13 +47,13 @@ const AddCartCTA: React.FC<AddCartCTAProps> = ({
       >
         <Icon
           cursor={stockCount === 0 ? "not-allowed" : "pointer"}
-          onClick={stockCount === 0 ? () => {} : handleQuantityDecrease}
+          onClick={stockCount === 0 ? () => undefined : handleQuantityDecrease}
           as={FaMinus}
         />
         <Text>{quanity}</Text>
         <Icon
           cursor={stockCount === 0 ? "not-allowed" : "pointer"}
-          onClick={stockCount === 0 ? () => {} : handleQuantityIncrease}
+          onClick={stockCount === 0 ? () => undefined : handleQuantityIncrease}
           as={FaPlus}
         />
       </Flex>

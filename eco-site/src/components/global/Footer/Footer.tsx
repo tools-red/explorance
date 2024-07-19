@@ -67,14 +67,14 @@ const Footer = () => {
             </Flex>
             {pathname === "/products/[slug]" ? (
               <Image
-                src={FooterImageAlt as StaticImageData}
+                src={FooterImageAlt}
                 width={350}
                 height={350}
                 alt="Footer Image here"
               />
             ) : (
               <Image
-                src={FooterImage as StaticImageData}
+                src={FooterImage}
                 width={350}
                 height={350}
                 alt="Footer Image here"

@@ -40,14 +40,14 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
             <Flex gap={3} flexDir="column">
               {cartItems.items.map((item, index) => {
                 return (
-                  <Flex gap={5}>
+                  <Flex key={index} gap={5}>
                     <Image
                       src={item.productDetails.ImageURL}
                       width={50}
                       height={50}
                       alt={`Image-Product-${item.productDetails.productId}`}
                     />
-                    <Flex w="full" gap={2} key={index} flexDir="column">
+                    <Flex w="full" gap={2} flexDir="column">
                       <Flex gap={1} flexDir="column">
                         <Flex align="center" justify="space-between">
                           <Text

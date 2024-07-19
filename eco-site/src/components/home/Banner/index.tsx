@@ -13,25 +13,25 @@ const Banner = () => {
     BannerFeatureDescription: string;
   }[] = [
     {
-      BannerImage: BannerImage1 as StaticImageData,
+      BannerImage: BannerImage1,
       BannerFeatureTitle: "FDA Certified",
       BannerFeatureDescription:
         "Our skin products and toys are FDA-certified for safety and sustainability, ensuring peace of mind for parents.",
     },
     {
-      BannerImage: BannerImage2 as StaticImageData,
+      BannerImage: BannerImage2,
       BannerFeatureTitle: "Made in India",
       BannerFeatureDescription:
         "Our products feature handpicked, natural ingredients from India for superior care.",
     },
     {
-      BannerImage: BannerImage3 as StaticImageData,
+      BannerImage: BannerImage3,
       BannerFeatureTitle: "Cruelty-Free",
       BannerFeatureDescription:
         "Certified cruelty-free by PETA, our commitment to natural sustainability & ethical practices.",
     },
     {
-      BannerImage: BannerImage4 as StaticImageData,
+      BannerImage: BannerImage4,
       BannerFeatureTitle: "Plant Based",
       BannerFeatureDescription:
         "We use plant-based formulations with golden ingredients like veldt grape, saffron, and raktachandan.",

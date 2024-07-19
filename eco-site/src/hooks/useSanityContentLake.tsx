@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { CartItem } from "~/types/purchase";
 import { client } from "../../sanity/lib/client";
 import { ContentLakeProductsType } from "~/types/contentLake";

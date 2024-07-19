@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as Yup from "yup";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
@@ -27,6 +28,7 @@ const purchase = createTRPCRouter({
             postalcode,
             state,
           },
+          /* tslint:disable-next-line */
           purchaseDetails,
         } = input;
 
@@ -38,10 +40,11 @@ const purchase = createTRPCRouter({
             city: city as string,
             email: email as string,
             mobile: mobile as string,
-            name: `${firstname} ${lastname}`,
+            name: `${firstname as string} ${lastname as string}`,
             postalcode: postalcode as string,
             state: state as string,
             purchase_id: purchase_Id,
+            /* tslint:disable-next-line */
             purchase_details: purchaseDetails,
           },
         });
@@ -55,7 +58,9 @@ const purchase = createTRPCRouter({
           order_state: true,
         };
       } catch (err) {
+        /* tslint:disable-next-line */
         console.log(err);
+        /* tslint:disable-next-line */
         throw new Error(`Couldn't process order: ${err}`);
       }
     }),

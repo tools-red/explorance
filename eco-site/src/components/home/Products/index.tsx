@@ -33,7 +33,7 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
             Shop All Natural Delights
           </Text>
           <Text color="gray.500" w={700}>
-            Experience the essence of nature's luxury with our organically
+            Experience the essence of nature&apos;s luxury with our organically
             crafted foods. Enriched with pure ingredients inspired by Ayurveda,
             our collection includes the finest coconut oil, honey, tea, jaggery
             powder, and special filter coffee
