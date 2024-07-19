@@ -20,7 +20,7 @@ export const sendMail = async ({
 }: SendMailType) => {
   try {
     const info = await transporter.sendMail({
-      from: '"Amil Sindhis" <amilsindhis@gmail.com>',
+      from: '"Indibliss" <agency.redtools@gmail.com>',
       to,
       subject,
       html,
@@ -33,14 +33,12 @@ export const sendMail = async ({
   }
 };
 
-const sendPurchaseMail = async (to: string, purchase_id: string) => {
+export const sendPurchaseMail = async (to: string, purchase_id: string) => {
   const subject = `Indibliss Products Purchase Confirmed - ${purchase_id}`;
   const html = `<div>
-  <p>Thank you for shopping at Indibliss, we hope to see you again too !!</p>
+  <p>Thank you for shopping at Indibliss, we hope to see you again soon !!</p>
   <p>Your Purchase ID is ${purchase_id}</p>
   </div>`;
 
   await sendMail({ to, subject, html });
 };
-
-export { sendPurchaseMail };

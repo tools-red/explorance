@@ -4,6 +4,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import { CheckoutFormSchema } from "~/lib/formik/schemas";
 import { db } from "~/server/db";
 import { generatePurchaseId } from "~/utils/helpers";
+import { sendPurchaseMail } from "~/server/mail";
 
 const purchase = createTRPCRouter({
   createPurchase: publicProcedure
@@ -44,6 +45,10 @@ const purchase = createTRPCRouter({
             purchase_details: purchaseDetails,
           },
         });
+
+        if (purchase_order) {
+          await sendPurchaseMail(email as string, purchase_Id); // Pass purchase_id here
+        }
 
         return {
           purchase_order: purchase_order,

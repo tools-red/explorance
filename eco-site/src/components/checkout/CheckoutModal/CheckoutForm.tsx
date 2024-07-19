@@ -17,6 +17,7 @@ import { useCartAtom } from "~/lib/jotai/atom";
 import FormInputFeild from "~/components/global/Form/Feilds/FormInputFeild";
 import useOrder from "~/hooks/useOrder";
 import useSanityContentLake from "~/hooks/useSanityContentLake";
+import { sendPurchaseMail } from "~/server/mail";
 
 const CheckoutForm = () => {
   const toast = useToast();
