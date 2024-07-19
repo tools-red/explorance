@@ -23,4 +23,8 @@ const config = {
   },
 };
 
+module.exports = {
+  target: "serverless",
+};
+
 export default config;

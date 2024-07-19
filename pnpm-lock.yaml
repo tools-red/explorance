@@ -11,6 +11,9 @@ dependencies:
   '@chakra-ui/react':
     specifier: ^2.8.2
     version: 2.8.2(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.3.3)(framer-motion@11.3.2)(react-dom@18.3.1)(react@18.3.1)
+  '@netlify/plugin-nextjs':
+    specifier: ^5.5.1
+    version: 5.5.1
   '@prisma/client':
     specifier: ^5.14.0
     version: 5.16.2(prisma@5.16.2)
@@ -3506,6 +3509,11 @@ packages:
     resolution: {integrity: sha512-CHsKq8DMKBf9b3yXPDIU4DbH+ZJd/sJdYOW2llbW/HudP5u0VS6Bfq1hLYfgU7uAYGFIyGGQIsSOXGPEErZiJw==}
     dependencies:
       '@lezer/common': 1.2.1
+    dev: false
+
+  /@netlify/plugin-nextjs@5.5.1:
+    resolution: {integrity: sha512-E0LP4HI6F1Us0va+rCpu9ecJh1GumoH/plQDvAteZv0C4nSP19tn1H+tJUjpVVDsoj6MWIB97ssMh8K0gen1zA==}
+    engines: {node: '>=18.0.0'}
     dev: false
 
   /@next/env@14.2.5:
