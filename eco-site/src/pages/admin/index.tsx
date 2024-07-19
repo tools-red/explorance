@@ -2,6 +2,7 @@ import { Box, Flex, Input, Text } from "@chakra-ui/react";
 
 import Image, { StaticImageData } from "next/image";
 import BrandLogo from "../../../public/Indibliss_Logo.svg";
+import Orders from "~/components/admin/Orders";
 
 const AdminPage = () => {
   return (
@@ -19,7 +20,10 @@ const AdminPage = () => {
           </Text>
           <Text color="#797979">View your orders and manage transactions</Text>
         </Flex>
-        <Input w={400} placeholder="Search for Orders" />
+        <Flex gap={5} flexDir="column">
+          <Input w={400} placeholder="Search for Orders" />
+          <Orders />
+        </Flex>
       </Flex>
     </Box>
   );
