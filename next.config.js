@@ -21,7 +21,6 @@ const config = {
   images: {
     domains: ["cdn.sanity.io"],
   },
-  target: "serverless",
 };
 
 export default config;
