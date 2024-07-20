@@ -8,7 +8,9 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { type RealtimePostgresChangesPayload } from "@supabase/supabase-js";
+import { type FetchPurchasePromiseType } from "~/types/promises";
 import { useState } from "react";
+import useOrder from "~/hooks/useOrder";
 
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
 
@@ -24,13 +26,18 @@ const OrderTableHeader: string[] = [
 interface OrdersTableProps {}
 
 const Orders: React.FC<OrdersTableProps> = ({}) => {
-  const [orders, setOrders] = useState([]);
+  const { handleFetchOrders } = useOrder();
+  const [orders, setOrders] = useState<FetchPurchasePromiseType[] | undefined>(
+    []
+  );
 
-  const handleRealTimeUpdate = (
+  const handleRealTimeUpdate = async (
     payload: RealtimePostgresChangesPayload<{
       [key: string]: any;
     }>
-  ) => {};
+  ) => {
+    const data = await handleFetchOrders();
+  };
 
   useRealTimePurchases(handleRealTimeUpdate);
   return (
