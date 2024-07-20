@@ -16,7 +16,7 @@ import useOrder from "~/hooks/useOrder";
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
 
 const OrderTableHeader: string[] = [
-  "Orders ID",
+  "Purchase ID",
   "Status",
   "Order Amount",
   "Customer name",

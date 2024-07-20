@@ -13,6 +13,11 @@ interface CreatePurchasePromiseType {
   order_state: boolean;
 }
 
+enum STATUS {
+  DISPATCHED = "DISPATCHED",
+  PENDING = "PENDING",
+}
+
 interface FetchPurchasePromiseType {
   id: string;
   name: string;
@@ -23,6 +28,11 @@ interface FetchPurchasePromiseType {
   postalcode: string;
   state: string;
   purchase_id: string;
+  status: STATUS;
 }
 
-export { type CreatePurchasePromiseType, type FetchPurchasePromiseType };
+export {
+  type CreatePurchasePromiseType,
+  type FetchPurchasePromiseType,
+  type STATUS,
+};

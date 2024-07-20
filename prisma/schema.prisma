@@ -77,4 +77,10 @@ model Purchases {
     state           String
     purchase_id     String
     purchase_details Json
+    status STATUS
+}
+
+enum STATUS {
+    DISPATCHED @map("DISPATCHED")
+    PENDING @map("PENDING")
 }
