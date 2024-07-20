@@ -1,6 +1,6 @@
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
 
-import Image, { StaticImageData } from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import BrandLogo from "../../../public/Indibliss_Logo.svg";
 import Orders from "~/components/admin/Orders";
 

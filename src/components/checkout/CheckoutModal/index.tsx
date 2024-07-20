@@ -1,6 +1,6 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import OrderSummary from "./OrderSummary";
-import { Cart } from "~/types/purchase";
+import { type Cart } from "~/types/purchase";
 import CheckoutForm from "./CheckoutForm";
 
 interface CheckoutModalProps {

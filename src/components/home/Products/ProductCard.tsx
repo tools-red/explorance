@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 
 import Image from "next/legacy/image";
 import { useState } from "react";
@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   product,
   height,
   width,
-  addToCart,
+  // addToCart,
 }) => {
   const [buttonOpacity, setButtonOpacity] = useState<number>(0);
   return (

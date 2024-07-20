@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import { env } from "~/env.mjs";
-import { SendMailType } from "~/types/mail";
+import { type SendMailType } from "~/types/mail";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",

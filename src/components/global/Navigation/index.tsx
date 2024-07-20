@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Icon, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import { signIn } from "next-auth/react";
 
@@ -10,7 +10,7 @@ import { StaticImageData } from "next/image";
 import SearchBar from "../SearchBar";
 import IconCTA from "~/components/global/Buttons/IconCta";
 import { useCartAtom } from "~/lib/jotai/atom";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 
 interface NavigationProps {
   products: ContentLakeProductsType[];

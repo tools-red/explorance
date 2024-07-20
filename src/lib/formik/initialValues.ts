@@ -1,4 +1,4 @@
-import { CheckoutFormType } from "~/types/form";
+import { type CheckoutFormType } from "~/types/form";
 
 const InitalCheckoutFormValues: CheckoutFormType = {
   firstname: "",

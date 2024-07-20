@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, GridItem, Spinner, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 
 interface ProductDisplayProps {
   products: ContentLakeProductsType[];

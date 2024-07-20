@@ -7,9 +7,9 @@ import {
   InputLeftElement,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 
 interface SearchBarProps {
   products: ContentLakeProductsType[];
@@ -27,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ products }) => {
     return products.filter((product) =>
       product.productTitle.toLowerCase().includes(lowercaseSearchTerm)
     );
-  }, [searchTerm]);
+  }, [searchTerm, products]);
 
   const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && searchTerm) {

@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import Footer from "~/components/global/Footer/Footer";
 import Navigation from "~/components/global/Navigation";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 
 interface BasePageLayoutProps {
   children: React.ReactNode;

@@ -1,8 +1,8 @@
 import { SetStateAction } from "jotai";
 import { Dispatch } from "react";
-import { CheckoutFormType } from "~/types/form";
-import { CreatePurchasePromiseType } from "~/types/promises";
-import { Cart } from "~/types/purchase";
+import { type CheckoutFormType } from "~/types/form";
+import { type CreatePurchasePromiseType } from "~/types/promises";
+import { type Cart } from "~/types/purchase";
 import { api } from "~/utils/api";
 
 const useOrder = () => {

@@ -1,4 +1,4 @@
-import { ContentLakeProductsType } from "./contentLake";
+import { type ContentLakeProductsType } from "./contentLake";
 
 interface CartItem {
   productDetails: ContentLakeProductsType;

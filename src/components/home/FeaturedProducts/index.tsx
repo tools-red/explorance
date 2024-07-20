@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 import ProductDisplay from "../Products/ProductDisplay";
 import useCart from "~/hooks/useCart";
 

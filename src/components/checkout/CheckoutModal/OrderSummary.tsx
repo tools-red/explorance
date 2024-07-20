@@ -1,5 +1,5 @@
 import { Button, Divider, Flex, Text } from "@chakra-ui/react";
-import { Cart } from "~/types/purchase";
+import { type Cart } from "~/types/purchase";
 
 import Image from "next/image";
 

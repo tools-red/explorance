@@ -36,7 +36,7 @@ const FooterConstants: {
   },
 ];
 
-import Image, { StaticImageData } from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import BrandLogo from "../../../../public/Indibliss_Logo.svg";
 import FooterImage from "../../../../public/FooterImage.png";
 import FooterImageAlt from "../../../../public/FooterImageAlt.png";

@@ -1,10 +1,13 @@
 import "swiper/css";
 
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import {
+  type GetServerSideProps,
+  type InferGetServerSidePropsType,
+} from "next";
 import { useRouter } from "next/router";
 import { fetchAllProductsQuery } from "../../../sanity/lib/queries";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 
 import BreadCrumbs from "~/components/global/BreadCrumbs";
 import ProductView from "~/components/product/ProductView";

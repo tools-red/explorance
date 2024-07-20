@@ -1,5 +1,8 @@
 import { Flex } from "@chakra-ui/react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import {
+  type GetServerSideProps,
+  type InferGetServerSidePropsType,
+} from "next";
 import {
   fetchAllProductsQuery,
   // fetchAllFeaturedProductsQuery,
@@ -9,7 +12,7 @@ import HeroText from "~/components/home/HeroText";
 import Products from "~/components/home/Products";
 import useSanityContentLake from "~/hooks/useSanityContentLake";
 import BasePageLayout from "~/layouts/BasePageLayout";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 // import FeaturedProducts from "~/components/home/FeaturedProducts";
 import Banner from "~/components/home/Banner";
 

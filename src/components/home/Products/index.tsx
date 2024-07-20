@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 import useCart from "~/hooks/useCart";
 import { useCartAtom } from "~/lib/jotai/atom";
 import { useEffect } from "react";

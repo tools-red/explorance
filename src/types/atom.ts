@@ -1,4 +1,4 @@
-import { Cart } from "./purchase";
+import { type Cart } from "./purchase";
 
 interface cartAtomStateType {
   cartItems: Cart;

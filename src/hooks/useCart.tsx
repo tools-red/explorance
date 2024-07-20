@@ -1,7 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import { useCartAtom } from "~/lib/jotai/atom";
-import { ContentLakeProductsType } from "~/types/contentLake";
-import { CartItem } from "~/types/purchase";
+import { type ContentLakeProductsType } from "~/types/contentLake";
+import { type CartItem } from "~/types/purchase";
 
 const useCart = () => {
   const [{ cartItems }, setCartState] = useCartAtom();

@@ -1,6 +1,6 @@
 import { Icon } from "@chakra-ui/react";
 import React from "react";
-import { IconType } from "react-icons/lib";
+import { type IconType } from "react-icons/lib";
 
 interface IconCTAProps {
   EventHandler: React.MouseEventHandler<SVGElement> | undefined;

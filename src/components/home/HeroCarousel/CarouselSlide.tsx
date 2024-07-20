@@ -1,6 +1,6 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React from "react";
-import Image, { StaticImageData } from "next/legacy/image";
+import Image, { type StaticImageData } from "next/legacy/image";
 
 interface CarouselSlideProps {
   color: string; // to be removed later

@@ -1,7 +1,7 @@
 import { Button, Flex, Icon, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa6";
-import { ContentLakeProductsType } from "~/types/contentLake";
+import { type ContentLakeProductsType } from "~/types/contentLake";
 
 interface AddCartCTAProps {
   product: ContentLakeProductsType;
