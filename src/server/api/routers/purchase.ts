@@ -64,6 +64,24 @@ const purchase = createTRPCRouter({
         throw new Error(`Couldn't process order: ${err}`);
       }
     }),
+
+  fetchPurchases: publicProcedure.query(async () => {
+    try {
+      const purchase_orders = await db.purchases.findMany();
+      if (purchase_orders.length > 0) {
+        return {
+          orders: purchase_orders,
+        };
+      } else {
+        return {
+          orders: [],
+        };
+      }
+    } catch (err) {
+      console.log(err);
+      throw new Error(`TRPC Error while fetching purchases`);
+    }
+  }),
 });
 
 export default purchase;
