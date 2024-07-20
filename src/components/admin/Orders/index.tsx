@@ -7,6 +7,9 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { useState } from "react";
+
+import useRealTimePurchases from "~/hooks/useRealTimePurchases";
 
 const OrderTableHeader: string[] = [
   "Orders ID",
@@ -20,6 +23,13 @@ const OrderTableHeader: string[] = [
 interface OrdersTableProps {}
 
 const Orders: React.FC<OrdersTableProps> = ({}) => {
+  const [orders, setOrders] = useState([]);
+
+  const handleRealTimeUpdate = (payload: any) => {
+    console.log("Received real-time update:", payload);
+  };
+
+  useRealTimePurchases(handleRealTimeUpdate);
   return (
     <Flex
       border="1px solid"
