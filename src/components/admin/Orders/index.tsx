@@ -2,6 +2,7 @@ import {
   Flex,
   Table,
   TableContainer,
+  Tbody,
   Text,
   Th,
   Thead,
@@ -9,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { type RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { type FetchPurchasePromiseType } from "~/types/promises";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useOrder from "~/hooks/useOrder";
 
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
@@ -31,12 +32,22 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
     []
   );
 
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const initial_orders = await handleFetchOrders();
+      setOrders(initial_orders || []);
+    };
+
+    fetchOrders();
+  }, []);
+
   const handleRealTimeUpdate = async (
     payload: RealtimePostgresChangesPayload<{
       [key: string]: any;
     }>
   ) => {
-    const data = await handleFetchOrders();
+    const updated_orders = await handleFetchOrders();
+    setOrders(updated_orders || []);
   };
 
   useRealTimePurchases(handleRealTimeUpdate);
@@ -77,6 +88,11 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
               })}
             </Tr>
           </Thead>
+          <Tbody>
+            {orders?.map((order, index) => {
+              return <Tr key={index}>{order.name}</Tr>;
+            })}
+          </Tbody>
         </Table>
       </TableContainer>
     </Flex>
