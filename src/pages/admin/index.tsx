@@ -1,4 +1,4 @@
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 import Image, { type StaticImageData } from "next/image";
 import BrandLogo from "../../../public/Indibliss_Logo.svg";
@@ -20,10 +20,7 @@ const AdminPage = () => {
           </Text>
           <Text color="#797979">View your orders and manage transactions</Text>
         </Flex>
-        <Flex gap={5} flexDir="column">
-          <Input w={400} placeholder="Search for Orders" />
-          <Orders />
-        </Flex>
+        <Orders />
       </Flex>
     </Box>
   );
