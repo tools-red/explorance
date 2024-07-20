@@ -1,3 +1,5 @@
+import { type Cart } from "./purchase";
+
 interface CreatePurchasePromiseType {
   purchase_order: {
     id: string;
@@ -28,6 +30,7 @@ interface FetchPurchasePromiseType {
   postalcode: string;
   state: string;
   purchase_id: string;
+  purchase_details: Cart;
   status: STATUS;
 }
 

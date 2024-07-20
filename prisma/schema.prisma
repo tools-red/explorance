@@ -68,6 +68,7 @@ model VerificationToken {
 
 model Purchases {
     id              String @id @default(cuid())
+    created_at DateTime @default(now())
     name            String
     address         String
     city            String

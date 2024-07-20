@@ -3,6 +3,7 @@ import {
   Table,
   TableContainer,
   Tbody,
+  Td,
   Text,
   Th,
   Thead,
@@ -108,7 +109,13 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
           </Thead>
           <Tbody>
             {orders?.map((order, index) => {
-              return <Tr key={index}>{order.name}</Tr>;
+              return (
+                <Tr fontSize="small" key={index}>
+                  <Td>{order.purchase_id}</Td>
+                  <Td>{order.status}</Td>
+                  <Td>${order.purchase_details.totalPrice}</Td>
+                </Tr>
+              );
             })}
           </Tbody>
         </Table>
