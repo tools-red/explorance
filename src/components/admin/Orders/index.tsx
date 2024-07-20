@@ -22,6 +22,7 @@ const OrderTableHeader: string[] = [
   "Status",
   "Order date",
   "Order Amount",
+  "Address",
   "Customer name",
   "Phone number",
   "Email",
@@ -113,10 +114,32 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
             {orders?.map((order, index) => {
               return (
                 <Tr fontSize="small" key={index}>
-                  <Td>{order.purchase_id}</Td>
-                  <Td>{order.status}</Td>
-                  <Td>{convertDATE(order.created_at)}</Td>
-                  <Td>${order.purchase_details.totalPrice}</Td>
+                  <Td>
+                    <Text>{order.purchase_id}</Text>
+                  </Td>
+                  <Td>
+                    <Text>{order.status}</Text>
+                  </Td>
+                  <Td>
+                    <Text>{convertDATE(order.created_at)}</Text>
+                  </Td>
+                  <Td>
+                    <Text>${order.purchase_details.totalPrice}</Text>
+                  </Td>
+                  <Td>
+                    <Text>
+                      {`${order.address} ${order.city} ${order.state} ${order.postalcode}`}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text>{`${order.name}`}</Text>
+                  </Td>
+                  <Td>
+                    <Text>{`${order.mobile}`}</Text>
+                  </Td>
+                  <Td>
+                    <Text>{`${order.email}`}</Text>
+                  </Td>
                 </Tr>
               );
             })}
