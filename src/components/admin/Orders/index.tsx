@@ -7,6 +7,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { type RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { useState } from "react";
 
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
@@ -25,9 +26,11 @@ interface OrdersTableProps {}
 const Orders: React.FC<OrdersTableProps> = ({}) => {
   const [orders, setOrders] = useState([]);
 
-  const handleRealTimeUpdate = (payload: any) => {
-    console.log("Received real-time update:", payload);
-  };
+  const handleRealTimeUpdate = (
+    payload: RealtimePostgresChangesPayload<{
+      [key: string]: any;
+    }>
+  ) => {};
 
   useRealTimePurchases(handleRealTimeUpdate);
   return (
