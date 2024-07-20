@@ -79,12 +79,12 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
           <Tbody>
             {orders?.map((order, index) => {
               return (
-                <Tr fontSize="small" key={index}>
-                  <Td>
-                    <Flex justify="center">
-                      <Checkbox />
-                    </Flex>
-                  </Td>
+                <Tr
+                  _hover={{ bg: "green.200", transition: "all 0.3s" }}
+                  cursor="pointer"
+                  fontSize="small"
+                  key={index}
+                >
                   <Td>
                     <Text>{order.purchase_id}</Text>
                   </Td>

@@ -8,7 +8,6 @@ import useRealTimePurchases from "~/hooks/useRealTimePurchases";
 import OrdersTable from "./OrdersTable";
 
 const OrderTableHeader: string[] = [
-  "Declare",
   "Purchase ID",
   "Status",
   "Order date",
