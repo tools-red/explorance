@@ -1,6 +1,5 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import purchaseRouter from "./routers/purchase";
-import supabaseRouter from "./routers/supa";
 
 /**
  * This is the primary router for your server.
@@ -9,7 +8,6 @@ import supabaseRouter from "./routers/supa";
  */
 export const appRouter = createTRPCRouter({
   purchase: purchaseRouter,
-  supa: supabaseRouter,
 });
 
 // export type definition of API

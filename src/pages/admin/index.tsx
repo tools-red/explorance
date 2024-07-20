@@ -6,8 +6,6 @@ import Orders from "~/components/admin/Orders";
 import useOrder from "~/hooks/useOrder";
 
 const AdminPage = () => {
-  const { handleFetchRealTimeChanges } = useOrder();
-
   return (
     <Box py={10} maxW={1150} marginX={"auto"}>
       <Flex gap={10} flexDir="column">
@@ -25,7 +23,7 @@ const AdminPage = () => {
         </Flex>
         <Flex gap={5} flexDir="column">
           <Input w={400} placeholder="Search for Orders" />
-          <Orders handleFetchRealTimeChanges={handleFetchRealTimeChanges} />
+          <Orders />
         </Flex>
       </Flex>
     </Box>

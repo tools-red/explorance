@@ -7,7 +7,6 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
 
 const OrderTableHeader: string[] = [
   "Orders ID",
@@ -18,9 +17,7 @@ const OrderTableHeader: string[] = [
   "Email",
 ];
 
-interface OrdersTableProps {
-  handleFetchRealTimeChanges: () => Promise<void>;
-}
+interface OrdersTableProps {}
 
 const Orders: React.FC<OrdersTableProps> = ({}) => {
   return (
