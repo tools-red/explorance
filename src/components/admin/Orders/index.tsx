@@ -46,6 +46,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
       [key: string]: any;
     }>
   ) => {
+    console.log(payload);
     const updated_orders = await handleFetchOrders();
     setOrders(updated_orders || []);
   };
@@ -64,7 +65,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
         <Text px={5} fontWeight={600} fontSize="large">
           All Orders
         </Text>
-        {orders && orders.length === 0 ? (
+        {orders === undefined || orders.length === 0 ? (
           <Text
             px={2}
             py={1}

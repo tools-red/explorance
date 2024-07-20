@@ -77,7 +77,7 @@ model Purchases {
     state           String
     purchase_id     String
     purchase_details Json
-    status STATUS @default(DISPATCHED)
+    status STATUS @default(PENDING)
 }
 
 enum STATUS {
