@@ -60,9 +60,26 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
       gap={5}
       flexDir="column"
     >
-      <Text px={5} fontWeight={600} fontSize="large">
-        All Orders
-      </Text>
+      <Flex align="center">
+        <Text px={5} fontWeight={600} fontSize="large">
+          All Orders
+        </Text>
+        {orders && orders.length === 0 ? (
+          <Text
+            px={2}
+            py={1}
+            borderRadius={20}
+            bg="orange.100"
+            fontSize="14px"
+            fontWeight={500}
+            color="orange.500"
+          >
+            You have no orders due
+          </Text>
+        ) : (
+          <></>
+        )}
+      </Flex>
       <TableContainer>
         <Table width="100%" minWidth="unset">
           <Thead>
