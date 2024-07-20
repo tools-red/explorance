@@ -7,6 +7,8 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+import supabase from "~/lib/supabase/client";
 
 const OrderTableHeader: string[] = [
   "Orders ID",
@@ -20,6 +22,19 @@ const OrderTableHeader: string[] = [
 interface OrdersTableProps {}
 
 const Orders: React.FC<OrdersTableProps> = ({}) => {
+  useEffect(() => {
+    supabase
+      .channel("orders")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "Purchases" },
+        (payload) => {
+          console.log(payload);
+        }
+      )
+      .subscribe();
+  }, []);
+
   return (
     <Flex
       border="1px solid"
