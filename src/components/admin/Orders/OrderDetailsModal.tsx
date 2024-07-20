@@ -36,3 +36,5 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
     </Modal>
   );
 };
+
+export default OrderDetailsModal;

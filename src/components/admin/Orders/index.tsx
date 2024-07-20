@@ -1,4 +1,4 @@
-import { Flex, Input } from "@chakra-ui/react";
+import { Flex, Input, useDisclosure } from "@chakra-ui/react";
 import { type RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { type FetchPurchasePromiseType } from "~/types/promises";
 import { useEffect, useMemo, useState } from "react";
@@ -6,6 +6,7 @@ import useOrder from "~/hooks/useOrder";
 
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
 import OrdersTable from "./OrdersTable";
+import OrderDetailsModal from "./OrderDetailsModal";
 
 const OrderTableHeader: string[] = [
   "Purchase ID",
@@ -21,6 +22,11 @@ const OrderTableHeader: string[] = [
 interface OrdersTableProps {}
 
 const Orders: React.FC<OrdersTableProps> = ({}) => {
+  const {
+    onOpen: onOpenOrderDetailsModal,
+    onClose: onCloseOrderDetailsModal,
+    isOpen: isOpenOrderDetailsModal,
+  } = useDisclosure();
   const { handleFetchOrders } = useOrder();
 
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -67,12 +73,17 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
 
   return (
     <Flex gap={5} flexDir="column">
+      <OrderDetailsModal
+        handleModal={onCloseOrderDetailsModal}
+        modalState={isOpenOrderDetailsModal}
+      />
       <Input
         onChange={(e) => setSearchTerm(e.target.value)}
         w={400}
         placeholder="Search for Orders"
       />
       <OrdersTable
+        onOpenOrderDetailsModal={onOpenOrderDetailsModal}
         OrderTableHeader={OrderTableHeader}
         orders={filteredOrdersData}
       />

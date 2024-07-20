@@ -12,15 +12,18 @@ import {
 } from "@chakra-ui/react";
 import { type FetchPurchasePromiseType } from "~/types/promises";
 import { convertDATE } from "~/utils/helpers";
+import OrderDetailsModal from "./OrderDetailsModal";
 
 interface OrdersTableProps {
   orders: FetchPurchasePromiseType[] | undefined;
   OrderTableHeader: string[];
+  onOpenOrderDetailsModal: () => void;
 }
 
 const OrdersTable: React.FC<OrdersTableProps> = ({
   orders,
   OrderTableHeader,
+  onOpenOrderDetailsModal,
 }) => {
   return (
     <Flex
@@ -80,6 +83,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
             {orders?.map((order, index) => {
               return (
                 <Tr
+                  onClick={onOpenOrderDetailsModal}
                   _hover={{ bg: "green.200", transition: "all 0.3s" }}
                   cursor="pointer"
                   fontSize="small"
