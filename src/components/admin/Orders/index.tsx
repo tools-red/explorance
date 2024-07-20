@@ -15,10 +15,12 @@ import { useEffect, useState } from "react";
 import useOrder from "~/hooks/useOrder";
 
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
+import { convertDATE } from "~/utils/helpers";
 
 const OrderTableHeader: string[] = [
   "Purchase ID",
   "Status",
+  "Order date",
   "Order Amount",
   "Customer name",
   "Phone number",
@@ -113,6 +115,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
                 <Tr fontSize="small" key={index}>
                   <Td>{order.purchase_id}</Td>
                   <Td>{order.status}</Td>
+                  <Td>{convertDATE(order.created_at)}</Td>
                   <Td>${order.purchase_details.totalPrice}</Td>
                 </Tr>
               );

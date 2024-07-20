@@ -9,4 +9,15 @@ const generatePurchaseId = () => {
   return `PUR-${timestamp}${randomChars}`;
 };
 
-export { toTitleCase, generatePurchaseId };
+const convertDATE = (date: Date) => {
+  const inputDate = new Date(date);
+
+  const formattedDate = inputDate.toLocaleString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+  return formattedDate;
+};
+
+export { toTitleCase, generatePurchaseId, convertDATE };

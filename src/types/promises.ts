@@ -31,6 +31,7 @@ interface FetchPurchasePromiseType {
   state: string;
   purchase_id: string;
   purchase_details: Cart;
+  created_at: Date;
   status: STATUS;
 }
 
