@@ -3,7 +3,7 @@ import BannerImage1 from "../../../../public/BannerImage1.png";
 import BannerImage2 from "../../../../public/BannerImage2.png";
 import BannerImage3 from "../../../../public/BannerImage3.png";
 import BannerImage4 from "../../../../public/BannerImage4.png";
-import { StaticImageData } from "next/image";
+import { type StaticImageData } from "next/image";
 import BannerFeature from "./BannerFeature";
 
 const Banner = () => {

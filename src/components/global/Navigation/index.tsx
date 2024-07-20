@@ -6,7 +6,7 @@ import LogoArt from "../../../../public/Indibliss_Logo.svg";
 
 import Image from "next/image";
 import Cart from "../Cart";
-import { StaticImageData } from "next/image";
+import { type StaticImageData } from "next/image";
 import SearchBar from "../SearchBar";
 import IconCTA from "~/components/global/Buttons/IconCta";
 import { useCartAtom } from "~/lib/jotai/atom";

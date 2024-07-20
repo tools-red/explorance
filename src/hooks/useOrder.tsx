@@ -1,5 +1,5 @@
-import { SetStateAction } from "jotai";
-import { Dispatch } from "react";
+import { type SetStateAction } from "jotai";
+import { type Dispatch } from "react";
 import { type CheckoutFormType } from "~/types/form";
 import { type CreatePurchasePromiseType } from "~/types/promises";
 import { type Cart } from "~/types/purchase";
