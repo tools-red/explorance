@@ -1,12 +1,21 @@
 import { type SetStateAction } from "jotai";
 import { type Dispatch } from "react";
 import { type CheckoutFormType } from "~/types/form";
-import { type CreatePurchasePromiseType } from "~/types/promises";
+import {
+  type CreatePurchasePromiseType,
+  type FetchPurchasePromiseType,
+} from "~/types/promises";
 import { type Cart } from "~/types/purchase";
 import { api } from "~/utils/api";
 
 const useOrder = () => {
   const createPurchaseMut = api.purchase.createPurchase.useMutation();
+  const { refetch: fetchPurchaseOrders } = api.purchase.fetchPurchases.useQuery(
+    undefined,
+    {
+      enabled: false,
+    }
+  );
 
   const createOrder = async (
     values: CheckoutFormType,
@@ -28,9 +37,21 @@ const useOrder = () => {
     }
   };
 
-  const handleFetchOrders = () => {};
+  const handleFetchOrders = async (): Promise<
+    FetchPurchasePromiseType[] | undefined
+  > => {
+    try {
+      const { data, error } = await fetchPurchaseOrders();
+      const purchase_orders_response = data?.orders;
 
-  return { createOrder };
+      if (error)
+        throw new Error(`Something went wrong while fetching prodcut data`);
+
+      return purchase_orders_response as FetchPurchasePromiseType[];
+    } catch (err) {}
+  };
+
+  return { createOrder, handleFetchOrders };
 };
 
 export default useOrder;
