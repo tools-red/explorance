@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Icon, Text, useToast } from "@chakra-ui/react";
 import { ContentLakeProductsType } from "~/types/contentLake";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useState } from "react";
 
 interface ProductCardProps {
