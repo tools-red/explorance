@@ -1,23 +1,10 @@
-import {
-  Checkbox,
-  Flex,
-  Input,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
+import { Flex, Input } from "@chakra-ui/react";
 import { type RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { type FetchPurchasePromiseType } from "~/types/promises";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useOrder from "~/hooks/useOrder";
 
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
-import { convertDATE } from "~/utils/helpers";
 import OrdersTable from "./OrdersTable";
 
 const OrderTableHeader: string[] = [
@@ -36,6 +23,8 @@ interface OrdersTableProps {}
 
 const Orders: React.FC<OrdersTableProps> = ({}) => {
   const { handleFetchOrders } = useOrder();
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [orders, setOrders] = useState<FetchPurchasePromiseType[] | undefined>(
     []
   );
@@ -60,10 +49,34 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
   };
 
   useRealTimePurchases(handleRealTimeUpdate);
+
+  const filteredOrdersData = useMemo(() => {
+    if (!searchTerm || searchTerm.trim() === "") {
+      return orders;
+    }
+
+    const lowercaseSearchTerm = searchTerm.toLowerCase();
+    return orders?.filter((order) => {
+      const customerName = `${order.name}`;
+      const orderID = `${order.purchase_id}`;
+      return (
+        customerName.toLowerCase().includes(lowercaseSearchTerm) ||
+        orderID.toLowerCase().includes(lowercaseSearchTerm)
+      );
+    });
+  }, [searchTerm, orders]);
+
   return (
     <Flex gap={5} flexDir="column">
-      <Input w={400} placeholder="Search for Orders" />
-      <OrdersTable OrderTableHeader={OrderTableHeader} orders={orders} />
+      <Input
+        onChange={(e) => setSearchTerm(e.target.value)}
+        w={400}
+        placeholder="Search for Orders"
+      />
+      <OrdersTable
+        OrderTableHeader={OrderTableHeader}
+        orders={filteredOrdersData}
+      />
     </Flex>
   );
 };

@@ -45,7 +45,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
             fontWeight={500}
             color="orange.500"
           >
-            You have no orders due
+            No orders due
           </Text>
         ) : (
           <></>
