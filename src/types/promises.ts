@@ -13,4 +13,16 @@ interface CreatePurchasePromiseType {
   order_state: boolean;
 }
 
-export { type CreatePurchasePromiseType };
+interface FetchPurchasePromiseType {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  email: string;
+  mobile: string;
+  postalcode: string;
+  state: string;
+  purchase_id: string;
+}
+
+export { type CreatePurchasePromiseType, type FetchPurchasePromiseType };

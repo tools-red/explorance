@@ -28,6 +28,8 @@ const useOrder = () => {
     }
   };
 
+  const handleFetchOrders = () => {};
+
   return { createOrder };
 };
 
