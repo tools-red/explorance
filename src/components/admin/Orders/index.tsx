@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   Flex,
   Table,
   TableContainer,
@@ -18,6 +19,7 @@ import useRealTimePurchases from "~/hooks/useRealTimePurchases";
 import { convertDATE } from "~/utils/helpers";
 
 const OrderTableHeader: string[] = [
+  "Declare",
   "Purchase ID",
   "Status",
   "Order date",
@@ -114,6 +116,11 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
             {orders?.map((order, index) => {
               return (
                 <Tr fontSize="small" key={index}>
+                  <Td>
+                    <Flex justify="center">
+                      <Checkbox />
+                    </Flex>
+                  </Td>
                   <Td>
                     <Text>{order.purchase_id}</Text>
                   </Td>
