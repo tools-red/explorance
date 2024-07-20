@@ -7,6 +7,10 @@ import { api } from "~/utils/api";
 
 const useOrder = () => {
   const createPurchaseMut = api.purchase.createPurchase.useMutation();
+  const { refetch: fetchRealTimeChanges } =
+    api.supa.realtimePurchaseRequests.useQuery(undefined, {
+      enabled: false,
+    });
 
   const createOrder = async (
     values: CheckoutFormType,
@@ -27,7 +31,23 @@ const useOrder = () => {
       throw new Error("Error while generating order");
     }
   };
-  return { createOrder };
+
+  const handleFetchRealTimeChanges = async () => {
+    try {
+      const { data, error } = await fetchRealTimeChanges();
+
+      if (error)
+        throw new Error(
+          `Error while processing real time updates: ${error.message}`
+        );
+
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+      throw new Error("Something went wrong");
+    }
+  };
+  return { createOrder, handleFetchRealTimeChanges };
 };
 
 export default useOrder;
