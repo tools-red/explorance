@@ -18,11 +18,11 @@ const OrderTableHeader: string[] = [
   "Email",
 ];
 
-interface OrdersTableProps {}
+interface OrdersTableProps {
+  handleFetchRealTimeChanges: () => Promise<void>;
+}
 
 const Orders: React.FC<OrdersTableProps> = ({}) => {
-  useEffect(() => {}, []);
-
   return (
     <Flex
       border="1px solid"

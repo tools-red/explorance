@@ -34,14 +34,12 @@ const useOrder = () => {
 
   const handleFetchRealTimeChanges = async () => {
     try {
-      const { data, error } = await fetchRealTimeChanges();
+      const { error, dataUpdatedAt } = await fetchRealTimeChanges();
 
       if (error)
         throw new Error(
           `Error while processing real time updates: ${error.message}`
         );
-
-      console.log(data);
     } catch (err) {
       console.log(err);
       throw new Error("Something went wrong");

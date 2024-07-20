@@ -14,7 +14,7 @@ const supa = createTRPCRouter({
             table: "Purchases",
           },
           (payload) => {
-            return payload;
+            console.log({ payload });
           }
         )
         .subscribe();
