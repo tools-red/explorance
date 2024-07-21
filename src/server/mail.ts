@@ -42,3 +42,18 @@ export const sendPurchaseMail = async (to: string, purchase_id: string) => {
 
   await sendMail({ to, subject, html });
 };
+
+export const sendDispatchedOrderMail = async (
+  purchase_Id: string,
+  to: string,
+  customer_name: string
+) => {
+  const subject = `Your Purchase/Order #${purchase_Id} has been dispatched`;
+  const html = `<div>
+  <p>Dear ${customer_name},</p>
+  <p>This mail is to inform you that your purchase/order #${purchase_Id} has been dispatched and will arrive at your doorstep in the next 5 to 6 days</p>
+  <p>We thank you for shopping with us</p>
+  </div>`;
+
+  await sendMail({ to, subject, html });
+};

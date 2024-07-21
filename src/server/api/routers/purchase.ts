@@ -88,12 +88,13 @@ const purchase = createTRPCRouter({
       Yup.object({
         purchase_Id: Yup.string(),
         customer_name: Yup.string(),
+        customer_email: Yup.string(),
         id: Yup.string(),
       })
     )
     .mutation(async ({ input }) => {
       try {
-        const { customer_name, purchase_Id, id } = input;
+        const { customer_name, customer_email, purchase_Id, id } = input;
         const updateUser = await db.purchases.update({
           where: {
             id: id,
