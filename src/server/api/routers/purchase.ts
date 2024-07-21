@@ -82,6 +82,43 @@ const purchase = createTRPCRouter({
       throw new Error(`TRPC Error while fetching purchases`);
     }
   }),
+
+  dispatchPurchaseRequest: publicProcedure
+    .input(
+      Yup.object({
+        purchase_Id: Yup.string(),
+        customer_name: Yup.string(),
+        id: Yup.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      try {
+        const { customer_name, purchase_Id, id } = input;
+        const updateUser = await db.purchases.update({
+          where: {
+            id: id,
+          },
+          data: {
+            status: "DISPATCHED",
+          },
+        });
+
+        if (!updateUser) {
+          return {
+            data: undefined,
+            dispatch_status: false,
+          };
+        }
+
+        return {
+          data: updateUser,
+          dispatch_status: true,
+        };
+      } catch (err) {
+        console.log(err);
+        throw new Error(`Error while processing update request: TRPC`);
+      }
+    }),
 });
 
 export default purchase;
