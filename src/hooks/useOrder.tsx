@@ -10,6 +10,9 @@ import { api } from "~/utils/api";
 
 const useOrder = () => {
   const createPurchaseMut = api.purchase.createPurchase.useMutation();
+  const dispatchPurchaseMut =
+    api.purchase.dispatchPurchaseRequest.useMutation();
+
   const { refetch: fetchPurchaseOrders } = api.purchase.fetchPurchases.useQuery(
     undefined,
     {
@@ -47,11 +50,41 @@ const useOrder = () => {
       if (error)
         throw new Error(`Something went wrong while fetching prodcut data`);
 
-      return purchase_orders_response as FetchPurchasePromiseType[];
+      return purchase_orders_response as FetchPurchasePromiseType[] | undefined;
     } catch (err) {}
   };
 
-  return { createOrder, handleFetchOrders };
+  const handleDispatchOrder = async (
+    customer_email: string,
+    customer_name: string,
+    id: string,
+    purchase_Id: string,
+    setError: Dispatch<SetStateAction<boolean>>,
+    setErrorMessage: Dispatch<SetStateAction<string>>
+  ): Promise<boolean> => {
+    try {
+      const { data, dispatch_status } = await dispatchPurchaseMut.mutateAsync({
+        customer_email,
+        customer_name,
+        id,
+        purchase_Id,
+      });
+
+      if (!data) {
+        setError(true);
+        setErrorMessage("Error while recieving server update reponse");
+        throw new Error("Error while recieving server update reponse");
+      }
+
+      return dispatch_status;
+    } catch (err) {
+      setError(true);
+      setErrorMessage("Something went wrong, view console");
+      throw new Error(`Handle Reqeuest went wrong: ${err}`);
+    }
+  };
+
+  return { createOrder, handleFetchOrders, handleDispatchOrder };
 };
 
 export default useOrder;
