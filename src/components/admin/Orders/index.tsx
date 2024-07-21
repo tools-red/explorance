@@ -7,6 +7,7 @@ import useOrder from "~/hooks/useOrder";
 import useRealTimePurchases from "~/hooks/useRealTimePurchases";
 import OrdersTable from "./OrdersTable";
 import OrderDetailsModal from "./OrderDetailsModal";
+import OrdersFilterCTA from "./OrdersFilterCTA";
 
 const OrderTableHeader: string[] = [
   "Purchase ID",
@@ -30,6 +31,8 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
   const { handleFetchOrders, handleDispatchOrder } = useOrder();
 
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filter, setFilter] = useState<string>("All");
+
   const [orderInView, setOrderInView] = useState<
     FetchPurchasePromiseType | undefined
   >(undefined);
@@ -82,11 +85,18 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
         modalState={isOpenOrderDetailsModal}
         orderInView={orderInView}
       />
-      <Input
-        onChange={(e) => setSearchTerm(e.target.value)}
-        w={400}
-        placeholder="Search for Orders"
-      />
+      <Flex justify="space-between">
+        <Input
+          onChange={(e) => setSearchTerm(e.target.value)}
+          w={400}
+          placeholder="Search for Orders"
+        />
+        <OrdersFilterCTA
+          setIsSelected={setFilter}
+          isSelected={filter}
+          MenuItems={["All", "Pending", "Dispatched"]}
+        />
+      </Flex>
       <OrdersTable
         setOrderInView={setOrderInView}
         onOpenOrderDetailsModal={onOpenOrderDetailsModal}

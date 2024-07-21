@@ -14,7 +14,7 @@ import {
 import { STATUS, type FetchPurchasePromiseType } from "~/types/promises";
 
 import Image from "next/legacy/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { type Dispatch, type SetStateAction, useState } from "react";
 
 interface OrderDetailsModalProps {
   orderInView: FetchPurchasePromiseType | undefined;
