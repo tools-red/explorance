@@ -5,7 +5,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import { CheckoutFormSchema } from "~/lib/formik/schemas";
 import { db } from "~/server/db";
 import { generatePurchaseId } from "~/utils/helpers";
-import { sendPurchaseMail } from "~/server/mail";
+import { sendPurchaseMail, sendDispatchedOrderMail } from "~/server/mail";
 
 const purchase = createTRPCRouter({
   createPurchase: publicProcedure
@@ -62,6 +62,68 @@ const purchase = createTRPCRouter({
         console.log(err);
         /* tslint:disable-next-line */
         throw new Error(`Couldn't process order: ${err}`);
+      }
+    }),
+
+  fetchPurchases: publicProcedure.query(async () => {
+    try {
+      const purchase_orders = await db.purchases.findMany();
+      if (purchase_orders.length > 0) {
+        return {
+          orders: purchase_orders,
+        };
+      } else {
+        return {
+          orders: [],
+        };
+      }
+    } catch (err) {
+      console.log(err);
+      throw new Error(`TRPC Error while fetching purchases`);
+    }
+  }),
+
+  dispatchPurchaseRequest: publicProcedure
+    .input(
+      Yup.object({
+        purchase_Id: Yup.string(),
+        customer_name: Yup.string(),
+        customer_email: Yup.string(),
+        id: Yup.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      try {
+        const { customer_name, customer_email, purchase_Id, id } = input;
+        const updateUser = await db.purchases.update({
+          where: {
+            id: id,
+          },
+          data: {
+            status: "DISPATCHED",
+          },
+        });
+
+        if (!updateUser) {
+          return {
+            data: undefined,
+            dispatch_status: false,
+          };
+        }
+
+        await sendDispatchedOrderMail(
+          purchase_Id ?? "",
+          customer_email ?? "",
+          customer_name ?? ""
+        );
+
+        return {
+          data: updateUser,
+          dispatch_status: true,
+        };
+      } catch (err) {
+        console.log(err);
+        throw new Error(`Error while processing update request: TRPC`);
       }
     }),
 });

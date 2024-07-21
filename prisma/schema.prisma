@@ -68,6 +68,7 @@ model VerificationToken {
 
 model Purchases {
     id              String @id @default(cuid())
+    created_at DateTime @default(now())
     name            String
     address         String
     city            String
@@ -77,4 +78,10 @@ model Purchases {
     state           String
     purchase_id     String
     purchase_details Json
+    status STATUS @default(PENDING)
+}
+
+enum STATUS {
+    DISPATCHED @map("DISPATCHED")
+    PENDING @map("PENDING")
 }

@@ -5,7 +5,6 @@ interface ContentLakeProductsType {
   productPrice: number;
   stockCount: number;
   productTitle: string;
-  productType: string;
   ImageURL: string;
   slug: string;
 }
