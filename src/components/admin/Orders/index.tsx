@@ -1,5 +1,4 @@
 import { Flex, Input, useDisclosure } from "@chakra-ui/react";
-import { type RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { type FetchPurchasePromiseType } from "~/types/promises";
 import { useEffect, useMemo, useState } from "react";
 import useOrder from "~/hooks/useOrder";
@@ -20,9 +19,7 @@ const OrderTableHeader: string[] = [
   "Email",
 ];
 
-interface OrdersTableProps {}
-
-const Orders: React.FC<OrdersTableProps> = ({}) => {
+const Orders = () => {
   const {
     onOpen: onOpenOrderDetailsModal,
     onClose: onCloseOrderDetailsModal,
@@ -43,20 +40,15 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
   useEffect(() => {
     const fetchOrders = async () => {
       const initial_orders = await handleFetchOrders();
-      setOrders(initial_orders || []);
+      setOrders(initial_orders ?? []);
     };
 
-    fetchOrders();
+    void fetchOrders();
   }, []);
 
-  const handleRealTimeUpdate = async (
-    payload: RealtimePostgresChangesPayload<{
-      [key: string]: any;
-    }>
-  ) => {
-    console.log(payload);
+  const handleRealTimeUpdate = async () => {
     const updated_orders = await handleFetchOrders();
-    setOrders(updated_orders || []);
+    setOrders(updated_orders ?? []);
   };
 
   useRealTimePurchases(handleRealTimeUpdate);
