@@ -98,6 +98,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
         />
       </Flex>
       <OrdersTable
+        filterState={filter}
         setOrderInView={setOrderInView}
         onOpenOrderDetailsModal={onOpenOrderDetailsModal}
         OrderTableHeader={OrderTableHeader}

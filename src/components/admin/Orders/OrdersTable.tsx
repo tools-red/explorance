@@ -17,6 +17,7 @@ import { GoDotFill } from "react-icons/go";
 
 interface OrdersTableProps {
   orders: FetchPurchasePromiseType[] | undefined;
+  filterState: string;
   OrderTableHeader: string[];
   onOpenOrderDetailsModal: () => void;
   setOrderInView: Dispatch<
@@ -27,6 +28,7 @@ interface OrdersTableProps {
 const OrdersTable: React.FC<OrdersTableProps> = ({
   orders,
   OrderTableHeader,
+  filterState,
   onOpenOrderDetailsModal,
   setOrderInView,
 }) => {
@@ -89,68 +91,78 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
             </Tr>
           </Thead>
           <Tbody>
-            {orders?.map((order, index) => {
-              return (
-                <Tr
-                  onClick={() => {
-                    handleOrderInViewSelect(order);
-                  }}
-                  _hover={{ bg: "green.200", transition: "all 0.3s" }}
-                  cursor="pointer"
-                  fontSize="small"
-                  key={index}
-                >
-                  <Td>
-                    <Text>{order.purchase_id}</Text>
-                  </Td>
-                  <Td>
-                    <Flex
-                      w="fit-content"
-                      gap={1}
-                      bg={
-                        order.status === STATUS.PENDING ? "#F2F4F7" : "#ECFDF3"
-                      }
-                      py={0.5}
-                      px={2}
-                      borderRadius={20}
-                      align="center"
-                      color={
-                        order.status === STATUS.PENDING
-                          ? "#344054"
-                          : "green.400"
-                      }
-                    >
-                      <Icon boxSize={2.5} as={GoDotFill} />
-                      <Text fontWeight={500}>
-                        {order.status === STATUS.PENDING
-                          ? "Pending"
-                          : "Dispatched"}
+            {orders
+              ?.filter((order) =>
+                filterState === "All"
+                  ? order.status === STATUS.DISPATCHED || STATUS.PENDING
+                  : filterState === "Dispatched"
+                    ? order.status === STATUS.DISPATCHED
+                    : order.status === STATUS.PENDING
+              )
+              .map((order, index) => {
+                return (
+                  <Tr
+                    onClick={() => {
+                      handleOrderInViewSelect(order);
+                    }}
+                    _hover={{ bg: "green.200", transition: "all 0.3s" }}
+                    cursor="pointer"
+                    fontSize="small"
+                    key={index}
+                  >
+                    <Td>
+                      <Text>{order.purchase_id}</Text>
+                    </Td>
+                    <Td>
+                      <Flex
+                        w="fit-content"
+                        gap={1}
+                        bg={
+                          order.status === STATUS.PENDING
+                            ? "#F2F4F7"
+                            : "#ECFDF3"
+                        }
+                        py={0.5}
+                        px={2}
+                        borderRadius={20}
+                        align="center"
+                        color={
+                          order.status === STATUS.PENDING
+                            ? "#344054"
+                            : "green.400"
+                        }
+                      >
+                        <Icon boxSize={2.5} as={GoDotFill} />
+                        <Text fontWeight={500}>
+                          {order.status === STATUS.PENDING
+                            ? "Pending"
+                            : "Dispatched"}
+                        </Text>
+                      </Flex>
+                    </Td>
+                    <Td>
+                      <Text>{convertDATE(order.created_at)}</Text>
+                    </Td>
+                    <Td>
+                      <Text>${order.purchase_details.totalPrice}</Text>
+                    </Td>
+                    <Td>
+                      <Text>
+                        {`${order.address} ${order.city} ${order.state} ${order.postalcode}`}
                       </Text>
-                    </Flex>
-                  </Td>
-                  <Td>
-                    <Text>{convertDATE(order.created_at)}</Text>
-                  </Td>
-                  <Td>
-                    <Text>${order.purchase_details.totalPrice}</Text>
-                  </Td>
-                  <Td>
-                    <Text>
-                      {`${order.address} ${order.city} ${order.state} ${order.postalcode}`}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Text>{`${order.name}`}</Text>
-                  </Td>
-                  <Td>
-                    <Text>{`${order.mobile}`}</Text>
-                  </Td>
-                  <Td>
-                    <Text>{`${order.email}`}</Text>
-                  </Td>
-                </Tr>
-              );
-            })}
+                    </Td>
+                    <Td>
+                      <Text>{`${order.name}`}</Text>
+                    </Td>
+                    <Td>
+                      <Text>{`${order.mobile}`}</Text>
+                    </Td>
+                    <Td>
+                      <Text>{`${order.email}`}</Text>
+                    </Td>
+                  </Tr>
+                );
+              })}
           </Tbody>
         </Table>
       </TableContainer>
