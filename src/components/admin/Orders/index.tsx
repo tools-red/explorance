@@ -27,7 +27,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
     onClose: onCloseOrderDetailsModal,
     isOpen: isOpenOrderDetailsModal,
   } = useDisclosure();
-  const { handleFetchOrders } = useOrder();
+  const { handleFetchOrders, handleDispatchOrder } = useOrder();
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [orderInView, setOrderInView] = useState<
@@ -77,6 +77,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
   return (
     <Flex gap={5} flexDir="column">
       <OrderDetailsModal
+        handleDispatchOrder={handleDispatchOrder}
         handleModal={onCloseOrderDetailsModal}
         modalState={isOpenOrderDetailsModal}
         orderInView={orderInView}

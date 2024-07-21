@@ -9,22 +9,70 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { type FetchPurchasePromiseType } from "~/types/promises";
 
 import Image from "next/legacy/image";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface OrderDetailsModalProps {
   orderInView: FetchPurchasePromiseType | undefined;
   modalState: boolean;
   handleModal: () => void;
+  handleDispatchOrder: (
+    customer_email: string,
+    customer_name: string,
+    id: string,
+    purchase_Id: string,
+    setError: Dispatch<SetStateAction<boolean>>,
+    setErrorMessage: Dispatch<SetStateAction<string>>
+  ) => Promise<boolean>;
 }
 
 const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
   handleModal,
+  handleDispatchOrder,
   modalState,
   orderInView,
 }) => {
+  const toast = useToast();
+  const [error, setError] = useState<boolean>(false);
+  const [isDispatching, setIsDispatching] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const handleDispatchProcedure = async (
+    customer_email: string,
+    customer_name: string,
+    id: string,
+    purchase_Id: string
+  ) => {
+    const dispatch_status = await handleDispatchOrder(
+      customer_email,
+      customer_name,
+      id,
+      purchase_Id,
+      setError,
+      setErrorMessage
+    );
+
+    if (dispatch_status) {
+      setError(false);
+      setIsDispatching(false);
+      handleModal();
+      toast({
+        title: "Order Dispatched",
+        description: `Order #${orderInView?.purchase_id} has been dispatched`,
+        isClosable: true,
+        duration: 2000,
+      });
+    } else {
+      setIsDispatching(false);
+      setError(true);
+      setErrorMessage("Couldn't Dispatch order, Something went wrong");
+    }
+  };
+
   return (
     <Modal size="2xl" isOpen={modalState} onClose={handleModal}>
       <ModalOverlay />
@@ -85,24 +133,44 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
 
         {orderInView ? (
           <ModalFooter>
-            <Button
-              transition="all 0.3s"
-              _hover={{ bg: "#F8E5DB" }}
-              bg="#FAF1EC"
-              color="#CC723F"
-              mr={3}
-              onClick={handleModal}
-            >
-              Cancel
-            </Button>
-            <Button
-              transition="all 0.3s"
-              _hover={{ bg: "#B45722" }}
-              bg="#CC723F"
-              color="white"
-            >
-              Dispatch Delivery
-            </Button>
+            <Flex flexDir="column">
+              <Flex>
+                <Button
+                  transition="all 0.3s"
+                  _hover={{ bg: "#F8E5DB" }}
+                  bg="#FAF1EC"
+                  color="#CC723F"
+                  mr={3}
+                  onClick={handleModal}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  isLoading={isDispatching}
+                  onClick={() => {
+                    void handleDispatchProcedure(
+                      orderInView.email,
+                      orderInView.name,
+                      orderInView.id,
+                      orderInView.purchase_id
+                    );
+                  }}
+                  transition="all 0.3s"
+                  _hover={{ bg: "#B45722" }}
+                  bg="#CC723F"
+                  color="white"
+                >
+                  Dispatch Delivery
+                </Button>
+              </Flex>
+              {error ? (
+                <Text mt={1} color="red.500" fontWeight={500}>
+                  Error here
+                </Text>
+              ) : (
+                <></>
+              )}
+            </Flex>
           </ModalFooter>
         ) : (
           <></>
