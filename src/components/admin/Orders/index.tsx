@@ -30,6 +30,9 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
   const { handleFetchOrders } = useOrder();
 
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [orderInView, setOrderInView] = useState<
+    FetchPurchasePromiseType | undefined
+  >(undefined);
   const [orders, setOrders] = useState<FetchPurchasePromiseType[] | undefined>(
     []
   );
@@ -76,6 +79,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
       <OrderDetailsModal
         handleModal={onCloseOrderDetailsModal}
         modalState={isOpenOrderDetailsModal}
+        orderInView={orderInView}
       />
       <Input
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -83,6 +87,7 @@ const Orders: React.FC<OrdersTableProps> = ({}) => {
         placeholder="Search for Orders"
       />
       <OrdersTable
+        setOrderInView={setOrderInView}
         onOpenOrderDetailsModal={onOpenOrderDetailsModal}
         OrderTableHeader={OrderTableHeader}
         orders={filteredOrdersData}

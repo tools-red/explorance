@@ -1,5 +1,4 @@
 import {
-  Checkbox,
   Flex,
   Table,
   TableContainer,
@@ -12,19 +11,27 @@ import {
 } from "@chakra-ui/react";
 import { type FetchPurchasePromiseType } from "~/types/promises";
 import { convertDATE } from "~/utils/helpers";
-import OrderDetailsModal from "./OrderDetailsModal";
+import { type Dispatch, type SetStateAction } from "react";
 
 interface OrdersTableProps {
   orders: FetchPurchasePromiseType[] | undefined;
   OrderTableHeader: string[];
   onOpenOrderDetailsModal: () => void;
+  setOrderInView: Dispatch<
+    SetStateAction<FetchPurchasePromiseType | undefined>
+  >;
 }
 
 const OrdersTable: React.FC<OrdersTableProps> = ({
   orders,
   OrderTableHeader,
   onOpenOrderDetailsModal,
+  setOrderInView,
 }) => {
+  const handleOrderInViewSelect = (order: FetchPurchasePromiseType) => {
+    setOrderInView(order);
+    onOpenOrderDetailsModal();
+  };
   return (
     <Flex
       border="1px solid"
@@ -83,7 +90,9 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
             {orders?.map((order, index) => {
               return (
                 <Tr
-                  onClick={onOpenOrderDetailsModal}
+                  onClick={() => {
+                    handleOrderInViewSelect(order);
+                  }}
                   _hover={{ bg: "green.200", transition: "all 0.3s" }}
                   cursor="pointer"
                   fontSize="small"
