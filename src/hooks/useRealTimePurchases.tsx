@@ -15,7 +15,7 @@ const useRealTimePurchases = (onUpdate: () => Promise<void>) => {
         },
         (payload) => {
           console.log("Real-time update:", payload);
-          onUpdate();
+          void onUpdate();
         }
       )
       .subscribe();
