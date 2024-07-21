@@ -11,7 +11,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { type FetchPurchasePromiseType } from "~/types/promises";
+import { STATUS, type FetchPurchasePromiseType } from "~/types/promises";
 
 import Image from "next/legacy/image";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -47,6 +47,7 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
     id: string,
     purchase_Id: string
   ) => {
+    setIsDispatching(true);
     const dispatch_status = await handleDispatchOrder(
       customer_email,
       customer_name,
@@ -81,11 +82,33 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
         <ModalCloseButton />
         {orderInView ? (
           <ModalBody>
-            <Flex gap={5} flexDir="column">
+            <Flex gap={3} flexDir="column">
               <Flex gap={2} flexDir="column">
-                <Text fontWeight={600} fontSize="xl">
-                  {orderInView.name}
-                </Text>
+                <Flex align="center" gap={3}>
+                  <Text fontWeight={600} fontSize="xl">
+                    {orderInView.name}
+                  </Text>
+                  <Text
+                    bg={
+                      orderInView.status === STATUS.DISPATCHED
+                        ? "green.100"
+                        : "#E4E7EC"
+                    }
+                    px={2}
+                    borderRadius={20}
+                    color={
+                      orderInView.status === STATUS.DISPATCHED
+                        ? "green.500"
+                        : "#667085"
+                    }
+                    fontWeight={500}
+                    fontSize="small"
+                  >
+                    {orderInView.status === STATUS.DISPATCHED
+                      ? "Dispatched"
+                      : "Pending"}
+                  </Text>
+                </Flex>
                 <Flex fontSize="14px" gap={1} flexDir="column">
                   <Text color="gray.500">{`${orderInView.mobile}, ${orderInView.email}`}</Text>
                   <Text color="gray.500">{orderInView.address}</Text>
@@ -146,6 +169,9 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
                   Cancel
                 </Button>
                 <Button
+                  isDisabled={
+                    orderInView.status === STATUS.DISPATCHED ? true : false
+                  }
                   isLoading={isDispatching}
                   onClick={() => {
                     void handleDispatchProcedure(

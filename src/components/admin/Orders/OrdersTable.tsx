@@ -105,6 +105,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
                   </Td>
                   <Td>
                     <Flex
+                      w="fit-content"
                       gap={1}
                       bg={
                         order.status === STATUS.PENDING ? "#F2F4F7" : "#ECFDF3"
