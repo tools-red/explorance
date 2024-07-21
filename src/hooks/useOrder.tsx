@@ -80,7 +80,7 @@ const useOrder = () => {
     } catch (err) {
       setError(true);
       setErrorMessage("Something went wrong, view console");
-      throw new Error(`Handle Reqeuest went wrong: ${err}`);
+      throw new Error(`Handle Reqeuest went wrong`);
     }
   };
 

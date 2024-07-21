@@ -1,15 +1,8 @@
 // src/hooks/useRealTimePurchases.ts
 import { useEffect } from "react";
 import supabase from "../../supabase/lib/client";
-import { type RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 
-const useRealTimePurchases = (
-  onUpdate: (
-    payload: RealtimePostgresChangesPayload<{
-      [key: string]: any;
-    }>
-  ) => void
-) => {
+const useRealTimePurchases = (onUpdate: () => Promise<void>) => {
   useEffect(() => {
     const channel = supabase
       .channel("schema-db-changes")
@@ -22,13 +15,13 @@ const useRealTimePurchases = (
         },
         (payload) => {
           console.log("Real-time update:", payload);
-          onUpdate(payload);
+          onUpdate();
         }
       )
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      void supabase.removeChannel(channel);
     };
   }, [onUpdate]);
 };
