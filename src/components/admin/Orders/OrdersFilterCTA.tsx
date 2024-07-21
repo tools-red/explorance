@@ -1,5 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { type Dispatch, type SetStateAction } from "react";
+import { LuListFilter } from "react-icons/lu";
 
 interface OrdersFilterCTAProps {
   MenuItems: string[];
@@ -15,10 +16,12 @@ const OrdersFilterCTA: React.FC<OrdersFilterCTAProps> = ({
   return (
     <Menu>
       <MenuButton
+        leftIcon={<LuListFilter />}
         fontSize="small"
         variant="none"
-        border="1px solid rgba(31, 41, 55, 0.45)"
-        boxShadow="0px 3px 0px 0px rgba(0, 0, 0, 0.19)"
+        border="1px solid"
+        borderColor="#D0D5DD"
+        color="#344054"
         as={Button}
       >
         {isSelected}
