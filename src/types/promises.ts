@@ -38,5 +38,5 @@ interface FetchPurchasePromiseType {
 export {
   type CreatePurchasePromiseType,
   type FetchPurchasePromiseType,
-  type STATUS,
+  STATUS,
 };

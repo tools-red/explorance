@@ -33,12 +33,12 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
         <ModalCloseButton />
         {orderInView ? (
           <ModalBody>
-            <Flex gap={10} flexDir="column">
+            <Flex gap={5} flexDir="column">
               <Flex gap={2} flexDir="column">
                 <Text fontWeight={600} fontSize="xl">
                   {orderInView.name}
                 </Text>
-                <Flex gap={1} flexDir="column" fontSize="small">
+                <Flex fontSize="14px" gap={1} flexDir="column">
                   <Text color="gray.500">{`${orderInView.mobile}, ${orderInView.email}`}</Text>
                   <Text color="gray.500">{orderInView.address}</Text>
                   <Text color="gray.500">{`${orderInView.city}, ${orderInView.state}`}</Text>
@@ -86,6 +86,7 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
         {orderInView ? (
           <ModalFooter>
             <Button
+              transition="all 0.3s"
               _hover={{ bg: "#F8E5DB" }}
               bg="#FAF1EC"
               color="#CC723F"
@@ -94,7 +95,12 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
             >
               Cancel
             </Button>
-            <Button _hover={{ bg: "#B45722" }} bg="#CC723F" color="white">
+            <Button
+              transition="all 0.3s"
+              _hover={{ bg: "#B45722" }}
+              bg="#CC723F"
+              color="white"
+            >
               Dispatch Delivery
             </Button>
           </ModalFooter>

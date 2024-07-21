@@ -1,5 +1,6 @@
 import {
   Flex,
+  Icon,
   Table,
   TableContainer,
   Tbody,
@@ -9,9 +10,10 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { type FetchPurchasePromiseType } from "~/types/promises";
+import { STATUS, type FetchPurchasePromiseType } from "~/types/promises";
 import { convertDATE } from "~/utils/helpers";
 import { type Dispatch, type SetStateAction } from "react";
+import { GoDotFill } from "react-icons/go";
 
 interface OrdersTableProps {
   orders: FetchPurchasePromiseType[] | undefined;
@@ -102,7 +104,28 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
                     <Text>{order.purchase_id}</Text>
                   </Td>
                   <Td>
-                    <Text>{order.status}</Text>
+                    <Flex
+                      gap={1}
+                      bg={
+                        order.status === STATUS.PENDING ? "#F2F4F7" : "#ECFDF3"
+                      }
+                      py={0.5}
+                      px={2}
+                      borderRadius={20}
+                      align="center"
+                      color={
+                        order.status === STATUS.PENDING
+                          ? "#344054"
+                          : "green.400"
+                      }
+                    >
+                      <Icon boxSize={2.5} as={GoDotFill} />
+                      <Text fontWeight={500}>
+                        {order.status === STATUS.PENDING
+                          ? "Pending"
+                          : "Dispatched"}
+                      </Text>
+                    </Flex>
                   </Td>
                   <Td>
                     <Text>{convertDATE(order.created_at)}</Text>
