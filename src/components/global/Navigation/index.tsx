@@ -26,39 +26,46 @@ const Navigation: React.FC<NavigationProps> = ({ products }) => {
 
   return (
     <Box px={[5, 5, 0]} mt={6} marginX="auto" w={1150}>
-      <Flex align="center" justify="space-between">
-        <Box cursor="pointer" onClick={() => (window.location.href = "/")}>
-          <Image
-            alt="Logo Art"
-            width={150}
-            height={150}
-            src={LogoArt as StaticImageData}
-          />
-        </Box>
-        <Flex display={["none", "none", "flex"]} align="center" gap={6}>
-          <SearchBar products={products} />
-          <Flex gap={4}>
-            <IconCTA CTAIcon={FiUser} EventHandler={() => signIn("google")} />
-            <Box pos="relative">
-              <IconCTA CTAIcon={FiShoppingCart} EventHandler={onCartOpen} />
-              {cartItems.items.length > 0 ? (
-                <Text
-                  color="white"
-                  fontSize="small"
-                  borderRadius={20}
-                  bg="#CC723F"
-                  px={2}
-                  pos="absolute"
-                  top={-4}
-                  right={-5}
-                >
-                  {cartItems.items.length}
-                </Text>
-              ) : (
-                <></>
-              )}
+      <Flex gap={5} flexDir="column">
+        <Flex align="center" justify="space-between">
+          <Box cursor="pointer" onClick={() => (window.location.href = "/")}>
+            <Image
+              alt="Logo Art"
+              width={150}
+              height={150}
+              src={LogoArt as StaticImageData}
+            />
+          </Box>
+          <Flex align="center" gap={6}>
+            <Box display={["none", "none", "block"]}>
+              <SearchBar products={products} />
             </Box>
+            <Flex gap={4}>
+              <IconCTA CTAIcon={FiUser} EventHandler={() => signIn("google")} />
+              <Box pos="relative">
+                <IconCTA CTAIcon={FiShoppingCart} EventHandler={onCartOpen} />
+                {cartItems.items.length > 0 ? (
+                  <Text
+                    color="white"
+                    fontSize="small"
+                    borderRadius={20}
+                    bg="#CC723F"
+                    px={2}
+                    pos="absolute"
+                    top={-4}
+                    right={-5}
+                  >
+                    {cartItems.items.length}
+                  </Text>
+                ) : (
+                  <></>
+                )}
+              </Box>
+            </Flex>
           </Flex>
+        </Flex>
+        <Flex justify="center" w="full" display={["flex", "none", "none"]}>
+          <SearchBar products={products} />
         </Flex>
       </Flex>
       <Cart isOpen={isCartOpen} onClose={onCartClose} />
