@@ -1,7 +1,6 @@
 import { Box, Flex, Icon, Text, useDisclosure } from "@chakra-ui/react";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import { signIn } from "next-auth/react";
-import { CgMenu } from "react-icons/cg";
 
 import LogoArt from "../../../../public/Indibliss_Logo.svg";
 
@@ -60,9 +59,6 @@ const Navigation: React.FC<NavigationProps> = ({ products }) => {
               )}
             </Box>
           </Flex>
-        </Flex>
-        <Flex display={["block", "block", "none"]}>
-          <Icon as={CgMenu} />
         </Flex>
       </Flex>
       <Cart isOpen={isCartOpen} onClose={onCartClose} />
