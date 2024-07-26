@@ -25,8 +25,8 @@ const Navigation: React.FC<NavigationProps> = ({ products }) => {
   } = useDisclosure();
 
   return (
-    <Box px={[5, 5, 0]} mt={6} marginX="auto" w={1150}>
-      <Flex gap={5} flexDir="column">
+    <Box px={[5, 5, 0]} mt={6} marginX="auto" w="100%" maxW={1150}>
+      <Flex gap={10} flexDir="column">
         <Flex align="center" justify="space-between">
           <Box cursor="pointer" onClick={() => (window.location.href = "/")}>
             <Image

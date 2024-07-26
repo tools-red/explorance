@@ -26,7 +26,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
       cursor="pointer"
       onMouseEnter={() => setButtonOpacity(1)}
       onMouseLeave={() => setButtonOpacity(0)}
-      w={300}
+      w="100%"
+      maxW={300}
       flexDir="column"
       overflow="hidden"
     >

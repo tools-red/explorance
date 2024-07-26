@@ -18,8 +18,15 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
     console.log({ cartItems });
   }, [cartItems]);
   return (
-    <Flex my={10} w={1150} marginX="auto" flexDir="column">
-      <Flex gap={20} flexDir="column">
+    <Flex
+      px={[5, 5, 0]}
+      my={10}
+      w="100%"
+      maxW={1150}
+      marginX="auto"
+      flexDir="column"
+    >
+      <Flex gap={[10, 10, 20]} flexDir="column">
         <BreadCrumbs
           selectedIndex={0}
           crumbArray={[
@@ -29,10 +36,20 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
           ]}
         />
         <Flex mb={10} gap={3} flexDir={"column"}>
-          <Text className="marcellus-regular" fontSize="40px" w={500}>
+          <Text
+            className="marcellus-regular"
+            fontSize={["30px", "30px", "40px"]}
+            w="100%"
+            maxW={500}
+          >
             Shop All Natural Delights
           </Text>
-          <Text color="gray.500" w={700}>
+          <Text
+            fontSize={["sm", "sm", "regular"]}
+            color="gray.500"
+            w="100%"
+            maxW={700}
+          >
             Experience the essence of nature&apos;s luxury with our organically
             crafted foods. Enriched with pure ingredients inspired by Ayurveda,
             our collection includes the finest coconut oil, honey, tea, jaggery

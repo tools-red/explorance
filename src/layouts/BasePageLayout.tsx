@@ -1,6 +1,5 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
-import Footer from "~/components/global/Footer/Footer";
 import Navigation from "~/components/global/Navigation";
 import { type ContentLakeProductsType } from "~/types/contentLake";
 
@@ -14,11 +13,11 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = ({
   products,
 }) => {
   return (
-    <Flex flexDir={"column"}>
+    <Box>
       <Navigation products={products} />
       <Box>{children}</Box>
-      <Footer />
-    </Flex>
+      {/* <Footer /> */}
+    </Box>
   );
 };
 

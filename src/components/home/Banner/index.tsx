@@ -39,7 +39,13 @@ const Banner = () => {
   ];
   return (
     <Box py={20} bg="#FAF0EB">
-      <Flex justify="space-between" w={1150} marginX="auto">
+      <Flex
+        flexDir={["column", "column", "row"]}
+        justify="space-between"
+        w="100%"
+        maxW={1150}
+        marginX="auto"
+      >
         {BannerFeatureData.map((feature, index) => {
           return (
             <BannerFeature

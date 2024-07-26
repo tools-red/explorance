@@ -17,7 +17,11 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
   return (
     <Box>
       {products && products.length > 0 ? (
-        <Grid templateColumns="repeat(3, 1fr)" flexDir="column" rowGap={5}>
+        <Grid
+          templateColumns={["repeat(1,1fr)", "repeat(2,1fr)", "repeat(3, 1fr)"]}
+          flexDir="column"
+          rowGap={5}
+        >
           {products?.map((product, index) => {
             return (
               <GridItem key={index}>

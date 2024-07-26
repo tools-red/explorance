@@ -67,7 +67,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ products }) => {
           fontWeight={500}
           _placeholder={{
             fontWeight: 500,
-            fontSize: "14.5px",
+            fontSize: ["13.5px", "14.5px", "14.5px"],
             color: "#CC723F",
           }}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -93,6 +93,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ products }) => {
         >
           {productSuggestions.map((suggestion, index) => (
             <Text
+              fontSize={["13.5 px", "13.5 px", "regular"]}
               onClick={() =>
                 (window.location.href = `/products/${suggestion.slug}`)
               }
