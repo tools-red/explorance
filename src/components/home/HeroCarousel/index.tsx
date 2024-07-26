@@ -12,7 +12,7 @@ import CarouselSlide from "./CarouselSlide";
 
 const HeroCarousel = () => {
   return (
-    <Box>
+    <Box display={["none", "none", "block"]}>
       <Swiper
         direction="horizontal"
         modules={[Autoplay, Navigation, Pagination]}
