@@ -7,7 +7,7 @@ interface BreadCrumbProps {
 
 const BreadCrumbs: React.FC<BreadCrumbProps> = ({ crumbArray }) => {
   return (
-    <Flex gap={1.5}>
+    <Flex px={[5, 5, 0]} gap={1.5}>
       {crumbArray.map((crumb, index) => {
         return (
           <Flex

@@ -18,14 +18,21 @@ const ProductView: React.FC<ProductViewProps> = ({
   addToCart,
 }) => {
   return (
-    <Flex align="center" justify="space-between" mt={10}>
-      <Flex gap={10} flexDir="column">
-        <Flex gap={3} flexDir="column">
-          <Text className="marcellus-regular" fontSize="6xl">
+    <Flex
+      flexDir={["column-reverse", "column-reverse", "row"]}
+      align="center"
+      justify="space-between"
+      mt={10}
+    >
+      <Flex mt={[5, 5, 0]} px={[5, 5, 0]} gap={[6, 6, 10]} flexDir="column">
+        <Flex gap={[0, 0, 3]} flexDir="column">
+          <Text className="marcellus-regular" fontSize={["4xl", "4xl", "6xl"]}>
             {productData?.productTitle}
           </Text>
           <Flex align="center" gap={3}>
-            <Text fontSize="2xl">${productData?.productPrice?.toFixed(2)}</Text>
+            <Text fontSize={["xl", "xl", "2xl"]}>
+              ${productData?.productPrice?.toFixed(2)}
+            </Text>
             {productData?.stockCount === 0 ? (
               <Text fontWeight={500} color="red.500">
                 Out of Stock
@@ -41,7 +48,13 @@ const ProductView: React.FC<ProductViewProps> = ({
               </Flex>
             )}
           </Flex>
-          <Text mt={3} color="#797979" w={500}>
+          <Text
+            fontSize={["sm", "sm", "md"]}
+            mt={3}
+            color="#797979"
+            w="100%"
+            maxW={500}
+          >
             {productData?.productDescription}
           </Text>
         </Flex>
@@ -65,7 +78,10 @@ const ProductView: React.FC<ProductViewProps> = ({
           src={productData?.ImageURL!}
           alt={`Image-Product-${productData?.productId}`}
         />
-        <Grid templateColumns="repeat(1,1fr)">
+        <Grid
+          display={["none", "none", "grid"]}
+          templateColumns="repeat(1,1fr)"
+        >
           <GridItem bg="gray.300" w={70} h={120} />
           <GridItem bg="gray.300" w={70} h={120} />
           <GridItem bg="gray.300" w={70} h={120} />

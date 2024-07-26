@@ -35,7 +35,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <Box
         onClick={() => (window.location.href = `/products/${product.slug}`)}
         position="relative"
-        width={width ?? 300}
+        w="100%"
+        maxWidth={width ?? 300}
         height={height ?? 400}
       >
         <Image
