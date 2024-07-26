@@ -1,6 +1,7 @@
-import { Box, Flex, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Icon, Text, useDisclosure } from "@chakra-ui/react";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import { signIn } from "next-auth/react";
+import { CgMenu } from "react-icons/cg";
 
 import LogoArt from "../../../../public/Indibliss_Logo.svg";
 
@@ -25,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({ products }) => {
   } = useDisclosure();
 
   return (
-    <Box mt={6} marginX="auto" w={1150}>
+    <Box px={[5, 5, 0]} mt={6} marginX="auto" w={1150}>
       <Flex align="center" justify="space-between">
         <Box cursor="pointer" onClick={() => (window.location.href = "/")}>
           <Image
@@ -35,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ products }) => {
             src={LogoArt as StaticImageData}
           />
         </Box>
-        <Flex align="center" gap={6}>
+        <Flex display={["none", "none", "flex"]} align="center" gap={6}>
           <SearchBar products={products} />
           <Flex gap={4}>
             <IconCTA CTAIcon={FiUser} EventHandler={() => signIn("google")} />
@@ -59,6 +60,9 @@ const Navigation: React.FC<NavigationProps> = ({ products }) => {
               )}
             </Box>
           </Flex>
+        </Flex>
+        <Flex display={["block", "block", "none"]}>
+          <Icon as={CgMenu} />
         </Flex>
       </Flex>
       <Cart isOpen={isCartOpen} onClose={onCartClose} />
