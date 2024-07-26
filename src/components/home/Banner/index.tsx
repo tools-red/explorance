@@ -41,6 +41,8 @@ const Banner = () => {
     <Box py={20} bg="#FAF0EB">
       <Flex
         flexDir={["column", "column", "row"]}
+        gap={[5, 0, 0]}
+        align={["center", "center", ""]}
         justify="space-between"
         w="100%"
         maxW={1150}

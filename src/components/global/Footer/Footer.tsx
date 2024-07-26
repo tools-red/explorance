@@ -46,9 +46,20 @@ const Footer = () => {
   const { pathname } = useRouter();
 
   return (
-    <Box bg={pathname === "/products/[slug]" ? "#FAF2EF" : "white"}>
-      <Flex pt={20} pb={10} w={1150} marginX="auto" flexDir="column">
-        <Flex justify="space-between" flexDir="row">
+    <Flex
+      justify="center"
+      px={[5, 5, 0]}
+      bg={pathname === "/products/[slug]" ? "#FAF2EF" : "white"}
+    >
+      <Flex
+        pt={20}
+        pb={10}
+        w="100%"
+        maxW={1150}
+        marginX="auto"
+        flexDir="column"
+      >
+        <Flex justify="space-between" flexDir={["column", "column", "row"]}>
           <Flex gap={3} flexDir="column">
             <Image
               src={BrandLogo as StaticImageData}
@@ -82,7 +93,7 @@ const Footer = () => {
             )}
           </Flex>
 
-          <Flex gap="70px" flexDir="row">
+          <Flex my={[5, 5, 0]} gap="70px" flexDir={["column", "column", "row"]}>
             {FooterConstants.map((constant, index) => {
               return (
                 <Flex gap={3} flexDir="column" key={index}>
@@ -111,9 +122,9 @@ const Footer = () => {
             })}
           </Flex>
         </Flex>
-        <Flex justify="flex-end" w="full">
+        <Flex mt={[5, 5, 0]} justify="flex-end" w="full">
           <Flex gap={20} align="flex-end">
-            <Text color="#575757">
+            <Text fontSize={["sm", "sm", "regular"]} color="#575757">
               © 2024 Organic Delights. All rights reserved.
             </Text>
             <Button _hover={{ bg: "#B45722" }} borderRadius="none" bg="#CC723F">
@@ -122,7 +133,7 @@ const Footer = () => {
           </Flex>
         </Flex>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 

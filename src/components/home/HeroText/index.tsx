@@ -25,7 +25,7 @@ const HeroText = () => {
         <Text
           my={[3, 0, 0]}
           color="#797979"
-          fontSize={["sm", "sm", "regular"]}
+          fontSize={["sm", "sm", "md"]}
           w="100%"
           maxW={500}
         >
