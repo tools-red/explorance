@@ -4,12 +4,13 @@ import LinkButton from "~/components/global/Buttons/LinkButton";
 const HeroText = () => {
   return (
     <Flex
+      px={[5, 5, 0]}
+      flexDirection={["column", "row", "row"]}
       my={10}
       align="center"
       justify="space-between"
       w={1150}
       marginX={"auto"}
-      flexDir="row"
     >
       <Text className="marcellus-regular" fontSize="40px" w={500}>
         Discover Pure Organics Bliss & Ayurvedic Delights with Indibliss
