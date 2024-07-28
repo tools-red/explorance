@@ -9,7 +9,7 @@ const CheckoutPage = () => {
   return (
     <Flex px={[5, 5, 0]} h="100vh" align="center" justify="center">
       <Flex gap={3} flexDir="column">
-        <Text className="marcellus-regular" fontSize="3xl">
+        <Text my={[2, 2, 0]} className="marcellus-regular" fontSize="3xl">
           Checkout Summary
         </Text>
         <CheckoutModal cartItems={cartItems} />
