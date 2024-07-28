@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
 import { type Cart } from "~/types/purchase";
 
 import Image from "next/image";
@@ -9,13 +9,7 @@ interface OrderSummaryProps {
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ cartItems }) => {
   return (
-    <Flex
-      display={["none", "none", "flex"]}
-      justify="space-between"
-      flexDir="column"
-      w="100%"
-      maxW={400}
-    >
+    <Flex justify="space-between" flexDir="column" w={400}>
       <Flex pr={1} h={300} overflowY="auto" gap={3} flexDir="column">
         {cartItems.items.map((item, index) => {
           return (
@@ -59,7 +53,9 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ cartItems }) => {
             <Text>{`$${(cartItems.totalPrice + 90).toFixed(2)}`}</Text>
           </Flex>
         </Flex>
+
         <Button
+          display={["none", "none", "block"]}
           onClick={() => (window.location.href = "/")}
           color="white"
           bg="#CC723F"

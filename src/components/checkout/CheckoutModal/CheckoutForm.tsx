@@ -18,7 +18,11 @@ import FormInputFeild from "~/components/global/Form/Feilds/FormInputFeild";
 import useOrder from "~/hooks/useOrder";
 import useSanityContentLake from "~/hooks/useSanityContentLake";
 
-const CheckoutForm = () => {
+interface CheckoutFormProps {
+  onOrderSummaryOpen: () => void;
+}
+
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ onOrderSummaryOpen }) => {
   const toast = useToast();
   const [{ cartItems }, setCartAtom] = useCartAtom();
   const { updateContentLakeProductStock } = useSanityContentLake();
@@ -82,7 +86,7 @@ const CheckoutForm = () => {
   });
 
   return (
-    <Box width="100%" maxW={700}>
+    <Box width="100%" maxW={500}>
       <Formik
         validationSchema={CheckoutFormSchema}
         initialValues={InitalCheckoutFormValues}
@@ -217,7 +221,11 @@ const CheckoutForm = () => {
                   )}
                 </FormInputFeild>
               </Flex>
-              <Button display={["block", "block", "none"]} mt={5}>
+              <Button
+                onClick={onOrderSummaryOpen}
+                display={["block", "block", "none"]}
+                mt={5}
+              >
                 View Order
               </Button>
               <Button
