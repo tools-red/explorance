@@ -7,7 +7,7 @@ const CheckoutPage = () => {
   const [{ cartItems }] = useCartAtom();
 
   return (
-    <Flex h="100vh" align="center" justify="center">
+    <Flex px={[5, 5, 0]} h="100vh" align="center" justify="center">
       <Flex gap={3} flexDir="column">
         <Text className="marcellus-regular" fontSize="3xl">
           Checkout Summary

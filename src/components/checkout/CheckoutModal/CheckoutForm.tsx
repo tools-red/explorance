@@ -82,7 +82,7 @@ const CheckoutForm = () => {
   });
 
   return (
-    <Box w={500}>
+    <Box width="100%" maxW={700}>
       <Formik
         validationSchema={CheckoutFormSchema}
         initialValues={InitalCheckoutFormValues}
@@ -217,13 +217,16 @@ const CheckoutForm = () => {
                   )}
                 </FormInputFeild>
               </Flex>
+              <Button display={["block", "block", "none"]} mt={5}>
+                View Order
+              </Button>
               <Button
                 isLoading={submitting}
                 type="submit"
                 bg={orderState ? "green.500" : "#222121"}
                 _hover={{ bg: "gray.700" }}
                 color="white"
-                mt={5}
+                mt={[2, 2, 5]}
               >
                 {CTAMessage}
               </Button>

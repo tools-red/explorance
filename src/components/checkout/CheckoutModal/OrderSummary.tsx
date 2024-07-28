@@ -9,7 +9,13 @@ interface OrderSummaryProps {
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ cartItems }) => {
   return (
-    <Flex justify="space-between" flexDir="column" w={400}>
+    <Flex
+      display={["none", "none", "flex"]}
+      justify="space-between"
+      flexDir="column"
+      w="100%"
+      maxW={400}
+    >
       <Flex pr={1} h={300} overflowY="auto" gap={3} flexDir="column">
         {cartItems.items.map((item, index) => {
           return (
