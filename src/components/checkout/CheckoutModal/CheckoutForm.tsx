@@ -96,7 +96,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onOrderSummaryOpen }) => {
           <Form>
             <Flex flexDir="column">
               <Flex gap={5} flexDir="column">
-                <Flex gap={3}>
+                <Flex flexDir={["column", "column", "row"]} gap={3}>
                   <FormInputFeild formLable="First name">
                     <Input
                       border="1px solid"
